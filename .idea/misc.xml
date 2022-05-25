@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/bottomroundedges.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/circle.xml" value="0.1605" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/circle_background.xml" value="0.1605" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/cursor_green.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/ic_launcher_background.xml" value="0.152" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/ic_outline_home_24.xml" value="0.152" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_corners_gray_bg_black_corner.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_edges_bg_green.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_edges_black_border.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/spinner_border.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/text_border_without_shadow.xml" value="0.1605" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_account.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_product_detail.xml" value="0.13636363636363635" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_produts_listing.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_search.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_sub_categories.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/bsd_pdetail_offer.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/custom_loading.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_account.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_cart.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_dynamic.xml" value="0.15217391304347827" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_otp.xml" value="0.1598731884057971" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_scroll.xml" value="0.16" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_search.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_sign_up.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_splash_screen.xml" value="0.1598731884057971" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_tab1.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_tab2.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_tab3.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_tab4.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_wallet.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/product_detail_content.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_cart_out_of_view_single_item.xml" value="0.22" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_main_all_cat_single_item.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_main_banner_single_item.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_main_categories_single_item.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_main_category_product_single_item.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_main_category_wise_nested_single_item.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_main_fragment_ads.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_main_fragment_image_with_pname_single_item.xml" value="0.1539855072463768" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_main_fragment_top_products_single_item.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_main_frament_top_products_single_item.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_main_product_out_of_frame_single_item.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_pdetail_offer_single_item.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_product_detail_descripton.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_product_detail_margin_single_item.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_product_details_more_details_single_item.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_sign_up_reviews_single_item.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_single_image_view.xml" value="0.15306122448979592" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/spinner_text_view_single_item.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_arrow_back_ios_34_black.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_arrow_drop_down_24_black.xml" value="0.1605" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_arrow_forward_ios_24_smoke_white.xml" value="0.1605" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.1605" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_search_24_gray.xml" value="0.148" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_outline_shopping_cart_24_gray.xml" value="0.1605" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/section_margin"
+    tools:context="com.arraykart.b2b.SignUp.Fragments.OtpFragment">
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_margin"
+        android:src="@drawable/ic_baseline_arrow_back_ios_24_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/view_top_margin"
+        android:text="Enter the OTP code"
+        android:textColor="@color/heading"
+        android:textSize="@dimen/heading"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_margin"
+        android:text="OTP has been sent to your phone number"
+        android:textColor="@color/heading"
+        android:textSize="@dimen/text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <TextView
+        android:id="@+id/phoneNumberOTP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_margin"
+        android:textColor="@color/heading"
+        android:textSize="@dimen/text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberOTP">
+
+        <EditText
+            android:id="@+id/otp1ET"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/view_left_margin"
+            android:layout_marginEnd="@dimen/view_right_margin"
+            android:layout_weight="1"
+            android:background="@drawable/round_edges_black_border"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textNoSuggestions"
+            android:maxLength="1"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/otp2ET"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/view_left_margin"
+            android:layout_marginEnd="@dimen/view_right_margin"
+            android:layout_weight="1"
+            android:background="@drawable/round_edges_black_border"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textNoSuggestions"
+            android:maxLength="1"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/otp3ET"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/view_left_margin"
+            android:layout_marginEnd="@dimen/view_right_margin"
+            android:layout_weight="1"
+            android:background="@drawable/round_edges_black_border"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textNoSuggestions"
+            android:maxLength="1"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/otp4ET"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/view_left_margin"
+            android:layout_marginEnd="@dimen/view_right_margin"
+            android:layout_weight="1"
+            android:background="@drawable/round_edges_black_border"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textNoSuggestions"
+            android:maxLength="1"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/otp5ET"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/view_left_margin"
+            android:layout_marginEnd="@dimen/view_right_margin"
+            android:layout_weight="1"
+            android:background="@drawable/round_edges_black_border"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textNoSuggestions"
+            android:maxLength="1"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/otp6ET"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/view_left_margin"
+            android:layout_marginEnd="@dimen/view_right_margin"
+            android:layout_weight="1"
+            android:background="@drawable/round_edges_black_border"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textNoSuggestions"
+            android:maxLength="1"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/submitOTP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_margin"
+        android:background="@drawable/round_edges_gray_bg"
+        android:paddingStart="@dimen/section_margin"
+        android:paddingTop="@dimen/view_top_margin"
+        android:paddingEnd="@dimen/section_margin"
+        android:paddingBottom="@dimen/view_right_margin"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/heading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/view_top_margin"
+        android:text="OTP will expire in 00:00:00"
+        android:textColor="@color/heading"
+        android:textSize="@dimen/text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitOTP" />
+
+    <TextView
+        android:id="@+id/resendOTP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/view_top_margin"
+        android:text="Resend OTP"
+        android:textColor="@color/hyperlink"
+        android:textSize="@dimen/sub_heading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView42" />
+</androidx.constraintlayout.widget.ConstraintLayout>

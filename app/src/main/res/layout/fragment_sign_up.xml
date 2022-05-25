@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.arraykart.b2b.SignUp.Fragments.SignUpFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/company_icon_green" />
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/company_name_green" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/suReviewRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/neumorphCardView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/view_padding"
+                android:paddingStart="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:neumorph_shapeType="basin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/view_padding">
+
+                    <EditText
+                        android:id="@+id/suPhoneNumber"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:drawableStart="@drawable/ic_baseline_phone_24"
+                        android:drawablePadding="@dimen/view_padding"
+                        android:ems="10"
+                        android:hint="Phone Number"
+                        android:importantForAutofill="no"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/view_padding_left"
+                        android:paddingEnd="@dimen/view_padding_right"
+                        android:textColor="@color/heading" />
+
+                    <ImageView
+                        android:id="@+id/suSignUpImg"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/view_right_margin"
+                        android:background="@color/sp_bg"
+                        android:padding="5dp"
+                        app:srcCompat="@drawable/ic_baseline_login_24" />
+                </LinearLayout>
+
+            </soup.neumorphism.NeumorphCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_left_margin"
+                android:layout_marginEnd="@dimen/view_right_margin"
+                android:paddingStart="@dimen/view_padding_left"
+                android:paddingEnd="@dimen/view_padding_right"
+                android:text="By signing up, you agree to our"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_left_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/view_right_margin"
+                android:paddingStart="@dimen/view_padding_left"
+                android:paddingEnd="@dimen/view_padding_right"
+                android:text="*terms and conditions"
+                android:textColor="@color/hyperlink"
+                android:textSize="@dimen/text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView21" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</ScrollView>

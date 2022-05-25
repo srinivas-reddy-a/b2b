@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="product_name">20sp</dimen>
+    <dimen name="text">14sp</dimen>
+    <dimen name="heading">20sp</dimen>
+    <dimen name="view_bottom_margin">10sp</dimen>
+    <dimen name="view_top_margin">10sp</dimen>
+    <dimen name="view_right_margin">10sp</dimen>
+    <dimen name="view_left_margin">10sp</dimen>
+    <dimen name="section_margin">20sp</dimen>
+    <dimen name="section_padding">20sp</dimen>
+    <dimen name="sub_heading">18sp</dimen>
+    <dimen name="section_line">2sp</dimen>
+    <dimen name="sub_section_line">1sp</dimen>
+    <dimen name="view_padding">10sp</dimen>
+    <dimen name="view_padding_bottom">10sp</dimen>
+    <dimen name="view_padding_top">10sp</dimen>
+    <dimen name="view_padding_left">10sp</dimen>
+    <dimen name="view_padding_right">10sp</dimen>
+    <dimen name="scroll_view_bottom_margin">100dp</dimen>
+    <dimen name="account_frag_arrow">15dp</dimen>
+    <dimen name="account_frag_icon">24dp</dimen>
+    <dimen name="account_frag_view_margin">54dp</dimen>
+</resources>

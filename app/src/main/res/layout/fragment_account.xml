@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:tag="accountFragment"
+    tools:context="com.arraykart.b2b.Home.Fragments.AccountFragment" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/scroll_view_bottom_margin">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/profileLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Hola, {Customer}"
+                        android:textAlignment="center"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/heading" />
+
+                    <TextView
+                        android:id="@+id/textView27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="My Profile"
+                        android:textAlignment="center"
+                        android:textColor="@color/hyperlink"
+                        android:textSize="@dimen/sub_heading"
+                        app:drawableEndCompat="@drawable/ic_outline_edit_24" />
+                </LinearLayout>
+
+                <soup.neumorphism.NeumorphCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/circle_background"
+                        android:src="@drawable/profile" />
+                </soup.neumorphism.NeumorphCardView>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/accview1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/section_line"
+                android:background="@color/section_line"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profileLL"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/view_padding">
+
+            <LinearLayout
+                android:id="@+id/addressll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_icon"
+                    android:layout_height="@dimen/account_frag_icon"
+                    android:layout_gravity="center"
+                    android:foregroundTint="@color/green"
+                    android:src="@drawable/ic_outline_address_on_24" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/view_left_margin"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:text="My Address"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/sub_heading" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="@dimen/account_frag_arrow"
+                    android:layout_height="@dimen/account_frag_arrow"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <View
+            android:id="@+id/addview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginStart="@dimen/account_frag_view_margin"
+            android:background="@color/sub_section_line"
+            android:visibility="visible" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/view_padding">
+
+            <LinearLayout
+                android:id="@+id/ordersll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_icon"
+                    android:layout_height="@dimen/account_frag_icon"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_outline_order_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/view_left_margin"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:text="My Orders"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/sub_heading" />
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_arrow"
+                    android:layout_height="@dimen/account_frag_arrow"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/ordersView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginStart="@dimen/account_frag_view_margin"
+            android:background="@color/sub_section_line"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/view_padding">
+
+            <LinearLayout
+                android:id="@+id/kycLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_icon"
+                    android:layout_height="@dimen/account_frag_icon"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_outline_kyc_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/view_left_margin"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:text="KYC"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/sub_heading" />
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_arrow"
+                    android:layout_height="@dimen/account_frag_arrow"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/kycView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginStart="@dimen/account_frag_view_margin"
+            android:background="@color/sub_section_line"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/view_padding">
+
+            <LinearLayout
+                android:id="@+id/returnLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_icon"
+                    android:layout_height="@dimen/account_frag_icon"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_return_and_replace_policy_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/view_left_margin"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:text="Return and Replace Policy"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/sub_heading" />
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_arrow"
+                    android:layout_height="@dimen/account_frag_arrow"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/returnView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginStart="@dimen/account_frag_view_margin"
+            android:background="@color/sub_section_line"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/view_padding">
+
+            <LinearLayout
+                android:id="@+id/privacyLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_icon"
+                    android:layout_height="@dimen/account_frag_icon"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_outline_privacy_and_policy_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/view_left_margin"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:text="Privacy Policy"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/sub_heading" />
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_arrow"
+                    android:layout_height="@dimen/account_frag_arrow"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/privacyView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginStart="@dimen/account_frag_view_margin"
+            android:background="@color/sub_section_line"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/view_padding">
+
+            <LinearLayout
+                android:id="@+id/termsLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_icon"
+                    android:layout_height="@dimen/account_frag_icon"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_outline_terms_and_conditions_mark_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/view_left_margin"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:text="Terms and Conditions"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/sub_heading" />
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_arrow"
+                    android:layout_height="@dimen/account_frag_arrow"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/termsView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginStart="@dimen/account_frag_view_margin"
+            android:background="@color/sub_section_line"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/view_padding">
+
+            <LinearLayout
+                android:id="@+id/abouLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_icon"
+                    android:layout_height="@dimen/account_frag_icon"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_outline_about_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/view_left_margin"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:text="About Us"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/sub_heading" />
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_arrow"
+                    android:layout_height="@dimen/account_frag_arrow"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/aboutView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginStart="@dimen/account_frag_view_margin"
+            android:background="@color/sub_section_line"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/view_padding">
+
+            <LinearLayout
+                android:id="@+id/contactLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_icon"
+                    android:layout_height="@dimen/account_frag_icon"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_contact_us_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/view_left_margin"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:text="Contact Us"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/sub_heading" />
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_arrow"
+                    android:layout_height="@dimen/account_frag_arrow"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/contactView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginStart="@dimen/account_frag_view_margin"
+            android:background="@color/sub_section_line"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/view_padding">
+
+            <LinearLayout
+                android:id="@+id/logoutLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_icon"
+                    android:layout_height="@dimen/account_frag_icon"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_logout_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/view_left_margin"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:text="Logout"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/sub_heading" />
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_arrow"
+                    android:layout_height="@dimen/account_frag_arrow"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/logoutView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginStart="@dimen/account_frag_view_margin"
+            android:background="@color/sub_section_line"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/view_padding">
+
+            <LinearLayout
+                android:id="@+id/bugLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_icon"
+                    android:layout_height="@dimen/account_frag_icon"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_bug_report_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/view_left_margin"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:text="Report a Bug"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/sub_heading" />
+
+                <ImageView
+                    android:layout_width="@dimen/account_frag_arrow"
+                    android:layout_height="@dimen/account_frag_arrow"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/bugView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginStart="@dimen/account_frag_view_margin"
+            android:background="@color/sub_section_line"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/view_padding">
+
+            <ImageView
+                android:id="@+id/companyLogo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="clip_vertical|center_horizontal"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:src="@drawable/company_icon_green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/appVersion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_vertical|center_horizontal"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:text="App version: 0.0.1.0"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/companyLogo" />
+
+            <TextView
+                android:id="@+id/madeIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_vertical|center_horizontal"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:text="Made with ❤ in 🇮🇳"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appVersion" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+</ScrollView>
