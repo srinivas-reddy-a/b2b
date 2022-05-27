@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.arraykart.b2b.Products.ProdutsListingActivity">
+    tools:context="com.arraykart.b2b.Products.ProductsListingActivity">
 
     <soup.neumorphism.NeumorphCardView
         android:id="@+id/neumorphCardView6"
@@ -41,6 +41,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -53,6 +54,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView3"
                 app:layout_constraintTop_toTopOf="parent"
@@ -71,26 +73,24 @@
         app:layout_constraintTop_toBottomOf="@+id/neumorphCardView6">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/categoryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:text="Product Category"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/cartTotal"
+            android:id="@+id/totalProducts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Total : 12"
             android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>
@@ -101,6 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="120dp"
+        android:nestedScrollingEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -14,8 +14,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="70dp"
+            android:layout_height="70dp">
 
             <soup.neumorphism.NeumorphImageView
                 android:id="@+id/allCatIV"
@@ -45,11 +45,10 @@
         android:id="@+id/allCatTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginEnd="8dp"
-        android:text="arraykart"
+        android:layout_marginStart="@dimen/view_padding_left"
+        android:layout_marginEnd="@dimen/view_padding_right"
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textSize="@dimen/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/neumorphCardView7" />

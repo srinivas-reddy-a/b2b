@@ -27,9 +27,10 @@ import android.widget.TextView;
 import com.arraykart.b2b.Home.Fragments.CartFragment;
 import com.arraykart.b2b.Home.Fragments.ScrollFragment;
 import com.arraykart.b2b.Home.Fragments.WalletFragment;
+import com.arraykart.b2b.Search.SearchActivity;
 import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
 import com.bumptech.glide.Glide;
-import com.arraykart.b2b.Home.Fragments.AccountFragment;
+import com.arraykart.b2b.Home.Fragments.Account.AccountFragment;
 import com.arraykart.b2b.R;
 
 import java.util.Locale;
@@ -104,13 +105,14 @@ public class HomeActivity extends AppCompatActivity {
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(icon);
+        pincode = findViewById(R.id.pincode);
         neumorphCardView = findViewById(R.id.neumorphCardView);
         editText = findViewById(R.id.search);
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(HomeActivity.this, SearchActivity.class);
-//                startActivity(i)    ;
+                Intent i = new Intent(HomeActivity.this, SearchActivity.class);
+                startActivity(i)    ;
             }
         });
 
@@ -184,6 +186,7 @@ public class HomeActivity extends AppCompatActivity {
                 neumorphCardView.setVisibility(View.VISIBLE);
                 imageView.setVisibility(View.VISIBLE);
                 icon.setVisibility(View.VISIBLE);
+                pincode.setVisibility(View.VISIBLE);
             }
             //return true as motion up will occur only after motion down
             return true;
@@ -234,6 +237,7 @@ public class HomeActivity extends AppCompatActivity {
                 neumorphCardView.setVisibility(View.GONE);
                 imageView.setVisibility(View.GONE);
                 icon.setVisibility(View.GONE);
+                pincode.setVisibility(View.GONE);
                 FragmentTransaction fragmentTransaction13 = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction13.replace(R.id.homeContainer, walletFragment).commit();
             }
@@ -281,6 +285,7 @@ public class HomeActivity extends AppCompatActivity {
                 neumorphCardView.setVisibility(View.GONE);
                 imageView.setVisibility(View.GONE);
                 icon.setVisibility(View.GONE);
+                pincode.setVisibility(View.GONE);
                 FragmentTransaction fragmentTransaction12 = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction12.replace(R.id.homeContainer,cartFragment).commit();
             }
@@ -328,6 +333,7 @@ public class HomeActivity extends AppCompatActivity {
                 neumorphCardView.setVisibility(View.GONE);
                 imageView.setVisibility(View.GONE);
                 icon.setVisibility(View.GONE);
+                pincode.setVisibility(View.GONE);
                 FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction1.replace(R.id.homeContainer, accountFragment).commit();
             }
@@ -348,7 +354,6 @@ public class HomeActivity extends AppCompatActivity {
 //                Toast.makeText(HomeActivity.this, "lan:"+String.valueOf(lat)+" lon:"+String.valueOf(lon), Toast.LENGTH_SHORT).show();
 //                Log.e("lat: ", String.valueOf(lat));
 //                Log.e("lon: ", String.valueOf(lon));
-                pincode = findViewById(R.id.pincode);
                 pincode.setText("lat"+lat);
                 final Geocoder geocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
 

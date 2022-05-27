@@ -47,6 +47,7 @@
                 android:id="@+id/suReviewRV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -85,7 +86,8 @@
                         android:importantForAutofill="no"
                         android:inputType="phone"
                         android:maxLength="10"
-                        android:maxLines="1"
+                        android:ellipsize="end"
+android:maxLines="1"
                         android:paddingStart="@dimen/view_padding_left"
                         android:paddingEnd="@dimen/view_padding_right"
                         android:textColor="@color/heading" />

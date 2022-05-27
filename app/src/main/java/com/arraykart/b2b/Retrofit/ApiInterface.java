@@ -29,6 +29,12 @@ public interface ApiInterface {
             @Query("category") String category,
             @Query("limit") Integer limit);
 
+    //search products
+    @GET("/api/product/")
+    Call<CategoryWise> getSearch(
+            @Query("search") String category,
+            @Query("limit") Integer limit);
+
     //Signup generate otp
     @POST("/api/user/register/")
     Call<SignUp> getOTP(@Body PhoneNumberSignUP phoneNumber);
@@ -49,4 +55,22 @@ public interface ApiInterface {
     @GET("/api/crop/{crop}/category")
     Call<CropWiseCategory> getCropWiseCategory(@Path("crop") String crop);
 
+    //cropwise Category wise products
+    @GET("/api/crop/{crop}/category/{category}/product/")
+    Call<CategoryWise> getCropWiseCategoryWiseProduct(
+            @Path("crop") String crop,
+            @Path("category") String category
+    );
+
+
+
 }
+
+
+
+
+
+
+
+
+

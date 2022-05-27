@@ -64,7 +64,10 @@ public class SubCategoriesActivity extends AppCompatActivity {
                 viewPager2 = findViewById(R.id.vp2);
                 //to preload 3 next and 3 previous tabs
                 viewPager2.setOffscreenPageLimit(3);
-                setDynamicFragmentToTabLayout(uniqueCwCategories.size());
+                setDynamicFragmentToTabLayout(
+                        uniqueCwCategories.size(),
+                        getIntent().getStringExtra("crop"),
+                        uniqueCwCategories);
                 Toast.makeText(SubCategoriesActivity.this, ""+uniqueCwCategories.size(), Toast.LENGTH_SHORT).show();
                 Iterator<String> i = uniqueCwCategories.iterator();
                 new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
@@ -94,13 +97,18 @@ public class SubCategoriesActivity extends AppCompatActivity {
         });
     }
 
-    private void setDynamicFragmentToTabLayout(int noOfTabs) {
+    private void setDynamicFragmentToTabLayout(int noOfTabs, String crop, Set<String> uniqueCwCategories) {
         for(int i=0; i<noOfTabs;i++){
             tabLayout.addTab(tabLayout.newTab());
             tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         }
         DynamicFragmentAdapter dynamicFragmentAdapter = new DynamicFragmentAdapter(
-                getSupportFragmentManager(), getLifecycle(), tabLayout.getTabCount() );
+                getSupportFragmentManager(),
+                getLifecycle(),
+                tabLayout.getTabCount(),
+                crop,
+                uniqueCwCategories,
+                this);
         viewPager2.setAdapter(dynamicFragmentAdapter);
         viewPager2.setCurrentItem(0);
     }

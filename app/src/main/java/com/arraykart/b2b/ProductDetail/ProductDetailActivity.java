@@ -134,7 +134,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         pdVolSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                pdPrice.setText("₹ " + prices.get(position));
+                pdPrice.setText("₹" + prices.get(position));
                 setMargin(position);
             }
 

@@ -24,7 +24,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pDetailImg"
             android:layout_width="match_parent"
-            android:layout_height="220dp" />
+            android:layout_height="220dp"
+            android:nestedScrollingEnabled="false" />
 
         <View
             android:id="@+id/view2"
@@ -105,7 +106,8 @@
             android:id="@+id/marginRV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/view_bottom_margin" />
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:nestedScrollingEnabled="false" />
 
         <View
             android:id="@+id/view4"
@@ -146,7 +148,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/offersRV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -193,7 +196,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pdDetailsRV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
 
         <View
             android:id="@+id/view3"

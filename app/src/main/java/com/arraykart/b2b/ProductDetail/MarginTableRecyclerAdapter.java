@@ -41,7 +41,7 @@ public class MarginTableRecyclerAdapter extends RecyclerView.Adapter<MarginTable
     @Override
     public void onBindViewHolder(@NonNull MarginTableViewHolder holder, int position) {
         holder.pdPackOf.setText(packOf.get(position));
-        holder.pdPricePerUnit.setText("₹ " + pricePerUnit.get(position));
+        holder.pdPricePerUnit.setText("₹" + pricePerUnit.get(position));
         holder.pdMargin.setText(margin.get(position) + "%");
         holder.addToCart.setOnClickListener(new View.OnClickListener() {
             @Override

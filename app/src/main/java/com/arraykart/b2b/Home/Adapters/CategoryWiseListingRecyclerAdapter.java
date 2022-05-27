@@ -1,6 +1,7 @@
 package com.arraykart.b2b.Home.Adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arraykart.b2b.Loading.LoadingDialog;
+import com.arraykart.b2b.Products.ProductsListingActivity;
 import com.arraykart.b2b.R;
 import com.arraykart.b2b.Retrofit.ModelClass.Category;
 import com.arraykart.b2b.Retrofit.ModelClass.CategoryWise;
@@ -99,6 +101,14 @@ public class CategoryWiseListingRecyclerAdapter extends RecyclerView.Adapter<Cat
             catName = itemView.findViewById(R.id.nestedCatName);
             seeMore = itemView.findViewById(R.id.nestedCatMore);
             catWiseProducts = itemView.findViewById(R.id.nestedCatRV);
+            seeMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(activity, ProductsListingActivity.class);
+                    i.putExtra("category", catName.getText());
+                    activity.startActivity(i);
+                }
+            });
         }
     }
 }

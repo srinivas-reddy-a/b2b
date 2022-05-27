@@ -7,6 +7,7 @@
     tools:context="com.arraykart.b2b.Search.SearchActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -16,10 +17,11 @@
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24_gray" />
+            android:layout_marginStart="@dimen/view_left_margin" />
+
         <soup.neumorphism.NeumorphCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,16 +35,53 @@
                 android:layout_marginStart="@dimen/view_left_margin"
                 android:layout_marginEnd="@dimen/view_right_margin"
                 android:background="@null"
-                android:drawableStart="@drawable/ic_baseline_search_24_gray"
-                android:drawablePadding="@dimen/view_padding_right"
                 android:focusedByDefault="true"
                 android:hint="@string/search_from_arraykart"
                 android:inputType="textAutoComplete"
-                android:maxLines="1"
+                android:ellipsize="end"
+android:maxLines="1"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp" />
 
         </soup.neumorphism.NeumorphCardView>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/searchEx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/section_margin"
+        android:text="'Search Product' 'Search Category' 'Search Crop' 'Search Technical Name' 'Search Brand'"
+        android:textColor="@color/text"
+        android:textSize="@dimen/text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
+    <TextView
+        android:id="@+id/searchedFor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/section_margin"
+        android:text="Search Results"
+        android:textColor="@color/green"
+        android:textSize="@dimen/sub_heading"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/view_top_margin"
+        android:nestedScrollingEnabled="false"
+        android:paddingBottom="@dimen/dynamic_tab_rv_padding_bottom"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchedFor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

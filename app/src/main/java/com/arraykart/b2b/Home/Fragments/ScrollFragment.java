@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,7 @@ import com.arraykart.b2b.Home.Adapters.AdsRecyclerAdapter;
 import com.arraykart.b2b.Home.Adapters.AllCropsAdapter;
 import com.arraykart.b2b.Home.Adapters.BannerRecyclerAdapter;
 import com.arraykart.b2b.Loading.LoadingDialog;
-import com.arraykart.b2b.Products.ProdutsListingActivity;
+import com.arraykart.b2b.Products.ProductsListingActivity;
 import com.arraykart.b2b.RecyclerViewDecoration.LinePagerIndicatorDecoration;
 import com.arraykart.b2b.Retrofit.ModelClass.AllCrops;
 import com.arraykart.b2b.Retrofit.ModelClass.Crop;
@@ -40,7 +39,6 @@ import com.arraykart.b2b.R;
 import com.arraykart.b2b.Retrofit.ModelClass.AllCategories;
 import com.arraykart.b2b.Retrofit.ModelClass.Category;
 import com.arraykart.b2b.Retrofit.RetrofitClient;
-import com.arraykart.b2b.SubCategories.SubCategoriesActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -140,7 +138,7 @@ public class ScrollFragment extends Fragment {
         productRV1More.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ProdutsListingActivity.class);
+                Intent i = new Intent(getActivity(), ProductsListingActivity.class);
                 startActivity(i);
             }
         });
@@ -154,7 +152,7 @@ public class ScrollFragment extends Fragment {
         topProductsMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ProdutsListingActivity.class);
+                Intent i = new Intent(getActivity(), ProductsListingActivity.class);
                 startActivity(i);
             }
         });
@@ -385,7 +383,8 @@ public class ScrollFragment extends Fragment {
         rvGridCat.setItemViewCacheSize(20);
         rvGridCat.setDrawingCacheEnabled(true);
         rvGridCat.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        rvGridCat.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+        linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        rvGridCat.setLayoutManager(linearLayoutManager);
         Call<AllCategories> call = RetrofitClient.getClient().getApi().getAllCategories();
         loadingDialog = new LoadingDialog(getActivity());
 //        loadingDialog.startLoadingDialog();
