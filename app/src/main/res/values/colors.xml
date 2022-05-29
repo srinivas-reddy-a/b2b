@@ -33,4 +33,8 @@
 <!--    product detail specialprice-->
     <color name="sp_text">#1A711D</color>
     <color name="sp_bg">#80B1D8B3</color>
+
+<!--    button color-->
+    <color name="button_background">#00D66C</color>
+    <color name="button_text">#FFFFFF</color>
 </resources>

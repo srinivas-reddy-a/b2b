@@ -78,7 +78,7 @@ public class SignUpFragment extends Fragment {
         HintRequest hintRequest=new HintRequest.Builder()
                 .setPhoneNumberIdentifierSupported(true)
                 .build();
-        PendingIntent intent = Credentials.getClient(getActivity()).getHintPickerIntent(hintRequest);
+        PendingIntent intent = Credentials.getClient(requireActivity()).getHintPickerIntent(hintRequest);
         try {
             startIntentSenderForResult(
                     intent.getIntentSender(),
@@ -96,13 +96,13 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == getActivity().RESULT_OK){
+        if(requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == requireActivity().RESULT_OK){
             Credential credentials =data.getParcelableExtra(Credential.EXTRA_KEY);
             setPhoneNumber(credentials);
         } else if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == CredentialsApi.ACTIVITY_RESULT_NO_HINTS_AVAILABLE)
         {
             // *** No phone numbers available ***
-            Toast.makeText(getActivity(), "No phone numbers found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireActivity(), "No phone numbers found", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -120,21 +120,21 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onResponse(Call<SignUp> call, Response<SignUp> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(getActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!response.body().getSuccess()){
-                    Toast.makeText(getActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.signUPFragContainer, otpFragment).commit();
             }
 
             @Override
             public void onFailure(Call<SignUp> call, Throwable t) {
-                Toast.makeText(getActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), "", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -166,11 +166,11 @@ public class SignUpFragment extends Fragment {
                                 @Override
                                 public void onResponse(Call<SignUp> call, Response<SignUp> response) {
                                     if(!response.isSuccessful()){
-                                        Toast.makeText(getActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
                                         return;
                                     }
                                     if(!response.body().getSuccess()){
-                                        Toast.makeText(getActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
                                         return;
                                     }
                                     otpFragment = new OtpFragment();
@@ -185,12 +185,12 @@ public class SignUpFragment extends Fragment {
                                         e.printStackTrace();
                                     }
 
-                                    Toast.makeText(getActivity(), phoneNumber, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(requireActivity(), phoneNumber, Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override
                                 public void onFailure(Call<SignUp> call, Throwable t) {
-                                    Toast.makeText(getActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
@@ -222,11 +222,11 @@ public class SignUpFragment extends Fragment {
                 "Panda",
                 "Panda"
         ));
-        linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
         suReviewRV.setLayoutManager(linearLayoutManager);
         suReviewRV.setHasFixedSize(true);
         signUpReviewRecyclerAdapter = new SignUpReviewRecyclerAdapter(
-                suReviewImg, suReview, suReviewCustomer, getActivity());
+                suReviewImg, suReview, suReviewCustomer, requireActivity());
         suReviewRV.setAdapter(signUpReviewRecyclerAdapter);
         suReviewRV.addItemDecoration(new LinePagerIndicatorDecoration());
         suReviewRV.smoothScrollToPosition(0);

@@ -41,11 +41,10 @@
             android:id="@+id/pincode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/view_right_margin"
-            android:drawablePadding="@dimen/view_padding"
-            android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading"
-            app:drawableStartCompat="@drawable/ic_outline_location_on_24"
+            android:layout_marginEnd="@dimen/section_margin"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text"
+            app:drawableStartCompat="@drawable/ic_outline_location_on_18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

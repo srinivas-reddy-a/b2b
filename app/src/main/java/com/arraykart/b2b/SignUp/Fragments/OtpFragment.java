@@ -81,20 +81,20 @@ public class OtpFragment extends Fragment {
                     @Override
                     public void onResponse(Call<SignUp> call, Response<SignUp> response) {
                         if(!response.isSuccessful()){
-                            Toast.makeText(getActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
                             return;
                         }
                         if(!response.body().getSuccess()){
-                            Toast.makeText(getActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        Toast.makeText(getActivity(), "OTP Resent", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireActivity(), "OTP Resent", Toast.LENGTH_SHORT).show();
                         setOTP(view);
                     }
 
                     @Override
                     public void onFailure(Call<SignUp> call, Throwable t) {
-                        Toast.makeText(getActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -297,8 +297,7 @@ public class OtpFragment extends Fragment {
     }
 
     private void authenticateOTP(String otp, View view) {
-        sharedPreferenceManager = new SharedPreferenceManager(getActivity());
-        Log.e("eu", "authOTP"+sharedPreferenceManager.getBoolean("existingUser"));
+        sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
         OTPSignUP otpSignUP = new OTPSignUP(otp, number, sharedPreferenceManager.getBoolean("existingUser"));
         Call<Token> call = RetrofitClient.getClient().getApi()
                 .verifyOTP(otpSignUP);
@@ -307,33 +306,33 @@ public class OtpFragment extends Fragment {
             public void onResponse(Call<Token> call, Response<Token> response) {
                 if(!response.isSuccessful()) {
                     if (response.code() == 401) {
-                        Toast.makeText(getActivity(), "Invalid OTP", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireActivity(), "Invalid OTP", Toast.LENGTH_SHORT).show();
                         setOTP(view);
                         return;
                     }
-                    Toast.makeText(getActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!response.body().getSuccess() && response.code() == 500){
-                    Toast.makeText(getActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(response.isSuccessful() && response.code() == 200 && response.body().getToken()!=null){
-                    sharedPreferenceManager = new SharedPreferenceManager(getActivity());
+                    sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
                     sharedPreferenceManager.setString("token", response.body().getToken());
                     sharedPreferenceManager.setBoolean("existingUser", true);
                     if(!sharedPreferenceManager.checkKey("firstInstall")){
                         sharedPreferenceManager.setBoolean("firstInstall", false);
                     }
-                    getActivity().finish();
-                    Intent i = new Intent(getActivity(), HomeActivity.class);
+                    requireActivity().finish();
+                    Intent i = new Intent(requireActivity(), HomeActivity.class);
                     startActivity(i);
                 }
             }
 
             @Override
             public void onFailure(Call<Token> call, Throwable t) {
-                Toast.makeText(getActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

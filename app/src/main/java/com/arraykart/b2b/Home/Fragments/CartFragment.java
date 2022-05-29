@@ -39,7 +39,7 @@ public class CartFragment extends Fragment {
 
         populateArray();
         cartRV = view.findViewById(R.id.cartRV);
-        cartRV.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        cartRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
         cartAdapter = new CartAdapter(getContext(), cartImgs, cartPName, cartPVol, cartPPrice, cartPQuantity);
         cartRV.setAdapter(cartAdapter);
 

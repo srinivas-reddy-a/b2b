@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -67,7 +68,7 @@ public class AdsRecyclerAdapter extends RecyclerView.Adapter<AdsRecyclerAdapter.
         private TextView offerExplanation;
         private TextView date;
         private ImageView img;
-        private NeumorphCardView neumorphCardView;
+        private CardView neumorphCardView;
         public AdsViewHolder(@NonNull View itemView) {
             super(itemView);
             company = itemView.findViewById(R.id.compBrand);

@@ -36,11 +36,10 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView26"
+                        android:id="@+id/userGreeting"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Hola, {Customer}"
                         android:textAlignment="center"
                         android:textColor="@color/heading"
                         android:textSize="@dimen/heading" />
@@ -59,7 +58,8 @@
 
                 <soup.neumorphism.NeumorphCardView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible">
 
                     <ImageView
                         android:id="@+id/imageView2"
@@ -86,7 +86,7 @@
             android:padding="@dimen/view_padding">
 
             <LinearLayout
-                android:id="@+id/addressll"
+                android:id="@+id/addressLL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -136,7 +136,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/view_padding">
+            android:padding="@dimen/view_padding"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/ordersll"
@@ -179,7 +180,7 @@
             android:layout_height="@dimen/sub_section_line"
             android:layout_marginStart="@dimen/account_frag_view_margin"
             android:background="@color/sub_section_line"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -211,7 +212,7 @@
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="KYC"
+                    android:text="KYC Document"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text" />
 
@@ -560,7 +561,7 @@
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="Report a Bug"
+                    android:text="Report Bug"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text" />
 
@@ -604,7 +605,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="clip_vertical|center_horizontal"
                 android:layout_marginTop="@dimen/view_top_margin"
-                android:text="App version: 0.0.1.0"
                 android:textColor="@color/heading"
                 android:textSize="@dimen/text"
                 app:layout_constraintEnd_toEndOf="parent"

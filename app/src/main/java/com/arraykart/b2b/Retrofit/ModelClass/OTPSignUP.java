@@ -9,8 +9,10 @@ public class OTPSignUP {
     @Expose
     private String otp;
 
+    @Expose
     private String  phoneNumber;
-    
+
+    @Expose
     private Boolean existingUser;
 
     public OTPSignUP(String otp, String phoneNumber, Boolean existingUser) {

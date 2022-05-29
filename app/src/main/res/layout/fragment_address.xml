@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-android:focusable="true"
-android:focusableInTouchMode="true"
-these lines must be added to parent view to stop auto
-focussing on edit text as soon as page loads
--->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,7 +6,7 @@ focussing on edit text as soon as page loads
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".Home.Fragments.Account.MyProfileFragment">
+    tools:context=".Home.Fragments.Account.AddressFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +29,7 @@ focussing on edit text as soon as page loads
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/nameLabel"
+                    android:id="@+id/shopNameLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/section_margin"
@@ -44,21 +38,21 @@ focussing on edit text as soon as page loads
                     android:elevation="0.1dp"
                     android:paddingStart="@dimen/view_padding_left"
                     android:paddingEnd="@dimen/view_padding_right"
-                    android:text="Name"
+                    android:text="Shop Name*"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text"
                     android:visibility="invisible" />
 
                 <EditText
-                    android:id="@+id/name"
+                    android:id="@+id/shopName"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/round_edges_black_border"
                     android:ems="10"
                     android:focusedByDefault="true"
-                    android:hint="Enter your full Name"
-                    android:inputType="textPersonName|textCapWords"
+                    android:hint="Shop Name*"
+                    android:inputType="text|textCapWords"
                     android:padding="@dimen/view_padding"
                     android:textColor="@color/heading"
                     android:textSize="@dimen/sub_heading" />
@@ -89,22 +83,21 @@ focussing on edit text as soon as page loads
                     android:elevation="0.1dp"
                     android:paddingStart="@dimen/view_padding_left"
                     android:paddingEnd="@dimen/view_padding_right"
-                    android:text="Phone Number"
+                    android:text="Phone Number*"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text"
                     android:visibility="visible" />
 
                 <EditText
-                    android:id="@+id/number"
+                    android:id="@+id/phoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/round_edges_black_border"
                     android:ems="10"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:focusedByDefault="true"
-                    android:inputType="none"
+                    android:hint="Phone Number*"
+                    android:inputType="phone"
                     android:padding="@dimen/view_padding"
                     android:textColor="@color/heading"
                     android:textSize="@dimen/sub_heading" />
@@ -126,7 +119,7 @@ focussing on edit text as soon as page loads
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/emailLabel"
+                    android:id="@+id/addressLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/section_margin"
@@ -135,26 +128,135 @@ focussing on edit text as soon as page loads
                     android:elevation="0.1dp"
                     android:paddingStart="@dimen/view_padding_left"
                     android:paddingEnd="@dimen/view_padding_right"
-                    android:text="Email"
+                    android:text="Address"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text"
                     android:visibility="invisible" />
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_edges_black_border"
+                    android:ems="10"
+                    android:focusedByDefault="true"
+                    android:hint="Full Address*"
+                    android:inputType="textMultiLine|textPostalAddress|textCapWords"
+                    android:padding="@dimen/view_padding"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/sub_heading" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/view_top_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/cityLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/section_margin"
+                    android:layout_marginBottom="-10dp"
+                    android:background="@color/white"
+                    android:elevation="0.1dp"
+                    android:paddingStart="@dimen/view_padding_left"
+                    android:paddingEnd="@dimen/view_padding_right"
+                    android:text="City/Town*"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/text"
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:id="@+id/city"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/round_edges_black_border"
                     android:ems="10"
                     android:focusedByDefault="true"
-                    android:hint="Enter your email address"
-                    android:inputType="textEmailAddress"
+                    android:hint="City/Town*"
+                    android:inputType="textPostalAddress|textCapWords"
                     android:padding="@dimen/view_padding"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/sub_heading"/>
+                    android:textSize="@dimen/sub_heading" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Spinner
+                android:id="@+id/stateSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:background="@drawable/spinner_border"
+                android:dropDownWidth="match_parent"
+                android:spinnerMode="dropdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/view_top_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/pincodeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/section_margin"
+                    android:layout_marginBottom="-10dp"
+                    android:background="@color/white"
+                    android:elevation="0.1dp"
+                    android:paddingStart="@dimen/view_padding_left"
+                    android:paddingEnd="@dimen/view_padding_right"
+                    android:text="PIN Code*"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/text"
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:id="@+id/pincode"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_edges_black_border"
+                    android:ems="10"
+                    android:focusedByDefault="true"
+                    android:hint="PIN Code*"
+                    android:inputType="number"
+                    android:padding="@dimen/view_padding"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/sub_heading" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <soup.neumorphism.NeumorphCardView
             android:id="@+id/submitNCV"

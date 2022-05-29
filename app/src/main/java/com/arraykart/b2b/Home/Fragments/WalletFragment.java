@@ -26,7 +26,7 @@ public class WalletFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_wallet, container, false);
-        ActivityCompat.requestPermissions(getActivity(), new String[]
+        ActivityCompat.requestPermissions(requireActivity(), new String[]
                 {Manifest.permission.READ_SMS},
                 PackageManager.PERMISSION_GRANTED);
         textView = view.findViewById(R.id.sms);

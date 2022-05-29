@@ -1,14 +1,22 @@
 package com.arraykart.b2b.Retrofit;
 
+import com.arraykart.b2b.Retrofit.ModelClass.Address;
 import com.arraykart.b2b.Retrofit.ModelClass.AllCrops;
+import com.arraykart.b2b.Retrofit.ModelClass.AuthorizeToken;
+import com.arraykart.b2b.Retrofit.ModelClass.BugReport;
 import com.arraykart.b2b.Retrofit.ModelClass.CropWiseCategory;
 import com.arraykart.b2b.Retrofit.ModelClass.Logout;
 import com.arraykart.b2b.Retrofit.ModelClass.OTPSignUP;
 import com.arraykart.b2b.Retrofit.ModelClass.PhoneNumberSignUP;
+import com.arraykart.b2b.Retrofit.ModelClass.SuccessMessage;
 import com.arraykart.b2b.Retrofit.ModelClass.Token;
 import com.arraykart.b2b.Retrofit.ModelClass.AllCategories;
 import com.arraykart.b2b.Retrofit.ModelClass.CategoryWise;
 import com.arraykart.b2b.Retrofit.ModelClass.SignUp;
+import com.arraykart.b2b.Retrofit.ModelClass.User;
+import com.arraykart.b2b.Retrofit.ModelClass.UserAddress;
+import com.arraykart.b2b.Retrofit.ModelClass.UserProfile;
+import com.arraykart.b2b.Retrofit.ModelClass.UserProfileUpdate;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -16,6 +24,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -62,8 +71,50 @@ public interface ApiInterface {
             @Path("category") String category
     );
 
+    //get user profile
+    @GET("/api/user/")
+    Call<UserProfile> getUserProfile(
+            @Header("Authorization") String token);
 
+    //set/edit user profile
+    @PUT("/api/user/")
+    Call<UserProfileUpdate> setUserProfile(
+            @Header("Authorization") String token,
+            @Body User user);
 
+    //report bug
+    @POST("api/bug")
+    Call<SuccessMessage> setReportBug(
+            @Header("Authorization") String token,
+            @Body BugReport bugReport
+            );
+
+    //get address
+    @GET("/api/user/address")
+    Call<UserAddress> getUserAddress(
+            @Header("Authorization") String token
+            );
+
+    //add address
+    @POST("/api/user/address")
+    Call<UserAddress> setUserAddress(
+            @Header("Authorization") String token,
+            @Body Address address
+    );
+
+    //edit address
+    @PUT("/api/user/address")
+    Call<UserAddress> putUserAddress(
+            @Header("Authorization") String token,
+            @Body Address address
+    );
+
+    //check if user is logged in one device and authenticate token
+    @POST("api/user/auth/")
+    Call<SuccessMessage> setAuthUser(
+            @Header("Authorization") String token,
+            @Body AuthorizeToken authorizeToken
+            );
 }
 
 

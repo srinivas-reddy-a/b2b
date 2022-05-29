@@ -26,11 +26,17 @@
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/bsd_pdetail_offer.xml" value="0.18659420289855072" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/custom_loading.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_account.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_address.xml" value="0.15760869565217392" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_bug.xml" value="0.15760869565217392" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_cart.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_contact.xml" value="0.15760869565217392" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_dynamic.xml" value="0.15217391304347827" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_k_y_c.xml" value="0.15760869565217392" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_my_profile.xml" value="0.21041666666666667" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_otp.xml" value="0.1598731884057971" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_privacy_policy.xml" value="0.15760869565217392" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_profile.xml" value="0.15760869565217392" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_return_policy.xml" value="0.15760869565217392" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_scroll.xml" value="0.16" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_search.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_sign_up.xml" value="0.1" />
@@ -39,7 +45,9 @@
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_tab2.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_tab3.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_tab4.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_terms_conditions.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_wallet.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/no_network_text_view.xml" value="0.15806159420289856" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/product_detail_content.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_cart_out_of_view_single_item.xml" value="0.22" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_main_all_cat_single_item.xml" value="0.1" />
@@ -58,6 +66,7 @@
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_product_details_more_details_single_item.xml" value="0.18659420289855072" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_sign_up_reviews_single_item.xml" value="0.18659420289855072" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_single_image_view.xml" value="0.15306122448979592" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/spineer_state_text_view_single_item.xml" value="0.15760869565217392" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/spinner_text_view_single_item.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_arrow_back_ios_34_black.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_arrow_drop_down_24_black.xml" value="0.1605" />
@@ -67,6 +76,9 @@
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_keyboard_backspace_24.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_search_24_gray.xml" value="0.148" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_whatsapp_24.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_whatsapp_34.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_outline_location_on_14.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_outline_location_on_18.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_outline_shopping_cart_24_gray.xml" value="0.1605" />
       </map>
     </option>

@@ -124,7 +124,7 @@ public class ScrollFragment extends Fragment {
 //        productRVMore.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Intent i = new Intent(getActivity(), SubCategoriesActivity.class);
+//                Intent i = new Intent(requireActivity(), SubCategoriesActivity.class);
 //                startActivity(i);
 //            }
 //        });
@@ -138,7 +138,7 @@ public class ScrollFragment extends Fragment {
         productRV1More.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ProductsListingActivity.class);
+                Intent i = new Intent(requireActivity(), ProductsListingActivity.class);
                 startActivity(i);
             }
         });
@@ -152,17 +152,17 @@ public class ScrollFragment extends Fragment {
         topProductsMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ProductsListingActivity.class);
+                Intent i = new Intent(requireActivity(), ProductsListingActivity.class);
                 startActivity(i);
             }
         });
         banner = view.findViewById(R.id.banner);
         banner.setHasFixedSize(true);
-        linearLayoutManager = (new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
+        linearLayoutManager = (new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
         banner.setLayoutManager(linearLayoutManager);
         banner.addItemDecoration(new LinePagerIndicatorDecoration());
         images = new ArrayList<>(Arrays.asList(R.drawable.banner0,R.drawable.banner1, R.drawable.banner2, R.drawable.banner3, R.drawable.banner4));
-        bannerRecyclerAdapter = new BannerRecyclerAdapter(images, (HomeActivity) getActivity());
+        bannerRecyclerAdapter = new BannerRecyclerAdapter(images, (HomeActivity) requireActivity());
         banner.setAdapter(bannerRecyclerAdapter);
         banner.smoothScrollToPosition(0);
 //        not working
@@ -201,38 +201,38 @@ public class ScrollFragment extends Fragment {
 
         productsRV = view.findViewById(R.id.productRV);
         productsRV.setHasFixedSize(true);
-        productsRV.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
+        productsRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
         imgs.add(R.drawable.img0);
         imgs.add(R.drawable.img1);
         imgs.add(R.drawable.img2);
         imgs.add(R.drawable.img3);
         imgs.add(R.drawable.img4);
-        productRecyclerAdapter = new ProductRecyclerAdapter(imgs, (HomeActivity) getActivity());
+        productRecyclerAdapter = new ProductRecyclerAdapter(imgs, (HomeActivity) requireActivity());
         productsRV.setAdapter(productRecyclerAdapter);
         productsRV.smoothScrollToPosition(imgs.size()-1);
 
         productsRV1 = view.findViewById(R.id.productRV1);
         productsRV1.setHasFixedSize(true);
-        productsRV1.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
-        productRecyclerAdapter = new ProductRecyclerAdapter(imgs, (HomeActivity) getActivity());
+        productsRV1.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
+        productRecyclerAdapter = new ProductRecyclerAdapter(imgs, (HomeActivity) requireActivity());
         productsRV1.setAdapter(productRecyclerAdapter);
         productsRV1.smoothScrollToPosition(imgs.size()-1);
 
 
         recyclerView = view.findViewById(R.id.rv);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
         categories.add("All Categories");
         categories.add("Manufacturers");
         categories.add("Categories");
         categories.add("Promotions");
-        recyclerAdapter = new CategoriesRecyclerAdapter(categories, (HomeActivity) getActivity());
+        recyclerAdapter = new CategoriesRecyclerAdapter(categories, (HomeActivity) requireActivity());
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.smoothScrollToPosition(imgs.size()-1);
 
         topProductsRV = view.findViewById(R.id.topProductsRV);
         topProductsRV.setHasFixedSize(true);
-        topProductsRV.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
+        topProductsRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
         topProductsImages = new ArrayList<>();
         topProductsImages.add(R.drawable.tp0);
         topProductsImages.add(R.drawable.tp1);
@@ -243,7 +243,7 @@ public class ScrollFragment extends Fragment {
         topProductsNames.add("Oil");
         topProductsNames.add("Soap");
         topProductsNames.add("Deodorant");
-        topProductsRecyclerAdapter = new TopProductsRecyclerAdapter(topProductsImages, topProductsNames, (HomeActivity) getActivity());
+        topProductsRecyclerAdapter = new TopProductsRecyclerAdapter(topProductsImages, topProductsNames, (HomeActivity) requireActivity());
         topProductsRV.setAdapter(topProductsRecyclerAdapter);
         topProductsRV.smoothScrollToPosition(topProductsImages.size()-1);
 
@@ -253,8 +253,8 @@ public class ScrollFragment extends Fragment {
         adsOffer = new ArrayList<>(Arrays.asList("Buy one get one free!", "Buy one get one free!", "Buy one get one free!", "Buy one get one free!"));
         adsOfferExpl = new ArrayList<>(Arrays.asList("On products above 300", "On products above 500","Extra 300 off on orders above 1300", "Extra 300 off on orders above 1500"));
         adsDate = new ArrayList<>(Arrays.asList("From 3rd April", "From 3rd April", "From 3rd April" , "From 3rd April"));
-        adsRV.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));;
-        adsRecyclerAdapter = new AdsRecyclerAdapter(adsCompanyname, adsOffer, adsOfferExpl, adsDate, topProductsImages, colors, (HomeActivity) getActivity());
+        adsRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));;
+        adsRecyclerAdapter = new AdsRecyclerAdapter(adsCompanyname, adsOffer, adsOfferExpl, adsDate, topProductsImages, colors, (HomeActivity) requireActivity());
         adsRV.setAdapter(adsRecyclerAdapter);
         
         //all categories
@@ -280,24 +280,25 @@ public class ScrollFragment extends Fragment {
         cropRV.setItemViewCacheSize(20);
         cropRV.setDrawingCacheEnabled(true);
         cropRV.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        cropRV.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+        linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
+        cropRV.setLayoutManager(linearLayoutManager);
         Call<AllCrops> call = RetrofitClient.getClient().getApi().getCrops(10);
-        loadingDialog = new LoadingDialog(getActivity());
+        loadingDialog = new LoadingDialog(requireActivity());
 //        loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<AllCrops>() {
             @Override
             public void onResponse(Call<AllCrops> call, Response<AllCrops> response) {
 //                loadingDialog.dismissLoadingDialog();
                 if(!response.isSuccessful()){
-                    Toast.makeText(getActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!response.body().getSuccess()){
-                    Toast.makeText(getActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 allCrops = response.body().getCrops();
-                allCropsAdapter = new AllCropsAdapter(getActivity(), allCrops);
+                allCropsAdapter = new AllCropsAdapter(requireActivity(), allCrops);
                 allCropsAdapter.setHasStableIds(true);
                 cropRV.setAdapter(allCropsAdapter);
 
@@ -306,7 +307,7 @@ public class ScrollFragment extends Fragment {
             @Override
             public void onFailure(Call<AllCrops> call, Throwable t) {
 //                loadingDialog.dismissLoadingDialog();
-                Toast.makeText(getActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -366,13 +367,14 @@ public class ScrollFragment extends Fragment {
 
     private void getCatWiseProducts(View view, List allCategories) {
         categoryWiseNestedRV = view.findViewById(R.id.categoryWiseNestedRV);
+        categoryWiseNestedRV.getLayoutParams().height = 400*9;
         categoryWiseNestedRV.setHasFixedSize(true);
         categoryWiseNestedRV.setItemViewCacheSize(20);
         categoryWiseNestedRV.setDrawingCacheEnabled(true);
         categoryWiseNestedRV.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false);
         categoryWiseNestedRV.setLayoutManager(linearLayoutManager);
-        categoryWiseListingRecyclerAdapter = new CategoryWiseListingRecyclerAdapter(allCategories, getActivity());
+        categoryWiseListingRecyclerAdapter = new CategoryWiseListingRecyclerAdapter(allCategories, requireActivity());
         categoryWiseNestedRV.setAdapter(categoryWiseListingRecyclerAdapter);
 
     }
@@ -383,25 +385,25 @@ public class ScrollFragment extends Fragment {
         rvGridCat.setItemViewCacheSize(20);
         rvGridCat.setDrawingCacheEnabled(true);
         rvGridCat.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvGridCat.setLayoutManager(linearLayoutManager);
         Call<AllCategories> call = RetrofitClient.getClient().getApi().getAllCategories();
-        loadingDialog = new LoadingDialog(getActivity());
+        loadingDialog = new LoadingDialog(requireActivity());
 //        loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<AllCategories>() {
             @Override
             public void onResponse(Call<AllCategories> call, Response<AllCategories> response) {
 //                loadingDialog.dismissLoadingDialog();
                 if(!response.isSuccessful()){
-                    Toast.makeText(getActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!response.body().getSuccess()){
-                    Toast.makeText(getActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 allCategories = response.body().getCategories();
-                allCategoriesAdapter = new AllCategoriesAdapter(getActivity(), allCategories);
+                allCategoriesAdapter = new AllCategoriesAdapter(requireActivity(), allCategories);
                 allCategoriesAdapter.setHasStableIds(true);
                 rvGridCat.setAdapter(allCategoriesAdapter);
                 //cat wise products
@@ -412,7 +414,7 @@ public class ScrollFragment extends Fragment {
             @Override
             public void onFailure(Call<AllCategories> call, Throwable t) {
 //                loadingDialog.dismissLoadingDialog();
-                Toast.makeText(getActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

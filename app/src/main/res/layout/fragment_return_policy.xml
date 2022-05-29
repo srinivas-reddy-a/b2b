@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home.Fragments.Account.ReturnPolicyFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/section_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:drawablePadding="@dimen/view_padding"
+            android:text="Return and Replace Policy"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/sub_heading"
+            app:drawableStartCompat="@drawable/ic_baseline_return_and_replace_policy_24" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Our policy lasts 7 days. If 7 days have gone by since your purchase, unfortunately, we can’t offer you a refund or exchange.  "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.   "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="To return Seeds, Fertilizers, Pesticides, Adjuvants, Crop Nutrition, and Farm Machinery, the packet should not be opened. The product should be in clean condition while returning or exchanging.   "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="To complete your return, we require a receipt or proof of purchase.  "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Refunds (if applicable)  "
+            android:textColor="@color/heading"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Once your return is received and inspected, we will send you an email or update on your profile to notify you that we have received your returned item. We will also notify you of the approval or rejection of your refund.  "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="If it is approved, then your refund will be processed, and a credit will automatically be applied to your credit/debit card or original method of payment, within a certain amount of days. For Cash on Delivery payment, the customer has to give his/her Bank Account number to process the refund.   "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Late or missing refunds (if applicable)  "
+            android:textColor="@color/heading"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="If you haven’t received a refund yet, first check your bank account again.  "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Then contact your credit/debit card company, it may take some time before your refund is officially posted.  "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Next, contact your bank. There is often some processing time before a refund is posted.  "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="If you’ve done all of this and you still have not received your refund yet, please contact us at yourfriends@arraykart.com.  "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Sale items (if applicable) "
+            android:textColor="@color/heading"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Only regular-priced items may be refunded, unfortunately, sale items cannot be refunded.  "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Exchanges (if applicable)  "
+            android:textColor="@color/heading"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="We only replace items if they are defective or damaged.  If you need to exchange it for the same item, make a request through purchase history at our application or send us an email at yourfriends@arraykart.com. Your product will be exchanged from the given address on certain days.  "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Shipping "
+            android:textColor="@color/heading"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="To return your product, you should request it on our application. Our Delivery boy will pick up the product from you after going through the Quality checks. If we find the product the same as delivered to you, we will initiate your refund. The amount will be deposited into your Bank Account on certain days.  "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Depending on where you live, the time it may take for your exchanged product to reach you may vary. "
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+
+    </LinearLayout>
+</ScrollView>

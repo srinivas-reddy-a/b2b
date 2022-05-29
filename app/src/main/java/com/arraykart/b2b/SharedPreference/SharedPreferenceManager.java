@@ -49,4 +49,9 @@ public class SharedPreferenceManager {
     public void setBoolean(String key, Boolean value){
         editor.putBoolean(key, value).commit();
     }
+
+    //to delete all values
+    public void delSharPref(){
+        editor.clear().commit();
+    }
 }

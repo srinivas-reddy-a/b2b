@@ -20,6 +20,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -55,7 +56,7 @@ public class SubCategoriesActivity extends AppCompatActivity {
                     return;
                 }
                 cwcategories = response.body().getCwcategories();
-                uniqueCwCategories = new HashSet<>();
+                uniqueCwCategories = new LinkedHashSet<>();
                 for(int i=0;i<cwcategories.size();i++){
                     uniqueCwCategories.add(cwcategories.get(i).getCategory());
                 }

@@ -49,11 +49,36 @@ public class AccountOptionsActivity extends AppCompatActivity {
         switch(fragmentName){
             case "profile":
                 fragment = new MyProfileFragment();
+                break;
+            case "privacy":
+                fragment = new PrivacyPolicyFragment();
+                break;
+            case "return":
+                fragment = new ReturnPolicyFragment();
+                break;
+            case "terms":
+                fragment = new TermsConditionsFragment();
+                break;
+            case "contact":
+                fragment = new ContactFragment();
+                break;
+            case "bug":
+                fragment = new BugFragment();
+                break;
+            case "kyc":
+                fragment = new KYCFragment();
+                break;
+            case "address":
+                fragment = new AddressFragment();
+                break;
+            default:
+                break;
+
 
         }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                 .beginTransaction();
-        fragmentTransaction.replace(R.id.accountContainer, fragment);
+        fragmentTransaction.replace(R.id.accountContainer, fragment).commit();
     }
 
     private void setPageName() {
