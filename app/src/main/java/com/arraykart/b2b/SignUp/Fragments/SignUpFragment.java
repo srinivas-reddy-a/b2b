@@ -23,10 +23,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.arraykart.b2b.RecyclerViewDecoration.LinePagerIndicatorDecoration;
+import com.arraykart.b2b.Retrofit.ModelClass.AllReviews;
 import com.arraykart.b2b.Retrofit.ModelClass.PhoneNumberSignUP;
+import com.arraykart.b2b.Retrofit.ModelClass.Review;
 import com.arraykart.b2b.Retrofit.ModelClass.SignUp;
 import com.arraykart.b2b.Retrofit.RetrofitClient;
 import com.arraykart.b2b.R;
+import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
 import com.arraykart.b2b.SignUp.SignUpReviewRecyclerAdapter;
 import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.auth.api.credentials.Credentials;
@@ -35,6 +38,7 @@ import com.google.android.gms.auth.api.credentials.HintRequest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -45,7 +49,8 @@ import retrofit2.Response;
 public class SignUpFragment extends Fragment {
 
     private RecyclerView suReviewRV;
-    private ArrayList<Integer> suReviewImg;
+    private List<Review> reviews;
+    private ArrayList<String> suReviewImg;
     private ArrayList<String> suReview;
     private ArrayList<String> suReviewCustomer;
     private LinearLayoutManager linearLayoutManager;
@@ -58,6 +63,8 @@ public class SignUpFragment extends Fragment {
     private Fragment otpFragment;
     private String phoneNumber;
     private FragmentTransaction fragmentTransaction;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -96,13 +103,14 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == requireActivity().RESULT_OK){
-            Credential credentials =data.getParcelableExtra(Credential.EXTRA_KEY);
-            setPhoneNumber(credentials);
-        } else if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == CredentialsApi.ACTIVITY_RESULT_NO_HINTS_AVAILABLE)
-        {
-            // *** No phone numbers available ***
-            Toast.makeText(requireActivity(), "No phone numbers found", Toast.LENGTH_SHORT).show();
+        if(isAdded()) {
+            if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == requireActivity().RESULT_OK) {
+                Credential credentials = data.getParcelableExtra(Credential.EXTRA_KEY);
+                setPhoneNumber(credentials);
+            } else if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == CredentialsApi.ACTIVITY_RESULT_NO_HINTS_AVAILABLE) {
+                // *** No phone numbers available ***
+                Toast.makeText(requireActivity(), "No phone numbers found", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -120,12 +128,16 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onResponse(Call<SignUp> call, Response<SignUp> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
-                    return;
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 if(!response.body().getSuccess()){
-                    Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
-                    return;
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.signUPFragContainer, otpFragment).commit();
@@ -133,8 +145,9 @@ public class SignUpFragment extends Fragment {
 
             @Override
             public void onFailure(Call<SignUp> call, Throwable t) {
-                Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(requireActivity(), "", Toast.LENGTH_SHORT).show();
+                if(isAdded()) {
+                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -166,12 +179,16 @@ public class SignUpFragment extends Fragment {
                                 @Override
                                 public void onResponse(Call<SignUp> call, Response<SignUp> response) {
                                     if(!response.isSuccessful()){
-                                        Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
-                                        return;
+                                        if(isAdded()) {
+                                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
                                     }
                                     if(!response.body().getSuccess()){
-                                        Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
-                                        return;
+                                        if(isAdded()) {
+                                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
                                     }
                                     otpFragment = new OtpFragment();
                                     Bundle bundle = new Bundle();
@@ -179,18 +196,23 @@ public class SignUpFragment extends Fragment {
                                     otpFragment.setArguments(bundle);
                                     //as it is a nested fragment one should call getParentFragment()
                                     try {
-                                        fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                                        fragmentTransaction.replace(R.id.signUPFragContainer, otpFragment).commit();
+                                        if(isAdded()) {
+                                            fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                                            fragmentTransaction.replace(R.id.signUPFragContainer, otpFragment).commit();
+                                        }
                                     }catch (NullPointerException e){
                                         e.printStackTrace();
                                     }
-
-                                    Toast.makeText(requireActivity(), phoneNumber, Toast.LENGTH_SHORT).show();
+                                    if(isAdded()) {
+                                        Toast.makeText(requireActivity(), phoneNumber, Toast.LENGTH_SHORT).show();
+                                    }
                                 }
 
                                 @Override
                                 public void onFailure(Call<SignUp> call, Throwable t) {
-                                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    if(isAdded()) {
+                                        Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             });
                         }
@@ -210,42 +232,69 @@ public class SignUpFragment extends Fragment {
 
     private void setReview(View view) {
         suReviewRV = view.findViewById(R.id.suReviewRV);
-        suReviewImg = new ArrayList<>(Arrays.asList(R.drawable.banner0, R.drawable.banner1, R.drawable.banner2, R.drawable.banner3));
-        suReview = new ArrayList<>(Arrays.asList(
-                "Again, the best way to do this is to ask. Send an email, ask in person, or add links to your website that make it easy for customers to leave their opinion.",
-                "Again, the best way to do this is to ask. Send an email, ask in person, or add links to your website that make it easy for customers to leave their opinion.",
-                "Again, the best way to do this is to ask. Send an email, ask in person, or add links to your website that make it easy for customers to leave their opinion.",
-                "Again, the best way to do this is to ask. Send an email, ask in person, or add links to your website that make it easy for customers to leave their opinion."));
-        suReviewCustomer = new ArrayList<>(Arrays.asList(
-                "Panda",
-                "Panda",
-                "Panda",
-                "Panda"
-        ));
-        linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
-        suReviewRV.setLayoutManager(linearLayoutManager);
-        suReviewRV.setHasFixedSize(true);
-        signUpReviewRecyclerAdapter = new SignUpReviewRecyclerAdapter(
-                suReviewImg, suReview, suReviewCustomer, requireActivity());
-        suReviewRV.setAdapter(signUpReviewRecyclerAdapter);
-        suReviewRV.addItemDecoration(new LinePagerIndicatorDecoration());
-        suReviewRV.smoothScrollToPosition(0);
-        //to auto scroll
-        final int interval_time = 2000;
-        Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-            int count = 0;
-            @Override
-            public void run() {
-                if(count<suReviewImg.size()){
-                    suReviewRV.smoothScrollToPosition(count++);
-                    handler.postDelayed(this, interval_time);
-                    if(count==suReviewImg.size()){
-                        count=0;
+        try {
+            Call<AllReviews> call = RetrofitClient.getClient()
+                    .getApi().getReviews();
+            call.enqueue(new Callback<AllReviews>() {
+                @Override
+                public void onResponse(Call<AllReviews> call, Response<AllReviews> response) {
+                    if (!response.isSuccessful()) {
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                        }
+                        return;
+                    }
+                    assert response.body() != null;
+                    if (!response.body().getSuccess()) {
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                        }
+                        return;
+                    }
+                    reviews = response.body().getReviews();
+                    suReviewImg = new ArrayList<>(Arrays.asList(response.body().getReviews().get(0).getReviewimg().split(",")));
+                    suReview = new ArrayList<>(Arrays.asList(response.body().getReviews().get(0).getReview().split(",")));
+                    suReviewCustomer = new ArrayList<>(Arrays.asList(response.body().getReviews().get(0).getReviewCusName().split(",")));
+
+                    if(isAdded()) {
+                        linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
+                        suReviewRV.setLayoutManager(linearLayoutManager);
+                        suReviewRV.setHasFixedSize(true);
+                        signUpReviewRecyclerAdapter = new SignUpReviewRecyclerAdapter(
+                                suReviewImg, suReview, suReviewCustomer, requireActivity());
+                        suReviewRV.setAdapter(signUpReviewRecyclerAdapter);
+                        suReviewRV.addItemDecoration(new LinePagerIndicatorDecoration());
+                        suReviewRV.smoothScrollToPosition(0);
+                        //to auto scroll
+                        final int interval_time = 2000;
+                        Handler handler = new Handler();
+                        Runnable runnable = new Runnable() {
+                            int count = 0;
+                            @Override
+                            public void run() {
+                                if(count<suReviewImg.size()){
+                                    suReviewRV.smoothScrollToPosition(count++);
+                                    handler.postDelayed(this, interval_time);
+                                    if(count==suReviewImg.size()){
+                                        count=0;
+                                    }
+                                }
+                            }
+                        };
+                        handler.postDelayed(runnable, interval_time);
                     }
                 }
-            }
-        };
-        handler.postDelayed(runnable, interval_time);
+
+                @Override
+                public void onFailure(Call<AllReviews> call, Throwable t) {
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

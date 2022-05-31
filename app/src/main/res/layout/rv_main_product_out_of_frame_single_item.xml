@@ -20,9 +20,9 @@
         android:id="@+id/textView6"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
+        android:elevation="10dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="ProductName"
         android:textAlignment="center"
         android:textColor="@color/heading"
         android:textSize="@dimen/sub_heading"
@@ -34,10 +34,11 @@
         android:id="@+id/knowPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="For price, contact"
+        android:elevation="10dp"
+        android:text="For price, contact us"
         android:textColor="@color/text"
         android:textSize="@dimen/text"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView6" />
@@ -45,7 +46,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/neumorphCardView4"
         android:layout_width="170dp"
-        android:layout_height="220dp"
+        android:layout_height="200dp"
+        app:cardElevation="5dp"
+        app:cardMaxElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -63,7 +66,8 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/spinner"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:visibility="gone" />
 
             <Spinner
                 android:id="@+id/spinner"
@@ -77,7 +81,8 @@
                 android:spinnerMode="dropdown"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:visibility="gone" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -86,8 +91,10 @@
         android:id="@+id/contactLL"
         android:layout_width="130dp"
         android:layout_height="54dp"
+        android:layout_marginTop="@dimen/view_top_margin"
+        android:elevation="10dp"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/knowPrice">
@@ -96,7 +103,9 @@
             android:id="@+id/whatsapp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/view_right_margin"
             android:layout_weight="1"
+            android:background="@drawable/round_edges_gray_border"
             android:padding="@dimen/view_padding"
             app:srcCompat="@drawable/ic_baseline_whatsapp_54" />
 
@@ -104,7 +113,9 @@
             android:id="@+id/call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_left_margin"
             android:layout_weight="1"
+            android:background="@drawable/round_edges_gray_border"
             android:padding="@dimen/view_padding"
             app:srcCompat="@drawable/ic_baseline_phone_54" />
     </LinearLayout>

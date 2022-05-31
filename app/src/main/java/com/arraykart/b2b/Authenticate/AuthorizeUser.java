@@ -27,7 +27,7 @@ public class AuthorizeUser {
         if(preferenceManager.checkKey("token")){
             if(preferenceManager.getString("token")!=null
                     || preferenceManager.getString("token").isEmpty()){
-                Log.e("token", preferenceManager.getString("token"));
+                //Log.e("token", preferenceManager.getString("token"));
                 AuthorizeToken authorizeToken = new AuthorizeToken(preferenceManager.getString("token"));
                 Call<SuccessMessage> call = RetrofitClient.getClient()
                         .getApi().setAuthUser(

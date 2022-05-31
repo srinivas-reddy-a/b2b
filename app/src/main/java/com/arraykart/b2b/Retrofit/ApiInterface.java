@@ -2,13 +2,18 @@ package com.arraykart.b2b.Retrofit;
 
 import com.arraykart.b2b.Retrofit.ModelClass.Address;
 import com.arraykart.b2b.Retrofit.ModelClass.AllCrops;
+import com.arraykart.b2b.Retrofit.ModelClass.AllReviews;
+import com.arraykart.b2b.Retrofit.ModelClass.AllTechNames;
 import com.arraykart.b2b.Retrofit.ModelClass.AuthorizeToken;
 import com.arraykart.b2b.Retrofit.ModelClass.BugReport;
 import com.arraykart.b2b.Retrofit.ModelClass.CropWiseCategory;
 import com.arraykart.b2b.Retrofit.ModelClass.Logout;
+import com.arraykart.b2b.Retrofit.ModelClass.MetaData;
 import com.arraykart.b2b.Retrofit.ModelClass.OTPSignUP;
 import com.arraykart.b2b.Retrofit.ModelClass.PhoneNumberSignUP;
+import com.arraykart.b2b.Retrofit.ModelClass.Product;
 import com.arraykart.b2b.Retrofit.ModelClass.SuccessMessage;
+import com.arraykart.b2b.Retrofit.ModelClass.Techname;
 import com.arraykart.b2b.Retrofit.ModelClass.Token;
 import com.arraykart.b2b.Retrofit.ModelClass.AllCategories;
 import com.arraykart.b2b.Retrofit.ModelClass.CategoryWise;
@@ -110,11 +115,47 @@ public interface ApiInterface {
     );
 
     //check if user is logged in one device and authenticate token
-    @POST("api/user/auth/")
+    @POST("/api/user/auth/")
     Call<SuccessMessage> setAuthUser(
             @Header("Authorization") String token,
             @Body AuthorizeToken authorizeToken
             );
+
+    //get top products
+    //category wise products has same format
+    @GET("/api/product/")
+    Call<CategoryWise> setTopProducts(
+            @Query("top") Boolean top,
+            @Query("limit") Integer limit
+    );
+
+    //get freq products
+    //category wise products has same format
+    @GET("/api/product/")
+    Call<CategoryWise> setFreqProducts(
+            @Query("freq") Boolean top,
+            @Query("limit") Integer limit
+    );
+
+    //get ads
+    @GET("/api/meta/")
+    Call<MetaData> getAds(@Header("Authorization") String token);
+
+    //get technical names
+    @GET("/api/techname/")
+    Call<AllTechNames> getTechNames(@Header("Authorization") String token);
+
+    //get technical name wise products
+    @POST("/api/techname/product/")
+    Call<CategoryWise> getTechNameProducts(
+            @Header("Authorization") String token,
+            @Body Techname techname
+    );
+
+    //get reviews for sign up activity
+    @GET("/api/meta/review/")
+    Call<AllReviews> getReviews();
+
 }
 
 

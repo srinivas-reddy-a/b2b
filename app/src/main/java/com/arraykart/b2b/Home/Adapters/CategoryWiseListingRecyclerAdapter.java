@@ -64,7 +64,7 @@ public class CategoryWiseListingRecyclerAdapter extends RecyclerView.Adapter<Cat
             public void onResponse(Call<CategoryWise> call, Response<CategoryWise> response) {
 //                loadingDialog.dismissLoadingDialog();
                 if(!response.isSuccessful()){
-                    Toast.makeText(activity, response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, ""+response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!response.body().getSuccess()){

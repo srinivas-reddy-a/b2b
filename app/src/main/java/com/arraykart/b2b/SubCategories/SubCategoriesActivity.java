@@ -87,7 +87,6 @@ public class SubCategoriesActivity extends AppCompatActivity {
         });
 
 
-
         //back
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {

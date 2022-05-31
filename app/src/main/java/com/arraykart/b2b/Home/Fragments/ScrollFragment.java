@@ -1,5 +1,6 @@
 package com.arraykart.b2b.Home.Fragments;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +9,6 @@ import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,11 +23,18 @@ import android.widget.Toast;
 import com.arraykart.b2b.Home.Adapters.AdsRecyclerAdapter;
 import com.arraykart.b2b.Home.Adapters.AllCropsAdapter;
 import com.arraykart.b2b.Home.Adapters.BannerRecyclerAdapter;
+import com.arraykart.b2b.Home.TechnicalName.TechnicalNameActivity;
 import com.arraykart.b2b.Loading.LoadingDialog;
 import com.arraykart.b2b.Products.ProductsListingActivity;
 import com.arraykart.b2b.RecyclerViewDecoration.LinePagerIndicatorDecoration;
+import com.arraykart.b2b.Retrofit.ModelClass.Ad;
 import com.arraykart.b2b.Retrofit.ModelClass.AllCrops;
+import com.arraykart.b2b.Retrofit.ModelClass.CategoryWise;
 import com.arraykart.b2b.Retrofit.ModelClass.Crop;
+import com.arraykart.b2b.Retrofit.ModelClass.MetaData;
+import com.arraykart.b2b.Retrofit.ModelClass.Product;
+import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
+import com.arraykart.b2b.SignUp.SignUpActivity;
 import com.bumptech.glide.Glide;
 import com.arraykart.b2b.Home.HomeActivity;
 import com.arraykart.b2b.Home.Adapters.AllCategoriesAdapter;
@@ -48,16 +55,23 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import soup.neumorphism.NeumorphCardView;
 import soup.neumorphism.NeumorphImageButton;
 
 public class ScrollFragment extends Fragment {
 
     private ArrayList<Integer> images;
     private ArrayList<Integer> colors = new ArrayList<>(Arrays.asList(R.color.cherryRed,R.color.yellow,R.color.blue,R.color.darkGreen));
+//    banner ads
     private RecyclerView banner;
+    private List<Ad> ads;
+
     private BannerRecyclerAdapter bannerRecyclerAdapter;
     private LinearLayoutManager linearLayoutManager;
-    private RecyclerView productsRV;
+    //topproducts
+    private RecyclerView topRV;
+    private List<Product> products;
+
     private ProductRecyclerAdapter productRecyclerAdapter;
     private RecyclerView productsRV1;
     private ArrayList<Integer> imgs = new ArrayList<>();
@@ -66,7 +80,7 @@ public class ScrollFragment extends Fragment {
     private CategoriesRecyclerAdapter recyclerAdapter;
     private ArrayList<Integer> topProductsImages;
     private ArrayList<String> topProductsNames;
-    private RecyclerView topProductsRV;
+    private RecyclerView freqRV;
     private TopProductsRecyclerAdapter topProductsRecyclerAdapter;
     //ads rv
     private ArrayList<String> adsCompanyname;
@@ -76,7 +90,7 @@ public class ScrollFragment extends Fragment {
     private RecyclerView adsRV;
     private AdsRecyclerAdapter adsRecyclerAdapter;
 
-    private NeumorphImageButton productRVMore;
+    private NeumorphImageButton topRVMore;
     private NeumorphImageButton productRV1More;
     private NeumorphImageButton topProductsMore;
 
@@ -109,23 +123,35 @@ public class ScrollFragment extends Fragment {
     private List<Crop> allCrops;
     private AllCropsAdapter allCropsAdapter;
 
+    //technical names
+    private NeumorphCardView techNCV;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_scroll, container, false);
-        productRVMore = view.findViewById(R.id.productRVMore);
-        Glide.with(view)
-                .load(R.drawable.ic_baseline_arrow_forward_ios_24_gray)
-                .centerCrop()
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.imgnotfound)
-                .into(productRVMore);
-//        productRVMore.setOnClickListener(new View.OnClickListener() {
+
+        //set technical name products listing
+        setTechNames(view);
+
+        //set Top Products
+        setTopProducts(view);
+
+        //set freq bought products
+        setFreqProducts(view);
+
+        //set banner ads
+        setBanner(view);
+
+//        topRVMore.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
+//        if(isAdded()) {
 //                Intent i = new Intent(requireActivity(), SubCategoriesActivity.class);
 //                startActivity(i);
+//        }
 //            }
 //        });
         productRV1More = view.findViewById(R.id.productRV1More);
@@ -138,33 +164,14 @@ public class ScrollFragment extends Fragment {
         productRV1More.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(requireActivity(), ProductsListingActivity.class);
-                startActivity(i);
+                if(isAdded()) {
+                    Intent i = new Intent(requireActivity(), ProductsListingActivity.class);
+                    startActivity(i);
+                }
             }
         });
-        topProductsMore = view.findViewById(R.id.topProductsMore);
-        Glide.with(view)
-                .load(R.drawable.ic_baseline_arrow_forward_ios_24_smoke_white)
-                .centerCrop()
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.imgnotfound)
-                .into(topProductsMore);
-        topProductsMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(requireActivity(), ProductsListingActivity.class);
-                startActivity(i);
-            }
-        });
-        banner = view.findViewById(R.id.banner);
-        banner.setHasFixedSize(true);
-        linearLayoutManager = (new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
-        banner.setLayoutManager(linearLayoutManager);
-        banner.addItemDecoration(new LinePagerIndicatorDecoration());
-        images = new ArrayList<>(Arrays.asList(R.drawable.banner0,R.drawable.banner1, R.drawable.banner2, R.drawable.banner3, R.drawable.banner4));
-        bannerRecyclerAdapter = new BannerRecyclerAdapter(images, (HomeActivity) requireActivity());
-        banner.setAdapter(bannerRecyclerAdapter);
-        banner.smoothScrollToPosition(0);
+
+
 //        not working
 //        LinearSnapHelper snapHelper = new LinearSnapHelper();
 //        snapHelper.attachToRecyclerView(banner);
@@ -181,97 +188,237 @@ public class ScrollFragment extends Fragment {
 //                }
 //            }
 //        },0,3000);
-        final int interval_time=3000;
-        Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-            int count=0;
-            @Override
-            public void run() {
-                if(count<images.size()){
-                    banner.smoothScrollToPosition(count++);
-                    handler.postDelayed(this, interval_time);
-                    if(count==images.size()){
-                        count=0;
-                    }
-                }
-            }
-        };
-        handler.postDelayed(runnable,interval_time);
 
 
-        productsRV = view.findViewById(R.id.productRV);
-        productsRV.setHasFixedSize(true);
-        productsRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
-        imgs.add(R.drawable.img0);
-        imgs.add(R.drawable.img1);
-        imgs.add(R.drawable.img2);
-        imgs.add(R.drawable.img3);
-        imgs.add(R.drawable.img4);
-        productRecyclerAdapter = new ProductRecyclerAdapter(imgs, (HomeActivity) requireActivity());
-        productsRV.setAdapter(productRecyclerAdapter);
-        productsRV.smoothScrollToPosition(imgs.size()-1);
-
-        productsRV1 = view.findViewById(R.id.productRV1);
-        productsRV1.setHasFixedSize(true);
-        productsRV1.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
-        productRecyclerAdapter = new ProductRecyclerAdapter(imgs, (HomeActivity) requireActivity());
-        productsRV1.setAdapter(productRecyclerAdapter);
-        productsRV1.smoothScrollToPosition(imgs.size()-1);
 
 
-        recyclerView = view.findViewById(R.id.rv);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
-        categories.add("All Categories");
-        categories.add("Manufacturers");
-        categories.add("Categories");
-        categories.add("Promotions");
-        recyclerAdapter = new CategoriesRecyclerAdapter(categories, (HomeActivity) requireActivity());
-        recyclerView.setAdapter(recyclerAdapter);
-        recyclerView.smoothScrollToPosition(imgs.size()-1);
 
-        topProductsRV = view.findViewById(R.id.topProductsRV);
-        topProductsRV.setHasFixedSize(true);
-        topProductsRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
-        topProductsImages = new ArrayList<>();
-        topProductsImages.add(R.drawable.tp0);
-        topProductsImages.add(R.drawable.tp1);
-        topProductsImages.add(R.drawable.tp2);
-        topProductsImages.add(R.drawable.tp3);
-        topProductsNames = new ArrayList<>();
-        topProductsNames.add("Maggie");
-        topProductsNames.add("Oil");
-        topProductsNames.add("Soap");
-        topProductsNames.add("Deodorant");
-        topProductsRecyclerAdapter = new TopProductsRecyclerAdapter(topProductsImages, topProductsNames, (HomeActivity) requireActivity());
-        topProductsRV.setAdapter(topProductsRecyclerAdapter);
-        topProductsRV.smoothScrollToPosition(topProductsImages.size()-1);
+//        productsRV1 = view.findViewById(R.id.productRV1);
+//        productsRV1.setHasFixedSize(true);
+//        if(isAdded()) {
+//            productsRV1.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
+//            productRecyclerAdapter = new ProductRecyclerAdapter(imgs, (HomeActivity) requireActivity());
+//            productsRV1.setAdapter(productRecyclerAdapter);
+//            productsRV1.smoothScrollToPosition(imgs.size() - 1);
+//        }
+
+//        recyclerView = view.findViewById(R.id.rv);
+//        recyclerView.setHasFixedSize(true);
+//        if(isAdded()) {
+//            recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
+//            categories.add("All Categories");
+//            categories.add("Manufacturers");
+//            categories.add("Categories");
+//            categories.add("Promotions");
+//            recyclerAdapter = new CategoriesRecyclerAdapter(categories, (HomeActivity) requireActivity());
+//            recyclerView.setAdapter(recyclerAdapter);
+//            recyclerView.smoothScrollToPosition(imgs.size() - 1);
+//        }
+
+
 
         adsRV = view.findViewById(R.id.adsRV);
         adsRV.setHasFixedSize(true);
-        adsCompanyname = new ArrayList<>(Arrays.asList("Nestle","Tata","Nipton","ECS"));
-        adsOffer = new ArrayList<>(Arrays.asList("Buy one get one free!", "Buy one get one free!", "Buy one get one free!", "Buy one get one free!"));
-        adsOfferExpl = new ArrayList<>(Arrays.asList("On products above 300", "On products above 500","Extra 300 off on orders above 1300", "Extra 300 off on orders above 1500"));
-        adsDate = new ArrayList<>(Arrays.asList("From 3rd April", "From 3rd April", "From 3rd April" , "From 3rd April"));
+        adsCompanyname = new ArrayList<>(Arrays.asList("Inventory Management","Digital Lending","DigitalShop"));
+        adsOffer = new ArrayList<>(Arrays.asList("", "", ""));
+        adsOfferExpl = new ArrayList<>(Arrays.asList("Coming soon...", "Coming soon...","Coming soon..."));
+        adsDate = new ArrayList<>(Arrays.asList("", "" , ""));
+        topProductsImages = new ArrayList<>(Arrays.asList(R.drawable.inventorymanagement, R.drawable.digitallending, R.drawable.digitalshop));
+        if(isAdded()) {
         adsRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));;
         adsRecyclerAdapter = new AdsRecyclerAdapter(adsCompanyname, adsOffer, adsOfferExpl, adsDate, topProductsImages, colors, (HomeActivity) requireActivity());
         adsRV.setAdapter(adsRecyclerAdapter);
+        }
         
         //all categories
         getAllCategories(view);
 
         //timerAds
-        timerAds = view.findViewById(R.id.timerAds);
-        timerAds.setVisibility(View.GONE);
-        adTimer = view.findViewById(R.id.adTimer);
-        requireActivity().registerReceiver(m_timeChangedReceiver, s_intentFilter);
-        //to see, delete after demo
-        timerAds.setVisibility(View.VISIBLE);
-        setTimerAds((12*60*60*1000));
+//        timerAds = view.findViewById(R.id.timerAds);
+//        timerAds.setVisibility(View.GONE);
+//        adTimer = view.findViewById(R.id.adTimer);
+//        if(isAdded()) {
+//            requireActivity().registerReceiver(m_timeChangedReceiver, s_intentFilter);
+//            //to see, delete after demo
+//            timerAds.setVisibility(View.VISIBLE);
+//            setTimerAds((12 * 60 * 60 * 1000));
+//        }
         //allcrops
         getAllCrops(view);
-        
+
         return view;
+    }
+
+    private void setTechNames(View view) {
+        techNCV = view.findViewById(R.id.techNCV);
+        techNCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isAdded()) {
+                    Intent i = new Intent(requireActivity(), TechnicalNameActivity.class);
+                    requireActivity().startActivity(i);
+                }
+            }
+        });
+    }
+
+    private void setBanner(View view) {
+        banner = view.findViewById(R.id.banner);
+        banner.setHasFixedSize(true);
+        if(isAdded()) {
+            linearLayoutManager = (new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
+            banner.setLayoutManager(linearLayoutManager);
+            SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
+            if(sharedPreferenceManager.checkKey("token")){
+                Call<MetaData> call = RetrofitClient.getClient()
+                        .getApi().getAds(sharedPreferenceManager.getString("token"));
+                call.enqueue(new Callback<MetaData>() {
+                    @Override
+                    public void onResponse(Call<MetaData> call, Response<MetaData> response) {
+                        if(!response.isSuccessful()){
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
+                        if(!response.body().getSuccess()){
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
+                        ads = response.body().getAds();
+                        if(isAdded()) {
+                            bannerRecyclerAdapter = new BannerRecyclerAdapter(ads, requireActivity());
+                            banner.setAdapter(bannerRecyclerAdapter);
+//                        banner.addItemDecoration(new LinePagerIndicatorDecoration());
+                            banner.smoothScrollToPosition(0);
+                            final int interval_time = 3000;
+                            Handler handler = new Handler();
+                            Runnable runnable = new Runnable() {
+                                int count = 0;
+
+                                @Override
+                                public void run() {
+                                    if (count < ads.get(0).getProduct().split(",").length) {
+                                        banner.smoothScrollToPosition(count++);
+                                        handler.postDelayed(this, interval_time);
+                                        if (count == ads.get(0).getProduct().split(",").length) {
+                                            count = 0;
+                                        }
+                                    }
+                                }
+                            };
+                            handler.postDelayed(runnable, interval_time);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MetaData> call, Throwable t) {
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }else {
+                Toast.makeText(requireActivity(), "Signup first!", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(requireActivity(), SignUpActivity.class);
+                requireActivity().startActivity(i);
+            }
+
+        }
+    }
+
+    private void setFreqProducts(View view) {
+        freqRV = view.findViewById(R.id.freqRV);
+        freqRV.setHasFixedSize(true);
+        if(isAdded()) {
+            freqRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
+            Call<CategoryWise> call = RetrofitClient.getClient().getApi()
+                    .setFreqProducts(true, 5);
+            call.enqueue(new Callback<CategoryWise>() {
+                @Override
+                public void onResponse(Call<CategoryWise> call, Response<CategoryWise> response) {
+                    if(!response.isSuccessful()){
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                    if(!response.body().getSuccess()){
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                    products = response.body().getProducts();
+                    if(isAdded()) {
+                        productRecyclerAdapter = new ProductRecyclerAdapter(products, requireActivity());
+                        freqRV.setAdapter(productRecyclerAdapter);
+                        freqRV.smoothScrollToPosition(products.size()-1);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CategoryWise> call, Throwable t) {
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+//            topProductsRecyclerAdapter = new TopProductsRecyclerAdapter(topProductsImages, topProductsNames, (HomeActivity) requireActivity());
+//            freqRV.setAdapter(topProductsRecyclerAdapter);
+//            freqRV.smoothScrollToPosition(topProductsImages.size() - 1);
+        }
+    }
+
+    private void setTopProducts(View view) {
+        topRVMore = view.findViewById(R.id.topRVMore);
+        Glide.with(view)
+                .load(R.drawable.ic_baseline_arrow_forward_ios_24_gray)
+                .centerCrop()
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(topRVMore);
+        topRV = view.findViewById(R.id.topRV);
+        topRV.setHasFixedSize(true);
+        if(isAdded()) {
+            topRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
+            Call<CategoryWise> call = RetrofitClient.getClient().getApi()
+                    .setTopProducts(true, 4);
+            call.enqueue(new Callback<CategoryWise>() {
+                @Override
+                public void onResponse(Call<CategoryWise> call, Response<CategoryWise> response) {
+                    if(!response.isSuccessful()){
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                    if(!response.body().getSuccess()){
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                    products = response.body().getProducts();
+                    if(isAdded()) {
+                        productRecyclerAdapter = new ProductRecyclerAdapter(products, requireActivity());
+                        topRV.setAdapter(productRecyclerAdapter);
+                        topRV.smoothScrollToPosition(products.size()-1);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CategoryWise> call, Throwable t) {
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        }
+
     }
 
     private void getAllCrops(View view) {
@@ -280,35 +427,47 @@ public class ScrollFragment extends Fragment {
         cropRV.setItemViewCacheSize(20);
         cropRV.setDrawingCacheEnabled(true);
         cropRV.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
-        cropRV.setLayoutManager(linearLayoutManager);
+        if(isAdded()) {
+            linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
+            cropRV.setLayoutManager(linearLayoutManager);
+        }
         Call<AllCrops> call = RetrofitClient.getClient().getApi().getCrops(10);
-        loadingDialog = new LoadingDialog(requireActivity());
+        if(isAdded()) {
+            loadingDialog = new LoadingDialog(requireActivity());
+        }
 //        loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<AllCrops>() {
             @Override
             public void onResponse(Call<AllCrops> call, Response<AllCrops> response) {
 //                loadingDialog.dismissLoadingDialog();
                 if(!response.isSuccessful()){
-                    Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
-                    return;
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 if(!response.body().getSuccess()){
-                    Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
-                    return;
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 allCrops = response.body().getCrops();
-                allCropsAdapter = new AllCropsAdapter(requireActivity(), allCrops);
-                allCropsAdapter.setHasStableIds(true);
-                cropRV.setAdapter(allCropsAdapter);
-
+                if(isAdded()){
+                    allCropsAdapter = new AllCropsAdapter(requireActivity(), allCrops);
+                    allCropsAdapter.setHasStableIds(true);
+                    cropRV.setAdapter(allCropsAdapter);
+                }
             }
 
             @Override
             public void onFailure(Call<AllCrops> call, Throwable t) {
 //                loadingDialog.dismissLoadingDialog();
-                Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                if(isAdded()) {
+                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
+
         });
 
     }
@@ -329,7 +488,9 @@ public class ScrollFragment extends Fragment {
                     int milliSec = Math.abs(7 - hour) * Math.abs(60 - min) *  Math.abs(60 - sec) * 1000;
                     timerAds.setVisibility(View.VISIBLE);
                     setTimerAds((12*60*60*1000) - milliSec);
-                    requireActivity().unregisterReceiver(m_timeChangedReceiver);
+                    if(isAdded()) {
+                        requireActivity().unregisterReceiver(m_timeChangedReceiver);
+                    }
                 }
             }
         }
@@ -372,11 +533,12 @@ public class ScrollFragment extends Fragment {
         categoryWiseNestedRV.setItemViewCacheSize(20);
         categoryWiseNestedRV.setDrawingCacheEnabled(true);
         categoryWiseNestedRV.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false);
-        categoryWiseNestedRV.setLayoutManager(linearLayoutManager);
-        categoryWiseListingRecyclerAdapter = new CategoryWiseListingRecyclerAdapter(allCategories, requireActivity());
-        categoryWiseNestedRV.setAdapter(categoryWiseListingRecyclerAdapter);
-
+        if(isAdded()) {
+            linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false);
+            categoryWiseNestedRV.setLayoutManager(linearLayoutManager);
+            categoryWiseListingRecyclerAdapter = new CategoryWiseListingRecyclerAdapter(allCategories, requireActivity());
+            categoryWiseNestedRV.setAdapter(categoryWiseListingRecyclerAdapter);
+        }
     }
 
     private void getAllCategories(View view) {
@@ -385,36 +547,48 @@ public class ScrollFragment extends Fragment {
         rvGridCat.setItemViewCacheSize(20);
         rvGridCat.setDrawingCacheEnabled(true);
         rvGridCat.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
-        rvGridCat.setLayoutManager(linearLayoutManager);
+        if(isAdded()) {
+            linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
+            rvGridCat.setLayoutManager(linearLayoutManager);
+        }
         Call<AllCategories> call = RetrofitClient.getClient().getApi().getAllCategories();
-        loadingDialog = new LoadingDialog(requireActivity());
+        if(isAdded()) {
+            loadingDialog = new LoadingDialog(requireActivity());
+        }
 //        loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<AllCategories>() {
             @Override
             public void onResponse(Call<AllCategories> call, Response<AllCategories> response) {
 //                loadingDialog.dismissLoadingDialog();
                 if(!response.isSuccessful()){
-                    Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
-                    return;
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 if(!response.body().getSuccess()){
-                    Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
-                    return;
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 allCategories = response.body().getCategories();
-                allCategoriesAdapter = new AllCategoriesAdapter(requireActivity(), allCategories);
-                allCategoriesAdapter.setHasStableIds(true);
-                rvGridCat.setAdapter(allCategoriesAdapter);
-                //cat wise products
-                getCatWiseProducts(view, allCategories);
+                if(isAdded()) {
+                    allCategoriesAdapter = new AllCategoriesAdapter(requireActivity(), allCategories);
+                    allCategoriesAdapter.setHasStableIds(true);
+                    rvGridCat.setAdapter(allCategoriesAdapter);
+                    //cat wise products
+                    getCatWiseProducts(view, allCategories);
+                }
 
             }
 
             @Override
             public void onFailure(Call<AllCategories> call, Throwable t) {
 //                loadingDialog.dismissLoadingDialog();
-                Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                if(isAdded()) {
+                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.arraykart.b2b.Cart.CartAdapter;
+//
+//import com.arraykart.b2b.Cart.CartAdapter;
 import com.arraykart.b2b.R;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class CartFragment extends Fragment {
     private ArrayList<String> cartPPrice;
     private ArrayList<String> cartPQuantity;
     private RecyclerView cartRV;
-    private CartAdapter cartAdapter;
+//    private CartAdapter cartAdapter;
     private TextView cartTotal;
     private TextView cartQuantity;
     @Override
@@ -37,22 +37,24 @@ public class CartFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
-        populateArray();
-        cartRV = view.findViewById(R.id.cartRV);
-        cartRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
-        cartAdapter = new CartAdapter(getContext(), cartImgs, cartPName, cartPVol, cartPPrice, cartPQuantity);
-        cartRV.setAdapter(cartAdapter);
-
-        cartTotal = view.findViewById(R.id.cartTotal);
-        int total=0;
-        Iterator<String> i1=cartPPrice.iterator();
-        Iterator<String> i2=cartPQuantity.iterator();
-        while (i1.hasNext() && i2.hasNext()){
-            total+=(Integer.parseInt(i1.next()))*(Integer.parseInt(i2.next()));
-        }
-        cartTotal.setText("Subtotal : ₹" + " " + total);
-        cartQuantity = view.findViewById(R.id.cartQuantity);
-        cartQuantity.setText("Proceed To Buy(" + cartPName.size() + " items)");
+//        populateArray();
+//        cartRV = view.findViewById(R.id.cartRV);
+//        if(isAdded()) {
+//            cartRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
+//        }
+//        cartAdapter = new CartAdapter(getContext(), cartImgs, cartPName, cartPVol, cartPPrice, cartPQuantity);
+//        cartRV.setAdapter(cartAdapter);
+//
+//        cartTotal = view.findViewById(R.id.cartTotal);
+//        int total=0;
+//        Iterator<String> i1=cartPPrice.iterator();
+//        Iterator<String> i2=cartPQuantity.iterator();
+//        while (i1.hasNext() && i2.hasNext()){
+//            total+=(Integer.parseInt(i1.next()))*(Integer.parseInt(i2.next()));
+//        }
+//        cartTotal.setText("Subtotal : ₹" + " " + total);
+//        cartQuantity = view.findViewById(R.id.cartQuantity);
+//        cartQuantity.setText("Proceed To Buy(" + cartPName.size() + " items)");
         return view;
     }
     public void populateArray(){

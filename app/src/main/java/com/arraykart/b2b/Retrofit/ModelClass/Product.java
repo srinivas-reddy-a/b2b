@@ -4,8 +4,11 @@ package com.arraykart.b2b.Retrofit.ModelClass;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class Product {
+//implements Serializable because to pass data of type Prouct,
+//it must be serialized
+public class Product implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -382,7 +385,7 @@ public class Product {
     }
 
     public String getImage() {
-        return "https://arraykartandroid.s3.ap-south-1.amazonaws.com/"+image;
+        return image;
     }
 
     public void setImage(String image) {

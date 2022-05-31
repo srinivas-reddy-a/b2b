@@ -113,10 +113,11 @@ public class AddressFragment extends Fragment {
         pincode = view.findViewById(R.id.pincode);
         stateSpinner = view.findViewById(R.id.stateSpinner);
         submitNCV = view.findViewById(R.id.submitNCV);
-        adapter = new ArrayAdapter(requireActivity(), R.layout.spineer_state_text_view_single_item, R.id.spinnerText, states);
-        stateSpinner.setAdapter(adapter);
-        stateSpinner.setSelection(27);
-
+        if(isAdded()) {
+            adapter = new ArrayAdapter(requireActivity(), R.layout.spineer_state_text_view_single_item, R.id.spinnerText, states);
+            stateSpinner.setAdapter(adapter);
+            stateSpinner.setSelection(27);
+        }
         //set address
         setAddress();
 
@@ -273,7 +274,9 @@ public class AddressFragment extends Fragment {
                     || city.getText().toString().isEmpty()
                     || city.getText().toString()==null
             ){
-                Toast.makeText(requireActivity(), "Please fill out all fields!", Toast.LENGTH_SHORT).show();
+                if(isAdded()) {
+                    Toast.makeText(requireActivity(), "Please fill out all fields!", Toast.LENGTH_SHORT).show();
+                }
             }else {
                 Address addressObject = new Address(
                         name,
@@ -292,16 +295,22 @@ public class AddressFragment extends Fragment {
                     @Override
                     public void onResponse(Call<UserAddress> call, Response<UserAddress> response) {
                         if (!response.isSuccessful()) {
-                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                            }
                             return;
                         }
                         assert response.body() != null;
                         if (!response.body().getSuccess()) {
-                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                            }
                             return;
                         }
-                        Toast.makeText(requireActivity(), "Added Address!", Toast.LENGTH_SHORT).show();
-                        requireActivity().finish();
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "Added Address!", Toast.LENGTH_SHORT).show();
+                            requireActivity().finish();
+                        }
                     }
 
                     @Override
@@ -322,12 +331,16 @@ public class AddressFragment extends Fragment {
             @Override
             public void onResponse(Call<UserAddress> call, Response<UserAddress> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                    }
                     return;
                 }
                 assert response.body() != null;
                 if(!response.body().getSuccess()){
-                    Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                    }
                     return;
                 }
                 addressList = response.body().getAddress();
@@ -365,7 +378,9 @@ public class AddressFragment extends Fragment {
 
             @Override
             public void onFailure(Call<UserAddress> call, Throwable t) {
-                Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                if(isAdded()) {
+                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -524,16 +539,22 @@ public class AddressFragment extends Fragment {
                 @Override
                 public void onResponse(Call<UserAddress> call, Response<UserAddress> response) {
                     if(!response.isSuccessful()){
-                        Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                        }
                         return;
                     }
                     assert response.body() != null;
                     if(!response.body().getSuccess()){
-                        Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                        }
                         return;
                     }
-                    Toast.makeText(requireActivity(), "Added Address!", Toast.LENGTH_SHORT).show();
-                    requireActivity().finish();
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "Added Address!", Toast.LENGTH_SHORT).show();
+                        requireActivity().finish();
+                    }
                 }
 
                 @Override

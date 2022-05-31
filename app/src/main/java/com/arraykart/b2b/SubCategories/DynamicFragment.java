@@ -51,7 +51,9 @@ public class DynamicFragment extends Fragment {
     private void setProductRV(View view) {
         dynamicRV = view.findViewById(R.id.dynamicRV);
         dynamicRV.setHasFixedSize(true);
-        dynamicRV.setLayoutManager(new GridLayoutManager(requireActivity(), 2));
+        if(isAdded()) {
+            dynamicRV.setLayoutManager(new GridLayoutManager(requireActivity(), 2));
+        }
         Bundle bundle = this.getArguments();
         String crop = bundle.getString("crop");
         String category = bundle.getString("category");
@@ -61,23 +63,31 @@ public class DynamicFragment extends Fragment {
             @Override
             public void onResponse(Call<CategoryWise> call, Response<CategoryWise> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(requireActivity(), response.code(), Toast.LENGTH_SHORT).show();
-                    return;
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), response.code(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 if(!response.body().getSuccess()){
-                    Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
-                    return;
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 products = response.body().getProducts();
-                productAdapter = new ProductAdapter(requireActivity(), products);
-                //setting this true is generating duplicate products
+                if(isAdded()) {
+                    productAdapter = new ProductAdapter(requireActivity(), products);
+                    //setting this true is generating duplicate products
 //              productAdapter.setHasStableIds(true);
-                dynamicRV.setAdapter(productAdapter);
+                    dynamicRV.setAdapter(productAdapter);
+                }
             }
 
             @Override
             public void onFailure(Call<CategoryWise> call, Throwable t) {
-                Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                if(isAdded()) {
+                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
         });

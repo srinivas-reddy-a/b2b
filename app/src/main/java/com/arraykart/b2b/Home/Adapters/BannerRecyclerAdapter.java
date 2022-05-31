@@ -1,5 +1,8 @@
 package com.arraykart.b2b.Home.Adapters;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,17 +11,21 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.arraykart.b2b.Retrofit.ModelClass.Ad;
 import com.bumptech.glide.Glide;
 import com.arraykart.b2b.Home.HomeActivity;
 import com.arraykart.b2b.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BannerRecyclerAdapter extends RecyclerView.Adapter<BannerRecyclerAdapter.BannerViewHolder> {
-    private ArrayList<Integer> images;
+    private List<Ad> ads;
+    private Activity activity;
 
-    public BannerRecyclerAdapter(ArrayList<Integer> images, HomeActivity homeActivity) {
-        this.images = images;
+    public BannerRecyclerAdapter(List<Ad> ads, Activity activity) {
+        this.ads = ads;
+        this.activity = activity;
     }
 
     @NonNull
@@ -30,9 +37,10 @@ public class BannerRecyclerAdapter extends RecyclerView.Adapter<BannerRecyclerAd
 
     @Override
     public void onBindViewHolder(@NonNull BannerViewHolder holder, int position) {
+        String[] images = ads.get(0).getAds().split(",");
         Glide.with(holder.itemView)
-                .load(images.get(position))
-                .centerCrop()
+                .load("https://arraykartandroid.s3.ap-south-1.amazonaws.com/"+images[position])
+//                .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.imageView);
@@ -40,7 +48,7 @@ public class BannerRecyclerAdapter extends RecyclerView.Adapter<BannerRecyclerAd
 
     @Override
     public int getItemCount() {
-        return images.size();
+        return ads.get(0).getAds().split(",").length;
     }
 
     public class BannerViewHolder extends RecyclerView.ViewHolder{
@@ -48,6 +56,25 @@ public class BannerRecyclerAdapter extends RecyclerView.Adapter<BannerRecyclerAd
         public BannerViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        String text = "Hi Arraykart, I want to know regarding the offer of "
+                                + ads.get(0).getProduct().split(",")[getAdapterPosition()]
+                                + " from exclusive offer number "
+                                + getAdapterPosition();
+
+                        String toNumber = "919311900913";
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
+                        activity.startActivity(intent);
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
     }
 }

@@ -3,6 +3,7 @@ package com.arraykart.b2b.Products;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,48 +54,49 @@ public class ProductsRecycleradapter extends RecyclerView.Adapter<ProductsRecycl
 
     @Override
     public void onBindViewHolder(@NonNull ProductsViewHolder holder, int position) {
-        holder.setIsRecyclable(false);
+//        holder.setIsRecyclable(false);
+        String[] images = products.get(position).getImage().split(",");
         Glide.with(holder.itemView)
-                .load(products.get(position).getImage())
+                .load(new StringBuilder().append("https://arraykartandroid.s3.ap-south-1.amazonaws.com/").append(images[0]).toString())
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.imageView);
         holder.name.setText(products.get(position).getName());
-        if(products.get(position).getVolume().equalsIgnoreCase("na")
-        || products.get(position).getVolume().isEmpty()
-        || products.get(position).getVolume().equals(null)
-        || products.get(position).getPrice().equalsIgnoreCase("na")
-        || products.get(position).getPrice().isEmpty()
-        || products.get(position).getPrice().equals(null)){
+//        if(products.get(position).getVolume().equalsIgnoreCase("na")
+//        || products.get(position).getVolume().isEmpty()
+//        || products.get(position).getVolume().equals(null)
+//        || products.get(position).getPrice().equalsIgnoreCase("na")
+//        || products.get(position).getPrice().isEmpty()
+//        || products.get(position).getPrice().equals(null)){
             holder.spinnerVol.setVisibility(View.GONE);
             holder.price.setVisibility(View.GONE);
             holder.knowPrice.setVisibility(View.VISIBLE);
             holder.contactLL.setVisibility(View.VISIBLE);
-        }else {
-            holder.spinnerVol.setVisibility(View.VISIBLE);
-            holder.price.setVisibility(View.VISIBLE);
-            holder.knowPrice.setVisibility(View.GONE);
-            holder.contactLL.setVisibility(View.GONE);
-            //declared and initialized here as price array and volume keeps changing in recyclerview,
-            //due to which all prices and volume will be same
-            ArrayList<String> prices = new ArrayList<>(Arrays.asList(products.get(position).getPrice().split(",")));
-            holder.price.setText("₹" + prices.get(0));
-            //declared and initialized here as price array and volume keeps changing in recyclerview,
-            //due to which all prices and volume will be same
-            String[] vol = products.get(position).getVolume().split(",");
-            adapter = new  ArrayAdapter(activity, R.layout.spinner_text_view_single_item, R.id.spinnerText, vol);
-            holder.spinnerVol.setAdapter(adapter);
-            holder.spinnerVol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    Objects.requireNonNull(holder).price.setText("₹" + prices.get(position));
-                }
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-        }
+//        }else {
+//            holder.spinnerVol.setVisibility(View.VISIBLE);
+//            holder.price.setVisibility(View.VISIBLE);
+//            holder.knowPrice.setVisibility(View.GONE);
+//            holder.contactLL.setVisibility(View.GONE);
+//            //declared and initialized here as price array and volume keeps changing in recyclerview,
+//            //due to which all prices and volume will be same
+//            ArrayList<String> prices = new ArrayList<>(Arrays.asList(products.get(position).getPrice().split(",")));
+//            holder.price.setText("₹" + prices.get(0));
+//            //declared and initialized here as price array and volume keeps changing in recyclerview,
+//            //due to which all prices and volume will be same
+//            String[] vol = products.get(position).getVolume().split(",");
+//            adapter = new  ArrayAdapter(activity, R.layout.spinner_text_view_single_item, R.id.spinnerText, vol);
+//            holder.spinnerVol.setAdapter(adapter);
+//            holder.spinnerVol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                @Override
+//                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                    Objects.requireNonNull(holder).price.setText("₹" + prices.get(position));
+//                }
+//                @Override
+//                public void onNothingSelected(AdapterView<?> parent) {
+//
+//                }
+//            });
+//        }
     }
 
 
@@ -128,9 +130,13 @@ public class ProductsRecycleradapter extends RecyclerView.Adapter<ProductsRecycl
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(activity, ProductDetailActivity.class);
+                    Bundle b = new Bundle();
+                    b.putSerializable("products", products.get(getAdapterPosition()));
+                    i.putExtras(b);
                     activity.startActivity(i);
                 }
             });
+
 
             whatsapp.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -138,7 +144,7 @@ public class ProductsRecycleradapter extends RecyclerView.Adapter<ProductsRecycl
                     try {
                         String text = "Hi Arraykart, I want to know the price of "+ name.getText();
 
-                        String toNumber = "919494554987";
+                        String toNumber = "919311900913";
 
 
                         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -154,7 +160,7 @@ public class ProductsRecycleradapter extends RecyclerView.Adapter<ProductsRecycl
                 @Override
                 public void onClick(View v) {
                     try{
-                        String toNumber = "919494554987";
+                        String toNumber = "919311900913";
                         Intent intent = new Intent(Intent.ACTION_DIAL,
                                 Uri.fromParts("tel", toNumber, null));
                         activity.startActivity(intent);

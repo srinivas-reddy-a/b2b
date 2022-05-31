@@ -1,5 +1,6 @@
 package com.arraykart.b2b.SignUp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,16 +17,16 @@ import com.arraykart.b2b.R;
 import java.util.ArrayList;
 
 public class SignUpReviewRecyclerAdapter extends RecyclerView.Adapter<SignUpReviewRecyclerAdapter.SignUpReviewViewHolder> {
-    private ArrayList<Integer> suReviewImg;
+    private ArrayList<String> suReviewImg;
     private ArrayList<String> suReview;
     private ArrayList<String> suReviewCustomer;
-    private Context context;
+    private Activity activity;
 
-    public SignUpReviewRecyclerAdapter(ArrayList<Integer> suReviewImg, ArrayList<String> suReview, ArrayList<String> suReviewCustomer, Context context) {
+    public SignUpReviewRecyclerAdapter(ArrayList<String> suReviewImg, ArrayList<String> suReview, ArrayList<String> suReviewCustomer, Activity activity) {
         this.suReviewImg = suReviewImg;
         this.suReview = suReview;
         this.suReviewCustomer = suReviewCustomer;
-        this.context = context;
+        this.activity = activity;
     }
 
     @NonNull
@@ -39,7 +40,7 @@ public class SignUpReviewRecyclerAdapter extends RecyclerView.Adapter<SignUpRevi
     @Override
     public void onBindViewHolder(@NonNull SignUpReviewViewHolder holder, int position) {
         Glide.with(holder.itemView)
-                .load(suReviewImg.get(position))
+                .load("https://arraykartandroid.s3.ap-south-1.amazonaws.com/"+suReviewImg.get(position))
                 .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)

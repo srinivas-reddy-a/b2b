@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,18 +39,7 @@ public class ProductDetailMoreDetailsRecyclerAdapter extends RecyclerView.Adapte
     public void onBindViewHolder(@NonNull ProductDetailsMoreDetailsViewHolder holder, int position) {
         holder.pdDetailHeading.setText(pdHeading.get(position));
         holder.pdDetailDesc.setText(pdDetailDesc.get(position));
-        holder.pdDetailToggle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(holder.pdDetailDesc.getVisibility() == View.GONE){
-                    Objects.requireNonNull(holder).pdDetailToggle.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
-                    Objects.requireNonNull(holder).pdDetailDesc.setVisibility(View.VISIBLE);
-                }else {
-                    Objects.requireNonNull(holder).pdDetailToggle.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
-                    Objects.requireNonNull(holder).pdDetailDesc.setVisibility(View.GONE);
-                }
-            }
-        });
+
     }
 
     @Override
@@ -60,12 +50,23 @@ public class ProductDetailMoreDetailsRecyclerAdapter extends RecyclerView.Adapte
     public class ProductDetailsMoreDetailsViewHolder extends RecyclerView.ViewHolder{
         private TextView pdDetailHeading;
         private TextView pdDetailDesc;
+        private LinearLayout pdDetailToggleLL;
         private ImageView pdDetailToggle;
         public ProductDetailsMoreDetailsViewHolder(@NonNull View itemView) {
             super(itemView);
             pdDetailHeading = itemView.findViewById(R.id.pdDetailHeading);
             pdDetailDesc = itemView.findViewById(R.id.pdDetailDesc);
             pdDetailToggle = itemView.findViewById(R.id.pdDetailToggle);
+            pdDetailToggleLL = itemView.findViewById(R.id.pdDetailToggleLL);
+            pdDetailToggleLL.setOnClickListener(v -> {
+                if (pdDetailDesc.getVisibility() == View.GONE) {
+                    pdDetailToggle.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                    pdDetailDesc.setVisibility(View.VISIBLE);
+                } else {
+                    pdDetailToggle.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                    pdDetailDesc.setVisibility(View.GONE);
+                }
+            });
         }
     }
 }

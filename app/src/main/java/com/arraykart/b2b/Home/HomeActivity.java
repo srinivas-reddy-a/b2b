@@ -27,15 +27,18 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.arraykart.b2b.Authenticate.AuthorizeUser;
 import com.arraykart.b2b.Authenticate.ConnectionReceiver;
 import com.arraykart.b2b.Home.Fragments.CartFragment;
@@ -104,6 +107,10 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
     //shared preferences
     private SharedPreferenceManager sharedPreferenceManager;
 
+    //toggle animation
+    private LinearLayout iconLL;
+    private LottieAnimationView leavesAnimation;
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -131,6 +138,11 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
 
         //for getContentResolver to work in wallet fragment
         contextOfApplication = getApplicationContext();
+
+
+        //toggle animation on icon click
+        toggleAnimation();
+
 
         scrollFragment = new ScrollFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -387,12 +399,32 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         //all categories from api
     }
 
+    private void toggleAnimation() {
+        iconLL = findViewById(R.id.iconLL);
+        leavesAnimation = findViewById(R.id.leavesAnimation);
+        iconLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                leavesAnimation.setVisibility(View.VISIBLE);
+                leavesAnimation.playAnimation();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        leavesAnimation.setVisibility(View.GONE);
+                        leavesAnimation.pauseAnimation();
+                    }
+                },2000);
+            }
+        });
+    }
+
     private void checkPermission(){
         locationRequest = com.google.android.gms.location.LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(2000);
-        Log.e("loc", "version");
+        //Log.e("loc", "version");
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if (ActivityCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 if(isGPSEnabled()){
@@ -409,8 +441,8 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                                         double longitude = locationResult.getLocations().get(index).getLongitude();
 //                                        sharedPreferenceManager.setString("GPS","gps");
                                         float[] results = new float[1];
-                                        Log.e("loc", ""+latitude);
-                                        Log.e("loc", ""+longitude);
+                                        //Log.e("loc", ""+latitude);
+                                        //Log.e("loc", ""+longitude);
                                         List<Address> addresses;
                                         Geocoder geocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
                                         try {
@@ -421,7 +453,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                                             String country = addresses.get(0).getCountryName();
                                             String postalCode = addresses.get(0).getPostalCode();
                                             String knownName = addresses.get(0).getFeatureName();
-                                            pincode.setText(postalCode);
+                                            pincode.setText(String.valueOf(postalCode));
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
@@ -586,8 +618,8 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
 //                lat = location.getLatitude();
 //                lon = location.getLongitude();
 ////                Toast.makeText(HomeActivity.this, "lan:"+String.valueOf(lat)+" lon:"+String.valueOf(lon), Toast.LENGTH_SHORT).show();
-////                Log.e("lat: ", String.valueOf(lat));
-////                Log.e("lon: ", String.valueOf(lon));
+////                //Log.e("lat: ", String.valueOf(lat));
+////                //Log.e("lon: ", String.valueOf(lon));
 //                pincode.setText("lat"+lat);
 //                final Geocoder geocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
 //

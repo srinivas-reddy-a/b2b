@@ -65,7 +65,9 @@ public class BugFragment extends Fragment {
                     reportBug.setBackgroundColor(view.getResources().getColor(R.color.green));
                     reportBug.setEnabled(true);
                 }else {
+//                    if(isAdded()) {
 //                    Toast.makeText(requireActivity(), "Enter atleast 10 characters!", Toast.LENGTH_SHORT).show();
+//                    }
                     reportBug.setBackgroundColor(view.getResources().getColor(R.color.gray));
                 }
             }
@@ -88,21 +90,29 @@ public class BugFragment extends Fragment {
                     @Override
                     public void onResponse(@NonNull Call<SuccessMessage> call, @NonNull Response<SuccessMessage> response) {
                         if (!response.isSuccessful()) {
-                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                            }
                             return;
                         }
                         assert response.body() != null;
                         if (!response.body().getSuccess()) {
-                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
-                            return;
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                         }
-                        Toast.makeText(requireActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                        requireActivity().finish();
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            requireActivity().finish();
+                        }
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<SuccessMessage> call, @NonNull Throwable t) {
-                        Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
         });

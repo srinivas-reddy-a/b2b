@@ -99,111 +99,141 @@ public class AccountFragment extends Fragment {
     }
 
     private void setAddress() {
-        Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
-        i.putExtra("pageName", "My Address");
-        i.putExtra("fragmentName", "address");
-        startActivity(i);
+        if(isAdded()) {
+            Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
+            i.putExtra("pageName", "My Address");
+            i.putExtra("fragmentName", "address");
+            startActivity(i);
+        }
     }
+
+
 
     private void setAppVersion() {
         try {
-            PackageInfo pInfo = requireActivity().getPackageManager().getPackageInfo(requireActivity().getPackageName(), 0);
-            appVersion.setText(MessageFormat.format("App version: {0}", pInfo.versionName));
+            if(isAdded()) {
+                PackageInfo pInfo = requireActivity().getPackageManager().getPackageInfo(requireActivity().getPackageName(), 0);
+                appVersion.setText(MessageFormat.format("App version: {0}", pInfo.versionName));
+            }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
     }
 
     private void setKYC() {
-        Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
-        i.putExtra("pageName", "KYC Document");
-        i.putExtra("fragmentName", "kyc");
-        startActivity(i);
+        if(isAdded()) {
+            Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
+            i.putExtra("pageName", "KYC Document");
+            i.putExtra("fragmentName", "kyc");
+            startActivity(i);
+        }
     }
 
     private void setReportBug() {
-        Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
-        i.putExtra("pageName", "Report Bug");
-        i.putExtra("fragmentName", "bug");
-        startActivity(i);
+        if(isAdded()) {
+            Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
+            i.putExtra("pageName", "Report Bug");
+            i.putExtra("fragmentName", "bug");
+            startActivity(i);
+        }
     }
 
     private void setContactUs() {
-        Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
-        i.putExtra("pageName", "Contact Us");
-        i.putExtra("fragmentName", "contact");
-        startActivity(i);
+        if(isAdded()) {
+            Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
+            i.putExtra("pageName", "Contact Us");
+            i.putExtra("fragmentName", "contact");
+            startActivity(i);
+        }
     }
 
     private void setUserGreeting() {
-        SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
-        if(sharedPreferenceManager.checkKey("user")){
-            //greet based on time
-            userGreeting.setText("Namaskaar, " + sharedPreferenceManager.getString("user") + " Ji!");
-        }else {
-            userGreeting.setText("Namaskaar, Ji!");
+        if(isAdded()) {
+            SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
+            if (sharedPreferenceManager.checkKey("user")) {
+                //greet based on time
+                userGreeting.setText("Namaskaar, " + sharedPreferenceManager.getString("user") + " Ji!");
+            } else {
+                userGreeting.setText("Namaskaar, Ji!");
+            }
         }
     }
 
     private void setTermsPolicy() {
-        Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
-        i.putExtra("pageName", "Terms & Conditions");
-        i.putExtra("fragmentName", "terms");
-        startActivity(i);
+        if(isAdded()) {
+            Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
+            i.putExtra("pageName", "Terms & Conditions");
+            i.putExtra("fragmentName", "terms");
+            startActivity(i);
+        }
     }
 
     private void setReturnPolicy() {
-        Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
-        i.putExtra("pageName", "Return and Replace Policy");
-        i.putExtra("fragmentName", "return");
-        startActivity(i);
+        if(isAdded()) {
+            Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
+            i.putExtra("pageName", "Return and Replace Policy");
+            i.putExtra("fragmentName", "return");
+            startActivity(i);
+        }
     }
 
     private void setPrivacyPolicy() {
-        Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
-        i.putExtra("pageName", "Privacy Policy");
-        i.putExtra("fragmentName", "privacy");
-        startActivity(i);
+        if(isAdded()) {
+            Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
+            i.putExtra("pageName", "Privacy Policy");
+            i.putExtra("fragmentName", "privacy");
+            startActivity(i);
+        }
     }
 
     private void setProfile() {
-        Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
-        i.putExtra("pageName", "My Profile");
-        i.putExtra("fragmentName", "profile");
-        startActivity(i);
+        if(isAdded()) {
+            Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
+            i.putExtra("pageName", "My Profile");
+            i.putExtra("fragmentName", "profile");
+            startActivity(i);
+        }
     }
 
     private void logout() {
-        sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
-        String token = sharedPreferenceManager.getString("token");
-        if(sharedPreferenceManager.getString("token") != null){
-            Call<Logout> call = RetrofitClient.getClient().getApi().logout(token);
-            call.enqueue(new Callback<Logout>() {
-                @Override
-                public void onResponse(@NonNull Call<Logout> call, @NonNull Response<Logout> response) {
-                    if(!response.isSuccessful()){
-                        Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
-                        return;
+        if(isAdded()) {
+            sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
+            String token = sharedPreferenceManager.getString("token");
+            if (sharedPreferenceManager.getString("token") != null) {
+                Call<Logout> call = RetrofitClient.getClient().getApi().logout(token);
+                call.enqueue(new Callback<Logout>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Logout> call, @NonNull Response<Logout> response) {
+                        if (!response.isSuccessful()) {
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                            }
+                            return;
+                        }
+                        assert response.body() != null;
+                        if (!response.body().getSuccess()) {
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                            }
+                            return;
+                        }
+                        requireActivity().finish();
+                        sharedPreferenceManager.setString("token", null);
+                        if(isAdded()) {
+                            Intent i = new Intent(requireActivity(), SignUpActivity.class);
+                            startActivity(i);
+                            Toast.makeText(requireActivity(), "Logged out!", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    assert response.body() != null;
-                    if(!response.body().getSuccess()){
-                        Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
-                        return;
+
+                    @Override
+                    public void onFailure(@NonNull Call<Logout> call, @NonNull Throwable t) {
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    requireActivity().finish();
-                    sharedPreferenceManager.setString("token", null);
-                    Intent i = new Intent(requireActivity(), SignUpActivity.class);
-                    startActivity(i);
-                    Toast.makeText(requireActivity(), "Logged out!", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onFailure(@NonNull Call<Logout> call, @NonNull Throwable t) {
-                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-
-
+                });
+            }
         }
     }
 

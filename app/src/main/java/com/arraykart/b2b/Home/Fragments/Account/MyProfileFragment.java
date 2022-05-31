@@ -72,16 +72,20 @@ public class MyProfileFragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<UserProfile> call, @NonNull Response<UserProfile> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
-                    return;
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 assert response.body() != null;
                 if(!response.body().getSuccess()){
-                    Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
-                    return;
+                    if(isAdded()) {
+                        Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 user = response.body().getUser();
-//                Log.e("size", String.valueOf(user.size()));
+//                //Log.e("size", String.valueOf(user.size()));
                 String getName = user.get(0).getName();
                 if(getName!=null
                 && !getName.isEmpty()){
@@ -103,7 +107,9 @@ public class MyProfileFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<UserProfile> call, @NonNull Throwable t) {
-                Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                if(isAdded()) {
+                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -166,7 +172,9 @@ public class MyProfileFragment extends Fragment {
             || name.getText().toString()==null
             || email.getText().toString().isEmpty()
             || email.getText().toString() == null){
-                Toast.makeText(requireActivity(), "Please fill the fields!", Toast.LENGTH_SHORT).show();
+                if(isAdded()) {
+                    Toast.makeText(requireActivity(), "Please fill the fields!", Toast.LENGTH_SHORT).show();
+                }
             }else{
                 username =  name.getText().toString();
                 User user = new User(Long.parseLong(String.valueOf(number.getText())), nameET, emailET);
@@ -176,23 +184,31 @@ public class MyProfileFragment extends Fragment {
                     @Override
                     public void onResponse(@NonNull Call<UserProfileUpdate> call, @NonNull Response<UserProfileUpdate> response) {
                         if(!response.isSuccessful()){
-                            Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
-                            return;
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                         }
                         assert response.body() != null;
                         if(!response.body().getSuccess()){
-                            Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
-                            return;
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                         }
-                        SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
-                        sharedPreferenceManager.setString("user",username);
-                        Toast.makeText(requireActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                        requireActivity().finish();
+                        if(isAdded()) {
+                            SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
+                            sharedPreferenceManager.setString("user", username);
+                            Toast.makeText(requireActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            requireActivity().finish();
+                        }
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<UserProfileUpdate> call, @NonNull Throwable t) {
-                        Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }

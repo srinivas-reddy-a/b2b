@@ -187,7 +187,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/view_padding">
+            android:padding="@dimen/view_padding"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/kycLL"
@@ -230,7 +231,7 @@
             android:layout_height="@dimen/sub_section_line"
             android:layout_marginStart="@dimen/account_frag_view_margin"
             android:background="@color/sub_section_line"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -387,7 +388,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/view_padding">
+            android:padding="@dimen/view_padding"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/abouLL"
@@ -430,7 +432,7 @@
             android:layout_height="@dimen/sub_section_line"
             android:layout_marginStart="@dimen/account_frag_view_margin"
             android:background="@color/sub_section_line"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

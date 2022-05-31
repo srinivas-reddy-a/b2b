@@ -81,20 +81,28 @@ public class OtpFragment extends Fragment {
                     @Override
                     public void onResponse(Call<SignUp> call, Response<SignUp> response) {
                         if(!response.isSuccessful()){
-                            Toast.makeText(requireActivity(), ""+response.code(), Toast.LENGTH_SHORT).show();
-                            return;
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                         }
                         if(!response.body().getSuccess()){
-                            Toast.makeText(requireActivity(), "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
-                            return;
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                         }
-                        Toast.makeText(requireActivity(), "OTP Resent", Toast.LENGTH_SHORT).show();
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "OTP Resent", Toast.LENGTH_SHORT).show();
+                        }
                         setOTP(view);
                     }
 
                     @Override
                     public void onFailure(Call<SignUp> call, Throwable t) {
-                        Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }

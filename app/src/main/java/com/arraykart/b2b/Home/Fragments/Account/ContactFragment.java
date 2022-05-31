@@ -48,7 +48,9 @@ public class ContactFragment extends Fragment {
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{"yourfriends@arraykart.com"});
                 //need this to prompts email client only
                 email.setType("message/rfc822");
-                requireActivity().startActivity(email);
+                if(isAdded()) {
+                    requireActivity().startActivity(email);
+                }
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -59,10 +61,12 @@ public class ContactFragment extends Fragment {
         phoneNCV = view.findViewById(R.id.phoneNCV);
         phoneNCV.setOnClickListener(v -> {
             try{
-                String toNumber = "919494554987";
+                String toNumber = "919311900913";
                 Intent intent = new Intent(Intent.ACTION_DIAL,
                         Uri.fromParts("tel", toNumber, null));
-                requireActivity().startActivity(intent);
+                if(isAdded()) {
+                    requireActivity().startActivity(intent);
+                }
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -75,12 +79,14 @@ public class ContactFragment extends Fragment {
             try {
                 String text = "Hi Arraykart!";
 
-                String toNumber = "919494554987";
+                String toNumber = "919311900913";
 
 
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
-                requireActivity().startActivity(intent);
+                if(isAdded()) {
+                    requireActivity().startActivity(intent);
+                }
             }
             catch (Exception e){
                 e.printStackTrace();

@@ -7,14 +7,16 @@
     tools:context="com.arraykart.b2b.SignUp.Fragments.SplashScreenFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/leavesAnimation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Splash Screen Yet to be designed"
-        android:textSize="@dimen/heading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/splash" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

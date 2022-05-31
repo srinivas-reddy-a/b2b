@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/round_edges_gray_border"
     android:padding="@dimen/view_padding">
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/pdDetailToggleLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -40,9 +41,9 @@
         android:text="check"
         android:textColor="@color/text"
         android:textSize="@dimen/text"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/pdDetailToggleLL" />
 </androidx.constraintlayout.widget.ConstraintLayout>
