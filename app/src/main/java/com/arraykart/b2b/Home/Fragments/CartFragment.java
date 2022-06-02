@@ -57,11 +57,11 @@ public class CartFragment extends Fragment {
 //        cartQuantity.setText("Proceed To Buy(" + cartPName.size() + " items)");
         return view;
     }
-    public void populateArray(){
-        cartImgs = new ArrayList<>(Arrays.asList(R.drawable.tp0, R.drawable.tp1, R.drawable.tp2, R.drawable.tp3));
-        cartPName = new ArrayList<>(Arrays.asList("Maggie", "Oil", "Soap", "Bisci"));
-        cartPVol = new ArrayList<>(Arrays.asList("100ml", "1liter", "1case", "10kgs"));
-        cartPPrice = new ArrayList<>(Arrays.asList("100", "5000", "15000", "7000"));
-        cartPQuantity = new ArrayList<>(Arrays.asList("3", "1", "1", "10"));
-    }
+//    public void populateArray(){
+//        cartImgs = new ArrayList<>(Arrays.asList(R.drawable.tp0, R.drawable.tp1, R.drawable.tp2, R.drawable.tp3));
+//        cartPName = new ArrayList<>(Arrays.asList("Maggie", "Oil", "Soap", "Bisci"));
+//        cartPVol = new ArrayList<>(Arrays.asList("100ml", "1liter", "1case", "10kgs"));
+//        cartPPrice = new ArrayList<>(Arrays.asList("100", "5000", "15000", "7000"));
+//        cartPQuantity = new ArrayList<>(Arrays.asList("3", "1", "1", "10"));
+//    }
 }

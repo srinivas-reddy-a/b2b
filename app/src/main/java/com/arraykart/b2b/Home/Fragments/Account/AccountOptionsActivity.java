@@ -71,6 +71,10 @@ public class AccountOptionsActivity extends AppCompatActivity {
             case "address":
                 fragment = new AddressFragment();
                 break;
+            case "about":
+                fragment = new AboutUsFragment();
+                break;
+
             default:
                 break;
 

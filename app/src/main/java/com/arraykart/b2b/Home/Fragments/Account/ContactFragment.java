@@ -61,7 +61,7 @@ public class ContactFragment extends Fragment {
         phoneNCV = view.findViewById(R.id.phoneNCV);
         phoneNCV.setOnClickListener(v -> {
             try{
-                String toNumber = "919311900913";
+                String toNumber = "9311900913";
                 Intent intent = new Intent(Intent.ACTION_DIAL,
                         Uri.fromParts("tel", toNumber, null));
                 if(isAdded()) {
@@ -79,7 +79,7 @@ public class ContactFragment extends Fragment {
             try {
                 String text = "Hi Arraykart!";
 
-                String toNumber = "919311900913";
+                String toNumber = "9311900913";
 
 
                 Intent intent = new Intent(Intent.ACTION_VIEW);

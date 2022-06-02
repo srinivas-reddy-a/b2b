@@ -95,6 +95,8 @@ public class TechnicalWiseProductFragment extends Fragment {
         }
 
     }
+
+    
 }
 
 

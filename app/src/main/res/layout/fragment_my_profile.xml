@@ -94,7 +94,7 @@ focussing on edit text as soon as page loads
                     android:textSize="@dimen/text"
                     android:visibility="visible" />
 
-                <EditText
+                <TextView
                     android:id="@+id/number"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

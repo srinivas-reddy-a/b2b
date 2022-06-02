@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/section_padding"
+    tools:context=".Home.Fragments.Account.AboutUsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/scroll_view_bottom_margin">
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:text="Arraykart is committed to help SMEs of Indian Agriculture by delivering modern services to sustain this competitive digital era. We started delivering Crop Inputs and Farm Machinery with product genuinity check at the door-step of Agriculture Dealers and Retailers. Since then, we are constantly evolving with our self-driven team."
+            android:textColor="@color/text"
+            android:textSize="@dimen/text" />
+
+        <TextView
+            android:id="@+id/textView45"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:text="To add to this, we provide insights on seasonal product demand and the best time to purchase it to win over the price volatility. We also offer Agronomist support to the retailers and their customers by helping them with crop input suggestions to crop diseases. We are simplifying the process from customer onboarding to product delivery and making them happy with a great experience. "
+            android:textColor="@color/text"
+            android:textSize="@dimen/text" />
+
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:text="We are building an Inventory Management service for SMEs to manage their inventory digitally, have clear visibility of stocks, avoid dead inventory, and many more. We understand that each business requires working capital to run and grow its business. For that, we are working to offer Digital Lending to SMEs by offering a line of credit. To meet the requirements of modern e-commerce business, we are building a Digital Shop for SMEs to connect and serve their local customers digitally."
+            android:textColor="@color/text"
+            android:textSize="@dimen/text" />
+
+        <TextView
+            android:id="@+id/textView47"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:text="We have a highly motivated team from different geographies with different skill sets. The team's synergy is helping us in building the above services with limited resources. Our working culture encourages each teammate to achieve their personal and professional goals in life."
+            android:textColor="@color/text"
+            android:textSize="@dimen/text" />
+
+        <TextView
+            android:id="@+id/textView48"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:text="Our vision is to upgrade SMEs from conventional business models to modern business models without changing their core business principles."
+            android:textColor="@color/text"
+            android:textSize="@dimen/text" />
+
+        <TextView
+            android:id="@+id/textView49"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:text="&quot;We Handle It&quot;"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="@dimen/sub_heading" />
+    </LinearLayout>
+
+
+
+</ScrollView>

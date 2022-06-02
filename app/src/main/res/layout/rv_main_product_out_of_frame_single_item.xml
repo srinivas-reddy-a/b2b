@@ -89,8 +89,8 @@
 
     <LinearLayout
         android:id="@+id/contactLL"
-        android:layout_width="130dp"
-        android:layout_height="54dp"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
         android:layout_marginTop="@dimen/view_top_margin"
         android:elevation="10dp"
         android:orientation="horizontal"
@@ -106,8 +106,7 @@
             android:layout_marginEnd="@dimen/view_right_margin"
             android:layout_weight="1"
             android:background="@drawable/round_edges_gray_border"
-            android:padding="@dimen/view_padding"
-            app:srcCompat="@drawable/ic_baseline_whatsapp_54" />
+            app:srcCompat="@drawable/ic_baseline_whatsapp_34" />
 
         <ImageView
             android:id="@+id/call"
@@ -116,8 +115,7 @@
             android:layout_marginStart="@dimen/view_left_margin"
             android:layout_weight="1"
             android:background="@drawable/round_edges_gray_border"
-            android:padding="@dimen/view_padding"
-            app:srcCompat="@drawable/ic_baseline_phone_54" />
+            app:srcCompat="@drawable/ic_baseline_phone_34_gray" />
     </LinearLayout>
 
 

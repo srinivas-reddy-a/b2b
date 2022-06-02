@@ -22,10 +22,10 @@ public class AdsRecyclerAdapter extends RecyclerView.Adapter<AdsRecyclerAdapter.
     private ArrayList<String> adsOffer;
     private ArrayList<String> adsOfferExpl;
     private ArrayList<String> adsDate;
-    private ArrayList<Integer> topProductsImages;
+    private ArrayList<String> topProductsImages;
     private ArrayList<Integer> bgColors;
 
-    public AdsRecyclerAdapter(ArrayList<String> adsCompanyname, ArrayList<String> adsOffer, ArrayList<String> adsOfferExpl, ArrayList<String> adsDate, ArrayList<Integer> topProductsImages, ArrayList<Integer> bgColors, HomeActivity activity) {
+    public AdsRecyclerAdapter(ArrayList<String> adsCompanyname, ArrayList<String> adsOffer, ArrayList<String> adsOfferExpl, ArrayList<String> adsDate, ArrayList<String> topProductsImages, ArrayList<Integer> bgColors, HomeActivity activity) {
         this.adsCompanyname = adsCompanyname;
         this.adsOffer = adsOffer;
         this.adsOfferExpl = adsOfferExpl;

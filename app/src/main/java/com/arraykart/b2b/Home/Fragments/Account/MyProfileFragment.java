@@ -34,7 +34,7 @@ public class MyProfileFragment extends Fragment {
     private TextView numberLabel;
     private TextView emailLabel;
     private EditText name;
-    private EditText number;
+    private TextView number;
     private EditText email;
     private NeumorphCardView submit;
     private List<User> user;

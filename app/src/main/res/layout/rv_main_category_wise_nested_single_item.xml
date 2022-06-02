@@ -32,7 +32,7 @@
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/heading"
+                    android:textSize="@dimen/sub_heading"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -42,13 +42,14 @@
                     android:layout_gravity="center_vertical|end"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:contentDescription="@string/see_more"
-                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_14_gray" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/nestedCatRV"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:layout_marginTop="@dimen/view_top_margin"
                 android:nestedScrollingEnabled="false"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"

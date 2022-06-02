@@ -63,9 +63,10 @@ public class BannerRecyclerAdapter extends RecyclerView.Adapter<BannerRecyclerAd
                         String text = "Hi Arraykart, I want to know regarding the offer of "
                                 + ads.get(0).getProduct().split(",")[getAdapterPosition()]
                                 + " from exclusive offer number "
-                                + getAdapterPosition();
+                                + getAdapterPosition()
+                                + ".";
 
-                        String toNumber = "919311900913";
+                        String toNumber = "9311900913";
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
                         activity.startActivity(intent);

@@ -17,7 +17,7 @@
         android:padding="@dimen/view_padding"
         android:textColor="@color/heading"
         android:textSize="@dimen/text"
-        app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_24_gray"
+        app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_gray"
         app:drawableStartCompat="@drawable/ic_baseline_device_thermostat_24_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

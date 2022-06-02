@@ -2,6 +2,7 @@ package com.arraykart.b2b.Home.TechnicalName;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -23,9 +24,13 @@ public class TechnicalNameActivity extends AppCompatActivity {
         backTN.setOnClickListener(v -> finish());
 
         try{
+            FragmentManager manager = getSupportFragmentManager();
             fragment = new TechnicalListingFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                     .beginTransaction();
+            if(manager.findFragmentByTag("tech_name_list") == null ) {
+                fragmentTransaction.addToBackStack("tech_name_list");
+            }
             fragmentTransaction.replace(R.id.techNameContainer, fragment).commit();
         }catch (Exception e){
             e.printStackTrace();

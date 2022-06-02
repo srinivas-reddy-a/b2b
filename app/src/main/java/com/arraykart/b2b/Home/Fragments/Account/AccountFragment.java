@@ -43,6 +43,7 @@ public class AccountFragment extends Fragment {
     private LinearLayout kycLL;
     private TextView appVersion;
     private LinearLayout addressLL;
+    private LinearLayout abouLL;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -94,8 +95,21 @@ public class AccountFragment extends Fragment {
         addressLL = view.findViewById(R.id.addressLL);
         addressLL.setOnClickListener(v -> setAddress());
 
+        //set about us
+        abouLL = view.findViewById(R.id.abouLL);
+        abouLL.setOnClickListener(v -> setAbout());
+
 
         return view;
+    }
+
+    private void setAbout() {
+        if(isAdded()) {
+            Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
+            i.putExtra("pageName", "About Us");
+            i.putExtra("fragmentName", "about");
+            startActivity(i);
+        }
     }
 
     private void setAddress() {

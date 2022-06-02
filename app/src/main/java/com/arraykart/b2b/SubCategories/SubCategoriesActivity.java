@@ -69,7 +69,6 @@ public class SubCategoriesActivity extends AppCompatActivity {
                         uniqueCwCategories.size(),
                         getIntent().getStringExtra("crop"),
                         uniqueCwCategories);
-                Toast.makeText(SubCategoriesActivity.this, ""+uniqueCwCategories.size(), Toast.LENGTH_SHORT).show();
                 Iterator<String> i = uniqueCwCategories.iterator();
                 new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
                     viewPager2.setCurrentItem(tab.getPosition());

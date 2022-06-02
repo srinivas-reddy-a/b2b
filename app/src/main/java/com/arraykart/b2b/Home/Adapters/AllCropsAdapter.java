@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -66,7 +67,7 @@ public class AllCropsAdapter extends  RecyclerView.Adapter<AllCropsAdapter.AllCr
     }
 
     public class AllCropsViewHolder extends RecyclerView.ViewHolder{
-        private NeumorphImageView imageView;
+        private ImageView imageView;
         private TextView textView;
 
         public AllCropsViewHolder(@NonNull View itemView) {

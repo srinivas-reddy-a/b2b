@@ -172,9 +172,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         phone = findViewById(R.id.phone);
         whatsapp.setOnClickListener(v -> {
             try {
-                String text = "Hi Arraykart, I want to know the price of "+ products.get(0).getName();
+                String text = "Hi Arraykart, I want to know the price of "+ products.get(0).getName()+".";
 
-                String toNumber = "919311900913";
+                String toNumber = "9311900913";
 
 
                 Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -187,7 +187,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
         phone.setOnClickListener(v -> {
             try{
-                String toNumber = "919311900913";
+                String toNumber = "9311900913";
                 Intent intent = new Intent(Intent.ACTION_DIAL,
                         Uri.fromParts("tel", toNumber, null));
                 startActivity(intent);

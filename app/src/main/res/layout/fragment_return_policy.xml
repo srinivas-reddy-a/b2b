@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Our policy lasts 7 days. If 7 days have gone by since your purchase, unfortunately, we can’t offer you a refund or exchange.  "
+            android:text="Our policy lasts 3 days. If 3 days have gone by since your purchase, unfortunately, we can’t offer you a refund or exchange.  "
             android:textColor="@color/text"
             android:textSize="@dimen/sub_heading" />
 
@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="If it is approved, then your refund will be processed, and a credit will automatically be applied to your credit/debit card or original method of payment, within a certain amount of days. For Cash on Delivery payment, the customer has to give his/her Bank Account number to process the refund.   "
+            android:text="If it is approved, then your refund will be processed, and a credit will automatically be applied to your credit/debit card or original method of payment, within 14 days. For Cash on Delivery payment, the customer has to give his/her Bank Account number to process the refund.   "
             android:textColor="@color/text"
             android:textSize="@dimen/sub_heading" />
 

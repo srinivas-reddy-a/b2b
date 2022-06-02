@@ -130,9 +130,9 @@ public class SearchPageRecyclerAdapter extends RecyclerView.Adapter<SearchPageRe
                 @Override
                 public void onClick(View v) {
                     try {
-                        String text = "Hi Arraykart, I want to know the price of "+ name.getText();
+                        String text = "Hi Arraykart, I want to know the price of "+ name.getText()+".";
 
-                        String toNumber = "919311900913";
+                        String toNumber = "9311900913";
 
 
                         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -148,7 +148,7 @@ public class SearchPageRecyclerAdapter extends RecyclerView.Adapter<SearchPageRe
                 @Override
                 public void onClick(View v) {
                     try{
-                        String toNumber = "919311900913";
+                        String toNumber = "9311900913";
                         Intent intent = new Intent(Intent.ACTION_DIAL,
                                 Uri.fromParts("tel", toNumber, null));
                         activity.startActivity(intent);

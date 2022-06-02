@@ -80,7 +80,6 @@ public class TechnicalListingFragment extends Fragment {
                         filteredTechNames = new ArrayList<>();
                         filteredTechNames.addAll(techNameSet);
                         if(isAdded()) {
-                            Toast.makeText(requireActivity(), ""+filteredTechNames.size(), Toast.LENGTH_SHORT).show();
                             techNameRecyclerAdapter = new TechNameRecyclerAdapter(filteredTechNames, requireActivity());
                             techNameRV.setAdapter(techNameRecyclerAdapter);
 //                            techNameRV.setHasFixedSize(true);

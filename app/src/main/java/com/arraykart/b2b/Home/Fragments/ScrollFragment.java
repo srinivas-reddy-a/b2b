@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -74,11 +75,11 @@ public class ScrollFragment extends Fragment {
 
     private ProductRecyclerAdapter productRecyclerAdapter;
     private RecyclerView productsRV1;
-    private ArrayList<Integer> imgs = new ArrayList<>();
+    private ArrayList<Integer> imgs ;
     private RecyclerView recyclerView;
     private ArrayList<String> categories = new ArrayList<>();
     private CategoriesRecyclerAdapter recyclerAdapter;
-    private ArrayList<Integer> topProductsImages;
+    private ArrayList<String> topProductsImages;
     private ArrayList<String> topProductsNames;
     private RecyclerView freqRV;
     private TopProductsRecyclerAdapter topProductsRecyclerAdapter;
@@ -219,11 +220,15 @@ public class ScrollFragment extends Fragment {
 
         adsRV = view.findViewById(R.id.adsRV);
         adsRV.setHasFixedSize(true);
-        adsCompanyname = new ArrayList<>(Arrays.asList("Inventory Management","Digital Lending","DigitalShop"));
+        adsCompanyname = new ArrayList<>(Arrays.asList("Inventory Management","Digital Lending","Digital Shop"));
         adsOffer = new ArrayList<>(Arrays.asList("", "", ""));
         adsOfferExpl = new ArrayList<>(Arrays.asList("Coming soon...", "Coming soon...","Coming soon..."));
         adsDate = new ArrayList<>(Arrays.asList("", "" , ""));
-        topProductsImages = new ArrayList<>(Arrays.asList(R.drawable.inventorymanagement, R.drawable.digitallending, R.drawable.digitalshop));
+        topProductsImages = new ArrayList<>(Arrays.asList(
+                "https://arraykartandroid.s3.ap-south-1.amazonaws.com/assets/inventorymanagement.png",
+                "https://arraykartandroid.s3.ap-south-1.amazonaws.com/assets/digitallending.png",
+                "https://arraykartandroid.s3.ap-south-1.amazonaws.com/assets/digitalshop.png"
+        ));
         if(isAdded()) {
         adsRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));;
         adsRecyclerAdapter = new AdsRecyclerAdapter(adsCompanyname, adsOffer, adsOfferExpl, adsDate, topProductsImages, colors, (HomeActivity) requireActivity());
@@ -428,8 +433,8 @@ public class ScrollFragment extends Fragment {
         cropRV.setDrawingCacheEnabled(true);
         cropRV.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         if(isAdded()) {
-            linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
-            cropRV.setLayoutManager(linearLayoutManager);
+//            linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
+            cropRV.setLayoutManager(new GridLayoutManager(requireActivity(), 4));
         }
         Call<AllCrops> call = RetrofitClient.getClient().getApi().getCrops(10);
         if(isAdded()) {
@@ -528,7 +533,8 @@ public class ScrollFragment extends Fragment {
 
     private void getCatWiseProducts(View view, List allCategories) {
         categoryWiseNestedRV = view.findViewById(R.id.categoryWiseNestedRV);
-        categoryWiseNestedRV.getLayoutParams().height = 400*9;
+//        not same for all mobile screens
+//        categoryWiseNestedRV.getLayoutParams().height = 400*9;
         categoryWiseNestedRV.setHasFixedSize(true);
         categoryWiseNestedRV.setItemViewCacheSize(20);
         categoryWiseNestedRV.setDrawingCacheEnabled(true);
@@ -548,8 +554,8 @@ public class ScrollFragment extends Fragment {
         rvGridCat.setDrawingCacheEnabled(true);
         rvGridCat.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         if(isAdded()) {
-            linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
-            rvGridCat.setLayoutManager(linearLayoutManager);
+//            linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
+            rvGridCat.setLayoutManager(new GridLayoutManager(requireActivity(), 4));
         }
         Call<AllCategories> call = RetrofitClient.getClient().getApi().getAllCategories();
         if(isAdded()) {

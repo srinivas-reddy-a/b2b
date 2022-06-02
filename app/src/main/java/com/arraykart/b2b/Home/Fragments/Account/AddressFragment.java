@@ -50,11 +50,16 @@ public class AddressFragment extends Fragment {
     private List<Address> addressList;
     private ArrayAdapter<String> adapter;
     private String[] states = {
+            "Andaman and Nicobar Islands",
             "Andhra Pradesh",
             "Arunachal Pradesh",
             "Assam",
             "Bihar",
+            "Chandigarh",
             "Chhattisgarh",
+            "Dadra and Nagar Haveli",
+            "Daman and Diu",
+            "Delhi",
             "Goa",
             "Gujarat",
             "Haryana",
@@ -63,6 +68,7 @@ public class AddressFragment extends Fragment {
             "Jharkhand",
             "Karnataka",
             "Kerala",
+            "Lakshadweep",
             "Madhya Pradesh",
             "Maharashtra",
             "Manipur",
@@ -70,23 +76,16 @@ public class AddressFragment extends Fragment {
             "Mizoram",
             "Nagaland",
             "Odisha",
+            "Puducherry",
             "Punjab",
             "Rajasthan",
             "Sikkim",
             "Tamil Nadu",
             "Telangana",
             "Tripura",
-            "Uttarakhand",
             "Uttar Pradesh",
-            "West Bengal",
-            "Andaman and Nicobar Islands",
-            "Chandigarh",
-            "Dadra and Nagar Haveli",
-            "Daman and Diu",
-            "Delhi",
-            "Lakshadweep",
-            "Puducherry"
-    };
+            "Uttarakhand",
+            "West Bengal"};
 
     //to get text from edittextview
     private String name;
