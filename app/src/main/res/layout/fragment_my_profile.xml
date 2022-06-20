@@ -44,7 +44,7 @@ focussing on edit text as soon as page loads
                     android:elevation="0.1dp"
                     android:paddingStart="@dimen/view_padding_left"
                     android:paddingEnd="@dimen/view_padding_right"
-                    android:text="Name"
+                    android:text="@string/name"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text"
                     android:visibility="invisible" />
@@ -57,11 +57,12 @@ focussing on edit text as soon as page loads
                     android:background="@drawable/round_edges_black_border"
                     android:ems="10"
                     android:focusedByDefault="true"
-                    android:hint="Enter your full Name"
+                    android:hint="@string/enter_your_full_name"
                     android:inputType="textPersonName|textCapWords"
                     android:padding="@dimen/view_padding"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/sub_heading" />
+                    android:textSize="@dimen/sub_heading"
+                    android:autofillHints="" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -89,7 +90,7 @@ focussing on edit text as soon as page loads
                     android:elevation="0.1dp"
                     android:paddingStart="@dimen/view_padding_left"
                     android:paddingEnd="@dimen/view_padding_right"
-                    android:text="Phone Number"
+                    android:text="@string/phone_number"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text"
                     android:visibility="visible" />
@@ -135,7 +136,7 @@ focussing on edit text as soon as page loads
                     android:elevation="0.1dp"
                     android:paddingStart="@dimen/view_padding_left"
                     android:paddingEnd="@dimen/view_padding_right"
-                    android:text="Email"
+                    android:text="@string/email"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text"
                     android:visibility="invisible" />
@@ -148,11 +149,12 @@ focussing on edit text as soon as page loads
                     android:background="@drawable/round_edges_black_border"
                     android:ems="10"
                     android:focusedByDefault="true"
-                    android:hint="Enter your email address"
+                    android:hint="@string/enter_your_email_address"
                     android:inputType="textEmailAddress"
                     android:padding="@dimen/view_padding"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/sub_heading"/>
+                    android:textSize="@dimen/sub_heading"
+                    android:autofillHints="" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -172,7 +174,7 @@ focussing on edit text as soon as page loads
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/view_padding"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/heading" />

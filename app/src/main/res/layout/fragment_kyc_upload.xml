@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home.Fragments.Account.KycUploadFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/section_padding">
+
+        <TextView
+            android:id="@+id/textView59"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Step 1/2 - Business Proof"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text" />
+
+        <TextView
+            android:id="@+id/gstHead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Upload your GSTIN Certificate"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/sub_heading"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/panHead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Upload your PAN Card"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/sub_heading"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/gstLL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:background="@drawable/round_edges_gray_border_no_bg"
+            android:orientation="horizontal"
+            android:padding="@dimen/view_padding"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="@dimen/view_padding">
+
+                <TextView
+                    android:id="@+id/textView60"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/view_bottom_margin"
+                    android:text="Certificate must clearly show"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/sub_heading" />
+
+                <TextView
+                    android:id="@+id/textView61"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/view_bottom_margin"
+                    android:drawablePadding="@dimen/view_padding"
+                    android:text="Registration Number"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/text"
+                    app:drawableStartCompat="@drawable/ic_baseline_check_10_green" />
+
+                <TextView
+                    android:id="@+id/textView62"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/view_bottom_margin"
+                    android:drawablePadding="@dimen/view_padding"
+                    android:text="Legal Name"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/text"
+                    app:drawableStartCompat="@drawable/ic_baseline_check_10_green" />
+
+                <TextView
+                    android:id="@+id/textView63"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/view_bottom_margin"
+                    android:drawablePadding="@dimen/view_padding"
+                    android:text="Trade Name"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/text"
+                    app:drawableStartCompat="@drawable/ic_baseline_check_10_green" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/sampleGstIv"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    tools:src="@drawable/samplegst" />
+
+                <TextView
+                    android:id="@+id/textView64"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/sampleGstIv"
+                    android:layout_alignTop="@id/sampleGstIv"
+                    android:layout_alignEnd="@id/sampleGstIv"
+                    android:layout_alignBottom="@id/sampleGstIv"
+                    android:background="@color/transparent"
+                    android:gravity="center"
+                    android:text="See Sample"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panLL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:background="@drawable/round_edges_gray_border_no_bg"
+            android:orientation="horizontal"
+            android:padding="@dimen/view_padding"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="@dimen/view_padding">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/view_bottom_margin"
+                    android:text="Certificate must clearly show"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/sub_heading" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/view_bottom_margin"
+                    android:drawablePadding="@dimen/view_padding"
+                    android:text="PAN Number"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/text"
+                    app:drawableStartCompat="@drawable/ic_baseline_check_10_green" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/view_bottom_margin"
+                    android:drawablePadding="@dimen/view_padding"
+                    android:text="Legal Name"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/text"
+                    app:drawableStartCompat="@drawable/ic_baseline_check_10_green" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/view_bottom_margin"
+                    android:drawablePadding="@dimen/view_padding"
+                    android:text="Trade Name"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/text"
+                    android:visibility="gone"
+                    app:drawableStartCompat="@drawable/ic_baseline_check_10_green" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/samplePanIv"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    tools:src="@drawable/samplepan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/samplePanIv"
+                    android:layout_alignTop="@id/samplePanIv"
+                    android:layout_alignEnd="@id/samplePanIv"
+                    android:layout_alignBottom="@id/samplePanIv"
+                    android:background="@color/transparent"
+                    android:gravity="center"
+                    android:text="See Sample"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/docNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:background="@drawable/round_edges_gray_border_no_bg"
+            android:ems="10"
+            android:hint="Enter your document number"
+            android:inputType="textNoSuggestions"
+            android:padding="@dimen/section_padding" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:background="@drawable/round_edges_gray_border_no_bg"
+            android:orientation="vertical"
+            android:padding="@dimen/section_padding">
+
+            <TextView
+                android:id="@+id/textView65"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:text="Upload using camera , gallery or files(PDF included)"
+                android:textAlignment="center"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text" />
+
+            <TextView
+                android:id="@+id/upload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:background="@color/button_background"
+                android:padding="@dimen/view_padding"
+                android:text="Upload Certificate"
+                android:textAlignment="center"
+                android:textColor="@color/button_text"
+                android:textSize="@dimen/text" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/uploadPrev"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/view_top_margin"
+                    android:layout_marginBottom="@dimen/view_bottom_margin"
+                    android:src="@drawable/ic_outline_upload_file_54_gray" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignStart="@id/uploadPrev"
+                    android:layout_alignTop="@id/uploadPrev"
+                    android:layout_alignEnd="@id/uploadPrev"
+                    android:layout_alignBottom="@id/uploadPrev">
+
+                    <ImageView
+                        android:id="@+id/uploadPrevDel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/view_top_margin"
+                        android:layout_marginEnd="@dimen/view_right_margin"
+                        android:background="@drawable/circle_border_black_bg"
+                        android:src="@drawable/ic_baseline_delete_outline_24_red"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/pdfPrevLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/pdfPrev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/view_padding"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/hyperlink"
+                    android:textSize="@dimen/text"
+                    app:drawableStartCompat="@drawable/ic_baseline_link_24_hyper_link" />
+
+                <ImageView
+                    android:id="@+id/pdfPrevDel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_delete_outline_24_red" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:background="@color/button_background"
+            android:padding="@dimen/view_padding"
+            android:text="Next"
+            android:textAlignment="center"
+            android:textColor="@color/button_text"
+            android:textSize="@dimen/sub_heading" />
+
+        <View
+            android:id="@+id/view12"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/scroll_view_bottom_margin" />
+    </LinearLayout>
+</ScrollView>

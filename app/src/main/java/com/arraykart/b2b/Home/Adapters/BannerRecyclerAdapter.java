@@ -56,24 +56,19 @@ public class BannerRecyclerAdapter extends RecyclerView.Adapter<BannerRecyclerAd
         public BannerViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        String text = "Hi Arraykart, I want to know regarding the offer of "
-                                + ads.get(0).getProduct().split(",")[getAdapterPosition()]
-                                + " from exclusive offer number "
-                                + getAdapterPosition()
-                                + ".";
+            imageView.setOnClickListener(v -> {
+                try {
+                    String text = "Hi Arraykart, I want to know regarding the offer of "
+                            + ads.get(0).getProduct().split(",")[getAdapterPosition()]
+                            + ".";
 
-                        String toNumber = "9311900913";
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
-                        activity.startActivity(intent);
-                    }
-                    catch (Exception e){
-                        e.printStackTrace();
-                    }
+                    String toNumber = "9311900913";
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
+                    activity.startActivity(intent);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
                 }
             });
         }

@@ -1,24 +1,23 @@
 package com.arraykart.b2b.SubCategories;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.annotation.SuppressLint;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.arraykart.b2b.Authenticate.AuthorizeUser;
+import com.arraykart.b2b.Authenticate.LocaleManager;
+import com.arraykart.b2b.Loading.LoadingDialog;
 import com.arraykart.b2b.R;
 import com.arraykart.b2b.Retrofit.ModelClass.CropWiseCategory;
 import com.arraykart.b2b.Retrofit.ModelClass.Cwcategory;
 import com.arraykart.b2b.Retrofit.RetrofitClient;
+import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -27,30 +26,41 @@ import java.util.Set;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class SubCategoriesActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
-    private ImageView back;
     private List<Cwcategory> cwcategories;
     private Set<String> uniqueCwCategories;
 
+    private LoadingDialog loadingDialog;
+    private SharedPreferenceManager sharedPreferenceManager;
+
+    private static final String LANGUAGE = "language";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_categories);
+        sharedPreferenceManager = new SharedPreferenceManager(SubCategoriesActivity.this);
+
+        checkToken();
+
+        checkLang();
 
         Call<CropWiseCategory> call = RetrofitClient.getClient()
                 .getApi().getCropWiseCategory(
                         getIntent().getStringExtra("crop"));
+        loadingDialog = new LoadingDialog(this);
+        loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<CropWiseCategory>() {
             @Override
-            public void onResponse(Call<CropWiseCategory> call, Response<CropWiseCategory> response) {
+            public void onResponse(@NonNull Call<CropWiseCategory> call, @NonNull Response<CropWiseCategory> response) {
+                loadingDialog.dismissLoadingDialog();
                 if(!response.isSuccessful()){
                     Toast.makeText(SubCategoriesActivity.this, response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
+                assert response.body() != null;
                 if(!response.body().getSuccess()){
                     Toast.makeText(SubCategoriesActivity.this, "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
                     return;
@@ -80,20 +90,27 @@ public class SubCategoriesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<CropWiseCategory> call, Throwable t) {
-                Toast.makeText(SubCategoriesActivity.this, "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(@NonNull Call<CropWiseCategory> call, @NonNull Throwable t) {
+                loadingDialog.dismissLoadingDialog();
+                Toast.makeText(SubCategoriesActivity.this, "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
             }
         });
 
 
         //back
-        back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        ImageView back = findViewById(R.id.back);
+        back.setOnClickListener(v -> finish());
+    }
+
+    private void checkLang() {
+        LocaleManager localeManager = new LocaleManager(SubCategoriesActivity.this);
+        if(sharedPreferenceManager.checkKey(LANGUAGE)) {
+            localeManager.updateResource(sharedPreferenceManager.getString(LANGUAGE));
+        }
+    }
+    private void checkToken() {
+        AuthorizeUser authorizeUser = new AuthorizeUser(this);
+        authorizeUser.isLoggedIn();
     }
 
     private void setDynamicFragmentToTabLayout(int noOfTabs, String crop, Set<String> uniqueCwCategories) {

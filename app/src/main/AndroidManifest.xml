@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.arraykart.b2b">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -13,14 +17,31 @@
         android:roundIcon="@mipmap/ic_arraykart_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.B2B"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true" >
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+            </meta-data>
+        </provider>
+        <activity
+            android:name="com.arraykart.b2b.Home.CropOrCategory.CropOrCategoryListingActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.arraykart.b2b.Home.TechnicalName.TechnicalNameActivity"
             android:configChanges="orientation"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.arraykart.b2b.Home.Fragments.Account.AccountOptionsActivity"
+            android:requestLegacyExternalStorage="true"
+            android:usesCleartextTraffic="true"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -30,7 +51,7 @@
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,7 +81,7 @@
             android:windowSoftInputMode="stateVisible" />
         <activity
             android:name="com.arraykart.b2b.Home.HomeActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />

@@ -41,7 +41,7 @@ public class SignUpReviewRecyclerAdapter extends RecyclerView.Adapter<SignUpRevi
     public void onBindViewHolder(@NonNull SignUpReviewViewHolder holder, int position) {
         Glide.with(holder.itemView)
                 .load("https://arraykartandroid.s3.ap-south-1.amazonaws.com/"+suReviewImg.get(position))
-                .centerCrop()
+//                .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.suReviewImage);
@@ -54,7 +54,7 @@ public class SignUpReviewRecyclerAdapter extends RecyclerView.Adapter<SignUpRevi
         return suReview.size();
     }
 
-    public class SignUpReviewViewHolder extends RecyclerView.ViewHolder{
+    public static class SignUpReviewViewHolder extends RecyclerView.ViewHolder{
         private ImageView suReviewImage;
         private TextView suReview;
         private TextView suReviewCustomer;

@@ -44,30 +44,26 @@ public class OfferRecyclerAdapter extends RecyclerView.Adapter<OfferRecyclerAdap
     public void onBindViewHolder(@NonNull OfferViewHolder holder, int position) {
         holder.oName.setText(offerName.get(position));
         holder.oDesc.setText(offerDesc.get(position));
-        holder.oMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TextView oName;
-                TextView howToUse;
-                TextView offValidity;
-                ImageView close;
-                bottomSheetDialog = new BottomSheetDialog(context);
-                bottomSheetDialog.setContentView(R.layout.bsd_pdetail_offer);
-                oName = bottomSheetDialog.findViewById(R.id.oName);
-                howToUse = bottomSheetDialog.findViewById(R.id.howToUse);
-                offValidity = bottomSheetDialog.findViewById(R.id.offValidity);
-                close = bottomSheetDialog.findViewById(R.id.close);
-                oName.setText(offerName.get(Objects.requireNonNull(holder).getAdapterPosition()));
-                howToUse.setText(offerHowToUse.get(Objects.requireNonNull(holder).getAdapterPosition()));
-                offValidity.setText(offerValidity.get(Objects.requireNonNull(holder).getAdapterPosition()));
-                bottomSheetDialog.show();
-                close.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        bottomSheetDialog.dismiss();
-                    }
-                });
-            }
+        holder.oMore.setOnClickListener(v -> {
+            TextView oName;
+            TextView howToUse;
+            TextView offValidity;
+            ImageView close;
+            bottomSheetDialog = new BottomSheetDialog(context);
+            bottomSheetDialog.setContentView(R.layout.bsd_pdetail_offer);
+            oName = bottomSheetDialog.findViewById(R.id.oName);
+            howToUse = bottomSheetDialog.findViewById(R.id.howToUse);
+            offValidity = bottomSheetDialog.findViewById(R.id.offValidity);
+            close = bottomSheetDialog.findViewById(R.id.close);
+            assert oName != null;
+            oName.setText(offerName.get(Objects.requireNonNull(holder).getAdapterPosition()));
+            assert howToUse != null;
+            howToUse.setText(offerHowToUse.get(Objects.requireNonNull(holder).getAdapterPosition()));
+            assert offValidity != null;
+            offValidity.setText(offerValidity.get(Objects.requireNonNull(holder).getAdapterPosition()));
+            bottomSheetDialog.show();
+            assert close != null;
+            close.setOnClickListener(v1 -> bottomSheetDialog.dismiss());
         });
     }
     
@@ -76,7 +72,7 @@ public class OfferRecyclerAdapter extends RecyclerView.Adapter<OfferRecyclerAdap
         return offerName.size();
     }
 
-    public class OfferViewHolder extends RecyclerView.ViewHolder{
+    public static class OfferViewHolder extends RecyclerView.ViewHolder{
         private TextView oName;
         private TextView oDesc;
         private TextView oMore;

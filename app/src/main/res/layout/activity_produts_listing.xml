@@ -29,10 +29,25 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:contentDescription="@string/back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24_gray" />
+                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24_gray"
+                tools:ignore="ImageContrastCheck" />
+
+            <TextView
+                android:id="@+id/textView52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_left_margin"
+                android:text="@string/products"
+                android:textColor="@color/page_heading"
+                android:textSize="@dimen/heading"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/backPD"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextContrastCheck" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -41,6 +56,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
+                android:contentDescription="@string/cart"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +70,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
+                android:contentDescription="@string/search"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView3"
@@ -80,7 +97,7 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/sub_heading"
             android:textStyle="bold" />
 
         <TextView
@@ -90,9 +107,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
-            android:gravity="right"
+            android:gravity="end"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="@dimen/sub_heading" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

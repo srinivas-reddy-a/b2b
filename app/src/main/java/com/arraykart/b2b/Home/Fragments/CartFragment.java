@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 //
 //import com.arraykart.b2b.Cart.CartAdapter;
+import com.arraykart.b2b.Authenticate.AuthorizeUser;
 import com.arraykart.b2b.R;
 
 import java.util.ArrayList;
@@ -37,6 +38,8 @@ public class CartFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
+        checkToken();
+
 //        populateArray();
 //        cartRV = view.findViewById(R.id.cartRV);
 //        if(isAdded()) {
@@ -57,6 +60,14 @@ public class CartFragment extends Fragment {
 //        cartQuantity.setText("Proceed To Buy(" + cartPName.size() + " items)");
         return view;
     }
+
+    private void checkToken() {
+        if(isAdded()) {
+            AuthorizeUser authorizeUser = new AuthorizeUser(requireActivity());
+            authorizeUser.isLoggedIn();
+        }
+    }
+
 //    public void populateArray(){
 //        cartImgs = new ArrayList<>(Arrays.asList(R.drawable.tp0, R.drawable.tp1, R.drawable.tp2, R.drawable.tp3));
 //        cartPName = new ArrayList<>(Arrays.asList("Maggie", "Oil", "Soap", "Bisci"));

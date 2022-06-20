@@ -17,554 +17,554 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
             android:drawablePadding="@dimen/view_padding"
-            android:text="Terms and Conditions Overview"
+            android:text="@string/terms_and_conditions_overview"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading"
+            android:textSize="@dimen/text"
             app:drawableStartCompat="@drawable/ic_outline_terms_and_conditions_mark_24" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="This Application is operated by Arraykart Techable Private Limited. Throughout the Application, the  terms “we”, “us” and “our” refer to Arraykart Techable Private Limited. Arraykart Techable Private  Limited offers this Application, including all information, tools and services available from this  Application to you, the user, conditioned upon your acceptance of all terms, conditions, policies and  notices stated here."
+            android:text="@string/this_application_is_operated_by_arraykart_techable_private_limited_throughout_the_application_the_terms_we_us_and_our_refer_to_arraykart_techable_private_limited_arraykart_techable_private_limited_offers_this_application_including_all_information_tools_and_services_available_from_this_application_to_you_the_user_conditioned_upon_your_acceptance_of_all_terms_conditions_policies_and_notices_stated_here"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="By visiting our Application and/ or purchasing something from us, you engage in our “Service” and  agree to be bound by the following terms and conditions (“Terms of Service”, “Terms”), including  those additional terms and conditions and policies referenced herein and/or available by hyperlink.  These Terms of Service apply to all users of the Application, including without limitation users who  are browsers, vendors, customers, merchants, and/ or contributors of content."
+            android:text="@string/by_visiting_our_application_and_or_purchasing_something_from_us_you_engage_in_our_service_and_agree_to_be_bound_by_the_following_terms_and_conditions_terms_of_service_terms_including_those_additional_terms_and_conditions_and_policies_referenced_herein_and_or_available_by_hyperlink_these_terms_of_service_apply_to_all_users_of_the_application_including_without_limitation_users_who_are_browsers_vendors_customers_merchants_and_or_contributors_of_content"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Please read these Terms of Service carefully before accessing or using our Application. By accessing  or using any part of the Application, you agree to be bound by these Terms of Service. If you do not  agree to all the terms and conditions of this agreement, then you may not access the Application or  use any services. If these Terms of Service are considered an offer, acceptance is expressly limited to  these Terms of Service. "
+            android:text="@string/please_read_these_terms_of_service_carefully_before_accessing_or_using_our_application_by_accessing_or_using_any_part_of_the_application_you_agree_to_be_bound_by_these_terms_of_service_if_you_do_not_agree_to_all_the_terms_and_conditions_of_this_agreement_then_you_may_not_access_the_application_or_use_any_services_if_these_terms_of_service_are_considered_an_offer_acceptance_is_expressly_limited_to_these_terms_of_service"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Any new features or tools which are added to the current store shall also be subject to the Terms of  Service. You can review the most current version of the Terms of Service at any time on this page.  We reserve the right to update, change or replace any part of these Terms of Service by posting  updates and/or changes to our Application. It is your responsibility to check this page periodically for  changes. Your continued use of or access to the Application following the posting of any changes  constitutes acceptance of those changes."
+            android:text="@string/any_new_features_or_tools_which_are_added_to_the_current_store_shall_also_be_subject_to_the_terms_of_service_you_can_review_the_most_current_version_of_the_terms_of_service_at_any_time_on_this_page_we_reserve_the_right_to_update_change_or_replace_any_part_of_these_terms_of_service_by_posting_updates_and_or_changes_to_our_application_it_is_your_responsibility_to_check_this_page_periodically_for_changes_your_continued_use_of_or_access_to_the_application_following_the_posting_of_any_changes_constitutes_acceptance_of_those_changes"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 1 - ONLINE STORE TERMS"
+            android:text="@string/section_1_online_store_terms"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="By agreeing to these Terms of Service, you represent that you are at least the age of majority in your  state or province of residence, or that you are the age of majority in your state or province of  residence and you have given us your consent to allow any of your minor dependents to use this  Application. "
+            android:text="@string/by_agreeing_to_these_terms_of_service_you_represent_that_you_are_at_least_the_age_of_majority_in_your_state_or_province_of_residence_or_that_you_are_the_age_of_majority_in_your_state_or_province_of_residence_and_you_have_given_us_your_consent_to_allow_any_of_your_minor_dependents_to_use_this_application"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="You may not use our products for any illegal or unauthorized purpose nor may you, in the use of the  Service, violate any laws in your jurisdiction (including but not limited to copyright laws).You must not transmit any worms or viruses or any code of a destructive nature.A breach or violation of any of the Terms will result in an immediate termination of your Services."
+            android:text="@string/you_may_not_use_our_products_for_any_illegal_or_unauthorized_purpose_nor_may_you_in_the_use_of_the_service_violate_any_laws_in_your_jurisdiction_including_but_not_limited_to_copyright_laws_you_must_not_transmit_any_worms_or_viruses_or_any_code_of_a_destructive_nature_a_breach_or_violation_of_any_of_the_terms_will_result_in_an_immediate_termination_of_your_services"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 2 - GENERAL CONDITIONS"
+            android:text="@string/section_2_general_conditions"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We reserve the right to refuse service to anyone for any reason at any time.You understand that your content (not including credit card information), may be transferred  unencrypted and involve (a) transmissions over various networks; and (b) changes to conform and  adapt to technical requirements of connecting networks or devices. Credit card information is  always encrypted during transfer over networks."
+            android:text="@string/we_reserve_the_right_to_refuse_service_to_anyone_for_any_reason_at_any_time_you_understand_that_your_content_not_including_credit_card_information_may_be_transferred_unencrypted_and_involve_a_transmissions_over_various_networks_and_b_changes_to_conform_and_adapt_to_technical_requirements_of_connecting_networks_or_devices_credit_card_information_is_always_encrypted_during_transfer_over_networks"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="You agree not to reproduce, duplicate, copy, sell, resell or exploit any portion of the Service, use of  the Service, or access to the Service or any contact on the Application through which the service is  provided, without express written permission by us. "
+            android:text="@string/you_agree_not_to_reproduce_duplicate_copy_sell_resell_or_exploit_any_portion_of_the_service_use_of_the_service_or_access_to_the_service_or_any_contact_on_the_application_through_which_the_service_is_provided_without_express_written_permission_by_us"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="The headings used in this agreement are included for convenience only and will not limit or  otherwise affect these Terms. "
+            android:text="@string/the_headings_used_in_this_agreement_are_included_for_convenience_only_and_will_not_limit_or_otherwise_affect_these_terms"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 3 - ACCURACY, COMPLETENESS AND TIMELINESS OF INFORMATION"
+            android:text="@string/section_3_accuracy_completeness_and_timeliness_of_information"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We are not responsible if information made available on this Application is not accurate, complete  or current. The material on this Application is provided for general information only and should not  be relied upon or used as the sole basis for making decisions without consulting primary, more  accurate, more complete or more timely sources of information. Any reliance on the material on this  Application is at your own risk."
+            android:text="@string/we_are_not_responsible_if_information_made_available_on_this_application_is_not_accurate_complete_or_current_the_material_on_this_application_is_provided_for_general_information_only_and_should_not_be_relied_upon_or_used_as_the_sole_basis_for_making_decisions_without_consulting_primary_more_accurate_more_complete_or_more_timely_sources_of_information_any_reliance_on_the_material_on_this_application_is_at_your_own_risk"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="This Application may contain certain historical information. Historical information, necessarily, is not  current and is provided for your reference only. We reserve the right to modify the contents of this  Application at any time, but we have no obligation to update any information on our Application.  You agree that it is your responsibility to monitor changes to our Application."
+            android:text="@string/this_application_may_contain_certain_historical_information_historical_information_necessarily_is_not_current_and_is_provided_for_your_reference_only_we_reserve_the_right_to_modify_the_contents_of_this_application_at_any_time_but_we_have_no_obligation_to_update_any_information_on_our_application_you_agree_that_it_is_your_responsibility_to_monitor_changes_to_our_application"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES"
+            android:text="@string/section_4_modifications_to_the_service_and_prices"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Prices for our products are subject to change without notice. "
+            android:text="@string/prices_for_our_products_are_subject_to_change_without_notice"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We reserve the right at any time to modify or discontinue the Service (or any part or content  thereof) without notice at any time."
+            android:text="@string/we_reserve_the_right_at_any_time_to_modify_or_discontinue_the_service_or_any_part_or_content_thereof_without_notice_at_any_time"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We shall not be liable to you or to any third-party for any modification, price change, suspension or  discontinuance of the Service."
+            android:text="@string/we_shall_not_be_liable_to_you_or_to_any_third_party_for_any_modification_price_change_suspension_or_discontinuance_of_the_service"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 5 - PRODUCTS OR SERVICES (if applicable) "
+            android:text="@string/section_5_products_or_services_if_applicable"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Certain products or services may be available exclusively online through the Application. These  products or services may have limited quantities and are subject to return or exchange only  according to our Return Policy. "
+            android:text="@string/certain_products_or_services_may_be_available_exclusively_online_through_the_application_these_products_or_services_may_have_limited_quantities_and_are_subject_to_return_or_exchange_only_according_to_our_return_policy"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We have made every effort to display as accurately as possible the colors and images of our  products that appear at the store. We cannot guarantee that your computer monitor's display of any  color will be accurate."
+            android:text="@string/we_have_made_every_effort_to_display_as_accurately_as_possible_the_colors_and_images_of_our_products_that_appear_at_the_store_we_cannot_guarantee_that_your_computer_monitor_s_display_of_any_color_will_be_accurate"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We reserve the right, but are not obligated, to limit the sales of our products or Services to any  person, geographic region or jurisdiction. We may exercise this right on a case-by-case basis. We  reserve the right to limit the quantities of any products or services that we offer. All descriptions of  products or product pricing are subject to change at anytime without notice, at the sole discretion of  us. We reserve the right to discontinue any product at any time. Any offer for any product or service  made on this Application is void where prohibited. "
+            android:text="@string/we_reserve_the_right_but_are_not_obligated_to_limit_the_sales_of_our_products_or_services_to_any_person_geographic_region_or_jurisdiction_we_may_exercise_this_right_on_a_case_by_case_basis_we_reserve_the_right_to_limit_the_quantities_of_any_products_or_services_that_we_offer_all_descriptions_of_products_or_product_pricing_are_subject_to_change_at_anytime_without_notice_at_the_sole_discretion_of_us_we_reserve_the_right_to_discontinue_any_product_at_any_time_any_offer_for_any_product_or_service_made_on_this_application_is_void_where_prohibited"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We do not warrant that the quality of any products, services, information, or other material  purchased or obtained by you will meet your expectations, or that any errors in the Service will be  corrected. "
+            android:text="@string/we_do_not_warrant_that_the_quality_of_any_products_services_information_or_other_material_purchased_or_obtained_by_you_will_meet_your_expectations_or_that_any_errors_in_the_service_will_be_corrected"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 6 - ACCURACY OF BILLING AND ACCOUNT INFORMATION"
+            android:text="@string/section_6_accuracy_of_billing_and_account_information"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We reserve the right to refuse any order you place with us. We may, in our sole discretion, limit or  cancel quantities purchased per person, per household or per order. These restrictions may include  orders placed by or under the same customer account, the same credit card, and/or orders that use  the same billing and/or shipping address. In the event that we make a change to or cancel an order,  we may attempt to notify you by contacting the e-mail and/or billing address/phone number  provided at the time the order was made. We reserve the right to limit or prohibit orders that, in our  sole judgment, appear to be placed by dealers, resellers or distributors."
+            android:text="@string/we_reserve_the_right_to_refuse_any_order_you_place_with_us_we_may_in_our_sole_discretion_limit_or_cancel_quantities_purchased_per_person_per_household_or_per_order_these_restrictions_may_include_orders_placed_by_or_under_the_same_customer_account_the_same_credit_card_and_or_orders_that_use_the_same_billing_and_or_shipping_address_in_the_event_that_we_make_a_change_to_or_cancel_an_order_we_may_attempt_to_notify_you_by_contacting_the_e_mail_and_or_billing_address_phone_number_provided_at_the_time_the_order_was_made_we_reserve_the_right_to_limit_or_prohibit_orders_that_in_our_sole_judgment_appear_to_be_placed_by_dealers_resellers_or_distributors"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="You agree to provide current, complete and accurate purchase and account information for all  purchases made at our store. You agree to promptly update your account and other information,  including your email address so that we can complete your transactions and contact you as needed. For more detail, please review our Returns Policy."
+            android:text="@string/you_agree_to_provide_current_complete_and_accurate_purchase_and_account_information_for_all_purchases_made_at_our_store_you_agree_to_promptly_update_your_account_and_other_information_including_your_email_address_so_that_we_can_complete_your_transactions_and_contact_you_as_needed_for_more_detail_please_review_our_returns_policy"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 7 - OPTIONAL TOOLS"
+            android:text="@string/section_7_optional_tools"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We may provide you with access to third-party tools over which we neither monitor nor have any  control nor input. You acknowledge and agree that we provide access to such tools ”as is” and “as available” without  any warranties, representations or conditions of any kind and without any endorsement. We shall  have no liability whatsoever arising from or relating to your use of optional third-party tools. "
+            android:text="@string/we_may_provide_you_with_access_to_third_party_tools_over_which_we_neither_monitor_nor_have_any_control_nor_input_you_acknowledge_and_agree_that_we_provide_access_to_such_tools_as_is_and_as_available_without_any_warranties_representations_or_conditions_of_any_kind_and_without_any_endorsement_we_shall_have_no_liability_whatsoever_arising_from_or_relating_to_your_use_of_optional_third_party_tools"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Any use by you of optional tools offered through the Application is entirely at your own risk and  discretion and you should ensure that you are familiar with and approve of the terms on which tools  are provided by the relevant third-party provider(s)."
+            android:text="@string/any_use_by_you_of_optional_tools_offered_through_the_application_is_entirely_at_your_own_risk_and_discretion_and_you_should_ensure_that_you_are_familiar_with_and_approve_of_the_terms_on_which_tools_are_provided_by_the_relevant_third_party_provider_s"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We may also, in the future, offer new services and/or features through the Application (including,  the release of new tools and resources). Such new features and/or services shall also be subject to  these Terms of Service."
+            android:text="@string/we_may_also_in_the_future_offer_new_services_and_or_features_through_the_application_including_the_release_of_new_tools_and_resources_such_new_features_and_or_services_shall_also_be_subject_to_these_terms_of_service"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 8 - THIRD-PARTY LINKS "
+            android:text="@string/section_8_third_party_links"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Certain content, products and services available via our Service may include materials from third parties. "
+            android:text="@string/certain_content_products_and_services_available_via_our_service_may_include_materials_from_third_parties"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Third-party links on this Application may direct you to third-party Applications that are not affiliated  with us. We are not responsible for examining or evaluating the content or accuracy and we do not  warrant and will not have any liability or responsibility for any third-party materials or Applications,  or for any other materials, products, or services of third-parties. "
+            android:text="@string/third_party_links_on_this_application_may_direct_you_to_third_party_applications_that_are_not_affiliated_with_us_we_are_not_responsible_for_examining_or_evaluating_the_content_or_accuracy_and_we_do_not_warrant_and_will_not_have_any_liability_or_responsibility_for_any_third_party_materials_or_applications_or_for_any_other_materials_products_or_services_of_third_parties"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We are not liable for any harm or damages related to the purchase or use of goods, services,  resources, content, or any other transactions made in connection with any third-party Applications.  Please review carefully the third-party's policies and practices and make sure you understand them  before you engage in any transaction. Complaints, claims, concerns, or questions regarding third party products should be directed to the third-party."
+            android:text="@string/we_are_not_liable_for_any_harm_or_damages_related_to_the_purchase_or_use_of_goods_services_resources_content_or_any_other_transactions_made_in_connection_with_any_third_party_applications_please_review_carefully_the_third_party_s_policies_and_practices_and_make_sure_you_understand_them_before_you_engage_in_any_transaction_complaints_claims_concerns_or_questions_regarding_third_party_products_should_be_directed_to_the_third_party"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 9 - USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS"
+            android:text="@string/section_9_user_comments_feedback_and_other_submissions"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="If, at our request, you send certain specific submissions (for akfrontend contest entries) or without a  request from us you send creative ideas, suggestions, proposals, plans, or other materials, whether  online, by email, by postal mail, or otherwise (collectively, 'comments'), you agree that we may, at  any time, without restriction, edit, copy, publish, distribute, translate and otherwise use in any  medium any comments that you forward to us. We are and shall be under no obligation (1) to  maintain any comments in confidence; (2) to pay compensation for any comments; or (3) to respond  to any comments."
+            android:text="@string/if_at_our_request_you_send_certain_specific_submissions_for_akfrontend_contest_entries_or_without_a_request_from_us_you_send_creative_ideas_suggestions_proposals_plans_or_other_materials_whether_online_by_email_by_postal_mail_or_otherwise_collectively_comments_you_agree_that_we_may_at_any_time_without_restriction_edit_copy_publish_distribute_translate_and_otherwise_use_in_any_medium_any_comments_that_you_forward_to_us_we_are_and_shall_be_under_no_obligation_1_to_maintain_any_comments_in_confidence_2_to_pay_compensation_for_any_comments_or_3_to_respond_to_any_comments"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We may, but have no obligation to, monitor, edit or remove content that we determine in our sole  discretion are unlawful, offensive, threatening, libelous, defamatory, pornographic, obscene or  otherwise objectionable or violates any party’s intellectual property or these Terms of Service."
+            android:text="@string/we_may_but_have_no_obligation_to_monitor_edit_or_remove_content_that_we_determine_in_our_sole_discretion_are_unlawful_offensive_threatening_libelous_defamatory_pornographic_obscene_or_otherwise_objectionable_or_violates_any_party_s_intellectual_property_or_these_terms_of_service"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="You agree that your comments will not violate any right of any third-party, including copyright,  trademark, privacy, personality or other personal or proprietary right. You further agree that your  comments will not contain libelous or otherwise unlawful, abusive or obscene material, or contain  any computer virus or other malware that could in any way affect the operation of the Service or any  related Application. You may not use a false e-mail address, pretend to be someone other than  yourself, or otherwise mislead us or third-parties as to the origin of any comments. You are solely  responsible for any comments you make and their accuracy. We take no responsibility and assume  no liability for any comments posted by you or any third-party."
+            android:text="@string/you_agree_that_your_comments_will_not_violate_any_right_of_any_third_party_including_copyright_trademark_privacy_personality_or_other_personal_or_proprietary_right_you_further_agree_that_your_comments_will_not_contain_libelous_or_otherwise_unlawful_abusive_or_obscene_material_or_contain_any_computer_virus_or_other_malware_that_could_in_any_way_affect_the_operation_of_the_service_or_any_related_application_you_may_not_use_a_false_e_mail_address_pretend_to_be_someone_other_than_yourself_or_otherwise_mislead_us_or_third_parties_as_to_the_origin_of_any_comments_you_are_solely_responsible_for_any_comments_you_make_and_their_accuracy_we_take_no_responsibility_and_assume_no_liability_for_any_comments_posted_by_you_or_any_third_party"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 10 - PERSONAL INFORMATION "
+            android:text="@string/section_10_personal_information"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Your submission of personal information through the store is governed by our Privacy Policy. To view  our Privacy Policy."
+            android:text="@string/your_submission_of_personal_information_through_the_store_is_governed_by_our_privacy_policy_to_view_our_privacy_policy"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 11 - ERRORS, INACCURACIES AND OMISSIONS"
+            android:text="@string/section_11_errors_inaccuracies_and_omissions"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Occasionally there may be information on our Application or in the Service that contains  typographical errors, inaccuracies or omissions that may relate to product descriptions, pricing,  promotions, offers, product shipping charges, transit times and availability. We reserve the right to  correct any errors, inaccuracies or omissions, and to change or update information or cancel orders  if any information in the Service or on any related Application is inaccurate at any time without prior  notice (including after you have submitted your order). "
+            android:text="@string/occasionally_there_may_be_information_on_our_application_or_in_the_service_that_contains_typographical_errors_inaccuracies_or_omissions_that_may_relate_to_product_descriptions_pricing_promotions_offers_product_shipping_charges_transit_times_and_availability_we_reserve_the_right_to_correct_any_errors_inaccuracies_or_omissions_and_to_change_or_update_information_or_cancel_orders_if_any_information_in_the_service_or_on_any_related_application_is_inaccurate_at_any_time_without_prior_notice_including_after_you_have_submitted_your_order"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We undertake no obligation to update, amend or clarify information in the Service or on any related  Application, including without limitation, pricing information, except as required by law. No specified  update or refresh date applied in the Service or on any related Application, should be taken to  indicate that all information in the Service or on any related Application has been modified or  updated."
+            android:text="@string/we_undertake_no_obligation_to_update_amend_or_clarify_information_in_the_service_or_on_any_related_application_including_without_limitation_pricing_information_except_as_required_by_law_no_specified_update_or_refresh_date_applied_in_the_service_or_on_any_related_application_should_be_taken_to_indicate_that_all_information_in_the_service_or_on_any_related_application_has_been_modified_or_updated"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 12 - PROHIBITED USES"
+            android:text="@string/section_12_prohibited_uses"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="In addition to other prohibitions as set forth in the Terms of Service, you are prohibited from using  the Application or its content: (a) for any unlawful purpose; (b) to solicit others to perform or participate in any unlawful acts; (c) to  violate any international, federal, provincial or state regulations, rules, laws, or local ordinances; (d)  to infringe upon or violate our intellectual property rights or the intellectual property rights of  others; (e) to harass, abuse, insult, harm, defame, slander, disparage, intimidate, or discriminate  based on gender, sexual orientation, religion, ethnicity, race, age, national origin, or disability; (f) to  submit false or misleading information;(g) to upload or transmit viruses or any other type of malicious code that will or may be used in any  way that will affect the functionality or operation of the Service or of any related Application, other  Applications, or the Internet; (h) to collect or track the personal information of others; (i) to spam,  phish, pharm, pretext, spider, crawl, or scrape; (j) for any obscene or immoral purpose; or (k) to  interfere with or circumvent the security features of the Service or any related Application, other  Applications, or the Internet. We reserve the right to terminate your use of the Service or any  related Application for violating any of the prohibited uses."
+            android:text="@string/in_addition_to_other_prohibitions_as_set_forth_in_the_terms_of_service_you_are_prohibited_from_using_the_application_or_its_content_a_for_any_unlawful_purpose_b_to_solicit_others_to_perform_or_participate_in_any_unlawful_acts_c_to_violate_any_international_federal_provincial_or_state_regulations_rules_laws_or_local_ordinances_d_to_infringe_upon_or_violate_our_intellectual_property_rights_or_the_intellectual_property_rights_of_others_e_to_harass_abuse_insult_harm_defame_slander_disparage_intimidate_or_discriminate_based_on_gender_sexual_orientation_religion_ethnicity_race_age_national_origin_or_disability_f_to_submit_false_or_misleading_information_g_to_upload_or_transmit_viruses_or_any_other_type_of_malicious_code_that_will_or_may_be_used_in_any_way_that_will_affect_the_functionality_or_operation_of_the_service_or_of_any_related_application_other_applications_or_the_internet_h_to_collect_or_track_the_personal_information_of_others_i_to_spam_phish_pharm_pretext_spider_crawl_or_scrape_j_for_any_obscene_or_immoral_purpose_or_k_to_interfere_with_or_circumvent_the_security_features_of_the_service_or_any_related_application_other_applications_or_the_internet_we_reserve_the_right_to_terminate_your_use_of_the_service_or_any_related_application_for_violating_any_of_the_prohibited_uses"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 13 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY"
+            android:text="@string/section_13_disclaimer_of_warranties_limitation_of_liability"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We do not guarantee, represent or warrant that your use of our service will be uninterrupted,  timely, secure or error-free.We do not warrant that the results that may be obtained from the use of the service will be accurate  or reliable. "
+            android:text="@string/we_do_not_guarantee_represent_or_warrant_that_your_use_of_our_service_will_be_uninterrupted_timely_secure_or_error_free_we_do_not_warrant_that_the_results_that_may_be_obtained_from_the_use_of_the_service_will_be_accurate_or_reliable"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="You agree that from time to time we may remove the service for indefinite periods of time or cancel  the service at any time, without notice to you.You expressly agree that your use of, or inability to use, the service is at your sole risk. The service  and all products and services delivered to you through the service are (except as expressly stated by  us) provided 'as is' and 'as available' for your use, without any representation, warranties or  conditions of any kind, either express or implied, including all implied warranties or conditions of  merchantability, merchantable quality, fitness for a particular purpose, durability, title, and non-infringement."
+            android:text="@string/you_agree_that_from_time_to_time_we_may_remove_the_service_for_indefinite_periods_of_time_or_cancel_the_service_at_any_time_without_notice_to_you_you_expressly_agree_that_your_use_of_or_inability_to_use_the_service_is_at_your_sole_risk_the_service_and_all_products_and_services_delivered_to_you_through_the_service_are_except_as_expressly_stated_by_us_provided_as_is_and_as_available_for_your_use_without_any_representation_warranties_or_conditions_of_any_kind_either_express_or_implied_including_all_implied_warranties_or_conditions_of_merchantability_merchantable_quality_fitness_for_a_particular_purpose_durability_title_and_non_infringement"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="In no case shall Arraykart Techable Private Limited, our directors, officers, employees, affiliates,  agents, contractors, interns, suppliers, service providers or licensors be liable for any injury, loss,  claim, or any direct, indirect, incidental, punitive, special, or consequential damages of any kind,  including, without limitation lost profits, lost revenue, lost savings, loss of data, replacement costs,  or any similar damages, whether based in contract, tort (including negligence), strict liability or  otherwise, arising from your use of any of the service or any products procured using the service, or  for any other claim related in any way to your use of the service or any product, including, but not  limited to, any errors or omissions in any content, or any loss or damage of any kind incurred as a  result of the use of the service or any content (or product) posted, transmitted, or otherwise made  available via the service, even if advised of their possibility."
+            android:text="@string/in_no_case_shall_arraykart_techable_private_limited_our_directors_officers_employees_affiliates_agents_contractors_interns_suppliers_service_providers_or_licensors_be_liable_for_any_injury_loss_claim_or_any_direct_indirect_incidental_punitive_special_or_consequential_damages_of_any_kind_including_without_limitation_lost_profits_lost_revenue_lost_savings_loss_of_data_replacement_costs_or_any_similar_damages_whether_based_in_contract_tort_including_negligence_strict_liability_or_otherwise_arising_from_your_use_of_any_of_the_service_or_any_products_procured_using_the_service_or_for_any_other_claim_related_in_any_way_to_your_use_of_the_service_or_any_product_including_but_not_limited_to_any_errors_or_omissions_in_any_content_or_any_loss_or_damage_of_any_kind_incurred_as_a_result_of_the_use_of_the_service_or_any_content_or_product_posted_transmitted_or_otherwise_made_available_via_the_service_even_if_advised_of_their_possibility"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Because some states or jurisdictions do not allow the exclusion or the limitation of liability for  consequential or incidental damages, in such states or jurisdictions, our liability shall be limited to  the maximum extent permitted by law. "
+            android:text="@string/because_some_states_or_jurisdictions_do_not_allow_the_exclusion_or_the_limitation_of_liability_for_consequential_or_incidental_damages_in_such_states_or_jurisdictions_our_liability_shall_be_limited_to_the_maximum_extent_permitted_by_law"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 14 - INDEMNIFICATION"
+            android:text="@string/section_14_indemnification"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="You agree to indemnify, defend and hold harmless Arraykart Techable Private Limited and our  parent, subsidiaries, affiliates, partners, officers, directors, agents, contractors, licensors, service  providers, subcontractors, suppliers, interns and employees, harmless from any claim or demand,  including reasonable attorneys’ fees, made by any third-party due to or arising out of your breach of  these Terms of Service or the documents they incorporate by reference, or your violation of any law  or the rights of a third-party."
+            android:text="@string/you_agree_to_indemnify_defend_and_hold_harmless_arraykart_techable_private_limited_and_our_parent_subsidiaries_affiliates_partners_officers_directors_agents_contractors_licensors_service_providers_subcontractors_suppliers_interns_and_employees_harmless_from_any_claim_or_demand_including_reasonable_attorneys_fees_made_by_any_third_party_due_to_or_arising_out_of_your_breach_of_these_terms_of_service_or_the_documents_they_incorporate_by_reference_or_your_violation_of_any_law_or_the_rights_of_a_third_party"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 15 - SEVERABILITY"
+            android:text="@string/section_15_severability"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="In the event that any provision of these Terms of Service is determined to be unlawful, void or  unenforceable, such provision shall nonetheless be enforceable to the fullest extent permitted by  applicable law, and the unenforceable portion shall be deemed to be severed from these Terms of  Service, such determination shall not affect the validity and enforceability of any other remaining  provisions."
+            android:text="@string/in_the_event_that_any_provision_of_these_terms_of_service_is_determined_to_be_unlawful_void_or_unenforceable_such_provision_shall_nonetheless_be_enforceable_to_the_fullest_extent_permitted_by_applicable_law_and_the_unenforceable_portion_shall_be_deemed_to_be_severed_from_these_terms_of_service_such_determination_shall_not_affect_the_validity_and_enforceability_of_any_other_remaining_provisions"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 16 - TERMINATION"
+            android:text="@string/section_16_termination"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="The obligations and liabilities of the parties incurred prior to the termination date shall survive the  termination of this agreement for all purposes."
+            android:text="@string/the_obligations_and_liabilities_of_the_parties_incurred_prior_to_the_termination_date_shall_survive_the_termination_of_this_agreement_for_all_purposes"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="These Terms of Service are effective unless and until terminated by either you or us. You may  terminate these Terms of Service at any time by notifying us that you no longer wish to use our  Services, or when you cease using our Application."
+            android:text="@string/these_terms_of_service_are_effective_unless_and_until_terminated_by_either_you_or_us_you_may_terminate_these_terms_of_service_at_any_time_by_notifying_us_that_you_no_longer_wish_to_use_our_services_or_when_you_cease_using_our_application"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="If in our sole judgment you fail, or we suspect that you have failed, to comply with any term or provision of these Terms of Service, we also may terminate this agreement at any time without  notice and you will remain liable for all amounts due up to and including the date of termination;  and/or accordingly may deny you access to our Services (or any part thereof). "
+            android:text="@string/if_in_our_sole_judgment_you_fail_or_we_suspect_that_you_have_failed_to_comply_with_any_term_or_provision_of_these_terms_of_service_we_also_may_terminate_this_agreement_at_any_time_without_notice_and_you_will_remain_liable_for_all_amounts_due_up_to_and_including_the_date_of_termination_and_or_accordingly_may_deny_you_access_to_our_services_or_any_part_thereof"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 17 - ENTIRE AGREEMENT"
+            android:text="@string/section_17_entire_agreement"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="The failure of us to exercise or enforce any right or provision of these Terms of Service shall not  constitute a waiver of such right or provision."
+            android:text="@string/the_failure_of_us_to_exercise_or_enforce_any_right_or_provision_of_these_terms_of_service_shall_not_constitute_a_waiver_of_such_right_or_provision"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="These Terms of Service and any policies or operating rules posted by us on this Application or in  respect to The Service constitutes the entire agreement and understanding between you and us and  govern your use of the Service, superseding any prior or contemporaneous agreements,  communications and proposals, whether oral or written, between you and us (including, but not  limited to, any prior versions of the Terms of Service)."
+            android:text="@string/these_terms_of_service_and_any_policies_or_operating_rules_posted_by_us_on_this_application_or_in_respect_to_the_service_constitutes_the_entire_agreement_and_understanding_between_you_and_us_and_govern_your_use_of_the_service_superseding_any_prior_or_contemporaneous_agreements_communications_and_proposals_whether_oral_or_written_between_you_and_us_including_but_not_limited_to_any_prior_versions_of_the_terms_of_service"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Any ambiguities in the interpretation of these Terms of Service shall not be construed against the  drafting party."
+            android:text="@string/any_ambiguities_in_the_interpretation_of_these_terms_of_service_shall_not_be_construed_against_the_drafting_party"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 18 - GOVERNING LAW"
+            android:text="@string/section_18_governing_law"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="These Terms of Service and any separate agreements whereby we provide you Services shall be  governed by and construed in accordance with the laws of State and Central governments, India."
+            android:text="@string/these_terms_of_service_and_any_separate_agreements_whereby_we_provide_you_services_shall_be_governed_by_and_construed_in_accordance_with_the_laws_of_state_and_central_governments_india"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 19 - CHANGES TO TERMS OF SERVICE"
+            android:text="@string/section_19_changes_to_terms_of_service"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="You can review the most current version of the Terms of Service at any time at this page. We reserve the right, at our sole discretion, to update, change or replace any part of these Terms of  Service by posting updates and changes to our Application. It is your responsibility to check our  Application periodically for changes. Your continued use of or access to our Application or the  Service following the posting of any changes to these Terms of Service constitutes acceptance of  those changes. "
+            android:text="@string/you_can_review_the_most_current_version_of_the_terms_of_service_at_any_time_at_this_page_we_reserve_the_right_at_our_sole_discretion_to_update_change_or_replace_any_part_of_these_terms_of_service_by_posting_updates_and_changes_to_our_application_it_is_your_responsibility_to_check_our_application_periodically_for_changes_your_continued_use_of_or_access_to_our_application_or_the_service_following_the_posting_of_any_changes_to_these_terms_of_service_constitutes_acceptance_of_those_changes"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="SECTION 20 - CONTACT INFORMATION"
+            android:text="@string/section_20_contact_information"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Questions about the Terms of Service should be sent to us at yourfriends@arraykart.com"
+            android:text="@string/questions_about_the_terms_of_service_should_be_sent_to_us_at_yourfriends_arraykart_com"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
     </LinearLayout>
 </ScrollView>

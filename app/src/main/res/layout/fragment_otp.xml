@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/view_top_margin"
-        android:text="Enter the OTP code"
+        android:text="@string/enter_the_otp_code"
         android:textColor="@color/heading"
         android:textSize="@dimen/heading"
         android:textStyle="bold"
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/section_margin"
-        android:text="OTP has been sent to your phone number"
+        android:text="@string/otp_has_been_sent_to_your_phone_number"
         android:textColor="@color/heading"
         android:textSize="@dimen/text"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
             android:background="@drawable/round_edges_black_border"
             android:ems="10"
             android:enabled="false"
-            android:inputType="textNoSuggestions"
+            android:inputType="textNoSuggestions|number"
             android:maxLength="1"
             android:textAlignment="center" />
 
@@ -83,7 +83,7 @@
             android:background="@drawable/round_edges_black_border"
             android:ems="10"
             android:enabled="false"
-            android:inputType="textNoSuggestions"
+            android:inputType="textNoSuggestions|number"
             android:maxLength="1"
             android:textAlignment="center" />
 
@@ -97,7 +97,7 @@
             android:background="@drawable/round_edges_black_border"
             android:ems="10"
             android:enabled="false"
-            android:inputType="textNoSuggestions"
+            android:inputType="textNoSuggestions|number"
             android:maxLength="1"
             android:textAlignment="center" />
 
@@ -111,7 +111,7 @@
             android:background="@drawable/round_edges_black_border"
             android:ems="10"
             android:enabled="false"
-            android:inputType="textNoSuggestions"
+            android:inputType="textNoSuggestions|number"
             android:maxLength="1"
             android:textAlignment="center" />
 
@@ -125,7 +125,7 @@
             android:background="@drawable/round_edges_black_border"
             android:ems="10"
             android:enabled="false"
-            android:inputType="textNoSuggestions"
+            android:inputType="textNoSuggestions|number"
             android:maxLength="1"
             android:textAlignment="center" />
 
@@ -139,7 +139,7 @@
             android:background="@drawable/round_edges_black_border"
             android:ems="10"
             android:enabled="false"
-            android:inputType="textNoSuggestions"
+            android:inputType="textNoSuggestions|number"
             android:maxLength="1"
             android:textAlignment="center" />
     </LinearLayout>
@@ -154,7 +154,7 @@
         android:paddingTop="@dimen/view_top_margin"
         android:paddingEnd="@dimen/section_margin"
         android:paddingBottom="@dimen/view_right_margin"
-        android:text="Submit"
+        android:text="@string/submit"
         android:textColor="@color/white"
         android:textSize="@dimen/heading"
         app:layout_constraintEnd_toEndOf="parent"
@@ -166,7 +166,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/view_top_margin"
-        android:text="OTP will expire in 00:00:00"
+        android:text="@string/otp_will_expire_in"
         android:textColor="@color/heading"
         android:textSize="@dimen/text"
         android:visibility="gone"
@@ -179,7 +179,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/view_top_margin"
-        android:text="Resend OTP"
+        android:text="@string/resend_otp"
         android:textColor="@color/hyperlink"
         android:textSize="@dimen/sub_heading"
         app:layout_constraintEnd_toEndOf="parent"

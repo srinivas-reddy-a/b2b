@@ -38,7 +38,7 @@
                     android:elevation="0.1dp"
                     android:paddingStart="@dimen/view_padding_left"
                     android:paddingEnd="@dimen/view_padding_right"
-                    android:text="Shop Name*"
+                    android:text="@string/shop_name"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text"
                     android:visibility="invisible" />
@@ -51,11 +51,13 @@
                     android:background="@drawable/round_edges_black_border"
                     android:ems="10"
                     android:focusedByDefault="true"
-                    android:hint="Shop Name*"
+                    android:hint="@string/shop_name"
                     android:inputType="text|textCapWords"
                     android:padding="@dimen/view_padding"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/sub_heading" />
+                    android:textSize="@dimen/sub_heading"
+                    android:autofillHints=""
+                    tools:targetApi="o" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -83,7 +85,7 @@
                     android:elevation="0.1dp"
                     android:paddingStart="@dimen/view_padding_left"
                     android:paddingEnd="@dimen/view_padding_right"
-                    android:text="Phone Number*"
+                    android:text="@string/phone_number"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text"
                     android:visibility="visible" />
@@ -96,11 +98,14 @@
                     android:background="@drawable/round_edges_black_border"
                     android:ems="10"
                     android:focusedByDefault="true"
-                    android:hint="Phone Number*"
+                    android:hint="@string/phone_number"
                     android:inputType="phone"
                     android:padding="@dimen/view_padding"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/sub_heading" />
+                    android:textSize="@dimen/sub_heading"
+                    tools:ignore="DuplicateSpeakableTextCheck"
+                    android:autofillHints=""
+                    tools:targetApi="o" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -128,7 +133,7 @@
                     android:elevation="0.1dp"
                     android:paddingStart="@dimen/view_padding_left"
                     android:paddingEnd="@dimen/view_padding_right"
-                    android:text="Address"
+                    android:text="@string/address"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text"
                     android:visibility="invisible" />
@@ -136,16 +141,17 @@
                 <EditText
                     android:id="@+id/address"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/round_edges_black_border"
                     android:ems="10"
                     android:focusedByDefault="true"
-                    android:hint="Full Address*"
+                    android:hint="@string/full_address"
                     android:inputType="textMultiLine|textPostalAddress|textCapWords"
                     android:padding="@dimen/view_padding"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/sub_heading" />
+                    android:textSize="@dimen/sub_heading"
+                    android:autofillHints="" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -173,7 +179,7 @@
                     android:elevation="0.1dp"
                     android:paddingStart="@dimen/view_padding_left"
                     android:paddingEnd="@dimen/view_padding_right"
-                    android:text="City/Town*"
+                    android:text="@string/city_town"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text"
                     android:visibility="invisible" />
@@ -186,11 +192,12 @@
                     android:background="@drawable/round_edges_black_border"
                     android:ems="10"
                     android:focusedByDefault="true"
-                    android:hint="City/Town*"
+                    android:hint="@string/city_town"
                     android:inputType="textPostalAddress|textCapWords"
                     android:padding="@dimen/view_padding"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/sub_heading" />
+                    android:textSize="@dimen/sub_heading"
+                    android:autofillHints="" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -236,7 +243,7 @@
                     android:elevation="0.1dp"
                     android:paddingStart="@dimen/view_padding_left"
                     android:paddingEnd="@dimen/view_padding_right"
-                    android:text="PIN Code*"
+                    android:text="@string/pin_code"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text"
                     android:visibility="invisible" />
@@ -249,11 +256,13 @@
                     android:background="@drawable/round_edges_black_border"
                     android:ems="10"
                     android:focusedByDefault="true"
-                    android:hint="PIN Code*"
+                    android:hint="@string/pin_code"
                     android:inputType="number"
                     android:padding="@dimen/view_padding"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/sub_heading" />
+                    android:textSize="@dimen/sub_heading"
+                    android:autofillHints=""
+                    tools:targetApi="o" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -274,10 +283,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/view_padding"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="@dimen/heading" />
+                android:textSize="@dimen/heading"
+                tools:ignore="TextContrastCheck" />
         </soup.neumorphism.NeumorphCardView>
 
     </LinearLayout>

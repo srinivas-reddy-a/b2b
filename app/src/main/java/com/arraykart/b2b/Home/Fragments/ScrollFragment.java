@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -18,12 +19,15 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.arraykart.b2b.Authenticate.AuthorizeUser;
 import com.arraykart.b2b.Home.Adapters.AdsRecyclerAdapter;
 import com.arraykart.b2b.Home.Adapters.AllCropsAdapter;
 import com.arraykart.b2b.Home.Adapters.BannerRecyclerAdapter;
+import com.arraykart.b2b.Home.CropOrCategory.CropOrCategoryListingActivity;
 import com.arraykart.b2b.Home.TechnicalName.TechnicalNameActivity;
 import com.arraykart.b2b.Loading.LoadingDialog;
 import com.arraykart.b2b.Products.ProductsListingActivity;
@@ -99,6 +103,7 @@ public class ScrollFragment extends Fragment {
     private RecyclerView rvGridCat;
     private AllCategoriesAdapter allCategoriesAdapter;
     private List<Category> allCategories;
+    private LinearLayout catLL;
 
     //category wise products
     private RecyclerView categoryWiseNestedRV;
@@ -123,9 +128,11 @@ public class ScrollFragment extends Fragment {
     private RecyclerView cropRV;
     private List<Crop> allCrops;
     private AllCropsAdapter allCropsAdapter;
+    private LinearLayout cropLL;
 
     //technical names
     private NeumorphCardView techNCV;
+    private SharedPreferenceManager sharedPreferenceManager;
 
 
     @Override
@@ -133,6 +140,14 @@ public class ScrollFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_scroll, container, false);
+        if(isAdded()){
+        sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
+        }
+        //start loading dialog at the start of the page and dismiss in the last functinality
+        //of the page or on failure of every call
+        loadingDialog = new LoadingDialog(requireActivity());
+        loadingDialog.startLoadingDialog();
+        checkToken();
 
         //set technical name products listing
         setTechNames(view);
@@ -158,17 +173,14 @@ public class ScrollFragment extends Fragment {
         productRV1More = view.findViewById(R.id.productRV1More);
         Glide.with(view)
                 .load(R.drawable.ic_baseline_arrow_forward_ios_24_gray)
-                .centerCrop()
+//                .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(productRV1More);
-        productRV1More.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(isAdded()) {
-                    Intent i = new Intent(requireActivity(), ProductsListingActivity.class);
-                    startActivity(i);
-                }
+        productRV1More.setOnClickListener(v -> {
+            if(isAdded()) {
+                Intent i = new Intent(requireActivity(), ProductsListingActivity.class);
+                startActivity(i);
             }
         });
 
@@ -230,7 +242,7 @@ public class ScrollFragment extends Fragment {
                 "https://arraykartandroid.s3.ap-south-1.amazonaws.com/assets/digitalshop.png"
         ));
         if(isAdded()) {
-        adsRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));;
+        adsRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));
         adsRecyclerAdapter = new AdsRecyclerAdapter(adsCompanyname, adsOffer, adsOfferExpl, adsDate, topProductsImages, colors, (HomeActivity) requireActivity());
         adsRV.setAdapter(adsRecyclerAdapter);
         }
@@ -254,15 +266,19 @@ public class ScrollFragment extends Fragment {
         return view;
     }
 
+    private void checkToken() {
+        if(isAdded()) {
+            AuthorizeUser authorizeUser = new AuthorizeUser(requireActivity());
+            authorizeUser.isLoggedIn();
+        }
+    }
+
     private void setTechNames(View view) {
         techNCV = view.findViewById(R.id.techNCV);
-        techNCV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(isAdded()) {
-                    Intent i = new Intent(requireActivity(), TechnicalNameActivity.class);
-                    requireActivity().startActivity(i);
-                }
+        techNCV.setOnClickListener(v -> {
+            if(isAdded()) {
+                Intent i = new Intent(requireActivity(), TechnicalNameActivity.class);
+                requireActivity().startActivity(i);
             }
         });
     }
@@ -273,58 +289,65 @@ public class ScrollFragment extends Fragment {
         if(isAdded()) {
             linearLayoutManager = (new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
             banner.setLayoutManager(linearLayoutManager);
-            SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
             if(sharedPreferenceManager.checkKey("token")){
                 Call<MetaData> call = RetrofitClient.getClient()
                         .getApi().getAds(sharedPreferenceManager.getString("token"));
-                call.enqueue(new Callback<MetaData>() {
-                    @Override
-                    public void onResponse(Call<MetaData> call, Response<MetaData> response) {
-                        if(!response.isSuccessful()){
-                            if(isAdded()) {
-                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
-                                return;
+                if(isAdded()){
+//                    loadingDialog = new LoadingDialog(requireActivity());
+//                    loadingDialog.startLoadingDialog();
+                    call.enqueue(new Callback<MetaData>() {
+                        @Override
+                        public void onResponse(@NonNull Call<MetaData> call, @NonNull Response<MetaData> response) {
+//                            loadingDialog.dismissLoadingDialog();
+                            if(!response.isSuccessful()){
+                                if(isAdded()) {
+                                    Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
                             }
-                        }
-                        if(!response.body().getSuccess()){
-                            if(isAdded()) {
-                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
-                                return;
+                            assert response.body() != null;
+                            if(!response.body().getSuccess()){
+                                if(isAdded()) {
+                                    Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
                             }
-                        }
-                        ads = response.body().getAds();
-                        if(isAdded()) {
-                            bannerRecyclerAdapter = new BannerRecyclerAdapter(ads, requireActivity());
-                            banner.setAdapter(bannerRecyclerAdapter);
-//                        banner.addItemDecoration(new LinePagerIndicatorDecoration());
-                            banner.smoothScrollToPosition(0);
-                            final int interval_time = 3000;
-                            Handler handler = new Handler();
-                            Runnable runnable = new Runnable() {
-                                int count = 0;
+                            ads = response.body().getAds();
+                            if(isAdded()) {
+                                bannerRecyclerAdapter = new BannerRecyclerAdapter(ads, requireActivity());
+                                banner.setAdapter(bannerRecyclerAdapter);
+                                banner.addItemDecoration(new LinePagerIndicatorDecoration());
+                                banner.smoothScrollToPosition(0);
+                                final int interval_time = 3000;
+                                Handler handler = new Handler();
+                                Runnable runnable = new Runnable() {
+                                    int count = 0;
 
-                                @Override
-                                public void run() {
-                                    if (count < ads.get(0).getProduct().split(",").length) {
-                                        banner.smoothScrollToPosition(count++);
-                                        handler.postDelayed(this, interval_time);
-                                        if (count == ads.get(0).getProduct().split(",").length) {
-                                            count = 0;
+                                    @Override
+                                    public void run() {
+                                        if (count < ads.get(0).getProduct().split(",").length) {
+                                            banner.smoothScrollToPosition(count++);
+                                            handler.postDelayed(this, interval_time);
+                                            if (count == ads.get(0).getProduct().split(",").length) {
+                                                count = 0;
+                                            }
                                         }
                                     }
-                                }
-                            };
-                            handler.postDelayed(runnable, interval_time);
+                                };
+                                handler.postDelayed(runnable, interval_time);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<MetaData> call, Throwable t) {
-                        if(isAdded()) {
-                            Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onFailure(@NonNull Call<MetaData> call, @NonNull Throwable t) {
+                            if(isAdded()) {
+                                loadingDialog.dismissLoadingDialog();
+                                Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+
+                }
             }else {
                 Toast.makeText(requireActivity(), "Signup first!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(requireActivity(), SignUpActivity.class);
@@ -341,36 +364,44 @@ public class ScrollFragment extends Fragment {
             freqRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
             Call<CategoryWise> call = RetrofitClient.getClient().getApi()
                     .setFreqProducts(true, 5);
-            call.enqueue(new Callback<CategoryWise>() {
-                @Override
-                public void onResponse(Call<CategoryWise> call, Response<CategoryWise> response) {
-                    if(!response.isSuccessful()){
+            if(isAdded()){
+//                loadingDialog = new LoadingDialog(requireActivity());
+//                loadingDialog.startLoadingDialog();
+                call.enqueue(new Callback<CategoryWise>() {
+                    @Override
+                    public void onResponse(@NonNull Call<CategoryWise> call, @NonNull Response<CategoryWise> response) {
+//                        loadingDialog.dismissLoadingDialog();
+                        if(!response.isSuccessful()){
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
+                        assert response.body() != null;
+                        if(!response.body().getSuccess()){
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
+                        products = response.body().getProducts();
                         if(isAdded()) {
-                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
-                            return;
+                            productRecyclerAdapter = new ProductRecyclerAdapter(products, requireActivity());
+                            freqRV.setAdapter(productRecyclerAdapter);
+                            freqRV.smoothScrollToPosition(products.size()-1);
                         }
                     }
-                    if(!response.body().getSuccess()){
-                        if(isAdded()) {
-                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                    }
-                    products = response.body().getProducts();
-                    if(isAdded()) {
-                        productRecyclerAdapter = new ProductRecyclerAdapter(products, requireActivity());
-                        freqRV.setAdapter(productRecyclerAdapter);
-                        freqRV.smoothScrollToPosition(products.size()-1);
-                    }
-                }
 
-                @Override
-                public void onFailure(Call<CategoryWise> call, Throwable t) {
-                    if(isAdded()) {
-                        Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onFailure(@NonNull Call<CategoryWise> call, @NonNull Throwable t) {
+                        if(isAdded()) {
+                            loadingDialog.dismissLoadingDialog();
+                            Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-            });
+                });
+
+            }
 //            topProductsRecyclerAdapter = new TopProductsRecyclerAdapter(topProductsImages, topProductsNames, (HomeActivity) requireActivity());
 //            freqRV.setAdapter(topProductsRecyclerAdapter);
 //            freqRV.smoothScrollToPosition(topProductsImages.size() - 1);
@@ -381,7 +412,7 @@ public class ScrollFragment extends Fragment {
         topRVMore = view.findViewById(R.id.topRVMore);
         Glide.with(view)
                 .load(R.drawable.ic_baseline_arrow_forward_ios_24_gray)
-                .centerCrop()
+//                .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(topRVMore);
@@ -390,60 +421,75 @@ public class ScrollFragment extends Fragment {
         if(isAdded()) {
             topRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true));
             Call<CategoryWise> call = RetrofitClient.getClient().getApi()
-                    .setTopProducts(true, 4);
-            call.enqueue(new Callback<CategoryWise>() {
-                @Override
-                public void onResponse(Call<CategoryWise> call, Response<CategoryWise> response) {
-                    if(!response.isSuccessful()){
+                    .setTopProducts(true, 5);
+            if(isAdded()){
+//                loadingDialog = new LoadingDialog(requireActivity());
+//                loadingDialog.startLoadingDialog();
+                call.enqueue(new Callback<CategoryWise>() {
+                    @Override
+                    public void onResponse(@NonNull Call<CategoryWise> call, @NonNull Response<CategoryWise> response) {
+//                        loadingDialog.dismissLoadingDialog();
+                        if(!response.isSuccessful()){
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
+                        assert response.body() != null;
+                        if(!response.body().getSuccess()){
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
+                        products = response.body().getProducts();
                         if(isAdded()) {
-                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
-                            return;
+                            productRecyclerAdapter = new ProductRecyclerAdapter(products, requireActivity());
+                            topRV.setAdapter(productRecyclerAdapter);
+                            topRV.smoothScrollToPosition(products.size()-1);
                         }
                     }
-                    if(!response.body().getSuccess()){
-                        if(isAdded()) {
-                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                    }
-                    products = response.body().getProducts();
-                    if(isAdded()) {
-                        productRecyclerAdapter = new ProductRecyclerAdapter(products, requireActivity());
-                        topRV.setAdapter(productRecyclerAdapter);
-                        topRV.smoothScrollToPosition(products.size()-1);
-                    }
-                }
 
-                @Override
-                public void onFailure(Call<CategoryWise> call, Throwable t) {
-                    if(isAdded()) {
-                        Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onFailure(@NonNull Call<CategoryWise> call, @NonNull Throwable t) {
+                        if(isAdded()) {
+                            loadingDialog.dismissLoadingDialog();
+                            Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-            });
+                });
+            }
 
         }
 
     }
 
     private void getAllCrops(View view) {
+        cropLL = view.findViewById(R.id.cropLL);
+        cropLL.setOnClickListener(v -> {
+            if(isAdded()) {
+                Intent i = new Intent(requireActivity(), CropOrCategoryListingActivity.class);
+                i.putExtra("type","crop");
+                requireActivity().startActivity(i);
+            }
+        });
         cropRV = view.findViewById(R.id.cropRV);
         cropRV.setHasFixedSize(true);
-        cropRV.setItemViewCacheSize(20);
-        cropRV.setDrawingCacheEnabled(true);
-        cropRV.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+//        cropRV.setItemViewCacheSize(20);
+//        cropRV.setDrawingCacheEnabled(true);
+//        cropRV.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         if(isAdded()) {
 //            linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
-            cropRV.setLayoutManager(new GridLayoutManager(requireActivity(), 4));
+            cropRV.setLayoutManager(new GridLayoutManager(requireActivity(), 3));
         }
-        Call<AllCrops> call = RetrofitClient.getClient().getApi().getCrops(10);
-        if(isAdded()) {
-            loadingDialog = new LoadingDialog(requireActivity());
-        }
-//        loadingDialog.startLoadingDialog();
+        Call<AllCrops> call = RetrofitClient.getClient().getApi().getCrops(8);
+//        if(isAdded()) {
+//            loadingDialog = new LoadingDialog(requireActivity());
+//            loadingDialog.startLoadingDialog();
+//        }
         call.enqueue(new Callback<AllCrops>() {
             @Override
-            public void onResponse(Call<AllCrops> call, Response<AllCrops> response) {
+            public void onResponse(@NonNull Call<AllCrops> call, @NonNull Response<AllCrops> response) {
 //                loadingDialog.dismissLoadingDialog();
                 if(!response.isSuccessful()){
                     if(isAdded()) {
@@ -451,6 +497,7 @@ public class ScrollFragment extends Fragment {
                         return;
                     }
                 }
+                assert response.body() != null;
                 if(!response.body().getSuccess()){
                     if(isAdded()) {
                         Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
@@ -460,16 +507,15 @@ public class ScrollFragment extends Fragment {
                 allCrops = response.body().getCrops();
                 if(isAdded()){
                     allCropsAdapter = new AllCropsAdapter(requireActivity(), allCrops);
-                    allCropsAdapter.setHasStableIds(true);
                     cropRV.setAdapter(allCropsAdapter);
                 }
             }
 
             @Override
-            public void onFailure(Call<AllCrops> call, Throwable t) {
-//                loadingDialog.dismissLoadingDialog();
+            public void onFailure(@NonNull Call<AllCrops> call, @NonNull Throwable t) {
                 if(isAdded()) {
-                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    loadingDialog.dismissLoadingDialog();
+                    Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -531,7 +577,7 @@ public class ScrollFragment extends Fragment {
         return String.valueOf(number);
     }
 
-    private void getCatWiseProducts(View view, List allCategories) {
+    private void getCatWiseProducts(View view, List<Category> allCategories) {
         categoryWiseNestedRV = view.findViewById(R.id.categoryWiseNestedRV);
 //        not same for all mobile screens
 //        categoryWiseNestedRV.getLayoutParams().height = 400*9;
@@ -548,6 +594,14 @@ public class ScrollFragment extends Fragment {
     }
 
     private void getAllCategories(View view) {
+        catLL = view.findViewById(R.id.catLL);
+        catLL.setOnClickListener(v -> {
+            if(isAdded()) {
+                Intent i = new Intent(requireActivity(), CropOrCategoryListingActivity.class);
+                i.putExtra("type","category");
+                requireActivity().startActivity(i);
+            }
+        });
         rvGridCat = view.findViewById(R.id.catRV);
         rvGridCat.setHasFixedSize(true);
         rvGridCat.setItemViewCacheSize(20);
@@ -555,48 +609,51 @@ public class ScrollFragment extends Fragment {
         rvGridCat.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         if(isAdded()) {
 //            linearLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false);
-            rvGridCat.setLayoutManager(new GridLayoutManager(requireActivity(), 4));
+            rvGridCat.setLayoutManager(new GridLayoutManager(requireActivity(), 3));
         }
-        Call<AllCategories> call = RetrofitClient.getClient().getApi().getAllCategories();
+        Call<AllCategories> call = RetrofitClient.getClient().getApi().getAllCategories(8);
         if(isAdded()) {
-            loadingDialog = new LoadingDialog(requireActivity());
+//            loadingDialog = new LoadingDialog(requireActivity());
+//            loadingDialog.startLoadingDialog();
+            call.enqueue(new Callback<AllCategories>() {
+                @Override
+                public void onResponse(@NonNull Call<AllCategories> call, @NonNull Response<AllCategories> response) {
+//                loadingDialog.dismissLoadingDialog();
+                    loadingDialog.dismissLoadingDialog();
+                    if(!response.isSuccessful()){
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                    assert response.body() != null;
+                    if(!response.body().getSuccess()){
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                    allCategories = response.body().getCategories();
+                    if(isAdded()) {
+                        allCategoriesAdapter = new AllCategoriesAdapter(requireActivity(), allCategories);
+                        allCategoriesAdapter.setHasStableIds(true);
+                        rvGridCat.setAdapter(allCategoriesAdapter);
+                        //cat wise products
+                        getCatWiseProducts(view, allCategories);
+                    }
+
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<AllCategories> call, @NonNull Throwable t) {
+                    if(isAdded()) {
+                        loadingDialog.dismissLoadingDialog();
+                        Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
         }
-//        loadingDialog.startLoadingDialog();
-        call.enqueue(new Callback<AllCategories>() {
-            @Override
-            public void onResponse(Call<AllCategories> call, Response<AllCategories> response) {
-//                loadingDialog.dismissLoadingDialog();
-                if(!response.isSuccessful()){
-                    if(isAdded()) {
-                        Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-                if(!response.body().getSuccess()){
-                    if(isAdded()) {
-                        Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-                allCategories = response.body().getCategories();
-                if(isAdded()) {
-                    allCategoriesAdapter = new AllCategoriesAdapter(requireActivity(), allCategories);
-                    allCategoriesAdapter.setHasStableIds(true);
-                    rvGridCat.setAdapter(allCategoriesAdapter);
-                    //cat wise products
-                    getCatWiseProducts(view, allCategories);
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<AllCategories> call, Throwable t) {
-//                loadingDialog.dismissLoadingDialog();
-                if(isAdded()) {
-                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
     }
 }

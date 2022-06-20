@@ -29,13 +29,12 @@
 
                 <TextView
                     android:id="@+id/compBrand"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Company Name || Brand"
+                    android:maxLines="2"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/sub_heading"
                     android:textStyle="bold" />
 
                 <TextView
@@ -44,20 +43,18 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Highlight Offer"
                     android:textColor="@color/white"
                     android:textSize="10sp"
                     android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Offer Explanation"
                     android:textColor="@color/white"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/text" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -65,7 +62,6 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Launching From [Date]"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold"

@@ -67,13 +67,10 @@ public class AllCategoriesAdapter extends  RecyclerView.Adapter<AllCategoriesAda
             super(itemView);;
             imageView = itemView.findViewById(R.id.allCatIV);
             textView = itemView.findViewById(R.id.allCatTV);
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(activity, ProductsListingActivity.class);
-                    i.putExtra("category", textView.getText());
-                    activity.startActivity(i);
-                }
+            imageView.setOnClickListener(v -> {
+                Intent i = new Intent(activity, ProductsListingActivity.class);
+                i.putExtra("category", textView.getText());
+                activity.startActivity(i);
             });
         }
     }

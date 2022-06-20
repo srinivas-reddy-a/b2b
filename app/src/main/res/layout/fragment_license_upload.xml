@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home.Fragments.Account.LicenseUploadFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/section_padding">
+
+        <LinearLayout
+            android:id="@+id/pesticideLL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:background="@drawable/round_edges_gray_border_no_bg"
+            android:orientation="vertical"
+            android:padding="@dimen/view_padding">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:text="@string/pesticide_license"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/sub_heading" />
+
+            <TextView
+                android:id="@+id/textView67"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:drawablePadding="@dimen/view_padding"
+                android:text="@string/upload_license"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text"
+                app:drawableStartCompat="@drawable/ic_baseline_drive_folder_upload_14_gray" />
+
+            <LinearLayout
+                android:id="@+id/pdfPrevPestLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/pdfPrevPest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/view_padding"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/hyperlink"
+                    android:textSize="@dimen/text"
+                    app:drawableStartCompat="@drawable/ic_baseline_link_24_hyper_link" />
+
+                <ImageView
+                    android:id="@+id/pdfPrevPestDel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_delete_outline_24_red" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/imgRLPest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/section_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/addCLPrev"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/placeholder" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/addCLPrev"
+                    android:layout_alignTop="@id/addCLPrev"
+                    android:layout_alignEnd="@id/addCLPrev"
+                    android:layout_alignBottom="@id/addCLPrev">
+
+                    <LinearLayout
+                        android:id="@+id/delPestPrev"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/view_top_margin"
+                        android:layout_marginEnd="@dimen/view_right_margin"
+                        android:background="@drawable/circle_border_black_bg"
+                        android:orientation="horizontal"
+                        android:padding="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/imageView21"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_delete_outline_24_red" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/uploadRLPest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/section_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:background="@drawable/round_edges_no_border_gray_d_bg">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/addCL"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp">
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/pUpload"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignStart="@id/addCL"
+                    android:layout_alignTop="@id/addCL"
+                    android:layout_alignEnd="@id/addCL"
+                    android:layout_alignBottom="@id/addCL">
+
+                    <TextView
+                        android:id="@+id/textView70"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/upload"
+                        android:textColor="@color/white"
+                        app:drawableTopCompat="@drawable/ic_baseline_add_24_white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:drawablePadding="@dimen/view_padding"
+                android:text="@string/select_the_expiry_date"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text"
+                app:drawableStartCompat="@drawable/ic_outline_calendar_month_14_gray" />
+
+            <TextView
+                android:id="@+id/pestDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/section_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:background="@drawable/round_edges_no_border_green_light_bg"
+                android:drawablePadding="@dimen/view_padding"
+                android:ems="10"
+                android:hint="@string/dd_mm_yyyy"
+                android:inputType="date"
+                android:paddingStart="@dimen/section_padding"
+                android:paddingTop="@dimen/view_padding_top"
+                android:paddingEnd="@dimen/section_padding"
+                android:paddingBottom="@dimen/view_padding_bottom"
+                app:drawableEndCompat="@drawable/ic_outline_calendar_month_24_green" />
+
+            <CheckBox
+                android:id="@+id/checkBoxPest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/section_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:buttonTint="@color/green"
+                android:text="@string/select_this_if_license_doesn_t_expire"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fertilizerLL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:background="@drawable/round_edges_gray_border_no_bg"
+            android:orientation="vertical"
+            android:padding="@dimen/view_padding">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:text="@string/fertilizer_license"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/sub_heading" />
+
+            <TextView
+                android:id="@+id/textView68"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:drawablePadding="@dimen/view_padding"
+                android:text="@string/upload_license"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text"
+                app:drawableStartCompat="@drawable/ic_baseline_drive_folder_upload_14_gray" />
+
+            <LinearLayout
+                android:id="@+id/pdfPrevFertLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/pdfPrevFert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/view_padding"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/hyperlink"
+                    android:textSize="@dimen/text"
+                    app:drawableStartCompat="@drawable/ic_baseline_link_24_hyper_link" />
+
+                <ImageView
+                    android:id="@+id/pdfPrevFertDel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_delete_outline_24_red" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/imgRLFert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/section_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/addCLFerPrev"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/placeholder" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/addCLFerPrev"
+                    android:layout_alignTop="@id/addCLFerPrev"
+                    android:layout_alignEnd="@id/addCLFerPrev"
+                    android:layout_alignBottom="@id/addCLFerPrev">
+
+                    <LinearLayout
+                        android:id="@+id/delFertPrev"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/view_top_margin"
+                        android:layout_marginEnd="@dimen/view_right_margin"
+                        android:background="@drawable/circle_border_black_bg"
+                        android:orientation="horizontal"
+                        android:padding="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_delete_outline_24_red" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/uploadRLFert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/section_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:background="@drawable/round_edges_no_border_gray_d_bg">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/addCLFer"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp">
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fUpload"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignStart="@id/addCLFer"
+                    android:layout_alignTop="@id/addCLFer"
+                    android:layout_alignEnd="@id/addCLFer"
+                    android:layout_alignBottom="@id/addCLFer">
+
+                    <TextView
+                        android:id="@+id/textView72"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/upload"
+                        android:textColor="@color/white"
+                        app:drawableTopCompat="@drawable/ic_baseline_add_24_white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView73"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:drawablePadding="@dimen/view_padding"
+                android:text="@string/select_the_expiry_date"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text"
+                app:drawableStartCompat="@drawable/ic_outline_calendar_month_14_gray" />
+
+            <TextView
+                android:id="@+id/fertDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/section_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:background="@drawable/round_edges_no_border_green_light_bg"
+                android:drawableEnd="@drawable/ic_outline_calendar_month_24_green"
+                android:drawablePadding="@dimen/view_padding"
+                android:ems="10"
+                android:hint="@string/dd_mm_yyyy"
+                android:inputType="date"
+                android:paddingStart="@dimen/section_padding"
+                android:paddingTop="@dimen/view_padding_top"
+                android:paddingEnd="@dimen/section_padding"
+                android:paddingBottom="@dimen/view_padding_bottom" />
+
+            <CheckBox
+                android:id="@+id/checkBoxFert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/section_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:buttonTint="@color/green"
+                android:text="@string/select_this_if_license_doesn_t_expire"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/seedsLL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:background="@drawable/round_edges_gray_border_no_bg"
+            android:orientation="vertical"
+            android:padding="@dimen/view_padding">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:text="@string/seed_license"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/sub_heading" />
+
+            <TextView
+                android:id="@+id/textView69"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:drawablePadding="@dimen/view_padding"
+                android:text="@string/upload_license"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text"
+                app:drawableStartCompat="@drawable/ic_baseline_drive_folder_upload_14_gray" />
+
+            <LinearLayout
+                android:id="@+id/pdfPrevSeedLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/pdfPrevSeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/view_padding"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/hyperlink"
+                    android:textSize="@dimen/text"
+                    app:drawableStartCompat="@drawable/ic_baseline_link_24_hyper_link" />
+
+                <ImageView
+                    android:id="@+id/pdfPrevSeedDel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_delete_outline_24_red" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/imgRLSeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/section_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/addCLSePrev"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/placeholder" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/addCLSePrev"
+                    android:layout_alignTop="@id/addCLSePrev"
+                    android:layout_alignEnd="@id/addCLSePrev"
+                    android:layout_alignBottom="@id/addCLSePrev">
+
+                    <LinearLayout
+                        android:id="@+id/delSeedPrev"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/view_top_margin"
+                        android:layout_marginEnd="@dimen/view_right_margin"
+                        android:background="@drawable/circle_border_black_bg"
+                        android:orientation="horizontal"
+                        android:padding="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_delete_outline_24_red" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/uploadRLSeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/section_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:background="@drawable/round_edges_no_border_gray_d_bg">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/addCLSe"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp">
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/sUpload"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignStart="@id/addCLSe"
+                    android:layout_alignTop="@id/addCLSe"
+                    android:layout_alignEnd="@id/addCLSe"
+                    android:layout_alignBottom="@id/addCLSe">
+
+                    <TextView
+                        android:id="@+id/textView75"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/upload"
+                        android:textColor="@color/white"
+                        app:drawableTopCompat="@drawable/ic_baseline_add_24_white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView76"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:drawablePadding="@dimen/view_padding"
+                android:text="@string/select_the_expiry_date"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text"
+                app:drawableStartCompat="@drawable/ic_outline_calendar_month_14_gray" />
+
+            <TextView
+                android:id="@+id/seedDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/section_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:background="@drawable/round_edges_no_border_green_light_bg"
+                android:drawableEnd="@drawable/ic_outline_calendar_month_24_green"
+                android:drawablePadding="@dimen/view_padding"
+                android:ems="10"
+                android:hint="@string/dd_mm_yyyy"
+                android:inputType="date"
+                android:paddingStart="@dimen/section_padding"
+                android:paddingTop="@dimen/view_padding_top"
+                android:paddingEnd="@dimen/section_padding"
+                android:paddingBottom="@dimen/view_padding_bottom" />
+
+            <CheckBox
+                android:id="@+id/checkBoxSeed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/section_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:buttonTint="@color/green"
+                android:text="@string/select_this_if_license_doesn_t_expire"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/finish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:background="@color/button_background"
+            android:padding="@dimen/view_padding"
+            android:text="@string/finish"
+            android:textAlignment="center"
+            android:textColor="@color/button_text"
+            android:textSize="@dimen/sub_heading" />
+
+        <View
+            android:id="@+id/view16"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/scroll_view_bottom_margin" />
+    </LinearLayout>
+</ScrollView>

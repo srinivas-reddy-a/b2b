@@ -1,5 +1,7 @@
 package com.arraykart.b2b.ProductDetail;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,8 +20,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.arraykart.b2b.Authenticate.AuthorizeUser;
+import com.arraykart.b2b.Authenticate.LocaleManager;
+import com.arraykart.b2b.Home.Adapters.SimilarProductsAdapter;
+import com.arraykart.b2b.Home.Adapters.ProductRecyclerAdapter;
+import com.arraykart.b2b.Home.Fragments.Account.AccountOptionsActivity;
+import com.arraykart.b2b.Products.ProductsListingActivity;
 import com.arraykart.b2b.RecyclerViewDecoration.LinePagerIndicatorDecoration;
+import com.arraykart.b2b.Retrofit.ModelClass.CategoryWise;
 import com.arraykart.b2b.Retrofit.ModelClass.Product;
+import com.arraykart.b2b.Retrofit.RetrofitClient;
+import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
 import com.bumptech.glide.Glide;
 import com.arraykart.b2b.R;
 
@@ -28,6 +39,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import soup.neumorphism.NeumorphCardView;
 
 public class ProductDetailActivity extends AppCompatActivity {
@@ -71,17 +85,34 @@ public class ProductDetailActivity extends AppCompatActivity {
     private TextView pdDesc;
 
     private List<Product> products;
+    private List<Product> sendProducts;
     private ArrayList<String> images;
 //    contact
     private NeumorphCardView whatsapp;
     private NeumorphCardView phone;
 //    product name
     private TextView productName;
+    
+    //similar products
+    private RecyclerView similarRV;
+    private SimilarProductsAdapter similarProductsAdapter;
+
+    private int id;
+    private TextView similarProductsTv;
+    private static final String LANGUAGE = "language";
+    private SharedPreferenceManager sharedPreferenceManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+        sharedPreferenceManager = new SharedPreferenceManager(this);
+
+
+        checkToken();
+
+        checkLang();
 
 //        get intent extra from calling fragment/activity
 //        products = (List<Product>) getIntent().getSerializableExtra("products");
@@ -93,6 +124,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 //        set product name
         productName = findViewById(R.id.productName);
         productName.setText(products.get(0).getName());
+        id = products.get(0).getId();
 
         //back
         closeActivity();
@@ -106,7 +138,10 @@ public class ProductDetailActivity extends AppCompatActivity {
         //offers
 //        offers();
 //        spinner
+        pdVolSpinner = findViewById(R.id.pdVolSpinner);
         setVolSpinner();
+
+        pdSeedsSpinner = findViewById(R.id.pdSeedsSpinner);
         setSeedsSpinner();
         //margin
 //        setMargin(0);
@@ -115,6 +150,133 @@ public class ProductDetailActivity extends AppCompatActivity {
         //description
 //        pdDesc = findViewById(R.id.pdDesc);
 //        pdDesc.setText("egowuygefoufwgyoeuyfgwfuygewfouywgfoweuyfgwoufygewoufygwouygyiouyiuy");
+        
+        //set similar products
+        sendProducts = new ArrayList<>();
+        similarRV = findViewById(R.id.similarRV);
+        if(products.get(0).getTechnicalName()!=null
+                && !products.get(0).getTechnicalName().trim().toLowerCase().contains("na")
+        ){
+            //change products data here instead of changing in adapter
+            setSimilarProductsTech();
+        }else {
+            //change products data here instead of changing in adapter
+            setSimilarProductsCrop();
+        }
+
+    }
+
+    private void checkLang() {
+        LocaleManager localeManager = new LocaleManager(ProductDetailActivity.this);
+        if(sharedPreferenceManager.checkKey(LANGUAGE)) {
+            localeManager.updateResource(sharedPreferenceManager.getString(LANGUAGE));
+        }
+    }
+
+    private void setSimilarProductsCrop() {
+        similarRV.setHasFixedSize(true);
+        similarRV.setLayoutManager(new LinearLayoutManager(ProductDetailActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        Call<CategoryWise> call = RetrofitClient.getClient().getApi()
+                .getSearch(products.get(0).getTargetFieldCrops(), null);
+//                loadingDialog = new LoadingDialog(ProductDetailActivity.this);
+//                loadingDialog.startLoadingDialog();
+        call.enqueue(new Callback<CategoryWise>() {
+            @Override
+            public void onResponse(@NonNull Call<CategoryWise> call, @NonNull Response<CategoryWise> response) {
+//                        loadingDialog.dismissLoadingDialog();
+                if(!response.isSuccessful()){
+                    Toast.makeText(ProductDetailActivity.this, "" + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                assert response.body() != null;
+                if(!response.body().getSuccess()){
+                    Toast.makeText(ProductDetailActivity.this, "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                products = response.body().getProducts();
+                if(products.size()>0) {
+                    for(int i=0; i<products.size(); i++){
+                        if(products.get(i).getId()!=id) {
+                            if(products.get(i).getTechnicalName()!=null
+                                    && !products.get(i).getTechnicalName().trim().toLowerCase().contains("na")) {
+                                sendProducts.add(products.get(i));
+                            }
+                        }
+                    }
+                    if(sendProducts.size()>0){
+                        similarProductsAdapter = new SimilarProductsAdapter(sendProducts, id, true, ProductDetailActivity.this);
+                        similarRV.setAdapter(similarProductsAdapter);
+                    }else {
+                        similarProductsTv = findViewById(R.id.similarProductsTv);
+                        similarProductsTv.setVisibility(View.GONE);
+                    }
+                }else {
+                    similarProductsTv = findViewById(R.id.similarProductsTv);
+                    similarProductsTv.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CategoryWise> call, @NonNull Throwable t) {
+//                            loadingDialog.dismissLoadingDialog();
+                Toast.makeText(ProductDetailActivity.this, "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void setSimilarProductsTech() {
+        similarRV.setHasFixedSize(true);
+        similarRV.setLayoutManager(new LinearLayoutManager(ProductDetailActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        Call<CategoryWise> call = RetrofitClient.getClient().getApi()
+                .getSearch(products.get(0).getTechnicalName(), 8);
+//                loadingDialog = new LoadingDialog(ProductDetailActivity.this);
+//                loadingDialog.startLoadingDialog();
+        call.enqueue(new Callback<CategoryWise>() {
+            @Override
+            public void onResponse(@NonNull Call<CategoryWise> call, @NonNull Response<CategoryWise> response) {
+//                        loadingDialog.dismissLoadingDialog();
+                if(!response.isSuccessful()){
+                        Toast.makeText(ProductDetailActivity.this, "" + response.code(), Toast.LENGTH_SHORT).show();
+                        return;
+                }
+                assert response.body() != null;
+                if(!response.body().getSuccess()){
+                        Toast.makeText(ProductDetailActivity.this, "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                        return;
+                }
+                products = response.body().getProducts();
+                if(products.size()>0) {
+                        for(int i=0; i<products.size(); i++){
+                            if(products.get(i).getId()!=id) {
+                                sendProducts.add(products.get(i));
+                            }
+                        }
+                        if(sendProducts.size()>0){
+                            similarProductsAdapter = new SimilarProductsAdapter(sendProducts, id, false, ProductDetailActivity.this);
+                            similarRV.setAdapter(similarProductsAdapter);
+                        }else {
+                            similarProductsTv = findViewById(R.id.similarProductsTv);
+                            similarProductsTv.setVisibility(View.GONE);
+                        }
+
+//                    similarRV.smoothScrollToPosition(sendProducts.size()-1);
+                }else {
+                    similarProductsTv = findViewById(R.id.similarProductsTv);
+                    similarProductsTv.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CategoryWise> call, @NonNull Throwable t) {
+//                            loadingDialog.dismissLoadingDialog();
+                    Toast.makeText(ProductDetailActivity.this, "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void checkToken() {
+        AuthorizeUser authorizeUser = new AuthorizeUser(this);
+        authorizeUser.isLoggedIn();
     }
 
     private void setImageRV() {
@@ -131,14 +293,13 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     private void setSeedsSpinner() {
-        pdSeedsSpinner = findViewById(R.id.pdSeedsSpinner);
         seedsTV = findViewById(R.id.seeds);
         seedsLL = findViewById(R.id.seedsLL);
         seeds = products.get(0).getNumberOfSeedsPacket().split(",");
         if(
                 seeds[0].isEmpty()
                 || seeds[0] == null
-                || seeds[0].trim().equalsIgnoreCase("na")
+                || seeds[0].trim().toLowerCase().contains("na")
         ){
             pdSeedsSpinner.setVisibility(View.GONE);
             seedsTV.setVisibility(View.GONE);
@@ -171,29 +332,106 @@ public class ProductDetailActivity extends AppCompatActivity {
         whatsapp = findViewById(R.id.whatsapp);
         phone = findViewById(R.id.phone);
         whatsapp.setOnClickListener(v -> {
-            try {
-                String text = "Hi Arraykart, I want to know the price of "+ products.get(0).getName()+".";
+            if(sharedPreferenceManager.checkKey("kycstatus")){
+                if(sharedPreferenceManager.getString("kycstatus").trim().toUpperCase().contains("VF")){
+                    try {
+                        String vol;
+                        String[] seeds = products.get(0).getNumberOfSeedsPacket().split(",");
+                        if(
+                                !seeds[0].isEmpty()
+                                        && seeds[0] != null
+                                        && !seeds[0].trim().toLowerCase().contains("na")
+                        ){
+                            vol = pdSeedsSpinner.getSelectedItem().toString();
+                        }else {
+                            vol = pdVolSpinner.getSelectedItem().toString();
+                        }
+                        String text = getResources().getString(R.string.whatsapp_price)
+                                + products.get(0).getName()
+                                + getResources().getString(R.string.whatsapp_of_volume)
+                                + vol
+                                + ".";
 
-                String toNumber = "9311900913";
+                        String toNumber = "9311900913";
 
 
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
-                startActivity(intent);
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
+                        startActivity(intent);
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage(getResources().getString(R.string.whatsapp_complete_kyc));
+                    builder.setCancelable(true);
+                    builder.setPositiveButton("Ok", (dialog, id) -> {
+                        dialog.cancel();
+                        Intent i = new Intent(ProductDetailActivity.this, AccountOptionsActivity.class);
+                        i.putExtra("pageName", "KYC Document");
+                        i.putExtra("fragmentName", "kyc");
+                        startActivity(i);
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+            }else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Complete KYC to order!");
+                builder.setCancelable(true);
+                builder.setPositiveButton("Ok", (dialog, id) -> {
+                    dialog.cancel();
+                    Intent i = new Intent(this, AccountOptionsActivity.class);
+                    i.putExtra("pageName", "KYC Document");
+                    i.putExtra("fragmentName", "kyc");
+                    startActivity(i);
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
-            catch (Exception e){
-                e.printStackTrace();
-            }
+
         });
         phone.setOnClickListener(v -> {
-            try{
-                String toNumber = "9311900913";
-                Intent intent = new Intent(Intent.ACTION_DIAL,
-                        Uri.fromParts("tel", toNumber, null));
-                startActivity(intent);
-            }catch (Exception e){
-                e.printStackTrace();
+            if(sharedPreferenceManager.checkKey("kycstatus")){
+                if(sharedPreferenceManager.getString("kycstatus").trim().toUpperCase().contains("VF")){
+                    try{
+                        String toNumber = "9311900913";
+                        Intent intent = new Intent(Intent.ACTION_DIAL,
+                                Uri.fromParts("tel", toNumber, null));
+                        startActivity(intent);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("Complete KYC to order!");
+                    builder.setCancelable(true);
+                    builder.setPositiveButton("Ok", (dialog, id) -> {
+                        dialog.cancel();
+                        Intent i = new Intent(this, AccountOptionsActivity.class);
+                        i.putExtra("pageName", "KYC Document");
+                        i.putExtra("fragmentName", "kyc");
+                        startActivity(i);
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+            }else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Complete KYC to order!");
+                builder.setCancelable(true);
+                builder.setPositiveButton("Ok", (dialog, id) -> {
+                    dialog.cancel();
+                    Intent i = new Intent(this, AccountOptionsActivity.class);
+                    i.putExtra("pageName", "KYC Document");
+                    i.putExtra("fragmentName", "kyc");
+                    startActivity(i);
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
+
         });
     }
 
@@ -246,7 +484,6 @@ public class ProductDetailActivity extends AppCompatActivity {
 //    }
 
     private void setVolSpinner() {
-        pdVolSpinner = findViewById(R.id.pdVolSpinner);
         volTV = findViewById(R.id.vol);
         volLL = findViewById(R.id.volLL);
         vol = products.get(0).getVolume().split(",");
@@ -287,12 +524,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void closeActivity() {
         backPD = findViewById(R.id.backPD);
-        backPD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backPD.setOnClickListener(v -> finish());
 
     }
 

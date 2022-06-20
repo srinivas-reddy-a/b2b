@@ -29,10 +29,12 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:contentDescription="@string/back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24_gray" />
+                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24_gray"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/pageName"

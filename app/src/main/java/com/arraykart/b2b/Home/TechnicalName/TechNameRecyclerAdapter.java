@@ -1,35 +1,19 @@
 package com.arraykart.b2b.Home.TechnicalName;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.arraykart.b2b.Products.ProductsListingActivity;
 import com.arraykart.b2b.R;
-import com.arraykart.b2b.Retrofit.ModelClass.CategoryWise;
-import com.arraykart.b2b.Retrofit.ModelClass.Product;
-import com.arraykart.b2b.Retrofit.ModelClass.Techname;
-import com.arraykart.b2b.Retrofit.RetrofitClient;
-import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
-
-import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class TechNameRecyclerAdapter extends RecyclerView.Adapter<TechNameRecyclerAdapter.TechNameViewHolder>{
     private List<String> technames;
@@ -87,7 +71,7 @@ public class TechNameRecyclerAdapter extends RecyclerView.Adapter<TechNameRecycl
                 Fragment fragment = new TechnicalWiseProductFragment();
                 fragment.setArguments(b);
                 appCompatActivity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.techNameContainer, fragment).commit();
+                        .replace(R.id.techNameContainer, fragment, "techWiseProd").addToBackStack("techWiseProd").commit();
 
             });
         }

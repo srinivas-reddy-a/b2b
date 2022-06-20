@@ -9,7 +9,7 @@
     android:nestedScrollingEnabled="false">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="@dimen/section_padding"
         android:orientation="vertical">
 
@@ -43,12 +43,6 @@
             android:text="@string/special_price"
             android:textColor="@color/sp_text"
             android:textSize="@dimen/text" />
-
-        <TextView
-            android:id="@+id/textView44"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="To order or to know price, contact us" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -117,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/view_right_margin"
                 android:layout_weight="1"
-                android:text="Seeds/Packet:"
+                android:text="@string/seeds_packet"
                 android:textColor="@color/heading"
                 android:textSize="@dimen/sub_heading" />
 
@@ -131,6 +125,13 @@
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:text="@string/to_order_or_to_know_price_contact_us" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -139,7 +140,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/view_padding"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -155,7 +155,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_baseline_whatsapp_34" />
+                        app:srcCompat="@drawable/ic_baseline_whatsapp_34"
+                        tools:ignore="ImageContrastCheck" />
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
@@ -209,12 +210,12 @@
                 android:id="@+id/imageView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/view_right_margin"
+                android:layout_marginEnd="@dimen/view_right_margin"
                 app:srcCompat="@drawable/ic_baseline_local_offer_24" />
 
             <TextView
                 android:id="@+id/textView12"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/offers"
@@ -285,6 +286,32 @@
             android:id="@+id/pdDetailsRV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:nestedScrollingEnabled="false" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <View
+            android:id="@+id/view17"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:background="@color/section_line" />
+
+        <TextView
+            android:id="@+id/similarProductsTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="@string/similar_products"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/sub_heading" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/similarRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
             android:nestedScrollingEnabled="false" />
 
         <View

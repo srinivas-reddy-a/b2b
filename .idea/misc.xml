@@ -8,6 +8,7 @@
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/bottomroundedges.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/circle.xml" value="0.1605" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/circle_background.xml" value="0.1605" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/circle_border_black_bg.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/cursor_green.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/ic_launcher_background.xml" value="0.152" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/ic_outline_account_balance_wallet_24.xml" value="0.1" />
@@ -18,21 +19,38 @@
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_corners_gray_bg_black_corner.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_edges_bg_green.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_edges_black_border.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_edges_gray_bg.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_edges_gray_border.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_edges_gray_border_greenlight_bg.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_edges_gray_border_transparent_bg.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_edges_no_border.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_edges_no_border_gray_d_bg.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_edges_no_border_green_light_bg.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_edges_no_corner_green_light_bg.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_left_corners_no_border_green_light_bg.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_left_corners_no_border_transparent_bg.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_right_corners_no_border_gray_d_bg.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/round_right_corners_no_border_green_light_bg.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/spinner_border.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/drawable/text_border_without_shadow.xml" value="0.1605" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout-v26/fragment_address.xml" value="0.1526268115942029" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_account.xml" value="0.18659420289855072" />
-        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_account_options.xml" value="0.1" />
-        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_account_options.xml" value="0.18" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_crop_or_category_listing.xml" value="0.16032608695652173" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_home.xml" value="0.18" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_product_detail.xml" value="0.25" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_produts_listing.xml" value="0.16847826086956522" />
-        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_search.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_search.xml" value="0.18" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_sub_categories.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/activity_technical_name.xml" value="0.15806159420289856" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/bsd_pdetail_offer.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/custom_date_alert_dialog.xml" value="0.15443840579710144" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/custom_loading.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/file_custom_alert_dialod.xml" value="0.1526268115942029" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/file_custom_alert_dialog.xml" value="0.1526268115942029" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/file_paths.xml" value="0.10833333333333334" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_about_us.xml" value="0.21" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_account.xml" value="0.2" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_address.xml" value="0.15760869565217392" />
@@ -40,13 +58,19 @@
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_cart.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_contact.xml" value="0.15760869565217392" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_dynamic.xml" value="0.15217391304347827" />
-        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_k_y_c.xml" value="0.15760869565217392" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_k_y_c.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_kyc_upload.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_language.xml" value="0.1621376811594203" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_license.xml" value="0.15443840579710144" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_license_upload.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_license_upload2.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_listing.xml" value="0.16032608695652173" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_my_profile.xml" value="0.21041666666666667" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_otp.xml" value="0.1598731884057971" />
-        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_privacy_policy.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_privacy_policy.xml" value="0.10872855701311807" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_profile.xml" value="0.15760869565217392" />
-        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_return_policy.xml" value="0.33" />
-        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_scroll.xml" value="0.16" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_return_policy.xml" value="0.30547550432276654" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_scroll.xml" value="0.33" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_search.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_sign_up.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/fragment_splash_screen.xml" value="0.1598731884057971" />
@@ -78,24 +102,36 @@
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_sign_up_reviews_single_item.xml" value="0.18659420289855072" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_single_image_view.xml" value="0.15306122448979592" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/rv_tech_name_single_item.xml" value="0.15806159420289856" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/sample_image_custom_alert_dialog.xml" value="0.15443840579710144" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/spineer_state_text_view_single_item.xml" value="0.15760869565217392" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/spinner_state_text_view_single_item.xml" value="0.15443840579710144" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/spinner_text_view_single_item.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/spinner_year_text_view_single_item.xml" value="0.15443840579710144" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layout/translate_custom_alert_dialog.xml" value="0.5" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_arrow_back_ios_34_black.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_arrow_drop_down_24_black.xml" value="0.1605" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_arrow_forward_ios_24_smoke_white.xml" value="0.1605" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_category_24_gray_d.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_crop_14_gray_d.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_delete_outline_24_white.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.1605" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_keyboard_backspace_24.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_search_24_gray.xml" value="0.148" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_top_14_gray_d.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_top_24_gray_d.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_whatsapp_24.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_baseline_whatsapp_34.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_outline_location_on_14.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_outline_location_on_18.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_outline_location_on_24.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_outline_shopping_cart_24_gray.xml" value="0.1605" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/drawable/ic_outline_shopping_cart_checkout_24_gray_d.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/layouts/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/Admin/B2B/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/B2B/app/src/main/res/xml/file_paths.xml" value="0.10833333333333334" />
       </map>
     </option>
   </component>

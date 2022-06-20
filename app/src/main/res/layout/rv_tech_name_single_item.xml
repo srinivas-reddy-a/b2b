@@ -12,7 +12,7 @@
         android:id="@+id/techNameTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_edges_gray_border"
+        android:background="@drawable/round_edges_gray_border_no_bg"
         android:drawablePadding="@dimen/view_padding"
         android:padding="@dimen/view_padding"
         android:textColor="@color/heading"

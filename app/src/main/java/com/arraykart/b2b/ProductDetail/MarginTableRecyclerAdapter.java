@@ -43,34 +43,22 @@ public class MarginTableRecyclerAdapter extends RecyclerView.Adapter<MarginTable
         holder.pdPackOf.setText(packOf.get(position));
         holder.pdPricePerUnit.setText("₹" + pricePerUnit.get(position));
         holder.pdMargin.setText(margin.get(position) + "%");
-        holder.addToCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Objects.requireNonNull(holder).addToCart.setVisibility(View.GONE);
-                Objects.requireNonNull(holder).quantityLL.setVisibility(View.VISIBLE);
-                Objects.requireNonNull(holder).pdQ.setText("1");
-            }
+        holder.addToCart.setOnClickListener(v -> {
+            Objects.requireNonNull(holder).addToCart.setVisibility(View.GONE);
+            Objects.requireNonNull(holder).quantityLL.setVisibility(View.VISIBLE);
+            Objects.requireNonNull(holder).pdQ.setText("1");
         });
 //        if(holder.quantityLL.getVisibility() == View.VISIBLE){
-            holder.pdQAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            holder.pdQAdd.setOnClickListener(v -> Objects.requireNonNull(holder).pdQ.setText(String
+                            .valueOf(Integer
+                                    .parseInt(Objects.requireNonNull(holder)
+                                            .pdQ.getText().toString())+1)));
+            holder.pdQRemove.setOnClickListener(v -> {
+                if(Integer.parseInt(Objects.requireNonNull(holder.pdQ.getText().toString())) > 0){
                     Objects.requireNonNull(holder).pdQ.setText(String
                                     .valueOf(Integer
                                             .parseInt(Objects.requireNonNull(holder)
-                                                    .pdQ.getText().toString())+1));
-
-                }
-            });
-            holder.pdQRemove.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(Integer.parseInt(Objects.requireNonNull(holder.pdQ.getText().toString())) > 0){
-                        Objects.requireNonNull(holder).pdQ.setText(String
-                                        .valueOf(Integer
-                                                .parseInt(Objects.requireNonNull(holder)
-                                                        .pdQ.getText().toString())-1));
-                    }
+                                                    .pdQ.getText().toString())-1));
                 }
             });
 //        }
@@ -81,7 +69,7 @@ public class MarginTableRecyclerAdapter extends RecyclerView.Adapter<MarginTable
         return packOf.size();
     }
 
-    public class MarginTableViewHolder extends RecyclerView.ViewHolder{
+    public static class MarginTableViewHolder extends RecyclerView.ViewHolder{
         private TextView pdPackOf;
         private TextView pdPricePerUnit;
         private TextView pdMargin;

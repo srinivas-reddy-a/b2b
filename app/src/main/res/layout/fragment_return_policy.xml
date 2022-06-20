@@ -17,168 +17,168 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
             android:drawablePadding="@dimen/view_padding"
-            android:text="Return and Replace Policy"
+            android:text="@string/return_and_replace_policy"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading"
+            android:textSize="@dimen/text"
             app:drawableStartCompat="@drawable/ic_baseline_return_and_replace_policy_24" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Our policy lasts 3 days. If 3 days have gone by since your purchase, unfortunately, we can’t offer you a refund or exchange.  "
+            android:text="@string/our_policy_lasts_3_days_if_3_days_have_gone_by_since_your_purchase_unfortunately_we_can_t_offer_you_a_refund_or_exchange"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.   "
+            android:text="@string/to_be_eligible_for_a_return_your_item_must_be_unused_and_in_the_same_condition_that_you_received_it_it_must_also_be_in_the_original_packaging"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="To return Seeds, Fertilizers, Pesticides, Adjuvants, Crop Nutrition, and Farm Machinery, the packet should not be opened. The product should be in clean condition while returning or exchanging.   "
+            android:text="@string/to_return_seeds_fertilizers_pesticides_adjuvants_crop_nutrition_and_farm_machinery_the_packet_should_not_be_opened_the_product_should_be_in_clean_condition_while_returning_or_exchanging"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="To complete your return, we require a receipt or proof of purchase.  "
+            android:text="@string/to_complete_your_return_we_require_a_receipt_or_proof_of_purchase"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Refunds (if applicable)  "
+            android:text="@string/refunds_if_applicable"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Once your return is received and inspected, we will send you an email or update on your profile to notify you that we have received your returned item. We will also notify you of the approval or rejection of your refund.  "
+            android:text="@string/once_your_return_is_received_and_inspected_we_will_send_you_an_email_or_update_on_your_profile_to_notify_you_that_we_have_received_your_returned_item_we_will_also_notify_you_of_the_approval_or_rejection_of_your_refund"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="If it is approved, then your refund will be processed, and a credit will automatically be applied to your credit/debit card or original method of payment, within 14 days. For Cash on Delivery payment, the customer has to give his/her Bank Account number to process the refund.   "
+            android:text="@string/if_it_is_approved_then_your_refund_will_be_processed_and_a_credit_will_automatically_be_applied_to_your_credit_debit_card_or_original_method_of_payment_within_14_days_for_cash_on_delivery_payment_the_customer_has_to_give_his_her_bank_account_number_to_process_the_refund"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Late or missing refunds (if applicable)  "
+            android:text="@string/late_or_missing_refunds_if_applicable"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="If you haven’t received a refund yet, first check your bank account again.  "
+            android:text="@string/if_you_haven_t_received_a_refund_yet_first_check_your_bank_account_again"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Then contact your credit/debit card company, it may take some time before your refund is officially posted.  "
+            android:text="@string/then_contact_your_credit_debit_card_company_it_may_take_some_time_before_your_refund_is_officially_posted"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Next, contact your bank. There is often some processing time before a refund is posted.  "
+            android:text="@string/next_contact_your_bank_there_is_often_some_processing_time_before_a_refund_is_posted"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="If you’ve done all of this and you still have not received your refund yet, please contact us at yourfriends@arraykart.com.  "
+            android:text="@string/if_you_ve_done_all_of_this_and_you_still_have_not_received_your_refund_yet_please_contact_us_at_yourfriends_arraykart_com"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Sale items (if applicable) "
+            android:text="@string/sale_items_if_applicable"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Only regular-priced items may be refunded, unfortunately, sale items cannot be refunded.  "
+            android:text="@string/only_regular_priced_items_may_be_refunded_unfortunately_sale_items_cannot_be_refunded"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Exchanges (if applicable)  "
+            android:text="@string/exchanges_if_applicable"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="We only replace items if they are defective or damaged.  If you need to exchange it for the same item, make a request through purchase history at our application or send us an email at yourfriends@arraykart.com. Your product will be exchanged from the given address on certain days.  "
+            android:text="@string/we_only_replace_items_if_they_are_defective_or_damaged_if_you_need_to_exchange_it_for_the_same_item_make_a_request_through_purchase_history_at_our_application_or_send_us_an_email_at_yourfriends_arraykart_com_your_product_will_be_exchanged_from_the_given_address_on_certain_days"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Shipping "
+            android:text="@string/shipping"
             android:textColor="@color/heading"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="To return your product, you should request it on our application. Our Delivery boy will pick up the product from you after going through the Quality checks. If we find the product the same as delivered to you, we will initiate your refund. The amount will be deposited into your Bank Account on certain days.  "
+            android:text="@string/to_return_your_product_you_should_request_it_on_our_application_our_delivery_boy_will_pick_up_the_product_from_you_after_going_through_the_quality_checks_if_we_find_the_product_the_same_as_delivered_to_you_we_will_initiate_your_refund_the_amount_will_be_deposited_into_your_bank_account_on_certain_days"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="@dimen/view_bottom_margin"
-            android:text="Depending on where you live, the time it may take for your exchanged product to reach you may vary. "
+            android:text="@string/depending_on_where_you_live_the_time_it_may_take_for_your_exchanged_product_to_reach_you_may_vary"
             android:textColor="@color/text"
-            android:textSize="@dimen/sub_heading" />
+            android:textSize="@dimen/text" />
 
     </LinearLayout>
 </ScrollView>

@@ -10,7 +10,7 @@
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="@dimen/scroll_view_bottom_margin">
 
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/view_top_margin"
-            android:text="Arraykart is committed to help SMEs of Indian Agriculture by delivering modern services to sustain this competitive digital era. We started delivering Crop Inputs and Farm Machinery with product genuinity check at the door-step of Agriculture Dealers and Retailers. Since then, we are constantly evolving with our self-driven team."
+            android:text="@string/arraykart_is_committed_to_help_smes_of_indian_agriculture_by_delivering_modern_services_to_sustain_this_competitive_digital_era_we_started_delivering_crop_inputs_and_farm_machinery_with_product_genuinity_check_at_the_door_step_of_agriculture_dealers_and_retailers_since_then_we_are_constantly_evolving_with_our_self_driven_team"
             android:textColor="@color/text"
             android:textSize="@dimen/text" />
 
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/view_top_margin"
-            android:text="To add to this, we provide insights on seasonal product demand and the best time to purchase it to win over the price volatility. We also offer Agronomist support to the retailers and their customers by helping them with crop input suggestions to crop diseases. We are simplifying the process from customer onboarding to product delivery and making them happy with a great experience. "
+            android:text="@string/to_add_to_this_we_provide_insights_on_seasonal_product_demand_and_the_best_time_to_purchase_it_to_win_over_the_price_volatility_we_also_offer_agronomist_support_to_the_retailers_and_their_customers_by_helping_them_with_crop_input_suggestions_to_crop_diseases_we_are_simplifying_the_process_from_customer_onboarding_to_product_delivery_and_making_them_happy_with_a_great_experience"
             android:textColor="@color/text"
             android:textSize="@dimen/text" />
 
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/view_top_margin"
-            android:text="We are building an Inventory Management service for SMEs to manage their inventory digitally, have clear visibility of stocks, avoid dead inventory, and many more. We understand that each business requires working capital to run and grow its business. For that, we are working to offer Digital Lending to SMEs by offering a line of credit. To meet the requirements of modern e-commerce business, we are building a Digital Shop for SMEs to connect and serve their local customers digitally."
+            android:text="@string/we_are_building_an_inventory_management_service_for_smes_to_manage_their_inventory_digitally_have_clear_visibility_of_stocks_avoid_dead_inventory_and_many_more_we_understand_that_each_business_requires_working_capital_to_run_and_grow_its_business_for_that_we_are_working_to_offer_digital_lending_to_smes_by_offering_a_line_of_credit_to_meet_the_requirements_of_modern_e_commerce_business_we_are_building_a_digital_shop_for_smes_to_connect_and_serve_their_local_customers_digitally"
             android:textColor="@color/text"
             android:textSize="@dimen/text" />
 
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/view_top_margin"
-            android:text="We have a highly motivated team from different geographies with different skill sets. The team's synergy is helping us in building the above services with limited resources. Our working culture encourages each teammate to achieve their personal and professional goals in life."
+            android:text="@string/we_have_a_highly_motivated_team_from_different_geographies_with_different_skill_sets_the_team_s_synergy_is_helping_us_in_building_the_above_services_with_limited_resources_our_working_culture_encourages_each_teammate_to_achieve_their_personal_and_professional_goals_in_life"
             android:textColor="@color/text"
             android:textSize="@dimen/text" />
 
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/view_top_margin"
-            android:text="Our vision is to upgrade SMEs from conventional business models to modern business models without changing their core business principles."
+            android:text="@string/our_vision_is_to_upgrade_smes_from_conventional_business_models_to_modern_business_models_without_changing_their_core_business_principles"
             android:textColor="@color/text"
             android:textSize="@dimen/text" />
 
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/view_top_margin"
-            android:text="&quot;We Handle It&quot;"
+            android:text="@string/quot_we_handle_it_quot"
             android:textAlignment="center"
             android:textColor="@color/text"
             android:textSize="@dimen/sub_heading" />

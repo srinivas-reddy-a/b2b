@@ -8,7 +8,7 @@
         android:id="@+id/textView43"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No Network connection!"
+        android:text="@string/no_network_connection"
         android:textAlignment="center"
         android:textColor="@color/heading"
         android:textSize="@dimen/heading"

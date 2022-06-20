@@ -29,10 +29,12 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:contentDescription="@string/back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24_gray" />
+                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24_gray"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/cart"
@@ -41,6 +43,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
+                android:contentDescription="@string/cart"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -53,6 +57,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
+                android:contentDescription="@string/search"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/cart"
                 app:layout_constraintTop_toTopOf="parent"

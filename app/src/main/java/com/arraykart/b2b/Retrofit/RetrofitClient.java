@@ -14,11 +14,9 @@ public class RetrofitClient {
     private static final String baseUrl = "http://3.111.180.248:3000/";
     private static RetrofitClient retrofitClient;
 
-
-
     private RetrofitClient() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(50, TimeUnit.SECONDS)
                 .readTimeout(50,TimeUnit.SECONDS)

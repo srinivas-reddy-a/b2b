@@ -15,23 +15,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.arraykart.b2b.Home.Fragments.Account.AccountOptionsActivity;
 import com.arraykart.b2b.ProductDetail.ProductDetailActivity;
-import com.arraykart.b2b.Products.ProductsRecycleradapter;
 import com.arraykart.b2b.R;
 import com.arraykart.b2b.Retrofit.ModelClass.Product;
+import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
 import com.bumptech.glide.Glide;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class SearchPageRecyclerAdapter extends RecyclerView.Adapter<SearchPageRecyclerAdapter.SeacrchPageViewHolder> {
     private ArrayAdapter<String> adapter;
     private Activity activity;
     private List<Product> products;
+
 //    private ArrayList<String> prices;
 //    private String[] vol;
 
@@ -52,21 +50,44 @@ public class SearchPageRecyclerAdapter extends RecyclerView.Adapter<SearchPageRe
     public void onBindViewHolder(@NonNull SeacrchPageViewHolder holder, int position) {
         String[] images = products.get(position).getImage().split(",");
         Glide.with(holder.itemView)
-                .load(images[0])
+                .load(new StringBuilder().append("https://arraykartandroid.s3.ap-south-1.amazonaws.com/").append(images[0]).toString())
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.imageView);
         holder.name.setText(products.get(position).getName());
+        String[] vol = products.get(position).getVolume().split(",");
+        if(
+                vol[0]!=null
+                        || vol[0].trim().toLowerCase().contains("na")
+                        || !vol[0].isEmpty()
+        ){
+            adapter = new  ArrayAdapter(activity, R.layout.spinner_text_view_single_item, R.id.spinnerText, vol);
+        }
+        else{
+            String[] noOfSeeds = products.get(position).getNumberOfSeedsPacket().split(",");
+            adapter = new  ArrayAdapter(activity, R.layout.spinner_text_view_single_item, R.id.spinnerText, noOfSeeds);
+        }
+        holder.spinnerVol.setAdapter(adapter);
+        holder.spinnerVol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                    Objects.requireNonNull(holder).price.setText("₹" + prices.get(position));
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 //        if(products.get(position).getVolume().equalsIgnoreCase("na")
 //                || products.get(position).getVolume().isEmpty()
 //                || products.get(position).getVolume().equals(null)
 //                || products.get(position).getPrice().equalsIgnoreCase("na")
 //                || products.get(position).getPrice().isEmpty()
 //                || products.get(position).getPrice().equals(null)){
-            holder.spinnerVol.setVisibility(View.GONE);
-            holder.price.setVisibility(View.GONE);
-            holder.knowPrice.setVisibility(View.VISIBLE);
-            holder.contactLL.setVisibility(View.VISIBLE);
+//            holder.spinnerVol.setVisibility(View.GONE);
+//            holder.price.setVisibility(View.GONE);
+//            holder.knowPrice.setVisibility(View.VISIBLE);
+//            holder.contactLL.setVisibility(View.VISIBLE);
 //        }else {
 //            //declared and initialized here as price array and volume keeps changing in recyclerview,
 //            //due to which all prices and volume will be same
@@ -104,8 +125,10 @@ public class SearchPageRecyclerAdapter extends RecyclerView.Adapter<SearchPageRe
         private TextView knowPrice;
         private ImageView whatsapp;
         private ImageView call;
+        private SharedPreferenceManager sharedPreferenceManager;
         public SeacrchPageViewHolder(@NonNull View itemView) {
             super(itemView);
+            sharedPreferenceManager = new SharedPreferenceManager(activity);
             imageView = itemView.findViewById(R.id.pimg);
             name = itemView.findViewById(R.id.textView6);
             price = itemView.findViewById(R.id.textView5);
@@ -115,47 +138,103 @@ public class SearchPageRecyclerAdapter extends RecyclerView.Adapter<SearchPageRe
             whatsapp = itemView.findViewById(R.id.whatsapp);
             call = itemView.findViewById(R.id.call);
 
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(activity, ProductDetailActivity.class);
-                    Bundle b = new Bundle();
-                    b.putSerializable("products", products.get(getAdapterPosition()));
-                    i.putExtras(b);
-                    activity.startActivity(i);
-                }
+            imageView.setOnClickListener(v -> {
+                Intent i = new Intent(activity, ProductDetailActivity.class);
+                Bundle b = new Bundle();
+                b.putSerializable("products", products.get(getAdapterPosition()));
+                i.putExtras(b);
+                activity.startActivity(i);
             });
 
-            whatsapp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        String text = "Hi Arraykart, I want to know the price of "+ name.getText()+".";
+            whatsapp.setOnClickListener(v -> {
+                if(sharedPreferenceManager.checkKey("kycstatus")){
+                    if(sharedPreferenceManager.getString("kycstatus").trim().toUpperCase().contains("VF")){
+                        try {
+                            String vol  = spinnerVol.getSelectedItem().toString();
+                            String text = activity.getResources().getString(R.string.whatsapp_price)
+                                    + name.getText()
+                                    + activity.getResources().getString(R.string.whatsapp_of_volume)
+                                    + vol
+                                    + ".";
 
-                        String toNumber = "9311900913";
+                            String toNumber = "9311900913";
 
 
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
-                        activity.startActivity(intent);
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
+                            activity.startActivity(intent);
+                        }
+                        catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                        builder.setMessage(activity.getResources().getString(R.string.whatsapp_complete_kyc));
+                        builder.setCancelable(true);
+                        builder.setPositiveButton("Ok", (dialog, id) -> {
+                            dialog.cancel();
+                            Intent i = new Intent(activity, AccountOptionsActivity.class);
+                            i.putExtra("pageName", "KYC Document");
+                            i.putExtra("fragmentName", "kyc");
+                            activity.startActivity(i);
+                        });
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
                     }
-                    catch (Exception e){
-                        e.printStackTrace();
-                    }
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                    builder.setMessage("Complete KYC to order!");
+                    builder.setCancelable(true);
+                    builder.setPositiveButton("Ok", (dialog, id) -> {
+                        dialog.cancel();
+                        Intent i = new Intent(activity, AccountOptionsActivity.class);
+                        i.putExtra("pageName", "KYC Document");
+                        i.putExtra("fragmentName", "kyc");
+                        activity.startActivity(i);
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
-            });
-            call.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try{
-                        String toNumber = "9311900913";
-                        Intent intent = new Intent(Intent.ACTION_DIAL,
-                                Uri.fromParts("tel", toNumber, null));
-                        activity.startActivity(intent);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
 
+            });
+            call.setOnClickListener(v -> {
+                if(sharedPreferenceManager.checkKey("kycstatus")){
+                    if(sharedPreferenceManager.getString("kycstatus").trim().toUpperCase().contains("VF")){
+                        try{
+                            String toNumber = "9311900913";
+                            Intent intent = new Intent(Intent.ACTION_DIAL,
+                                    Uri.fromParts("tel", toNumber, null));
+                            activity.startActivity(intent);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                        builder.setMessage("Complete KYC to order!");
+                        builder.setCancelable(true);
+                        builder.setPositiveButton("Ok", (dialog, id) -> {
+                            dialog.cancel();
+                            Intent i = new Intent(activity, AccountOptionsActivity.class);
+                            i.putExtra("pageName", "KYC Document");
+                            i.putExtra("fragmentName", "kyc");
+                            activity.startActivity(i);
+                        });
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
+                    }
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                    builder.setMessage("Complete KYC to order!");
+                    builder.setCancelable(true);
+                    builder.setPositiveButton("Ok", (dialog, id) -> {
+                        dialog.cancel();
+                        Intent i = new Intent(activity, AccountOptionsActivity.class);
+                        i.putExtra("pageName", "KYC Document");
+                        i.putExtra("fragmentName", "kyc");
+                        activity.startActivity(i);
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             });
         }

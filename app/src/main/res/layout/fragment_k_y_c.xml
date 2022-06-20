@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,13 +12,190 @@
         android:layout_margin="@dimen/section_margin"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:id="@+id/kycBody"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_left_corners_no_border_green_light_bg"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/view_padding_left"
+                    android:paddingTop="@dimen/view_padding_top"
+                    android:paddingEnd="@dimen/view_padding_right">
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/view_bottom_margin"
+                        android:text="@string/step_01"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/text" />
+
+                    <TextView
+                        android:id="@+id/textView53"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/view_bottom_margin"
+                        android:text="@string/business_proof"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/text" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:id="@+id/view8"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/section_line"
+                            android:layout_weight="1"
+                            android:background="@color/green" />
+
+                        <View
+                            android:id="@+id/view9"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/section_line"
+                            android:layout_weight="1"
+                            android:background="@color/gray" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_right_corners_no_border_gray_d_bg"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/view_padding_left"
+                    android:paddingTop="@dimen/view_padding_top"
+                    android:paddingEnd="@dimen/view_padding_right">
+
+                    <TextView
+                        android:id="@+id/textView54"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/view_bottom_margin"
+                        android:text="@string/step_02"
+                        android:textColor="@color/text"
+                        android:textSize="@dimen/text" />
+
+                    <TextView
+                        android:id="@+id/textView55"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/view_bottom_margin"
+                        android:text="@string/license_proof"
+                        android:textColor="@color/text"
+                        android:textSize="@dimen/text" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:id="@+id/view10"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/section_line"
+                            android:layout_weight="1"
+                            android:background="@color/gray" />
+
+                        <View
+                            android:id="@+id/view11"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/section_line"
+                            android:layout_weight="1"
+                            android:background="@color/gray" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView56"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:drawablePadding="@dimen/view_padding"
+                android:text="@string/upload_any_one_of_the_following_documents"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/text"
+                app:drawableStartCompat="@drawable/ic_outline_kyc_24" />
+
+            <TextView
+                android:id="@+id/pantv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:background="@drawable/round_edges_gray_border_no_bg"
+                android:drawablePadding="@dimen/view_padding"
+                android:padding="@dimen/view_padding"
+                android:text="@string/pan"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/text"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green" />
+
+            <TextView
+                android:id="@+id/textView58"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:text="@string/or"
+                android:textAlignment="center"
+                android:textColor="@color/text"
+                android:textSize="@dimen/sub_heading" />
+
+            <TextView
+                android:id="@+id/gsttv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:background="@drawable/round_edges_gray_border_no_bg"
+                android:drawablePadding="@dimen/view_padding"
+                android:padding="@dimen/view_padding"
+                android:text="@string/gstin"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/text"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green" />
+
+        </LinearLayout>
+
         <TextView
-            android:id="@+id/textView40"
+            android:id="@+id/kycStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Upload KYC Document"
+            android:textAlignment="center"
             android:textColor="@color/heading"
             android:textSize="@dimen/heading"
-            android:textStyle="bold" />
+            android:visibility="gone" />
+
+        <!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            -->
+
+<!--         -->
+
+<!--        </LinearLayout>-->
     </LinearLayout>
 </ScrollView>

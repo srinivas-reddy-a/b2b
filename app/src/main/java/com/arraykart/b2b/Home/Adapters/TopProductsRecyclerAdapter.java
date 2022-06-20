@@ -40,17 +40,14 @@ public class TopProductsRecyclerAdapter extends RecyclerView.Adapter<TopProducts
     public void onBindViewHolder(@NonNull TopProductsViewHolder holder, int position) {
         Glide.with(holder.itemView)
                 .load(topProductsImages.get(position))
-                .centerCrop()
+//                .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.neumorphImageView);
-        holder.neumorphImageView .setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i =new Intent(activity, ProductDetailActivity.class);
-                activity.startActivity(i);
+        holder.neumorphImageView .setOnClickListener(v -> {
+            Intent i =new Intent(activity, ProductDetailActivity.class);
+            activity.startActivity(i);
 
-            }
         });
         holder.textView.setText(topProductsNames.get(position));
     }
@@ -60,7 +57,7 @@ public class TopProductsRecyclerAdapter extends RecyclerView.Adapter<TopProducts
         return topProductsImages.size();
     }
 
-    public class TopProductsViewHolder extends RecyclerView.ViewHolder{
+    public static class TopProductsViewHolder extends RecyclerView.ViewHolder{
         private ImageView neumorphImageView;
         private TextView textView;
         public TopProductsViewHolder(@NonNull View itemView) {

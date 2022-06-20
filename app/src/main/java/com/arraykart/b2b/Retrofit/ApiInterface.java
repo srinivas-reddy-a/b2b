@@ -7,6 +7,8 @@ import com.arraykart.b2b.Retrofit.ModelClass.AllTechNames;
 import com.arraykart.b2b.Retrofit.ModelClass.AuthorizeToken;
 import com.arraykart.b2b.Retrofit.ModelClass.BugReport;
 import com.arraykart.b2b.Retrofit.ModelClass.CropWiseCategory;
+import com.arraykart.b2b.Retrofit.ModelClass.Kyc;
+import com.arraykart.b2b.Retrofit.ModelClass.KycStatus;
 import com.arraykart.b2b.Retrofit.ModelClass.Logout;
 import com.arraykart.b2b.Retrofit.ModelClass.MetaData;
 import com.arraykart.b2b.Retrofit.ModelClass.OTPSignUP;
@@ -23,20 +25,26 @@ import com.arraykart.b2b.Retrofit.ModelClass.UserAddress;
 import com.arraykart.b2b.Retrofit.ModelClass.UserProfile;
 import com.arraykart.b2b.Retrofit.ModelClass.UserProfileUpdate;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
     //all categories
     @GET("/api/product/category/")
-    Call<AllCategories> getAllCategories();
+    Call<AllCategories> getAllCategories(
+            @Query("limit") Integer limit
+    );
     //category wise products
     @GET("/api/product/")
     Call<CategoryWise> getCategoryWise(
@@ -156,6 +164,28 @@ public interface ApiInterface {
     @GET("/api/meta/review/")
     Call<AllReviews> getReviews();
 
+    //upload kyc docs
+    @Multipart
+    @PUT("/api/kyc/")
+    Call<SuccessMessage> setKyc(
+            @Header("Authorization") String token,
+            @Part MultipartBody.Part file,
+            @Part("type") RequestBody type,
+            @Part("num") RequestBody num
+    );
+
+    //upload license
+    @Multipart
+    @PUT("/api/kyc/license/")
+    Call<SuccessMessage> setLicense(
+            @Header("Authorization") String token,
+            @Part MultipartBody.Part file,
+            @Part("type") RequestBody type,
+            @Part("date") RequestBody date
+    );
+
+    @GET("/api/kyc/")
+    Call<KycStatus> getKycStatus(@Header("Authorization") String token);
 }
 
 

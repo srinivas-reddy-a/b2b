@@ -28,10 +28,12 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:contentDescription="@string/back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24_gray" />
+                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24_gray"
+                tools:ignore="ImageContrastCheck" />
 
             <!--            <ImageView-->
             <!--                android:id="@+id/imageView3"-->
@@ -46,15 +48,30 @@
             <!--                app:srcCompat="@drawable/ic_baseline_favorite_border_24_gray" />-->
 
 
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_left_margin"
+                android:text="@string/product_details_title"
+                android:textColor="@color/page_heading"
+                android:textSize="@dimen/heading"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/backPD"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextContrastCheck" />
+
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="30dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/view_right_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:contentDescription="@string/search"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/backPD"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_baseline_search_24_gray" />
 

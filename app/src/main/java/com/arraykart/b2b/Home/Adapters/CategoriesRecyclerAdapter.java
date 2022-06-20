@@ -38,7 +38,7 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRe
         return categories.size();
     }
 
-    public class CategoryViewHolder extends RecyclerView.ViewHolder {
+    public static class CategoryViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
 //        private NeumorphCardView neumorphCardView;
         public CategoryViewHolder(@NonNull View itemView) {

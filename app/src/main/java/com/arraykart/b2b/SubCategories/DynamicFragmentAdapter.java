@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.arraykart.b2b.Loading.LoadingDialog;
 import com.arraykart.b2b.Retrofit.ModelClass.CategoryWise;
 import com.arraykart.b2b.Retrofit.ModelClass.Cwcategory;
 import com.arraykart.b2b.Retrofit.ModelClass.Product;
@@ -22,9 +23,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class DynamicFragmentAdapter extends FragmentStateAdapter {
     private int mNumOfTabs;
@@ -33,6 +31,7 @@ public class DynamicFragmentAdapter extends FragmentStateAdapter {
     private List<Product> products;
     private Activity activity;
     private static ArrayList<Product> productAL = new ArrayList<>();
+
 
     public DynamicFragmentAdapter(
             @NonNull FragmentManager fragmentManager,
@@ -54,30 +53,6 @@ public class DynamicFragmentAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-//        Call<CategoryWise> call = RetrofitClient.getClient().getApi()
-//                .getCropWiseCategoryWiseProduct(crop, category.get(position));
-//        call.enqueue(new Callback<CategoryWise>() {
-//            @Override
-//            public void onResponse(Call<CategoryWise> call, Response<CategoryWise> response) {
-//                if(!response.isSuccessful()){
-//                    Toast.makeText(activity, response.code(), Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if(!response.body().getSuccess()){
-//                    Toast.makeText(activity, "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                productAL.clear();
-//                products = response.body().getProducts();
-//                productAL.addAll(products);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<CategoryWise> call, Throwable t) {
-//                Toast.makeText(activity, "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//
-//        });
         Bundle b = new Bundle();
 //        b.putSerializable("product",productAL);
         b.putString("category", category.get(position));

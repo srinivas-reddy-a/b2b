@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.arraykart.b2b.Authenticate.AuthorizeUser;
 import com.arraykart.b2b.Home.HomeActivity;
 import com.arraykart.b2b.R;
 
@@ -26,6 +27,9 @@ public class WalletFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_wallet, container, false);
+
+        checkToken();
+
 //        ActivityCompat.requestPermissions(requireActivity(), new String[]
 //                {Manifest.permission.READ_SMS},
 //                PackageManager.PERMISSION_GRANTED);
@@ -37,6 +41,13 @@ public class WalletFragment extends Fragment {
 //            }
 //        });
         return view;
+    }
+
+    private void checkToken() {
+        if(isAdded()) {
+            AuthorizeUser authorizeUser = new AuthorizeUser(requireActivity());
+            authorizeUser.isLoggedIn();
+        }
     }
 
 //    public void READ_SMS(View view){

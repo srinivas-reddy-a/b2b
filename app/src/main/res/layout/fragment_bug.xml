@@ -24,7 +24,7 @@
                 android:id="@+id/textView39"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Report bug here"
+                android:text="@string/report_bug_here"
                 android:textColor="@color/heading"
                 android:textSize="@dimen/heading"
                 android:textStyle="bold"
@@ -47,14 +47,15 @@
                 android:background="@drawable/round_edges_black_border"
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="Describe in detail about the bug. (at least 10 characters)"
+                android:hint="@string/describe_in_detail_about_the_bug_at_least_10_characters"
                 android:inputType="textMultiLine"
                 android:padding="@dimen/view_padding"
                 android:textColor="@color/heading"
                 android:textSize="@dimen/sub_heading"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAutofill="no" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -85,7 +86,7 @@
                         android:layout_marginStart="@dimen/view_left_margin"
                         android:layout_marginEnd="@dimen/view_right_margin"
                         android:padding="@dimen/view_padding"
-                        android:text="REPORT"
+                        android:text="@string/report"
                         android:textColor="@color/button_text"
                         android:textSize="@dimen/heading"
                         app:layout_constraintBottom_toBottomOf="parent"

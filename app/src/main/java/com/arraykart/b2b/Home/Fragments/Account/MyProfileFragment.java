@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.arraykart.b2b.Authenticate.AuthorizeUser;
+import com.arraykart.b2b.Loading.LoadingDialog;
 import com.arraykart.b2b.R;
 import com.arraykart.b2b.Retrofit.ModelClass.User;
 import com.arraykart.b2b.Retrofit.ModelClass.UserProfile;
@@ -44,11 +46,20 @@ public class MyProfileFragment extends Fragment {
     private String nameET;
     private String emailET;
 
+    private LoadingDialog loadingDialog;
+    private SharedPreferenceManager sharedPreferenceManager;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_profile, container, false);
+        if(isAdded()) {
+            sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
+        }
+
+        checkToken();
+
         nameLabel = view.findViewById(R.id.nameLabel);
         numberLabel = view.findViewById(R.id.phoneNumberLabel);
         emailLabel = view.findViewById(R.id.emailLabel);
@@ -63,55 +74,68 @@ public class MyProfileFragment extends Fragment {
         return view;
     }
 
+    private void checkToken() {
+        if(isAdded()) {
+            AuthorizeUser authorizeUser = new AuthorizeUser(requireActivity());
+            authorizeUser.isLoggedIn();
+        }
+    }
+
     private void setProfile() {
-        SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
         String token = sharedPreferenceManager.getString("token");
         Call<UserProfile> call = RetrofitClient.getClient().getApi()
                 .getUserProfile(token);
-        call.enqueue(new Callback<UserProfile>() {
-            @Override
-            public void onResponse(@NonNull Call<UserProfile> call, @NonNull Response<UserProfile> response) {
-                if(!response.isSuccessful()){
-                    if(isAdded()) {
-                        Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
-                        return;
+        if(isAdded()){
+            loadingDialog = new LoadingDialog(requireActivity());
+            loadingDialog.startLoadingDialog();
+            call.enqueue(new Callback<UserProfile>() {
+                @Override
+                public void onResponse(@NonNull Call<UserProfile> call, @NonNull Response<UserProfile> response) {
+                    loadingDialog.dismissLoadingDialog();
+                    if(!response.isSuccessful()){
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     }
-                }
-                assert response.body() != null;
-                if(!response.body().getSuccess()){
-                    if(isAdded()) {
-                        Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
-                        return;
+                    assert response.body() != null;
+                    if(!response.body().getSuccess()){
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     }
-                }
-                user = response.body().getUser();
+                    user = response.body().getUser();
 //                //Log.e("size", String.valueOf(user.size()));
-                String getName = user.get(0).getName();
-                if(getName!=null
-                && !getName.isEmpty()){
-                    name.setText(getName);
+                    String getName = user.get(0).getName();
+                    if(getName!=null
+                            && !getName.isEmpty()){
+                        name.setText(getName);
+                    }
+                    String getNumber = String.valueOf(user.get(0).getPhoneNumber());
+                    if(getNumber!=null
+                            && !getNumber.isEmpty()){
+                        number.setText(getNumber);
+                    }
+                    String getEmail = user.get(0).getEmail();
+                    if(getEmail!=null
+                            && !getEmail.isEmpty()){
+                        email.setText(getEmail);
+                    }
+                    //edit profile page
+                    editProfile(token);
                 }
-                String getNumber = String.valueOf(user.get(0).getPhoneNumber());
-                if(getNumber!=null
-                && !getNumber.isEmpty()){
-                    number.setText(getNumber);
-                }
-                String getEmail = user.get(0).getEmail();
-                if(getEmail!=null
-                && !getEmail.isEmpty()){
-                    email.setText(getEmail);
-                }
-                //edit profile page
-                editProfile(token);
-            }
 
-            @Override
-            public void onFailure(@NonNull Call<UserProfile> call, @NonNull Throwable t) {
-                if(isAdded()) {
-                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                @Override
+                public void onFailure(@NonNull Call<UserProfile> call, @NonNull Throwable t) {
+                    if(isAdded()) {
+                        loadingDialog.dismissLoadingDialog();
+                        Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+
+        }
     }
 
     private void editProfile(String token) {
@@ -180,37 +204,43 @@ public class MyProfileFragment extends Fragment {
                 User user = new User(Long.parseLong(String.valueOf(number.getText())), nameET, emailET);
                 Call<UserProfileUpdate> call1 = RetrofitClient.getClient().getApi()
                         .setUserProfile(token, user);
-                call1.enqueue(new Callback<UserProfileUpdate>() {
-                    @Override
-                    public void onResponse(@NonNull Call<UserProfileUpdate> call, @NonNull Response<UserProfileUpdate> response) {
-                        if(!response.isSuccessful()){
+                if(isAdded()){
+                    loadingDialog = new LoadingDialog(requireActivity());
+                    loadingDialog.startLoadingDialog();
+                    call1.enqueue(new Callback<UserProfileUpdate>() {
+                        @Override
+                        public void onResponse(@NonNull Call<UserProfileUpdate> call, @NonNull Response<UserProfileUpdate> response) {
+                            loadingDialog.dismissLoadingDialog();
+                            if(!response.isSuccessful()){
+                                if(isAdded()) {
+                                    Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            }
+                            assert response.body() != null;
+                            if(!response.body().getSuccess()){
+                                if(isAdded()) {
+                                    Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            }
                             if(isAdded()) {
-                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
-                                return;
+                                sharedPreferenceManager.setString("user", username);
+                                Toast.makeText(requireActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                requireActivity().finish();
                             }
                         }
-                        assert response.body() != null;
-                        if(!response.body().getSuccess()){
-                            if(isAdded()) {
-                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                        }
-                        if(isAdded()) {
-                            SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
-                            sharedPreferenceManager.setString("user", username);
-                            Toast.makeText(requireActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                            requireActivity().finish();
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(@NonNull Call<UserProfileUpdate> call, @NonNull Throwable t) {
-                        if(isAdded()) {
-                            Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onFailure(@NonNull Call<UserProfileUpdate> call, @NonNull Throwable t) {
+                            if(isAdded()) {
+                                loadingDialog.dismissLoadingDialog();
+                                Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+
+                }
             }
             
         });

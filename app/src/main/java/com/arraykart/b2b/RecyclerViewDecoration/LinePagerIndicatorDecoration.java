@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.Objects;
 
 public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
 
@@ -52,10 +55,10 @@ public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    public void onDrawOver(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.onDrawOver(c, parent, state);
 
-        int itemCount = parent.getAdapter().getItemCount();
+        int itemCount = Objects.requireNonNull(parent.getAdapter()).getItemCount();
 
         // center horizontally, calculate width and subtract half from center
         float totalLength = mIndicatorItemLength * itemCount;
@@ -71,6 +74,7 @@ public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
 
         // find active page (which should be highlighted)
         LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
+        assert layoutManager != null;
         int activePosition = layoutManager.findFirstVisibleItemPosition();
         if (activePosition == RecyclerView.NO_POSITION) {
             return;
@@ -78,6 +82,7 @@ public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
 
         // find offset of active page (if the user is scrolling)
         final View activeChild = layoutManager.findViewByPosition(activePosition);
+        assert activeChild != null;
         int left = activeChild.getLeft();
         int width = activeChild.getWidth();
 
@@ -133,7 +138,7 @@ public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         outRect.bottom = mIndicatorHeight;
     }

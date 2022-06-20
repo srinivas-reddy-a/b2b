@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.arraykart.b2b.Authenticate.AuthorizeUser;
+import com.arraykart.b2b.Loading.LoadingDialog;
 import com.arraykart.b2b.R;
 import com.arraykart.b2b.Retrofit.ModelClass.BugReport;
 import com.arraykart.b2b.Retrofit.ModelClass.SuccessMessage;
@@ -36,16 +38,28 @@ public class BugFragment extends Fragment {
     private String bugDetail;
     private SharedPreferenceManager sharedPreferenceManager;
     private String token;
+    private LoadingDialog loadingDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bug, container, false);
+        if(isAdded()) {
+            sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
+        }
+        checkToken();
 
         //report bug
         setBug(view);
         return view;
+    }
+
+    private void checkToken() {
+        if(isAdded()) {
+            AuthorizeUser authorizeUser = new AuthorizeUser(requireActivity());
+            authorizeUser.isLoggedIn();
+        }
     }
 
     private void setBug(View view) {
@@ -79,42 +93,48 @@ public class BugFragment extends Fragment {
         });
 
         reportBug.setOnClickListener(v -> {
-                sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
                 if(sharedPreferenceManager.checkKey("token")){
                     token = sharedPreferenceManager.getString("token");
                 }
                 BugReport bugReport = new BugReport(bugDetail);
                 Call<SuccessMessage> call = RetrofitClient.getClient()
                         .getApi().setReportBug(token, bugReport);
-                call.enqueue(new Callback<SuccessMessage>() {
-                    @Override
-                    public void onResponse(@NonNull Call<SuccessMessage> call, @NonNull Response<SuccessMessage> response) {
-                        if (!response.isSuccessful()) {
-                            if(isAdded()) {
-                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
-                            }
-                            return;
-                        }
-                        assert response.body() != null;
-                        if (!response.body().getSuccess()) {
-                            if(isAdded()) {
-                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                if(isAdded()){
+                    loadingDialog = new LoadingDialog(requireActivity());
+                    loadingDialog.startLoadingDialog();
+                    call.enqueue(new Callback<SuccessMessage>() {
+                        @Override
+                        public void onResponse(@NonNull Call<SuccessMessage> call, @NonNull Response<SuccessMessage> response) {
+                            loadingDialog.dismissLoadingDialog();
+                            if (!response.isSuccessful()) {
+                                if(isAdded()) {
+                                    Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                                }
                                 return;
                             }
+                            assert response.body() != null;
+                            if (!response.body().getSuccess()) {
+                                if(isAdded()) {
+                                    Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            }
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                requireActivity().finish();
+                            }
                         }
-                        if(isAdded()) {
-                            Toast.makeText(requireActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                            requireActivity().finish();
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(@NonNull Call<SuccessMessage> call, @NonNull Throwable t) {
-                        if(isAdded()) {
-                            Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onFailure(@NonNull Call<SuccessMessage> call, @NonNull Throwable t) {
+                            if(isAdded()) {
+                                loadingDialog.dismissLoadingDialog();
+                                Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+
+                }
         });
     }
 }

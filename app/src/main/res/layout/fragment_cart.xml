@@ -73,7 +73,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
-        android:text="Your Cart"
+        android:text="@string/your_cart"
         android:textColor="@color/heading"
         android:textSize="@dimen/heading"
         android:textStyle="normal"
@@ -123,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Coming soon!"
+                android:text="@string/coming_soon"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/heading"
@@ -131,7 +131,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextContrastCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </soup.neumorphism.NeumorphCardView>

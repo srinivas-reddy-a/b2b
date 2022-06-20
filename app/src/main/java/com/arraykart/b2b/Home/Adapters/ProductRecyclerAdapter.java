@@ -41,7 +41,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         String[] imgs = products.get(position).getImage().split(",");
         Glide.with(holder.itemView)
                 .load(new StringBuilder().append("https://arraykartandroid.s3.ap-south-1.amazonaws.com/").append(imgs[0]).toString())
-                .centerCrop()
+//                .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.imageView);
@@ -58,15 +58,12 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.productIV);
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i =new Intent(activity, ProductDetailActivity.class);
-                    Bundle b =new Bundle();
-                    b.putSerializable("products", products.get(getAdapterPosition()));
-                    i.putExtras(b);
-                    activity.startActivity(i);
-                }
+            imageView.setOnClickListener(v -> {
+                Intent i =new Intent(activity, ProductDetailActivity.class);
+                Bundle b =new Bundle();
+                b.putSerializable("products", products.get(getAdapterPosition()));
+                i.putExtras(b);
+                activity.startActivity(i);
             });
         }
     }

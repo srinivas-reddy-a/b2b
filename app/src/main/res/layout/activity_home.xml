@@ -41,14 +41,40 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/view_left_margin"
-                android:layout_marginEnd="@dimen/view_right_margin" />
+                android:contentDescription="@string/company_icon" />
 
             <ImageView
                 android:id="@+id/homeCompanyName"
                 android:layout_width="80dp"
-                android:layout_height="30dp" />
+                android:layout_height="30dp"
+                android:contentDescription="@string/companyname" />
 
         </LinearLayout>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/translate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-3dp"
+            android:text="A"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/text"
+            android:theme="@style/Switch"
+            app:layout_constraintBottom_toTopOf="@+id/neumorphCardView"
+            app:layout_constraintEnd_toStartOf="@+id/hindiA"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/hindiA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/view_right_margin"
+            android:text="अ"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/text"
+            app:layout_constraintBottom_toTopOf="@+id/neumorphCardView"
+            app:layout_constraintEnd_toStartOf="@+id/pincode"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/pincode"
@@ -58,6 +84,7 @@
             android:textColor="@color/text"
             android:textSize="@dimen/text"
             app:drawableStartCompat="@drawable/ic_outline_location_on_18"
+            app:layout_constraintBottom_toTopOf="@+id/neumorphCardView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,17 +114,19 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/view_left_margin"
                 android:layout_marginEnd="@dimen/view_right_margin"
+                android:autofillHints=""
                 android:background="@null"
                 android:drawableStart="@drawable/ic_baseline_search_24_gray"
                 android:drawablePadding="@dimen/view_padding_right"
+                android:ellipsize="end"
                 android:focusable="false"
                 android:focusableInTouchMode="true"
                 android:hint="@string/search_from_arraykart"
                 android:inputType="textAutoComplete"
-                android:ellipsize="end"
-android:maxLines="1"
+                android:maxLines="1"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
+                android:paddingEnd="10dp"
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
 
         </soup.neumorphism.NeumorphCardView>
@@ -145,7 +174,8 @@ android:maxLines="1"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:padding="20dp"
-                app:neumorph_shapeType="flat" />
+                app:neumorph_shapeType="flat"
+                tools:ignore="ImageContrastCheck" />
 
 <!--            <androidx.cardview.widget.CardView-->
 <!--                android:layout_width="wrap_content"-->
@@ -168,14 +198,14 @@ android:maxLines="1"
 <!--            </LinearLayout>-->
 
 
-
             <soup.neumorphism.NeumorphImageButton
                 android:id="@+id/wallet"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_weight="1"
                 android:padding="20dp"
-                app:neumorph_shapeType="flat" />
+                app:neumorph_shapeType="flat"
+                tools:ignore="ImageContrastCheck" />
 
             <soup.neumorphism.NeumorphImageButton
                 android:id="@+id/cart"
@@ -183,7 +213,8 @@ android:maxLines="1"
                 android:layout_height="65dp"
                 android:layout_weight="1"
                 android:padding="20dp"
-                app:neumorph_shapeType="flat" />
+                app:neumorph_shapeType="flat"
+                tools:ignore="ImageContrastCheck" />
 
             <soup.neumorphism.NeumorphImageButton
                 android:id="@+id/account"
@@ -191,7 +222,8 @@ android:maxLines="1"
                 android:layout_height="65dp"
                 android:layout_weight="1"
                 android:padding="20dp"
-                app:neumorph_shapeType="flat" />
+                app:neumorph_shapeType="flat"
+                tools:ignore="ImageContrastCheck" />
 
         </LinearLayout>
 

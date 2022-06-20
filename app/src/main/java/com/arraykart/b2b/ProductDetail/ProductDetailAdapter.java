@@ -41,7 +41,7 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<ProductDetailAdap
         images = products.get(0).getImage().split(",");
         Glide.with(holder.itemView)
                 .load(new StringBuilder().append("https://arraykartandroid.s3.ap-south-1.amazonaws.com/").append(images[position]).toString())
-                .centerCrop()
+//                .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.imageView);

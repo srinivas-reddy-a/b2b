@@ -47,7 +47,7 @@ public class ProductDetailMoreDetailsRecyclerAdapter extends RecyclerView.Adapte
         return pdHeading.size();
     }
 
-    public class ProductDetailsMoreDetailsViewHolder extends RecyclerView.ViewHolder{
+    public static class ProductDetailsMoreDetailsViewHolder extends RecyclerView.ViewHolder{
         private TextView pdDetailHeading;
         private TextView pdDetailDesc;
         private LinearLayout pdDetailToggleLL;
@@ -60,10 +60,10 @@ public class ProductDetailMoreDetailsRecyclerAdapter extends RecyclerView.Adapte
             pdDetailToggleLL = itemView.findViewById(R.id.pdDetailToggleLL);
             pdDetailToggleLL.setOnClickListener(v -> {
                 if (pdDetailDesc.getVisibility() == View.GONE) {
-                    pdDetailToggle.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                    pdDetailToggle.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24_green);
                     pdDetailDesc.setVisibility(View.VISIBLE);
                 } else {
-                    pdDetailToggle.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                    pdDetailToggle.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24_green);
                     pdDetailDesc.setVisibility(View.GONE);
                 }
             });

@@ -34,17 +34,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/view_left_margin"
                 android:layout_marginTop="@dimen/view_top_margin"
-                android:text="Exclusive Offers"
+                android:text="@string/exclusive_offers"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
-            <soup.neumorphism.NeumorphCardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/neumorphCardView3"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:padding="20dp"
+                android:layout_height="230dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/neumorphCardView">
@@ -52,10 +51,15 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/banner"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="230dp"
+                    android:layout_marginStart="@dimen/view_left_margin"
+                    android:layout_marginEnd="@dimen/view_right_margin"
                     android:nestedScrollingEnabled="false"
-                    android:orientation="horizontal" />
-            </soup.neumorphism.NeumorphCardView>
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <soup.neumorphism.NeumorphCardView
                 android:id="@+id/techNCV"
@@ -65,7 +69,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/gray_D">
+                    android:background="@color/sp_bg">
 
                     <LinearLayout
                         android:id="@+id/techNameLL"
@@ -81,11 +85,13 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Shop by Technical Name"
-                            android:textColor="@color/white"
+                            android:drawablePadding="@dimen/view_padding"
+                            android:text="@string/shop_by_technical_name"
+                            android:textColor="@color/sp_text"
                             android:textSize="@dimen/sub_heading"
                             android:textStyle="bold"
-                            app:drawableStartCompat="@drawable/ic_baseline_device_thermostat_24" />
+                            app:drawableStartCompat="@drawable/ic_outline_thermostat_24_sp_text_color"
+                            tools:ignore="TextContrastCheck" />
 
                         <soup.neumorphism.NeumorphImageButton
                             android:id="@+id/techNameMore"
@@ -94,7 +100,7 @@
                             android:layout_gravity="center_vertical|end"
                             android:layout_marginEnd="@dimen/view_right_margin"
                             android:contentDescription="@string/see_more"
-                            app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_14_white" />
+                            app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_14_sp_text_color" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -118,26 +124,27 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Shop by Category"
+                        android:drawablePadding="@dimen/view_padding"
+                        android:text="@string/shop_by_category"
                         android:textColor="@color/heading"
                         android:textSize="@dimen/sub_heading"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:drawableStartCompat="@drawable/ic_baseline_category_24_gray_d" />
 
                     <soup.neumorphism.NeumorphImageButton
                         android:id="@+id/catMore"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         android:layout_gravity="center_vertical|end"
                         android:layout_marginEnd="@dimen/view_right_margin"
                         android:contentDescription="@string/see_more"
-                        android:visibility="gone"
-                        app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+                        app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_14_green" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/catRV"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="220dp"
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:nestedScrollingEnabled="false"
@@ -171,7 +178,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/view_top_margin"
-                            android:text="Complete Shop KYC to:"
+                            android:text="@string/complete_shop_kyc_to"
                             android:textColor="@color/heading"
                             android:textSize="@dimen/sub_heading"
                             android:textStyle="bold"
@@ -185,7 +192,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/view_top_margin"
                             android:drawablePadding="@dimen/view_padding"
-                            android:text="Place Orders"
+                            android:text="@string/place_orders"
                             android:textColor="@color/heading"
                             android:textColorLink="@color/text"
                             android:textSize="@dimen/text"
@@ -200,7 +207,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/view_top_margin"
                             android:drawablePadding="@dimen/view_padding"
-                            android:text="Get the early Offers"
+                            android:text="@string/get_the_early_offers"
                             android:textColor="@color/heading"
                             android:textColorLink="@color/text"
                             android:textSize="@dimen/text"
@@ -215,7 +222,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/view_top_margin"
                             android:drawablePadding="@dimen/view_padding"
-                            android:text="Enjoy our special Services"
+                            android:text="@string/enjoy_our_special_services"
                             android:textColor="@color/heading"
                             android:textColorLink="@color/text"
                             android:textSize="@dimen/text"
@@ -231,7 +238,7 @@
                             android:layout_marginTop="@dimen/view_top_margin"
                             android:background="@drawable/round_edges_bg_green"
                             android:padding="@dimen/view_padding"
-                            android:text="Complete KYC"
+                            android:text="@string/complete_kyc"
                             android:textColor="@color/white"
                             android:textSize="@dimen/heading"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -263,11 +270,11 @@
 
                     <TextView
                         android:id="@+id/textView37"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="Limited Time Offers"
+                        android:text="@string/limited_time_offers"
                         android:textColor="@color/heading"
                         android:textSize="@dimen/heading"
                         android:textStyle="bold" />
@@ -340,6 +347,7 @@
                     android:id="@+id/cropLL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/view_top_margin"
                     android:padding="@dimen/section_padding"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -349,26 +357,27 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Shop by Crop"
+                        android:drawablePadding="@dimen/view_padding"
+                        android:text="@string/shop_by_crop"
                         android:textColor="@color/heading"
                         android:textSize="@dimen/sub_heading"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:drawableStartCompat="@drawable/ic_baseline_crop_24_gray_d" />
 
                     <soup.neumorphism.NeumorphImageButton
                         android:id="@+id/gridViewMore"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         android:layout_gravity="center_vertical|end"
                         android:layout_marginEnd="@dimen/view_right_margin"
                         android:contentDescription="@string/see_more"
-                        android:visibility="gone"
-                        app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+                        app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24_green" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/cropRV"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="220dp"
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:nestedScrollingEnabled="false"
@@ -380,8 +389,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -390,18 +397,22 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/sp_bg"
+                    android:layout_marginTop="@dimen/view_top_margin"
+                    android:background="@color/green_light"
                     android:orientation="horizontal"
-                    android:padding="@dimen/view_padding">
+                    android:padding="@dimen/view_padding"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/textView34"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Best Prices"
+                        android:text="@string/best_prices"
                         android:textAlignment="center"
-                        android:textColor="@color/heading"
+                        android:textColor="@color/sp_text"
                         app:drawableTopCompat="@drawable/ic_outline_best_price_34_green" />
 
                     <TextView
@@ -409,9 +420,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Door Step Delivery"
+                        android:text="@string/door_step_delivery"
                         android:textAlignment="center"
-                        android:textColor="@color/heading"
+                        android:textColor="@color/sp_text"
                         app:drawableTopCompat="@drawable/ic_outline_local_shipping_34_green" />
 
                     <TextView
@@ -419,9 +430,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="24x7 Support"
+                        android:text="@string/_24x7_support"
                         android:textAlignment="center"
-                        android:textColor="@color/heading"
+                        android:textColor="@color/sp_text"
                         app:drawableTopCompat="@drawable/ic_outline_support_agent_34_green" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -452,7 +463,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Latest Products"
+                            android:text="@string/latest_products"
                             android:textColor="@color/heading"
                             android:textSize="@dimen/heading"
                             android:textStyle="bold" />
@@ -505,10 +516,12 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:drawablePadding="@dimen/view_padding"
                             android:text="@string/top_products"
                             android:textColor="@color/heading"
                             android:textSize="@dimen/sub_heading"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            app:drawableStartCompat="@drawable/ic_baseline_top_24_gray_d" />
 
                         <soup.neumorphism.NeumorphImageButton
                             android:id="@+id/topRVMore"
@@ -518,14 +531,13 @@
                             android:layout_marginEnd="@dimen/view_right_margin"
                             android:contentDescription="@string/see_more"
                             android:visibility="gone"
-                            app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24_gray" />
+                            app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_14_green" />
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/topRV"
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
-                        android:layout_marginTop="20dp"
                         android:nestedScrollingEnabled="false"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -550,19 +562,21 @@
                         android:id="@+id/linearLayout7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/section_padding"
+                        android:padding="@dimen/view_padding"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Frequently Bought"
+                            android:drawablePadding="@dimen/view_padding"
+                            android:text="@string/frequently_bought"
                             android:textColor="@color/heading"
                             android:textSize="@dimen/sub_heading"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            app:drawableStartCompat="@drawable/ic_outline_frequently_bought_24_gray_d" />
 
                         <soup.neumorphism.NeumorphImageButton
                             android:id="@+id/topProductsMore"
@@ -570,13 +584,14 @@
                             android:layout_height="24dp"
                             android:layout_gravity="right"
                             android:layout_marginEnd="@dimen/view_right_margin"
+                            android:src="@drawable/ic_baseline_arrow_forward_ios_14_green"
                             android:visibility="gone" />
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/freqRV"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="120dp"
                         android:nestedScrollingEnabled="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -589,6 +604,8 @@
                 android:id="@+id/adsRV"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
                 android:nestedScrollingEnabled="false" />
         </LinearLayout>
 

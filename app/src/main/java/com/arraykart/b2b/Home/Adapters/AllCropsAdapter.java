@@ -30,10 +30,6 @@ public class AllCropsAdapter extends  RecyclerView.Adapter<AllCropsAdapter.AllCr
         this.activity = activity;
     }
 
-    @Override
-    public long getItemId(int position) {
-        return crop.get(position).getId();
-    }
 
     @NonNull
     @Override
@@ -74,13 +70,10 @@ public class AllCropsAdapter extends  RecyclerView.Adapter<AllCropsAdapter.AllCr
             super(itemView);;
             imageView = itemView.findViewById(R.id.allCatIV);
             textView = itemView.findViewById(R.id.allCatTV);
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(activity, SubCategoriesActivity.class);
-                    i.putExtra("crop", textView.getText());
-                    activity.startActivity(i);
-                }
+            imageView.setOnClickListener(v -> {
+                Intent i = new Intent(activity, SubCategoriesActivity.class);
+                i.putExtra("crop", textView.getText());
+                activity.startActivity(i);
             });
         }
     }

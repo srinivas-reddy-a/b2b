@@ -31,15 +31,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/view_left_margin"
-                android:layout_marginRight="@dimen/view_right_margin"
-                app:srcCompat="@drawable/ic_baseline_close_24" />
+                android:layout_marginEnd="@dimen/view_right_margin"
+                android:contentDescription="@string/back"
+                app:srcCompat="@drawable/ic_baseline_close_24"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/oName"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView"
                 android:textColor="@color/heading"
                 android:textSize="@dimen/sub_heading" />
         </LinearLayout>
@@ -52,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/view_left_margin"
         android:layout_marginTop="@dimen/view_top_margin"
-        android:text="When to use Offer"
+        android:text="@string/when_to_use_offer"
         android:textColor="@color/heading"
         android:textSize="@dimen/sub_heading"
         app:drawableStartCompat="@drawable/ic_outline_info_24"
@@ -69,7 +70,6 @@
         android:minEms="10"
         android:minLines="1"
         android:padding="@dimen/view_padding"
-        android:text="TextView"
         android:textColor="@color/text"
         android:textSize="@dimen/text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/view_left_margin"
         android:layout_marginTop="@dimen/view_top_margin"
-        android:text="Offer Valid Until:"
+        android:text="@string/offer_valid_until"
         android:textColor="@color/heading"
         android:textSize="@dimen/sub_heading"
         app:drawableStartCompat="@drawable/ic_outline_access_time_24"
@@ -98,7 +98,6 @@
         android:background="@drawable/text_border_without_shadow"
         android:minLines="1"
         android:padding="@dimen/view_padding"
-        android:text="TextView"
         android:textColor="@color/text"
         android:textSize="@dimen/text"
         app:layout_constraintEnd_toEndOf="parent"

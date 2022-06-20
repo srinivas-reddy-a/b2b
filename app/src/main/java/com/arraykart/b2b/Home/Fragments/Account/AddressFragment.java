@@ -2,11 +2,11 @@ package com.arraykart.b2b.Home.Fragments.Account;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +17,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.arraykart.b2b.Authenticate.AuthorizeUser;
+import com.arraykart.b2b.Loading.LoadingDialog;
 import com.arraykart.b2b.R;
 import com.arraykart.b2b.Retrofit.ModelClass.Address;
 import com.arraykart.b2b.Retrofit.ModelClass.UserAddress;
-import com.arraykart.b2b.Retrofit.ModelClass.UserProfile;
 import com.arraykart.b2b.Retrofit.RetrofitClient;
 import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
 
@@ -95,11 +96,21 @@ public class AddressFragment extends Fragment {
     private String zipcode;
     private String state;
 
+    private LoadingDialog loadingDialog;
+    private SharedPreferenceManager sharedPreferenceManager;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_address, container, false);
+        if(isAdded()){
+            sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
+        }
+        checkToken();
+        loadingDialog = new LoadingDialog(requireActivity());
+        loadingDialog.startLoadingDialog();
+
         shopNameLabel = view.findViewById(R.id.shopNameLabel);
         shopName = view.findViewById(R.id.shopName);
         phoneNumberLabel = view.findViewById(R.id.phoneNumberLabel);
@@ -113,7 +124,7 @@ public class AddressFragment extends Fragment {
         stateSpinner = view.findViewById(R.id.stateSpinner);
         submitNCV = view.findViewById(R.id.submitNCV);
         if(isAdded()) {
-            adapter = new ArrayAdapter(requireActivity(), R.layout.spineer_state_text_view_single_item, R.id.spinnerText, states);
+            adapter = new ArrayAdapter(requireActivity(), R.layout.spinner_state_text_view_single_item, R.id.spinnerText, states);
             stateSpinner.setAdapter(adapter);
             stateSpinner.setSelection(27);
         }
@@ -121,6 +132,13 @@ public class AddressFragment extends Fragment {
         setAddress();
 
         return view;
+    }
+
+    private void checkToken() {
+        if(isAdded()) {
+            AuthorizeUser authorizeUser = new AuthorizeUser(requireActivity());
+            authorizeUser.isLoggedIn();
+        }
     }
 
     private void addAddress() {
@@ -286,102 +304,111 @@ public class AddressFragment extends Fragment {
                         state
                 );
 
-                SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
                 String token = sharedPreferenceManager.getString("token");
                 Call<UserAddress> call1 = RetrofitClient
                         .getClient().getApi().setUserAddress(token, addressObject);
-                call1.enqueue(new Callback<UserAddress>() {
-                    @Override
-                    public void onResponse(Call<UserAddress> call, Response<UserAddress> response) {
-                        if (!response.isSuccessful()) {
-                            if(isAdded()) {
-                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                if(isAdded()) {
+//                    loadingDialog = new LoadingDialog(requireActivity());
+                    call1.enqueue(new Callback<UserAddress>() {
+                        @Override
+                        public void onResponse(@NonNull Call<UserAddress> call, @NonNull Response<UserAddress> response) {
+//                            loadingDialog.dismissLoadingDialog();
+                            if (!response.isSuccessful()) {
+                                if (isAdded()) {
+                                    Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                                }
+                                return;
                             }
-                            return;
-                        }
-                        assert response.body() != null;
-                        if (!response.body().getSuccess()) {
-                            if(isAdded()) {
-                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                            assert response.body() != null;
+                            if (!response.body().getSuccess()) {
+                                if (isAdded()) {
+                                    Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                                }
+                                return;
                             }
-                            return;
+                            if (isAdded()) {
+                                Toast.makeText(requireActivity(), "Added Address!", Toast.LENGTH_SHORT).show();
+                                requireActivity().finish();
+                            }
                         }
-                        if(isAdded()) {
-                            Toast.makeText(requireActivity(), "Added Address!", Toast.LENGTH_SHORT).show();
-                            requireActivity().finish();
+
+                        @Override
+                        public void onFailure(@NonNull Call<UserAddress> call, @NonNull Throwable t) {
+//                            loadingDialog.dismissLoadingDialog();
+                            Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
                         }
-                    }
-
-                    @Override
-                    public void onFailure(Call<UserAddress> call, Throwable t) {
-
-                    }
-                });
+                    });
+                }
             }
         });
     }
 
     private void setAddress() {
-        SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
         String token = sharedPreferenceManager.getString("token");
         Call<UserAddress> call = RetrofitClient.getClient().getApi()
                 .getUserAddress(token);
-        call.enqueue(new Callback<UserAddress>() {
-            @Override
-            public void onResponse(Call<UserAddress> call, Response<UserAddress> response) {
-                if(!response.isSuccessful()){
-                    if(isAdded()) {
-                        Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+        if(isAdded()){
+
+            call.enqueue(new Callback<UserAddress>() {
+                @Override
+                public void onResponse(@NonNull Call<UserAddress> call, @NonNull Response<UserAddress> response) {
+                    loadingDialog.dismissLoadingDialog();
+                    if(!response.isSuccessful()){
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                        }
+                        return;
                     }
-                    return;
-                }
-                assert response.body() != null;
-                if(!response.body().getSuccess()){
-                    if(isAdded()) {
-                        Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                    assert response.body() != null;
+                    if(!response.body().getSuccess()){
+                        if(isAdded()) {
+                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                        }
+                        return;
                     }
-                    return;
-                }
-                addressList = response.body().getAddress();
-                if(!addressList.isEmpty()) {
-                    if (!addressList.get(0).getUserId().toString().isEmpty()
-                            || addressList.get(0).getUserId().toString() != null
-                    ) {
-                        shopName.setText(addressList.get(0).getAddressName());
-                        name = addressList.get(0).getAddressName();
-                        phoneNumber.setText(addressList.get(0).getPhoneNumber().toString());
-                        number = addressList.get(0).getPhoneNumber().toString();
-                        address.setText(addressList.get(0).getAddressLine1());
-                        adrs = addressList.get(0).getAddressLine1();
-                        city.setText(addressList.get(0).getCity());
-                        place = addressList.get(0).getCity();
-                        pincode.setText(addressList.get(0).getPostalCode().toString());
-                        zipcode = addressList.get(0).getPostalCode().toString();
-                        stateSpinner.setSelection(Arrays
-                                .asList(states)
-                                .indexOf(addressList.get(0).getState()));
-                        state = addressList.get(0).getState();
+                    addressList = response.body().getAddress();
+                    if(!addressList.isEmpty()) {
+                        if (!addressList.get(0).getUserId().toString().isEmpty()
+                                || addressList.get(0).getUserId().toString() != null
+                        ) {
+                            shopName.setText(addressList.get(0).getAddressName());
+                            name = addressList.get(0).getAddressName();
+                            phoneNumber.setText(addressList.get(0).getPhoneNumber().toString());
+                            number = addressList.get(0).getPhoneNumber().toString();
+                            address.setText(addressList.get(0).getAddressLine1());
+                            adrs = addressList.get(0).getAddressLine1();
+                            city.setText(addressList.get(0).getCity());
+                            place = addressList.get(0).getCity();
+                            pincode.setText(addressList.get(0).getPostalCode().toString());
+                            zipcode = addressList.get(0).getPostalCode().toString();
+                            stateSpinner.setSelection(Arrays
+                                    .asList(states)
+                                    .indexOf(addressList.get(0).getState()));
+                            state = addressList.get(0).getState();
+                        }
+                    }
+
+                    //edit address
+                    if(!addressList.isEmpty()) {
+                        if(!addressList.get(0).getUserId().toString().isEmpty()
+                                || addressList.get(0).getUserId().toString()!=null) {
+                            editAddress();
+                        }
+                    }else {
+                        addAddress();
                     }
                 }
 
-                //edit address
-                if(!addressList.isEmpty()) {
-                    if(!addressList.get(0).getUserId().toString().isEmpty()
-                            || addressList.get(0).getUserId().toString()!=null) {
-                        editAddress();
+                @Override
+                public void onFailure(@NonNull Call<UserAddress> call, @NonNull Throwable t) {
+                    if(isAdded()) {
+                        loadingDialog.dismissLoadingDialog();
+                        Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                }else {
-                    addAddress();
-                }
-            }
+            });
 
-            @Override
-            public void onFailure(Call<UserAddress> call, Throwable t) {
-                if(isAdded()) {
-                    Toast.makeText(requireActivity(), "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        }
     }
 
     private void editAddress() {
@@ -530,13 +557,12 @@ public class AddressFragment extends Fragment {
                     place,
                     state
             );
-            SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
             String token = sharedPreferenceManager.getString("token");
             Call<UserAddress> call1 = RetrofitClient
                     .getClient().getApi().putUserAddress(token, address);
             call1.enqueue(new Callback<UserAddress>() {
                 @Override
-                public void onResponse(Call<UserAddress> call, Response<UserAddress> response) {
+                public void onResponse(@NonNull Call<UserAddress> call, @NonNull Response<UserAddress> response) {
                     if(!response.isSuccessful()){
                         if(isAdded()) {
                             Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
@@ -557,7 +583,7 @@ public class AddressFragment extends Fragment {
                 }
 
                 @Override
-                public void onFailure(Call<UserAddress> call, Throwable t) {
+                public void onFailure(@NonNull Call<UserAddress> call, @NonNull Throwable t) {
 
                 }
             });

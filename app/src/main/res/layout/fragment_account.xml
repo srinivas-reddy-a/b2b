@@ -29,7 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
@@ -49,11 +49,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="My Profile"
+                        android:text="@string/my_profile"
                         android:textAlignment="center"
                         android:textColor="@color/hyperlink"
                         android:textSize="@dimen/sub_heading"
-                        app:drawableEndCompat="@drawable/ic_outline_edit_24" />
+                        app:drawableEndCompat="@drawable/ic_outline_edit_24"
+                        tools:ignore="TextContrastCheck" />
                 </LinearLayout>
 
                 <soup.neumorphism.NeumorphCardView
@@ -100,7 +101,8 @@
                     android:layout_height="@dimen/account_frag_icon"
                     android:layout_gravity="center"
                     android:foregroundTint="@color/green"
-                    android:src="@drawable/ic_outline_address_on_24" />
+                    android:src="@drawable/ic_outline_address_on_24"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:id="@+id/textView28"
@@ -110,7 +112,7 @@
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="My Address"
+                    android:text="@string/my_address"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text" />
 
@@ -119,7 +121,8 @@
                     android:layout_width="@dimen/account_frag_arrow"
                     android:layout_height="@dimen/account_frag_arrow"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green" />
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green"
+                    tools:ignore="ImageContrastCheck" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -162,7 +165,7 @@
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="My Orders"
+                    android:text="@string/my_orders"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text" />
 
@@ -187,8 +190,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/view_padding"
-            android:visibility="gone">
+            android:padding="@dimen/view_padding">
 
             <LinearLayout
                 android:id="@+id/kycLL"
@@ -213,7 +215,7 @@
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="KYC Document"
+                    android:text="@string/kyc_document"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text" />
 
@@ -221,7 +223,8 @@
                     android:layout_width="@dimen/account_frag_arrow"
                     android:layout_height="@dimen/account_frag_arrow"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green" />
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green"
+                    tools:ignore="ImageContrastCheck" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -231,7 +234,6 @@
             android:layout_height="@dimen/sub_section_line"
             android:layout_marginStart="@dimen/account_frag_view_margin"
             android:background="@color/sub_section_line"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -254,7 +256,8 @@
                     android:layout_width="@dimen/account_frag_icon"
                     android:layout_height="@dimen/account_frag_icon"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_return_and_replace_policy_24" />
+                    android:src="@drawable/ic_baseline_return_and_replace_policy_24"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -263,7 +266,7 @@
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="Return and Replace Policy"
+                    android:text="@string/return_and_replace_policy"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text" />
 
@@ -271,7 +274,8 @@
                     android:layout_width="@dimen/account_frag_arrow"
                     android:layout_height="@dimen/account_frag_arrow"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green" />
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green"
+                    tools:ignore="ImageContrastCheck" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -313,7 +317,7 @@
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="Privacy Policy"
+                    android:text="@string/privacy_policy"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text" />
 
@@ -354,7 +358,8 @@
                     android:layout_width="@dimen/account_frag_icon"
                     android:layout_height="@dimen/account_frag_icon"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_outline_terms_and_conditions_mark_24" />
+                    android:src="@drawable/ic_outline_terms_and_conditions_mark_24"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -363,7 +368,7 @@
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="Terms and Conditions"
+                    android:text="@string/terms_and_conditions"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text" />
 
@@ -371,7 +376,8 @@
                     android:layout_width="@dimen/account_frag_arrow"
                     android:layout_height="@dimen/account_frag_arrow"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green" />
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green"
+                    tools:ignore="ImageContrastCheck" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -405,7 +411,8 @@
                     android:layout_width="@dimen/account_frag_icon"
                     android:layout_height="@dimen/account_frag_icon"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_outline_about_24" />
+                    android:src="@drawable/ic_outline_about_24"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -414,7 +421,7 @@
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="About Us"
+                    android:text="@string/about_us"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text" />
 
@@ -455,7 +462,8 @@
                     android:layout_width="@dimen/account_frag_icon"
                     android:layout_height="@dimen/account_frag_icon"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_contact_us_24" />
+                    android:src="@drawable/ic_baseline_contact_us_24"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -464,7 +472,7 @@
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="Contact Us"
+                    android:text="@string/contact_us"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text" />
 
@@ -472,7 +480,8 @@
                     android:layout_width="@dimen/account_frag_arrow"
                     android:layout_height="@dimen/account_frag_arrow"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green" />
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green"
+                    tools:ignore="ImageContrastCheck" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -504,7 +513,8 @@
                     android:layout_width="@dimen/account_frag_icon"
                     android:layout_height="@dimen/account_frag_icon"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_logout_24" />
+                    android:src="@drawable/ic_baseline_logout_24"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -513,7 +523,7 @@
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="Logout"
+                    android:text="@string/logout"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text" />
 
@@ -521,7 +531,8 @@
                     android:layout_width="@dimen/account_frag_arrow"
                     android:layout_height="@dimen/account_frag_arrow"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green" />
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green"
+                    tools:ignore="ImageContrastCheck" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -563,7 +574,7 @@
                     android:layout_marginStart="@dimen/view_left_margin"
                     android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="Report Bug"
+                    android:text="@string/report_bug"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text" />
 
@@ -596,7 +607,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="clip_vertical|center_horizontal"
                 android:layout_marginTop="@dimen/view_top_margin"
-                android:src="@drawable/company_icon_green"
+                android:src="@drawable/company_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -619,7 +630,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="clip_vertical|center_horizontal"
                 android:layout_marginTop="@dimen/view_top_margin"
-                android:text="Made with ❤ in 🇮🇳"
+                android:text="@string/made_with_in"
                 android:textColor="@color/text"
                 android:textSize="@dimen/text"
                 app:layout_constraintEnd_toEndOf="parent"

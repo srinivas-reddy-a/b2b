@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="@dimen/section_margin"
+    tools:context=".Home.Fragments.Account.LicenseFragment"
+    tools:ignore="SpeakableTextPresentCheck">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/section_margin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:id="@+id/step1LL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_left_corners_no_border_transparent_bg"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/view_padding_left"
+                    android:paddingTop="@dimen/view_padding_top"
+                    android:paddingEnd="@dimen/view_padding_right">
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/view_bottom_margin"
+                        android:text="@string/step_01"
+                        android:textColor="@color/gray_D"
+                        android:textSize="@dimen/text" />
+
+                    <TextView
+                        android:id="@+id/textView53"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/view_bottom_margin"
+                        android:text="@string/business_proof"
+                        android:textColor="@color/gray_D"
+                        android:textSize="@dimen/text" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:id="@+id/view8"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/section_line"
+                            android:layout_weight="1"
+                            android:background="@color/green" />
+
+                        <View
+                            android:id="@+id/view9"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/section_line"
+                            android:layout_weight="1"
+                            android:background="@color/green" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/step1LL"
+                    android:layout_alignTop="@id/step1LL"
+                    android:layout_alignEnd="@id/step1LL"
+                    android:layout_alignBottom="@id/step1LL">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/view_right_margin"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_baseline_check_circle_24_green" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/round_right_corners_no_border_green_light_bg"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/view_padding_left"
+                android:paddingTop="@dimen/view_padding_top"
+                android:paddingEnd="@dimen/view_padding_right">
+
+                <TextView
+                    android:id="@+id/textView54"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/view_bottom_margin"
+                    android:text="@string/step_02"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/text" />
+
+                <TextView
+                    android:id="@+id/textView55"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/view_bottom_margin"
+                    android:text="@string/license_proof"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/text" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/view10"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/section_line"
+                        android:layout_weight="1"
+                        android:background="@color/green" />
+
+                    <View
+                        android:id="@+id/view11"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/section_line"
+                        android:layout_weight="1"
+                        android:background="@color/gray" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView57"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:drawablePadding="@dimen/view_padding"
+            android:text="Select the Category of Products you sell"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/text"
+            app:drawableStartCompat="@drawable/ic_baseline_check_24_gray" />
+
+        <CheckBox
+            android:id="@+id/pestCb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green"
+            android:checked="false"
+            android:text="Pesticides"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/text"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/fertCb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green"
+            android:checked="false"
+            android:text="Fertilizers"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/text"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/seedCb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:buttonTint="@color/green"
+            android:checked="false"
+            android:text="Seeds"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/continueTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_top_margin"
+            android:background="@color/gray_D"
+            android:enabled="false"
+            android:padding="@dimen/view_padding"
+            android:text="Continue"
+            android:textAlignment="center"
+            android:textColor="@color/button_text"
+            android:textSize="@dimen/sub_heading" />
+
+        <View
+            android:id="@+id/view15"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/scroll_view_bottom_margin" />
+    </LinearLayout>
+</ScrollView>

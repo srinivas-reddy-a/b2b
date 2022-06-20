@@ -22,15 +22,17 @@
     <color name="peaGreen">#FF52D017</color>
     <color name="pastelRed">#FFF67280</color>
     <color name="green_700">#06AC5A</color>
+    <color name="green_light">#D6ECE1</color>
     <color name="gray">#808080</color>
-    <color name="gray_D">#D0D0D0</color>
+    <color name="gray_D">#E0E0E0</color>
+    <color name="page_heading">#A0A0A0</color>
 
     <color name="product_name">#000000</color>
     <color name="text">#FF5F5A5A</color>
     <color name="heading">#000000</color>
     <color name="section_line">#808080</color>
     <color name="sub_section_line">#D3D3D3</color>
-    <color name="hyperlink">#CAE4F1</color>
+    <color name="hyperlink">#1A73E8</color>
 <!--    product detail specialprice-->
     <color name="sp_text">#1A711D</color>
     <color name="sp_bg">#80B1D8B3</color>
@@ -38,4 +40,6 @@
 <!--    button color-->
     <color name="button_background">#00D66C</color>
     <color name="button_text">#FFFFFF</color>
+
+    <color name="transparent">#CC000000</color>
 </resources>

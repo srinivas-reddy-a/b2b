@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.B2B" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    //set to Light.NoActionBar to disallow darkmode
+    <style name="Theme.B2B" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryVariant">@color/green_700</item>
@@ -13,5 +14,29 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    //no actionbar, but status bar exists
+    //alertdialog style
+    <style name="myFullscreenAlertDialogStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        //remove status bar
+        <item name="android:windowFullscreen">true</item>
+        //smooth animation
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+
+    //switch style
+    <style name="Switch" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+<!--        ischecked-->
+        <item name="colorControlActivated">@color/green</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#f1f1f1
+        </item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#42221f1f
+        </item>
     </style>
 </resources>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home.CropOrCategory.CropOrCategoryListingActivity">
+
+  <soup.neumorphism.NeumorphCardView
+      android:id="@+id/neumorphCardView6"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:neumorph_shapeType="basin">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+      <ImageView
+          android:id="@+id/backList"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:layout_marginStart="20dp"
+          android:layout_marginTop="10dp"
+          android:layout_marginBottom="10dp"
+          android:contentDescription="@string/back"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24_gray"
+          tools:ignore="ImageContrastCheck" />
+
+      <TextView
+          android:id="@+id/textView50"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/view_left_margin"
+          android:textColor="@color/page_heading"
+          android:textSize="@dimen/heading"
+          android:visibility="gone"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/backList"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <ImageView
+          android:id="@+id/imageView3"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:layout_marginTop="10dp"
+          android:layout_marginEnd="20dp"
+          android:layout_marginBottom="10dp"
+          android:contentDescription="@string/cart"
+          android:visibility="gone"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/ic_outline_shopping_cart_24_gray" />
+
+      <ImageView
+          android:id="@+id/imageView4"
+          android:layout_width="30dp"
+          android:layout_height="0dp"
+          android:layout_marginTop="10dp"
+          android:layout_marginEnd="20dp"
+          android:layout_marginBottom="10dp"
+          android:contentDescription="@string/search"
+          android:visibility="gone"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="@+id/imageView3"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/ic_baseline_search_24_gray" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </soup.neumorphism.NeumorphCardView>
+
+  <LinearLayout
+      android:id="@+id/listingContainer"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/section_margin"
+      android:orientation="vertical"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/neumorphCardView6">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/view_bottom_margin"
+        android:orientation="horizontal">
+
+      <TextView
+          android:id="@+id/listName"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:textColor="@color/heading"
+          android:textSize="@dimen/sub_heading"
+          android:textStyle="bold" />
+
+      <TextView
+          android:id="@+id/total"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:textAlignment="textEnd"
+          android:textColor="@color/heading"
+          android:textSize="@dimen/sub_heading"
+          android:textStyle="normal" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/allRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/view_top_margin"
+        android:nestedScrollingEnabled="false" />
+  </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,7 +49,7 @@ public class AdsRecyclerAdapter extends RecyclerView.Adapter<AdsRecyclerAdapter.
         holder.date.setText(adsDate.get(position));
         Glide.with(holder.itemView)
                 .load(topProductsImages.get(position))
-                .centerCrop()
+//                .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.img);

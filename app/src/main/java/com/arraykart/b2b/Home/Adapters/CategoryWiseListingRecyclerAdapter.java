@@ -57,16 +57,17 @@ public class CategoryWiseListingRecyclerAdapter extends RecyclerView.Adapter<Cat
 //        holder.catWiseProducts
         Call<CategoryWise> call = RetrofitClient.getClient().getApi()
                 .getCategoryWise(allCategory.get(position).getName(), 6);
-        loadingDialog = new LoadingDialog(activity);
+//        loadingDialog = new LoadingDialog(activity);
 //        loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<CategoryWise>() {
             @Override
-            public void onResponse(Call<CategoryWise> call, Response<CategoryWise> response) {
+            public void onResponse(@NonNull Call<CategoryWise> call, @NonNull Response<CategoryWise> response) {
 //                loadingDialog.dismissLoadingDialog();
                 if(!response.isSuccessful()){
                     Toast.makeText(activity, ""+response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
+                assert response.body() != null;
                 if(!response.body().getSuccess()){
                     Toast.makeText(activity, "500"+"Internal Server Error", Toast.LENGTH_SHORT).show();
                     return;
@@ -79,9 +80,9 @@ public class CategoryWiseListingRecyclerAdapter extends RecyclerView.Adapter<Cat
             }
 
             @Override
-            public void onFailure(Call<CategoryWise> call, Throwable t) {
+            public void onFailure(@NonNull Call<CategoryWise> call, @NonNull Throwable t) {
 //                loadingDialog.dismissLoadingDialog();
-                Toast.makeText(activity, "failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -101,13 +102,10 @@ public class CategoryWiseListingRecyclerAdapter extends RecyclerView.Adapter<Cat
             catName = itemView.findViewById(R.id.nestedCatName);
             seeMore = itemView.findViewById(R.id.nestedCatMore);
             catWiseProducts = itemView.findViewById(R.id.nestedCatRV);
-            seeMore.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(activity, ProductsListingActivity.class);
-                    i.putExtra("category", catName.getText());
-                    activity.startActivity(i);
-                }
+            seeMore.setOnClickListener(v -> {
+                Intent i = new Intent(activity, ProductsListingActivity.class);
+                i.putExtra("category", catName.getText());
+                activity.startActivity(i);
             });
         }
     }

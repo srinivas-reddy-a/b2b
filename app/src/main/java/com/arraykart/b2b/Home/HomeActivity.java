@@ -4,9 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -18,11 +18,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -32,21 +34,23 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.arraykart.b2b.Authenticate.AuthorizeUser;
 import com.arraykart.b2b.Authenticate.ConnectionReceiver;
+import com.arraykart.b2b.Authenticate.Kyc;
+import com.arraykart.b2b.Authenticate.LocaleManager;
 import com.arraykart.b2b.Home.Fragments.CartFragment;
 import com.arraykart.b2b.Home.Fragments.ScrollFragment;
 import com.arraykart.b2b.Home.Fragments.WalletFragment;
 import com.arraykart.b2b.Search.SearchActivity;
 import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
-import com.arraykart.b2b.SignUp.SignUpActivity;
 import com.bumptech.glide.Glide;
 import com.arraykart.b2b.Home.Fragments.Account.AccountFragment;
 import com.arraykart.b2b.R;
@@ -99,6 +103,14 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
 
     double lat, lon;
     private TextView pincode;
+    private SwitchCompat translate;
+    private Context context;
+    private Resources resources;
+    private LocaleManager localeManager;
+    private static Boolean isRecreated = false;
+    private static Boolean isRecreatedEn = true;
+    private static final String LANGUAGE = "language";
+    private TextView hindiA;
 
     //header and footer
     private NeumorphCardView footer;
@@ -112,29 +124,45 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
     private LottieAnimationView leavesAnimation;
 
 
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        sharedPreferenceManager = new SharedPreferenceManager(this);
+
 //        if(sharedPreferenceManager.getString("token") == null){
 //            Intent i =
 //        }
 
-        //check netork connectivity
+        //check network connectivity
         checkConnection();
         //check token
         //java.lang.IllegalStateException: FragmentManager has been destroyed error
         //while calling following function
-//        checkToken();
+        checkToken();
+
+        //check kyc status
+        checkKyc();
+
+        //check language from shared pref
+        checkLang();
+
+
+
         //user location
-        sharedPreferenceManager = new SharedPreferenceManager(this);
 //        if(!sharedPreferenceManager.checkKey("GPS")){
         //set location
         pincode = findViewById(R.id.pincode);
+        pincode.setOnClickListener(v -> checkPermission());
             checkPermission();
 //        }
-//        getUserLocation();
+
+        //language translation
+        translate = findViewById(R.id.translate);
+        hindiA = findViewById(R.id.hindiA);
+        setTranslate();
 
         //for getContentResolver to work in wallet fragment
         contextOfApplication = getApplicationContext();
@@ -155,7 +183,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                 .into(imageView);
         icon = findViewById(R.id.homeCompanyicon);
         Glide.with(this)
-                .load(R.drawable.company_icon_green)
+                .load(R.drawable.company_icon)
                 .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
@@ -163,12 +191,9 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         pincode = findViewById(R.id.pincode);
         neumorphCardView = findViewById(R.id.neumorphCardView);
         editText = findViewById(R.id.search);
-        editText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this, SearchActivity.class);
-                startActivity(i)    ;
-            }
+        editText.setOnClickListener(v -> {
+            Intent i = new Intent(HomeActivity.this, SearchActivity.class);
+            startActivity(i)    ;
         });
 
 //        animations for hints in search
@@ -242,6 +267,8 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                 imageView.setVisibility(View.VISIBLE);
                 icon.setVisibility(View.VISIBLE);
                 pincode.setVisibility(View.VISIBLE);
+                translate.setVisibility(View.VISIBLE);
+                hindiA.setVisibility(View.VISIBLE);
             }
             //return true as motion up will occur only after motion down
             return true;
@@ -293,6 +320,8 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                 imageView.setVisibility(View.GONE);
                 icon.setVisibility(View.GONE);
                 pincode.setVisibility(View.GONE);
+                translate.setVisibility(View.GONE);
+                hindiA.setVisibility(View.GONE);
                 FragmentTransaction fragmentTransaction13 = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction13.replace(R.id.homeContainer, walletFragment).commit();
             }
@@ -341,6 +370,8 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                 imageView.setVisibility(View.GONE);
                 icon.setVisibility(View.GONE);
                 pincode.setVisibility(View.GONE);
+                translate.setVisibility(View.GONE);
+                hindiA.setVisibility(View.GONE);
                 FragmentTransaction fragmentTransaction12 = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction12.replace(R.id.homeContainer,cartFragment).commit();
             }
@@ -389,6 +420,8 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                 imageView.setVisibility(View.GONE);
                 icon.setVisibility(View.GONE);
                 pincode.setVisibility(View.GONE);
+                translate.setVisibility(View.GONE);
+                hindiA.setVisibility(View.GONE);
                 FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction1.replace(R.id.homeContainer, accountFragment).commit();
             }
@@ -399,23 +432,68 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         //all categories from api
     }
 
+    private void checkLang() {
+        localeManager = new LocaleManager(HomeActivity.this);
+        if(sharedPreferenceManager.checkKey(LANGUAGE)) {
+            localeManager.updateResource(sharedPreferenceManager.getString(LANGUAGE));
+            translate = findViewById(R.id.translate);
+            if(sharedPreferenceManager.getString(LANGUAGE).trim().toLowerCase().contains("hi")){
+                translate.setChecked(true);
+            }else {
+                translate.setChecked(false);
+            }
+        }
+    }
+
+
+    private void setTranslate() {
+       translate.setOnCheckedChangeListener((buttonView, isChecked) -> {
+           editText = findViewById(R.id.search);
+           localeManager = new LocaleManager(HomeActivity.this);
+           if(isChecked){
+               sharedPreferenceManager.setString(LANGUAGE, "hi");
+               isRecreatedEn = true;
+           }else {
+               sharedPreferenceManager.setString(LANGUAGE, "en");
+               isRecreated = false;
+           }
+           localeManager.updateResource(sharedPreferenceManager.getString(LANGUAGE));
+           if(!isRecreated && isChecked){
+               isRecreated=true;
+//                   recreate();
+               startActivity(getIntent());
+               finish();
+               overridePendingTransition(0, 0);
+           }
+           if(isRecreatedEn && !isChecked){
+               isRecreatedEn=false;
+//                   recreate();
+               startActivity(getIntent());
+               finish();
+               overridePendingTransition(0, 0);
+           }
+       });
+    }
+
+    private void checkKyc() {
+        Kyc kyc = new Kyc(this);
+        kyc.kycStatus();
+    }
+
     private void toggleAnimation() {
         iconLL = findViewById(R.id.iconLL);
         leavesAnimation = findViewById(R.id.leavesAnimation);
-        iconLL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                leavesAnimation.setVisibility(View.VISIBLE);
-                leavesAnimation.playAnimation();
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        leavesAnimation.setVisibility(View.GONE);
-                        leavesAnimation.pauseAnimation();
-                    }
-                },2000);
-            }
+        iconLL.setOnClickListener(v -> {
+            leavesAnimation.setVisibility(View.VISIBLE);
+            leavesAnimation.playAnimation();
+            Handler handler = new Handler();
+//                MediaPlayer mPlayer = MediaPlayer.create(HomeActivity.this, R.raw.leaves_audio_01);
+//                mPlayer.start();
+            handler.postDelayed(() -> {
+                leavesAnimation.setVisibility(View.GONE);
+                leavesAnimation.pauseAnimation();
+//                        mPlayer.pause();
+            },2000);
         });
     }
 
@@ -489,31 +567,28 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         Task<LocationSettingsResponse> result = LocationServices.getSettingsClient(getApplicationContext())
                 .checkLocationSettings(builder.build());
 
-        result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
-            @Override
-            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
+        result.addOnCompleteListener(task -> {
 
-                try {
-                    LocationSettingsResponse response = task.getResult(ApiException.class);
+            try {
+                LocationSettingsResponse response = task.getResult(ApiException.class);
 //                    Toast.makeText(HomeActivity.this, "GPS is already tured on", Toast.LENGTH_SHORT).show();
-                } catch (ApiException e) {
+            } catch (ApiException e) {
 
-                    switch (e.getStatusCode()) {
-                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                switch (e.getStatusCode()) {
+                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
 
-                            try {
-                                ResolvableApiException resolvableApiException = (ResolvableApiException)e;
-                                resolvableApiException.startResolutionForResult(
-                                        HomeActivity.this,2);
-                            } catch (IntentSender.SendIntentException ex) {
-                                ex.printStackTrace();
-                            }
-                            break;
+                        try {
+                            ResolvableApiException resolvableApiException = (ResolvableApiException)e;
+                            resolvableApiException.startResolutionForResult(
+                                    HomeActivity.this,2);
+                        } catch (IntentSender.SendIntentException ex) {
+                            ex.printStackTrace();
+                        }
+                        break;
 
-                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                            //Device does not have location
-                            break;
-                    }
+                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                        //Device does not have location
+                        break;
                 }
             }
         });
@@ -533,13 +608,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
 
     private void checkToken() {
         AuthorizeUser authorizeUser = new AuthorizeUser(this);
-        if(!authorizeUser.isLoggedIn()){
-            SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(this);
-            sharedPreferenceManager.setString("token", null);
-            Intent i = new Intent(this, SignUpActivity.class);
-            finish();
-            startActivity(i);
-        }
+        authorizeUser.isLoggedIn();
     }
 
     private boolean checkConnection() {
@@ -600,6 +669,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
     protected void onResume() {
         super.onResume();
         // call method
+        checkToken();
         checkConnection();
     }
 
@@ -607,46 +677,9 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
     protected void onPause() {
         super.onPause();
         // call method
+        checkToken();
         checkConnection();
     }
-//
-//    private void getUserLocation() {
-//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//        locationListener = new LocationListener() {
-//            @Override
-//            public void onLocationChanged(@NonNull Location location) {
-//                lat = location.getLatitude();
-//                lon = location.getLongitude();
-////                Toast.makeText(HomeActivity.this, "lan:"+String.valueOf(lat)+" lon:"+String.valueOf(lon), Toast.LENGTH_SHORT).show();
-////                //Log.e("lat: ", String.valueOf(lat));
-////                //Log.e("lon: ", String.valueOf(lon));
-//                pincode.setText("lat"+lat);
-//                final Geocoder geocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
-//
-//            }
-//            @Override
-//            public void onProviderEnabled(@NonNull String provider) {
-//
-//            }
-//
-//            @Override
-//            public void onProviderDisabled(@NonNull String provider) {
-//
-//            }
-//
-//            @Override
-//            public void onStatusChanged(String provider, int status, Bundle extras) {
-//
-//            }
-//        };
-//        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-//        != PackageManager.PERMISSION_GRANTED){
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-//        }else {
-//            locationManager.requestLocationUpdates(
-//                    LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-//        }
-//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

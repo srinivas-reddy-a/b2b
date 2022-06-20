@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.arraykart.b2b.Authenticate.AuthorizeUser;
 import com.arraykart.b2b.R;
 
 import soup.neumorphism.NeumorphCardView;
@@ -26,6 +27,8 @@ public class ContactFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
 
+        checkToken();
+
         //send whatsapp message
         setWhatsapp(view);
 
@@ -38,6 +41,13 @@ public class ContactFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void checkToken() {
+        if(isAdded()) {
+            AuthorizeUser authorizeUser = new AuthorizeUser(requireActivity());
+            authorizeUser.isLoggedIn();
+        }
     }
 
     private void setMail(View view) {
