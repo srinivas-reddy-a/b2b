@@ -1,9 +1,8 @@
-
 package com.arraykart.b2b.Retrofit.ModelClass;
-
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 
 public class Address {
 
@@ -28,14 +27,25 @@ public class Address {
     @SerializedName("state")
     @Expose
     private String state;
+    @SerializedName("gst")
+    @Expose
+    private String gst;
+    @SerializedName("pan")
+    @Expose
+    private String pan;
+    @SerializedName("kyc_status")
+    @Expose
+    private String kycStatus;
 
-    public Address(String addressName, String addressLine1, Integer postalCode, Long phoneNumber, String city, String state) {
+    public Address(String addressName, String addressLine1, Integer postalCode, Long phoneNumber, String city, String state, String gst, String pan) {
         this.addressName = addressName;
         this.addressLine1 = addressLine1;
         this.postalCode = postalCode;
         this.phoneNumber = phoneNumber;
         this.city = city;
         this.state = state;
+        this.gst = gst;
+        this.pan = pan;
     }
 
     public String getAddressName() {
@@ -92,6 +102,30 @@ public class Address {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getGst() {
+        return gst;
+    }
+
+    public void setGst(String gst) {
+        this.gst = gst;
+    }
+
+    public String getPan() {
+        return pan;
+    }
+
+    public void setPan(String pan) {
+        this.pan = pan;
+    }
+
+    public String getKycStatus() {
+        return kycStatus;
+    }
+
+    public void setKycStatus(String kycStatus) {
+        this.kycStatus = kycStatus;
     }
 
 }

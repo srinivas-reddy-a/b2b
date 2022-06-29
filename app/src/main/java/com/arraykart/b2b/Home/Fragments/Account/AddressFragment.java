@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,10 @@ public class AddressFragment extends Fragment {
     private EditText city;
     private TextView pincodeLabel;
     private EditText pincode;
+    private TextView gstLabel;
+    private EditText gstNumber;
+    private TextView panLabel;
+    private EditText panNumber;
     private Spinner stateSpinner;
     private NeumorphCardView submitNCV;
     private List<Address> addressList;
@@ -95,6 +100,8 @@ public class AddressFragment extends Fragment {
     private String place;
     private String zipcode;
     private String state;
+    private String gst;
+    private String pan;
 
     private LoadingDialog loadingDialog;
     private SharedPreferenceManager sharedPreferenceManager;
@@ -121,6 +128,10 @@ public class AddressFragment extends Fragment {
         city = view.findViewById(R.id.city);
         pincodeLabel = view.findViewById(R.id.pincodeLabel);
         pincode = view.findViewById(R.id.pincode);
+        gstLabel = view.findViewById(R.id.gstLabel);
+        gstNumber = view.findViewById(R.id.gst);
+        panLabel = view.findViewById(R.id.panLabel);
+        panNumber = view.findViewById(R.id.pan);
         stateSpinner = view.findViewById(R.id.stateSpinner);
         submitNCV = view.findViewById(R.id.submitNCV);
         if(isAdded()) {
@@ -167,6 +178,59 @@ public class AddressFragment extends Fragment {
         }else{
             pincodeLabel.setVisibility(View.INVISIBLE);
         }
+        if(!gstNumber.getText().toString().isEmpty()){
+            gstLabel.setVisibility(View.VISIBLE);
+        }else{
+            gstLabel.setVisibility(View.INVISIBLE);
+        }
+        if(!panNumber.getText().toString().isEmpty()){
+            panLabel.setVisibility(View.VISIBLE);
+        }else{
+            panLabel.setVisibility(View.INVISIBLE);
+        }
+
+        gstNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                gstLabel.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                gst = s.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().isEmpty()){
+                    gstLabel.setVisibility(View.INVISIBLE);
+                }else{
+                    gstLabel.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        panNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                panLabel.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                pan = s.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().isEmpty()){
+                    panLabel.setVisibility(View.INVISIBLE);
+                }else{
+                    panLabel.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         shopName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -281,15 +345,22 @@ public class AddressFragment extends Fragment {
 
         submitNCV.setOnClickListener(v -> {
             if(shopName.getText().toString().isEmpty()
-                    || shopName.getText().toString()==null
+                    || shopName.getText()==null
                     || address.getText().toString().isEmpty()
-                    || address.getText().toString()==null
+                    || address.getText()==null
                     || phoneNumber.getText().toString().isEmpty()
-                    || phoneNumber.getText().toString()==null
+                    || phoneNumber.getText()==null
                     || pincode.getText().toString().isEmpty()
-                    || pincode.getText().toString()==null
+                    || pincode.getText()==null
                     || city.getText().toString().isEmpty()
-                    || city.getText().toString()==null
+                    || city.getText()==null
+                    || (
+                            (gstNumber.getText().toString().isEmpty()
+                                || gstNumber.getText()==null)
+                         &&
+                            (panNumber.getText().toString().isEmpty()
+                                || panNumber.getText()==null)
+                        )
             ){
                 if(isAdded()) {
                     Toast.makeText(requireActivity(), "Please fill out all fields!", Toast.LENGTH_SHORT).show();
@@ -301,7 +372,9 @@ public class AddressFragment extends Fragment {
                         Integer.parseInt(zipcode),
                         Long.parseLong(number),
                         place,
-                        state
+                        state,
+                        gst,
+                        pan
                 );
 
                 String token = sharedPreferenceManager.getString("token");
@@ -348,7 +421,6 @@ public class AddressFragment extends Fragment {
         Call<UserAddress> call = RetrofitClient.getClient().getApi()
                 .getUserAddress(token);
         if(isAdded()){
-
             call.enqueue(new Callback<UserAddress>() {
                 @Override
                 public void onResponse(@NonNull Call<UserAddress> call, @NonNull Response<UserAddress> response) {
@@ -369,7 +441,7 @@ public class AddressFragment extends Fragment {
                     addressList = response.body().getAddress();
                     if(!addressList.isEmpty()) {
                         if (!addressList.get(0).getUserId().toString().isEmpty()
-                                || addressList.get(0).getUserId().toString() != null
+                                || addressList.get(0).getUserId().toString().length()>0
                         ) {
                             shopName.setText(addressList.get(0).getAddressName());
                             name = addressList.get(0).getAddressName();
@@ -385,13 +457,15 @@ public class AddressFragment extends Fragment {
                                     .asList(states)
                                     .indexOf(addressList.get(0).getState()));
                             state = addressList.get(0).getState();
+                            gstNumber.setText(addressList.get(0).getGst());
+                            panNumber.setText(addressList.get(0).getPan());
                         }
                     }
 
                     //edit address
                     if(!addressList.isEmpty()) {
                         if(!addressList.get(0).getUserId().toString().isEmpty()
-                                || addressList.get(0).getUserId().toString()!=null) {
+                                && addressList.get(0).getUserId().toString().length()>0) {
                             editAddress();
                         }
                     }else {
@@ -437,6 +511,58 @@ public class AddressFragment extends Fragment {
         }else{
             pincodeLabel.setVisibility(View.INVISIBLE);
         }
+        if(!gstNumber.getText().toString().isEmpty()){
+            gstLabel.setVisibility(View.VISIBLE);
+        }else{
+            gstLabel.setVisibility(View.INVISIBLE);
+        }
+        if(!panNumber.getText().toString().isEmpty()){
+            panLabel.setVisibility(View.VISIBLE);
+        }else{
+            panLabel.setVisibility(View.INVISIBLE);
+        }
+
+        gstNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                gstLabel.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                gst = s.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().isEmpty()){
+                    gstLabel.setVisibility(View.INVISIBLE);
+                }else{
+                    gstLabel.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        panNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                panLabel.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                pan = s.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().isEmpty()){
+                    panLabel.setVisibility(View.INVISIBLE);
+                }else{
+                    panLabel.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         shopName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -549,44 +675,69 @@ public class AddressFragment extends Fragment {
             }
         });
         submitNCV.setOnClickListener(v -> {
-            Address address = new Address(
-                    name,
-                    adrs,
-                    Integer.parseInt(zipcode),
-                    Long.parseLong(number),
-                    place,
-                    state
-            );
-            String token = sharedPreferenceManager.getString("token");
-            Call<UserAddress> call1 = RetrofitClient
-                    .getClient().getApi().putUserAddress(token, address);
-            call1.enqueue(new Callback<UserAddress>() {
-                @Override
-                public void onResponse(@NonNull Call<UserAddress> call, @NonNull Response<UserAddress> response) {
-                    if(!response.isSuccessful()){
-                        if(isAdded()) {
-                            Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
-                        }
-                        return;
-                    }
-                    assert response.body() != null;
-                    if(!response.body().getSuccess()){
-                        if(isAdded()) {
-                            Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
-                        }
-                        return;
-                    }
-                    if(isAdded()) {
-                        Toast.makeText(requireActivity(), "Added Address!", Toast.LENGTH_SHORT).show();
-                        requireActivity().finish();
-                    }
+            if(shopName.getText().toString().isEmpty()
+                    || shopName.getText()==null
+                    || address.getText().toString().isEmpty()
+                    || address.getText()==null
+                    || phoneNumber.getText().toString().isEmpty()
+                    || phoneNumber.getText()==null
+                    || pincode.getText().toString().isEmpty()
+                    || pincode.getText()==null
+                    || city.getText().toString().isEmpty()
+                    || city.getText()==null
+                    || (
+                    (gstNumber.getText().toString().isEmpty()
+                            || gstNumber.getText()==null)
+                            &&
+                            (panNumber.getText().toString().isEmpty()
+                                    || panNumber.getText()==null)
+            )
+            ){
+                if(isAdded()) {
+                    Toast.makeText(requireActivity(), "Please fill out all fields!", Toast.LENGTH_SHORT).show();
                 }
+            }else {
+                Address address = new Address(
+                        name,
+                        adrs,
+                        Integer.parseInt(zipcode),
+                        Long.parseLong(number),
+                        place,
+                        state,
+                        gst,
+                        pan
+                );
+                String token = sharedPreferenceManager.getString("token");
+                Call<UserAddress> call1 = RetrofitClient
+                        .getClient().getApi().putUserAddress(token, address);
+                call1.enqueue(new Callback<UserAddress>() {
+                    @Override
+                    public void onResponse(@NonNull Call<UserAddress> call, @NonNull Response<UserAddress> response) {
+                        if (!response.isSuccessful()) {
+                            if (isAdded()) {
+                                Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                            }
+                            return;
+                        }
+                        assert response.body() != null;
+                        if (!response.body().getSuccess()) {
+                            if (isAdded()) {
+                                Toast.makeText(requireActivity(), "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
+                            }
+                            return;
+                        }
+                        if (isAdded()) {
+                            Toast.makeText(requireActivity(), "Added Address!", Toast.LENGTH_SHORT).show();
+                            requireActivity().finish();
+                        }
+                    }
 
-                @Override
-                public void onFailure(@NonNull Call<UserAddress> call, @NonNull Throwable t) {
+                    @Override
+                    public void onFailure(@NonNull Call<UserAddress> call, @NonNull Throwable t) {
 
-                }
-            });
+                    }
+                });
+            }
 
         });
     }
