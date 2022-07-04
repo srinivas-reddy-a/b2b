@@ -49,6 +49,7 @@ public class AccountFragment extends Fragment {
     private LinearLayout addressLL;
     private LinearLayout abouLL;
     private LoadingDialog loadingDialog;
+    private LinearLayout tutorialLL;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +64,10 @@ public class AccountFragment extends Fragment {
         //setup user greeting with name
         userGreeting = view.findViewById(R.id.userGreeting);
         setUserGreeting();
+
+        //tutorial
+        tutorialLL = view.findViewById(R.id.tutorialLL);
+        tutorialLL.setOnClickListener(v -> tutorial());
 
         //logout
         logoutLL = view.findViewById(R.id.logoutLL);
@@ -112,6 +117,15 @@ public class AccountFragment extends Fragment {
         return view;
     }
 
+    private void tutorial() {
+        if(isAdded()) {
+            Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
+            i.putExtra("pageName", "Tutorials");
+            i.putExtra("fragmentName", "tutorial");
+            startActivity(i);
+        }
+    }
+
     private void checkToken() {
         if(isAdded()) {
             AuthorizeUser authorizeUser = new AuthorizeUser(requireActivity());
@@ -128,10 +142,11 @@ public class AccountFragment extends Fragment {
         }
     }
 
+    //changed as kyc doc page is changed to address page
     private void setAddress() {
         if(isAdded()) {
             Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
-            i.putExtra("pageName", "My Address");
+            i.putExtra("pageName", "KYC Document");
             i.putExtra("fragmentName", "address");
             startActivity(i);
         }

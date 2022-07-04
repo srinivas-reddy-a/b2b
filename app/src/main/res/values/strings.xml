@@ -239,4 +239,12 @@
     <string name="whatsapp_price">"Hi Arraykart, I want to know the price of "</string>
     <string name="whatsapp_of_volume">" of volume "</string>
     <string name="whatsapp_complete_kyc">"Complete KYC to order!"</string>
+    <string name="tutorials">Tutorials</string>
+    <string name="how_to_order">How to order?</string>
+    <string name="how_to_complete_kyc">How to complete KYC?</string>
+    <string name="resend_otp_in">"Resend OTP in : "</string>
+    <string name="if_you_enjoy_using_arraykart_please_take_a_moment_to_rate_it_thanks_for_your_support">If you enjoy using Arraykart, please take a moment to rate it. Thanks for your support!</string>
+    <string name="remind_me_later">⌛ Remind me later</string>
+    <string name="no_thank">😒 No, thanks</string>
+    <string name="rate_arraykart">⭐ Rate Arraykart</string>
 </resources>

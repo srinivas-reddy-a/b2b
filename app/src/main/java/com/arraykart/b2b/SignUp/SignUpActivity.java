@@ -2,6 +2,7 @@ package com.arraykart.b2b.SignUp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
@@ -39,27 +40,37 @@ public class SignUpActivity extends AppCompatActivity {
         if(!sharedPreferenceManager.checkKey("existingUser")){
             sharedPreferenceManager.setBoolean("existingUser", false);
         }
-        if(!sharedPreferenceManager.checkKey("firstinstall")){
-            sharedPreferenceManager.setBoolean("firstinstall", true);
+        if(!sharedPreferenceManager.checkKey("firstInstall")){
+            sharedPreferenceManager.setBoolean("firstInstall", true);
         }
         fragmentTransactionSplash = this.getSupportFragmentManager().beginTransaction();
         splashScreenFragment = new SplashScreenFragment();
         fragmentTransactionSplash.replace(R.id.signUPFragContainer, splashScreenFragment).commit();
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            if(sharedPreferenceManager.checkKey("firstinstall")) {
-                if (sharedPreferenceManager.getBoolean("firstinstall")) {
-                    Fragment fragment = new LanguageFragment();
-                    FragmentTransaction fragmentTransactionSignUp = getSupportFragmentManager().beginTransaction();
-                    fragmentTransactionSignUp.replace(R.id.signUPFragContainer, fragment).commit();
+            if (sharedPreferenceManager.getBoolean("firstInstall")) {
+                Fragment fragment = new LanguageFragment();
+                try {
+                    FragmentManager fragmentTransactionSignUp = getSupportFragmentManager();
+                    if(!fragmentTransactionSignUp.isDestroyed()) {
+                        fragmentTransactionSignUp.beginTransaction()
+                                .replace(R.id.signUPFragContainer, fragment).commit();
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
+
             }
-            if (sharedPreferenceManager.checkKey("token")) {
+            else if (sharedPreferenceManager.checkKey("token")) {
                 if(sharedPreferenceManager.getString("token") != null
                         && !sharedPreferenceManager.getString("token").isEmpty()) {
-                    finish();
-                    Intent i = new Intent(SignUpActivity.this, HomeActivity.class);
-                    startActivity(i);
+                    try {
+                        finish();
+                        Intent i = new Intent(SignUpActivity.this, HomeActivity.class);
+                        startActivity(i);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }else {
                     signUpFragment = new SignUpFragment();
                     FragmentTransaction fragmentTransactionSignUp = getSupportFragmentManager().beginTransaction();

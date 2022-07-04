@@ -247,4 +247,12 @@
     <string name="whatsapp_price">"नमस्कार अरेकार्ट, मुझे इस प्रोडक्ट का रेट बताईये - "</string>
     <string name="whatsapp_of_volume">" - मात्रा "</string>
     <string name="whatsapp_complete_kyc">"ऑर्डर करने के लिए KYC पूरा करें!"</string>
+    <string name="tutorials">Tutorials</string>
+    <string name="how_to_order">How to order?</string>
+    <string name="how_to_complete_kyc">How to complete KYC?</string>
+    <string name="resend_otp_in">"Resend OTP in : "</string>
+    <string name="if_you_enjoy_using_arraykart_please_take_a_moment_to_rate_it_thanks_for_your_support">If you enjoy using Arraykart, please take a moment to rate it. Thanks for your support!</string>
+    <string name="remind_me_later">⌛ Remind me later</string>
+    <string name="no_thank">😒 No, thanks</string>
+    <string name="rate_arraykart">⭐ Rate Arraykart</string>
 </resources>

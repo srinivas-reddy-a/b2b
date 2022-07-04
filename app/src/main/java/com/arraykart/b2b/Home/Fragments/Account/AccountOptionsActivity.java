@@ -48,13 +48,14 @@ public class AccountOptionsActivity extends AppCompatActivity {
         //back
         back = findViewById(R.id.back);
         back.setOnClickListener(v -> {
-            int count = getSupportFragmentManager().getBackStackEntryCount();
-            if (count == 0) {
-                finish();
-            }else {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.popBackStack();
-            }
+//            int count = getSupportFragmentManager().getBackStackEntryCount();
+//            if (count == 0) {
+//                finish();
+//            }else {
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                fragmentManager.popBackStack();
+//            }
+            finish();
         });
     }
 
@@ -72,6 +73,9 @@ public class AccountOptionsActivity extends AppCompatActivity {
     private void switchFragment() {
         fragmentName = getIntent().getStringExtra("fragmentName").toLowerCase();
         switch(fragmentName){
+            case "tutorial":
+                fragment = new TutorialsFragment();
+                break;
             case "profile":
                 fragment = new MyProfileFragment();
                 break;

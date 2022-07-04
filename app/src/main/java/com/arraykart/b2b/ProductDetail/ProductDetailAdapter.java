@@ -6,9 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arraykart.b2b.Retrofit.ModelClass.Product;
@@ -57,6 +59,31 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<ProductDetailAdap
         public ProductDetailViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.rv_img);
+            imageView.setOnClickListener(v -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                LayoutInflater layoutInflater = activity.getLayoutInflater();
+                View view = layoutInflater.inflate(R.layout.custom_full_screen_image_product_detail, null);
+                builder.setView(view);
+                builder.setCancelable(true);
+                AlertDialog alertDialog = builder.create();
+
+                //        to make alert dialog full screen
+                ImageView close = view.findViewById(R.id.closeFullImg);
+                close.setOnClickListener(v1 -> alertDialog.dismiss());
+                ImageView fullimg = view.findViewById(R.id.fullimg);
+                Glide.with(itemView)
+                        .load(imageView.getDrawable())
+                        .placeholder(R.drawable.placeholder)
+                        .error(R.drawable.imgnotfound)
+                        .into(fullimg);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(alertDialog.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+//        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                alertDialog.show();
+                alertDialog.getWindow().setAttributes(lp);
+            });
         }
     }
 }

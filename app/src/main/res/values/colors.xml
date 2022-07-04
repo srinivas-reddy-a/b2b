@@ -41,5 +41,5 @@
     <color name="button_background">#00D66C</color>
     <color name="button_text">#FFFFFF</color>
 
-    <color name="transparent">#CC000000</color>
+    <color name="transparent">#AA000000</color>
 </resources>

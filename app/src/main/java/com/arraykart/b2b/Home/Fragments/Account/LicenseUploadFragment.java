@@ -792,7 +792,7 @@ public class LicenseUploadFragment extends Fragment {
                         try {
 //                            Bitmap bitmap = BitmapFactory.decodeFile(path);
                             if (pestUpClick) {
-                                Log.e("pest", "allo");
+//                                Log.e("pest", "allo");
                                 fileUriPest = data.getData();
                                 pathPest = getStringPdf(context, fileUriPest);
 //                                uploadPrevPest.setImageBitmap(bitmap);

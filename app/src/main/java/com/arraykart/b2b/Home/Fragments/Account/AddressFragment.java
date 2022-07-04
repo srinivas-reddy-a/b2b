@@ -400,6 +400,8 @@ public class AddressFragment extends Fragment {
                                 return;
                             }
                             if (isAdded()) {
+                                sharedPreferenceManager =  new SharedPreferenceManager(requireActivity());
+                                sharedPreferenceManager.setString("kycstatus", "IR");
                                 Toast.makeText(requireActivity(), "Added Address!", Toast.LENGTH_SHORT).show();
                                 requireActivity().finish();
                             }
@@ -727,7 +729,9 @@ public class AddressFragment extends Fragment {
                             return;
                         }
                         if (isAdded()) {
-                            Toast.makeText(requireActivity(), "Added Address!", Toast.LENGTH_SHORT).show();
+                            sharedPreferenceManager =  new SharedPreferenceManager(requireActivity());
+                            sharedPreferenceManager.setString("kycstatus", "IR");
+                            Toast.makeText(requireActivity(), "KYC Completed!", Toast.LENGTH_SHORT).show();
                             requireActivity().finish();
                         }
                     }

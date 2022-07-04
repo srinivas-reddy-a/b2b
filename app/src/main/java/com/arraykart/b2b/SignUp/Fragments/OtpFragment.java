@@ -9,8 +9,12 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -18,8 +22,12 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +43,7 @@ import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
 import com.arraykart.b2b.SignUp.SmsBroadcastReceiver;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -74,17 +83,29 @@ public class OtpFragment extends Fragment {
 
     private LoadingDialog loadingDialog;
 
+    private ConstraintLayout otpCL;
+    private LinearLayout otpTimerLL;
+    private TextView otpTimer;
+
+    //welcome screen
+    private int i=0;
+    private int j=0;
+    private int loadTime;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_otp, container, false);
+
+        otpCL = view.findViewById(R.id.otpCL);
+        otpTimerLL = view.findViewById(R.id.otpTimerLL);
+        otpTimer = view.findViewById(R.id.otpTimerTV);
         if(isAdded()) {
             sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
         }
         //to get data from parent Fragment
-        Bundle bundle = this.getArguments();
         assert getArguments() != null;
         number = getArguments().getString("phoneNumber");
         //setphoneNumber
@@ -98,12 +119,17 @@ public class OtpFragment extends Fragment {
         otp5 = view.findViewById(R.id.otp5ET);
         otp6 = view.findViewById(R.id.otp6ET);
         submitOTP = view.findViewById(R.id.submitOTP);
+        resendOTPTV = view.findViewById(R.id.resendOTP);
+
 
         //detect otp
         startSmartUserConsent();
 
         //send otp
         sendOTP(view);
+
+        //set otp
+        setOTP();
 
 
         resendOTP(view);
@@ -214,6 +240,21 @@ public class OtpFragment extends Fragment {
                             return;
                         }
                     }
+                    otpTimerLL.setVisibility(View.VISIBLE);
+                    CountDownTimer countDownTimer = new CountDownTimer(20000,100) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            otpTimer.setText("00:" + millisUntilFinished/1000 + " seconds");
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            otpTimerLL.setVisibility(View.GONE);
+                            resendOTPTV.setVisibility(View.VISIBLE);
+                        }
+                    };
+                    countDownTimer.start();
+
                 }
 
                 @Override
@@ -229,8 +270,8 @@ public class OtpFragment extends Fragment {
     }
 
     private void resendOTP(View view) {
-        resendOTPTV = view.findViewById(R.id.resendOTP);
         resendOTPTV.setOnClickListener(v -> {
+
             PhoneNumberSignUP p = new PhoneNumberSignUP(number);
             Call<SignUp> call = RetrofitClient.getClient().getApi().getOTP(p);
             if(isAdded()){
@@ -256,7 +297,22 @@ public class OtpFragment extends Fragment {
                         if(isAdded()) {
                             Toast.makeText(requireActivity(), "OTP Resent", Toast.LENGTH_SHORT).show();
                         }
-                        startSmartUserConsent();
+                        resendOTPTV.setVisibility(View.GONE);
+                        otpTimerLL.setVisibility(View.VISIBLE);
+                        CountDownTimer countDownTimer = new CountDownTimer(20000,100) {
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+                                otpTimer.setText("00:" + millisUntilFinished/1000 + " seconds");
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                otpTimerLL.setVisibility(View.GONE);
+                                resendOTPTV.setVisibility(View.VISIBLE);
+                                startSmartUserConsent();
+                            }
+                        };
+                        countDownTimer.start();
                     }
 
                     @Override
@@ -537,14 +593,92 @@ public class OtpFragment extends Fragment {
                         if (response.body().getToken() != null) {
                             sharedPreferenceManager.setString("token", response.body().getToken());
                             sharedPreferenceManager.setBoolean("existingUser", true);
-                            if (!sharedPreferenceManager.checkKey("firstInstall")) {
-                                sharedPreferenceManager.setBoolean("firstInstall", false);
+//                            Log.e("check", ""+sharedPreferenceManager.getBoolean("firstInstall"));
+                            if(isAdded() && sharedPreferenceManager.getBoolean("firstInstall")){
+                                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+                                builder.setCancelable(false);
+                                View view1 = getLayoutInflater().inflate(R.layout.welcome_screens, null);
+                                ImageView wsIV2 = view1.findViewById(R.id.wsIV2);
+                                ImageView wsIV1 = view1.findViewById(R.id.wsIV1);
+                                ImageView close = view1.findViewById(R.id.closeBsd);
+                                ProgressBar progressBar1;
+                                CountDownTimer countDownTimer1;
+                                progressBar1=(ProgressBar)view1.findViewById(R.id.progressBar3);
+                                progressBar1.setProgress(i);
+                                countDownTimer1=new CountDownTimer(4000,10) {
+                                    @Override
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        progressBar1.setProgress((int)i*100/(4000/10));
+                                    }
+                                    @Override
+                                    public void onFinish() {
+                                        //Do what you want
+                                        i++;
+                                        progressBar1.setProgress(100);
+                                    }
+                                };
+                                countDownTimer1.start();
+
+                                Handler handler1 = new Handler();
+                                handler1.postDelayed(() -> {
+                                    wsIV1.setVisibility(View.GONE);
+                                    wsIV2.setVisibility(View.VISIBLE);
+                                    ProgressBar progressBar2;
+                                    CountDownTimer countDownTimer2;
+                                    progressBar2=(ProgressBar)view1.findViewById(R.id.progressBar);
+                                    progressBar2.setProgress(j);
+                                    countDownTimer2=new CountDownTimer(4000,10) {
+                                        @Override
+                                        public void onTick(long millisUntilFinished) {
+                                            j++;
+                                            progressBar2.setProgress((int)j*100/(4000/10));
+                                        }
+                                        @Override
+                                        public void onFinish() {
+                                            //Do what you want
+                                            j++;
+                                            progressBar2.setProgress(100);
+                                        }
+                                    };
+                                    countDownTimer2.start();
+                                }, 4000);
+
+                                builder.setView(view1);
+                                AlertDialog alertDialog = builder.create();
+                                close.setOnClickListener(v -> alertDialog.dismiss());
+                    //                              to make alert dialog full screen
+                                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                                lp.copyFrom(alertDialog.getWindow().getAttributes());
+                                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+                    //                              alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                alertDialog.show();
+                                alertDialog.getWindow().setAttributes(lp);
+                                Handler handler = new Handler();
+                                handler.postDelayed(() -> {
+                                    if(isAdded()) {
+                                        otpCL.setVisibility(View.GONE);
+                                        alertDialog.dismiss();
+                                    }
+                                }, 9000);
                             }
-                            requireActivity().finish();
-                            Intent i = new Intent(requireActivity(), HomeActivity.class);
-                            startActivity(i);
+                            if(sharedPreferenceManager.getBoolean("firstInstall")){
+                                loadTime = 9000;
+                            }else {
+                                loadTime = 0;
+                            }
+                            Handler handler = new Handler();
+                            handler.postDelayed(() -> {
+                                sharedPreferenceManager.setBoolean("firstInstall", false);
+                                requireActivity().finish();
+                                Intent i = new Intent(requireActivity(), HomeActivity.class);
+                                startActivity(i);
+                            }, loadTime);
+
                         }
                     }
+
                 }
 
                 @Override

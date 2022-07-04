@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/section_padding">
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/if_you_enjoy_using_arraykart_please_take_a_moment_to_rate_it_thanks_for_your_support"
+        android:textColor="@color/text"
+        android:textSize="@dimen/text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/rateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/view_top_margin"
+        android:background="@drawable/round_edges_bg_green"
+        android:paddingStart="@dimen/view_padding_left"
+        android:paddingEnd="@dimen/view_padding_right"
+        android:text="@string/rate_arraykart"
+        android:textColor="@color/button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/remindButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/remind_me_later"
+        android:textColor="@color/heading"
+        android:textSize="@dimen/text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rateButton" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/noButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/no_thank"
+        android:textColor="@color/heading"
+        android:textSize="@dimen/text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/remindButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

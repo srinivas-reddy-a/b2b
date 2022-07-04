@@ -25,10 +25,12 @@
         android:id="@+id/neumorphCardView4"
         android:layout_width="140dp"
         android:layout_height="210dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/round_edges_gray_border_no_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/view_left_margin"
+                android:layout_marginTop="@dimen/view_top_margin"
                 android:layout_marginEnd="@dimen/view_right_margin"
                 android:layout_marginBottom="@dimen/view_bottom_margin"
                 android:background="@drawable/spinner_border"
@@ -77,7 +80,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/knowPrice"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <TextView
                 android:id="@+id/knowPrice"

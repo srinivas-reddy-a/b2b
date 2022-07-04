@@ -3,18 +3,26 @@ package com.arraykart.b2b.SignUp.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.arraykart.b2b.Home.HomeActivity;
 import com.arraykart.b2b.R;
 import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
 import com.arraykart.b2b.SignUp.SignUpActivity;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 
 public class LanguageFragment extends Fragment {
@@ -23,6 +31,9 @@ public class LanguageFragment extends Fragment {
     private static final String LANGUAGE = "language";
     private Fragment fragment;
     private SharedPreferenceManager sharedPreferenceManager;
+    private int i=0;
+    private int j=0;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,6 +43,7 @@ public class LanguageFragment extends Fragment {
         if(isAdded()){
             sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
         }
+
 
 //        set language
         englishLL = view.findViewById(R.id.englishLL);
@@ -45,7 +57,7 @@ public class LanguageFragment extends Fragment {
         if(isAdded()){
             englishLL.setOnClickListener(v -> {
                 sharedPreferenceManager.setString(LANGUAGE, "en");
-                sharedPreferenceManager.setBoolean("firstinstall", false);
+//                sharedPreferenceManager.setBoolean("firstinstall", false);
                 if(sharedPreferenceManager.checkKey("token")
                         && sharedPreferenceManager.getString("token") != null
                         && !sharedPreferenceManager.getString("token").isEmpty()
@@ -61,7 +73,7 @@ public class LanguageFragment extends Fragment {
             });
             hindiLL.setOnClickListener(v -> {
                 sharedPreferenceManager.setString(LANGUAGE, "hi");
-                sharedPreferenceManager.setBoolean("firstinstall", false);
+//                sharedPreferenceManager.setBoolean("firstinstall", false);
                 if(sharedPreferenceManager.checkKey("token")
                         && sharedPreferenceManager.getString("token") != null
                         && !sharedPreferenceManager.getString("token").isEmpty()

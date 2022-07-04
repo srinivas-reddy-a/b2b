@@ -150,7 +150,7 @@ public class ProductsRecycleradapter extends RecyclerView.Adapter<ProductsRecycl
 
             whatsapp.setOnClickListener(v -> {
                 if(sharedPreferenceManager.checkKey("kycstatus")){
-                    if(sharedPreferenceManager.getString("kycstatus").trim().toUpperCase().contains("VF")){
+                    if(!sharedPreferenceManager.getString("kycstatus").trim().toUpperCase().contains("NV")){
                         try {
                             String vol = spinnerVol.getSelectedItem().toString();
                             String text = activity.getResources().getString(R.string.whatsapp_price)
@@ -175,7 +175,7 @@ public class ProductsRecycleradapter extends RecyclerView.Adapter<ProductsRecycl
                             dialog.cancel();
                             Intent i = new Intent(activity, AccountOptionsActivity.class);
                             i.putExtra("pageName", "KYC Document");
-                            i.putExtra("fragmentName", "kyc");
+                            i.putExtra("fragmentName", "address");
                             activity.startActivity(i);
                         });
                         AlertDialog alertDialog = builder.create();
@@ -189,7 +189,7 @@ public class ProductsRecycleradapter extends RecyclerView.Adapter<ProductsRecycl
                         dialog.cancel();
                         Intent i = new Intent(activity, AccountOptionsActivity.class);
                         i.putExtra("pageName", "KYC Document");
-                        i.putExtra("fragmentName", "kyc");
+                        i.putExtra("fragmentName", "address");
                         activity.startActivity(i);
                     });
                     AlertDialog alertDialog = builder.create();
@@ -199,7 +199,7 @@ public class ProductsRecycleradapter extends RecyclerView.Adapter<ProductsRecycl
             });
             call.setOnClickListener(v -> {
                 if(sharedPreferenceManager.checkKey("kycstatus")){
-                    if(sharedPreferenceManager.getString("kycstatus").trim().toUpperCase().contains("VF")){
+                    if(!sharedPreferenceManager.getString("kycstatus").trim().toUpperCase().contains("NV")){
                         try{
                             String toNumber = "9311900913";
                             Intent intent = new Intent(Intent.ACTION_DIAL,
@@ -216,7 +216,7 @@ public class ProductsRecycleradapter extends RecyclerView.Adapter<ProductsRecycl
                             dialog.cancel();
                             Intent i = new Intent(activity, AccountOptionsActivity.class);
                             i.putExtra("pageName", "KYC Document");
-                            i.putExtra("fragmentName", "kyc");
+                            i.putExtra("fragmentName", "address");
                             activity.startActivity(i);
                         });
                         AlertDialog alertDialog = builder.create();
@@ -230,7 +230,7 @@ public class ProductsRecycleradapter extends RecyclerView.Adapter<ProductsRecycl
                         dialog.cancel();
                         Intent i = new Intent(activity, AccountOptionsActivity.class);
                         i.putExtra("pageName", "KYC Document");
-                        i.putExtra("fragmentName", "kyc");
+                        i.putExtra("fragmentName", "address");
                         activity.startActivity(i);
                     });
                     AlertDialog alertDialog = builder.create();

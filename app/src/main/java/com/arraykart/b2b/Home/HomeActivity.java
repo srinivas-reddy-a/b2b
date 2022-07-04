@@ -40,6 +40,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.arraykart.b2b.Authenticate.AuthorizeUser;
@@ -49,6 +50,7 @@ import com.arraykart.b2b.Authenticate.LocaleManager;
 import com.arraykart.b2b.Home.Fragments.CartFragment;
 import com.arraykart.b2b.Home.Fragments.ScrollFragment;
 import com.arraykart.b2b.Home.Fragments.WalletFragment;
+import com.arraykart.b2b.Inapp.AppRater;
 import com.arraykart.b2b.Search.SearchActivity;
 import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
 import com.bumptech.glide.Glide;
@@ -65,6 +67,16 @@ import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.InstallState;
+import com.google.android.play.core.install.InstallStateUpdatedListener;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.InstallStatus;
+import com.google.android.play.core.install.model.UpdateAvailability;
+import com.google.android.play.core.tasks.OnSuccessListener;
 
 import java.io.IOException;
 import java.util.List;
@@ -123,6 +135,10 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
     private LinearLayout iconLL;
     private LottieAnimationView leavesAnimation;
 
+    //in app update
+    private AppUpdateManager mAppUpdateManager;
+    private static final int RC_APP_UPDATE = 13;
+
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -148,6 +164,11 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
 
         //check language from shared pref
         checkLang();
+
+        //check in app update
+        checkUpdate();
+
+        AppRater.app_launched(this);
 
 
 
@@ -432,6 +453,67 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         //all categories from api
     }
 
+    InstallStateUpdatedListener installStateUpdatedListener = state -> {
+        if (state.installStatus() == InstallStatus.DOWNLOADED){
+            //CHECK THIS if AppUpdateType.FLEXIBLE, otherwise you can skip
+            popupSnackbarForCompleteUpdate();
+        }
+//        else if (state.installStatus() == InstallStatus.INSTALLED){
+//            if (mAppUpdateManager != null){
+//                mAppUpdateManager.unregisterListener(installStateUpdatedListener);
+//            }
+//
+//        }
+        else {
+            Log.i("update", "InstallStateUpdatedListener: state: " + state.installStatus());
+        }
+    };
+
+    private void checkUpdate() {
+        // Creates instance of the manager.
+
+        mAppUpdateManager = AppUpdateManagerFactory.create(this);
+
+//        com.google.android.play.core.tasks.Task<AppUpdateInfo> task = mAppUpdateManager.getAppUpdateInfo();
+//        task.addOnSuccessListener(appUpdateInfo -> {
+//            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+//                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE /*AppUpdateType.IMMEDIATE*/)){
+//
+//                try {
+//                    mAppUpdateManager.startUpdateFlowForResult(
+//                            appUpdateInfo, AppUpdateType.FLEXIBLE /*AppUpdateType.IMMEDIATE*/, HomeActivity.this, RC_APP_UPDATE);
+//
+//                } catch (IntentSender.SendIntentException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        });
+
+        mAppUpdateManager.registerListener(installStateUpdatedListener);
+
+        mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(appUpdateInfo -> {
+
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE /*AppUpdateType.IMMEDIATE*/)){
+
+                try {
+                    mAppUpdateManager.startUpdateFlowForResult(
+                            appUpdateInfo, AppUpdateType.FLEXIBLE /*AppUpdateType.IMMEDIATE*/, HomeActivity.this, RC_APP_UPDATE);
+
+                } catch (IntentSender.SendIntentException e) {
+                    e.printStackTrace();
+                }
+
+            } else if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED){
+                //CHECK THIS if AppUpdateType.FLEXIBLE, otherwise you can skip
+                popupSnackbarForCompleteUpdate();
+            } else {
+//                Log.e("update", "checkForAppUpdateAvailability: something else");
+            }
+        });
+    }
+
     private void checkLang() {
         localeManager = new LocaleManager(HomeActivity.this);
         if(sharedPreferenceManager.checkKey(LANGUAGE)) {
@@ -446,33 +528,64 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
     }
 
 
+
     private void setTranslate() {
-       translate.setOnCheckedChangeListener((buttonView, isChecked) -> {
-           editText = findViewById(R.id.search);
-           localeManager = new LocaleManager(HomeActivity.this);
-           if(isChecked){
-               sharedPreferenceManager.setString(LANGUAGE, "hi");
-               isRecreatedEn = true;
-           }else {
-               sharedPreferenceManager.setString(LANGUAGE, "en");
-               isRecreated = false;
-           }
-           localeManager.updateResource(sharedPreferenceManager.getString(LANGUAGE));
-           if(!isRecreated && isChecked){
-               isRecreated=true;
+//        translate.setOnClickListener(v -> {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setMessage("Restart app?");
+//            builder.setCancelable(true);
+//            builder.setPositiveButton("No", (dialog, which) -> {
+//                dialog.cancel();
+//            });
+////            builder.setNegativeButton("Yes", (dialog, which) -> {
+////
+////            })
+//            AlertDialog alertDialog = builder.create();
+//            alertDialog.show();
+//        });
+        translate.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                editText = findViewById(R.id.search);
+                localeManager = new LocaleManager(HomeActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("App will be restarted!");
+                builder.setCancelable(false);
+//                builder.setPositiveButton("No", (dialog, which) -> {
+//                    if(sharedPreferenceManager.getString(LANGUAGE).trim().toLowerCase().contains("hi")){
+//                        translate.setChecked(true);
+//                    }else {
+//                        translate.setChecked(false);
+//                    }
+//                    dialog.cancel();
+//                });
+                builder.setNegativeButton("Ok", (dialog, which) -> {
+                    dialog.dismiss();
+                    if (isChecked) {
+                        sharedPreferenceManager.setString(LANGUAGE, "hi");
+                        isRecreatedEn = true;
+                    } else {
+                        sharedPreferenceManager.setString(LANGUAGE, "en");
+                        isRecreated = false;
+                    }
+                    localeManager.updateResource(sharedPreferenceManager.getString(LANGUAGE));
+                    if (!isRecreated && isChecked) {
+                        isRecreated = true;
 //                   recreate();
-               startActivity(getIntent());
-               finish();
-               overridePendingTransition(0, 0);
-           }
-           if(isRecreatedEn && !isChecked){
-               isRecreatedEn=false;
+                        startActivity(getIntent());
+                        finish();
+                        overridePendingTransition(0, 0);
+                    }
+                    if (isRecreatedEn && !isChecked) {
+                        isRecreatedEn = false;
 //                   recreate();
-               startActivity(getIntent());
-               finish();
-               overridePendingTransition(0, 0);
-           }
-       });
+                        startActivity(getIntent());
+                        finish();
+                        overridePendingTransition(0, 0);
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+            });
     }
 
     private void checkKyc() {
@@ -663,7 +776,32 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         }
 
     }
+    private void popupSnackbarForCompleteUpdate() {
 
+        Snackbar snackbar =
+                Snackbar.make(
+                        findViewById(android.R.id.content),
+                        "New app is ready!",
+                        Snackbar.LENGTH_INDEFINITE);
+
+        snackbar.setAction("Install", view -> {
+            if (mAppUpdateManager != null){
+                mAppUpdateManager.completeUpdate();
+            }
+        });
+
+
+        snackbar.setActionTextColor(getResources().getColor(R.color.green));
+        snackbar.show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mAppUpdateManager != null) {
+            mAppUpdateManager.unregisterListener(installStateUpdatedListener);
+        }
+    }
 
     @Override
     protected void onResume() {
@@ -712,6 +850,11 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
             if (resultCode == Activity.RESULT_OK) {
 
                 checkPermission();
+            }
+        }
+        if (requestCode == RC_APP_UPDATE) {
+            if (resultCode != RESULT_OK) {
+                Toast.makeText(this, "app download failed", Toast.LENGTH_SHORT).show();
             }
         }
     }

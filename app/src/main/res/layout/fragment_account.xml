@@ -96,33 +96,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_icon"
-                    android:layout_height="@dimen/account_frag_icon"
-                    android:layout_gravity="center"
-                    android:foregroundTint="@color/green"
-                    android:src="@drawable/ic_outline_address_on_24"
-                    tools:ignore="ImageContrastCheck" />
-
                 <TextView
                     android:id="@+id/textView28"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/view_left_margin"
-                    android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
-                    android:text="@string/my_address"
+                    android:drawablePadding="@dimen/section_padding"
+                    android:text="@string/complete_kyc"
                     android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
+                    android:textSize="@dimen/text"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green"
+                    app:drawableStartCompat="@drawable/ic_outline_kyc_24" />
 
-                <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="@dimen/account_frag_arrow"
-                    android:layout_height="@dimen/account_frag_arrow"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green"
-                    tools:ignore="ImageContrastCheck" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -152,28 +138,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_icon"
-                    android:layout_height="@dimen/account_frag_icon"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_outline_order_24" />
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/view_left_margin"
-                    android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
+                    android:drawablePadding="@dimen/section_margin"
                     android:text="@string/my_orders"
                     android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
+                    android:textSize="@dimen/text"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green"
+                    app:drawableStartCompat="@drawable/ic_outline_order_24" />
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_arrow"
-                    android:layout_height="@dimen/account_frag_arrow"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -190,7 +166,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/view_padding">
+            android:padding="@dimen/view_padding"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/kycLL"
@@ -202,29 +179,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_icon"
-                    android:layout_height="@dimen/account_frag_icon"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_outline_kyc_24" />
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/view_left_margin"
-                    android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
+                    android:drawablePadding="@dimen/section_margin"
                     android:text="@string/kyc_document"
                     android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
+                    android:textSize="@dimen/text"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green"
+                    app:drawableStartCompat="@drawable/ic_outline_kyc_24" />
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_arrow"
-                    android:layout_height="@dimen/account_frag_arrow"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green"
-                    tools:ignore="ImageContrastCheck" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -234,6 +200,7 @@
             android:layout_height="@dimen/sub_section_line"
             android:layout_marginStart="@dimen/account_frag_view_margin"
             android:background="@color/sub_section_line"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -252,30 +219,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_icon"
-                    android:layout_height="@dimen/account_frag_icon"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_return_and_replace_policy_24"
-                    tools:ignore="ImageContrastCheck" />
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/view_left_margin"
-                    android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
+                    android:drawablePadding="@dimen/section_padding"
                     android:text="@string/return_and_replace_policy"
                     android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
+                    android:textSize="@dimen/text"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green"
+                    app:drawableStartCompat="@drawable/ic_baseline_return_and_replace_policy_24" />
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_arrow"
-                    android:layout_height="@dimen/account_frag_arrow"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green"
-                    tools:ignore="ImageContrastCheck" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -304,28 +259,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_icon"
-                    android:layout_height="@dimen/account_frag_icon"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_outline_privacy_and_policy_24" />
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/view_left_margin"
-                    android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
+                    android:drawablePadding="@dimen/section_padding"
                     android:text="@string/privacy_policy"
                     android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
+                    android:textSize="@dimen/text"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green"
+                    app:drawableStartCompat="@drawable/ic_outline_privacy_and_policy_24" />
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_arrow"
-                    android:layout_height="@dimen/account_frag_arrow"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -354,30 +299,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_icon"
-                    android:layout_height="@dimen/account_frag_icon"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_outline_terms_and_conditions_mark_24"
-                    tools:ignore="ImageContrastCheck" />
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/view_left_margin"
-                    android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
+                    android:drawablePadding="@dimen/section_padding"
                     android:text="@string/terms_and_conditions"
                     android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
+                    android:textSize="@dimen/text"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green"
+                    app:drawableStartCompat="@drawable/ic_outline_terms_and_conditions_mark_24" />
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_arrow"
-                    android:layout_height="@dimen/account_frag_arrow"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green"
-                    tools:ignore="ImageContrastCheck" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -407,29 +340,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_icon"
-                    android:layout_height="@dimen/account_frag_icon"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_outline_about_24"
-                    tools:ignore="ImageContrastCheck" />
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/view_left_margin"
-                    android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
+                    android:drawablePadding="@dimen/section_padding"
                     android:text="@string/about_us"
                     android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
+                    android:textSize="@dimen/text"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green"
+                    app:drawableStartCompat="@drawable/ic_outline_about_24" />
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_arrow"
-                    android:layout_height="@dimen/account_frag_arrow"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -458,30 +380,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_icon"
-                    android:layout_height="@dimen/account_frag_icon"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_contact_us_24"
-                    tools:ignore="ImageContrastCheck" />
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/view_left_margin"
-                    android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
+                    android:drawablePadding="@dimen/section_padding"
                     android:text="@string/contact_us"
                     android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
+                    android:textSize="@dimen/text"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green"
+                    app:drawableStartCompat="@drawable/ic_baseline_contact_us_24" />
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_arrow"
-                    android:layout_height="@dimen/account_frag_arrow"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green"
-                    tools:ignore="ImageContrastCheck" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -509,30 +419,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_icon"
-                    android:layout_height="@dimen/account_frag_icon"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_logout_24"
-                    tools:ignore="ImageContrastCheck" />
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/view_left_margin"
-                    android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
+                    android:drawablePadding="@dimen/section_padding"
                     android:text="@string/logout"
                     android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
+                    android:textSize="@dimen/text"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green"
+                    app:drawableStartCompat="@drawable/ic_baseline_logout_24" />
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_arrow"
-                    android:layout_height="@dimen/account_frag_arrow"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green"
-                    tools:ignore="ImageContrastCheck" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -561,33 +459,63 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_icon"
-                    android:layout_height="@dimen/account_frag_icon"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_bug_report_24" />
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/view_left_margin"
-                    android:layout_marginEnd="@dimen/view_right_margin"
                     android:layout_weight="1"
+                    android:drawablePadding="@dimen/section_padding"
                     android:text="@string/report_bug"
                     android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
+                    android:textSize="@dimen/text"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green"
+                    app:drawableStartCompat="@drawable/ic_baseline_bug_report_24" />
 
-                <ImageView
-                    android:layout_width="@dimen/account_frag_arrow"
-                    android:layout_height="@dimen/account_frag_arrow"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24_green" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
             android:id="@+id/bugView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginStart="@dimen/account_frag_view_margin"
+            android:background="@color/sub_section_line"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/view_padding">
+
+            <LinearLayout
+                android:id="@+id/tutorialLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/section_padding"
+                    android:text="@string/tutorials"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/text"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green"
+                    app:drawableStartCompat="@drawable/ic_outline_video_library_24" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/tutorialView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/sub_section_line"
             android:layout_marginStart="@dimen/account_frag_view_margin"

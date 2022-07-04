@@ -15,24 +15,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.arraykart.b2b.Home.Fragments.Account.AccountOptionsActivity;
 import com.arraykart.b2b.Loading.LoadingDialog;
 import com.arraykart.b2b.RecyclerViewDecoration.LinePagerIndicatorDecoration;
 import com.arraykart.b2b.Retrofit.ModelClass.AllReviews;
 import com.arraykart.b2b.Retrofit.ModelClass.Review;
 import com.arraykart.b2b.Retrofit.RetrofitClient;
 import com.arraykart.b2b.R;
+import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
 import com.arraykart.b2b.SignUp.SignUpReviewRecyclerAdapter;
 import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.auth.api.credentials.Credentials;
 import com.google.android.gms.auth.api.credentials.CredentialsApi;
 import com.google.android.gms.auth.api.credentials.HintRequest;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,6 +69,10 @@ public class SignUpFragment extends Fragment {
 
     private LoadingDialog loadingDialog;
 
+    //terms and conditions
+    private TextView tandc;
+
+
 
 
     @Override
@@ -79,12 +88,27 @@ public class SignUpFragment extends Fragment {
         }
 
         setReview(view);
+
+        //terms and conditions
+        tandc = view.findViewById(R.id.tandc);
+        setTandC();
+
         //signup
         handleSignUp(view);
         //showPhoneNumberHint
         getPhoneNumberHint();
 
         return view;
+    }
+
+    private void setTandC() {
+        tandc.setOnClickListener(v -> {
+            if(isAdded()) {
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireActivity());
+                bottomSheetDialog.setContentView(R.layout.fragment_terms_conditions);
+                bottomSheetDialog.show();
+            }
+        });
     }
 
     private void getPhoneNumberHint() {

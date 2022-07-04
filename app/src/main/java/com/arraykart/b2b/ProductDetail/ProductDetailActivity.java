@@ -333,7 +333,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         phone = findViewById(R.id.phone);
         whatsapp.setOnClickListener(v -> {
             if(sharedPreferenceManager.checkKey("kycstatus")){
-                if(sharedPreferenceManager.getString("kycstatus").trim().toUpperCase().contains("VF")){
+                if(!sharedPreferenceManager.getString("kycstatus").trim().toUpperCase().contains("NV")){
                     try {
                         String vol;
                         String[] seeds = products.get(0).getNumberOfSeedsPacket().split(",");
@@ -370,7 +370,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                         dialog.cancel();
                         Intent i = new Intent(ProductDetailActivity.this, AccountOptionsActivity.class);
                         i.putExtra("pageName", "KYC Document");
-                        i.putExtra("fragmentName", "kyc");
+                        i.putExtra("fragmentName", "address");
                         startActivity(i);
                     });
                     AlertDialog alertDialog = builder.create();
@@ -384,7 +384,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     dialog.cancel();
                     Intent i = new Intent(this, AccountOptionsActivity.class);
                     i.putExtra("pageName", "KYC Document");
-                    i.putExtra("fragmentName", "kyc");
+                    i.putExtra("fragmentName", "address");
                     startActivity(i);
                 });
                 AlertDialog alertDialog = builder.create();
@@ -394,7 +394,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
         phone.setOnClickListener(v -> {
             if(sharedPreferenceManager.checkKey("kycstatus")){
-                if(sharedPreferenceManager.getString("kycstatus").trim().toUpperCase().contains("VF")){
+                if(!sharedPreferenceManager.getString("kycstatus").trim().toUpperCase().contains("NV")){
                     try{
                         String toNumber = "9311900913";
                         Intent intent = new Intent(Intent.ACTION_DIAL,
@@ -411,7 +411,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                         dialog.cancel();
                         Intent i = new Intent(this, AccountOptionsActivity.class);
                         i.putExtra("pageName", "KYC Document");
-                        i.putExtra("fragmentName", "kyc");
+                        i.putExtra("fragmentName", "address");
                         startActivity(i);
                     });
                     AlertDialog alertDialog = builder.create();
@@ -425,7 +425,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     dialog.cancel();
                     Intent i = new Intent(this, AccountOptionsActivity.class);
                     i.putExtra("pageName", "KYC Document");
-                    i.putExtra("fragmentName", "kyc");
+                    i.putExtra("fragmentName", "address");
                     startActivity(i);
                 });
                 AlertDialog alertDialog = builder.create();

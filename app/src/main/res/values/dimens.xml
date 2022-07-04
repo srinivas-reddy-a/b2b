@@ -20,6 +20,6 @@
     <dimen name="scroll_view_bottom_margin">100dp</dimen>
     <dimen name="account_frag_arrow">15dp</dimen>
     <dimen name="account_frag_icon">24dp</dimen>
-    <dimen name="account_frag_view_margin">54dp</dimen>
+    <dimen name="account_frag_view_margin">64dp</dimen>
     <dimen name="dynamic_tab_rv_padding_bottom">140dp</dimen>
 </resources>
