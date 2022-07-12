@@ -247,4 +247,10 @@
     <string name="remind_me_later">⌛ Remind me later</string>
     <string name="no_thank">😒 No, thanks</string>
     <string name="rate_arraykart">⭐ Rate Arraykart</string>
+    <string name="search_product_search_category_search_crop_search_technical_name_search_brand">\'Search Product\' \'Search Category\' \'Search Crop\' \'Search Technical Name\' \'Search Brand\'</string>
+    <string name="search_results">Search Results</string>
+    <string name="no_products_found">No Products Found!</string>
+    <string name="_100_authentic">100% Authentic</string>
+    <string name="free_and_fast_delivery">Free and Fast Delivery</string>
+    <string name="agronomist_support">Agronomist Support</string>
 </resources>

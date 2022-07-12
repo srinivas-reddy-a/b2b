@@ -9,6 +9,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.arraykart.b2b.Authenticate.AuthorizeUser;
 import com.arraykart.b2b.Authenticate.LocaleManager;
 import com.arraykart.b2b.Loading.LoadingDialog;
@@ -46,6 +48,8 @@ public class SearchActivity extends AppCompatActivity {
     private LoadingDialog loadingDialog;
     private static final String LANGUAGE = "language";
     private SharedPreferenceManager sharedPreferenceManager;
+    private TextView noTV;
+    private LottieAnimationView searchLottie;
 
 
     @Override
@@ -56,9 +60,11 @@ public class SearchActivity extends AppCompatActivity {
 
         checkToken();
 
-        checkLang();
+        //checkLang();
 
         editText = findViewById(R.id.search);
+        noTV = findViewById(R.id.noTV);
+        searchLottie = findViewById(R.id.searchLottie);
         //to open keyboard automatically as activity loads
         InputMethodManager imm = (InputMethodManager)getSystemService(
                 Context.INPUT_METHOD_SERVICE);
@@ -76,7 +82,7 @@ public class SearchActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(R.drawable.ic_baseline_keyboard_backspace_24)
 //                .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(back);
         back.setOnClickListener(v -> finish());
@@ -133,6 +139,15 @@ public class SearchActivity extends AppCompatActivity {
                             searchedFor.setVisibility(View.VISIBLE);
                             searchRV.setVisibility(View.VISIBLE);
                             products = response.body().getProducts();
+                            if(products.isEmpty()){
+                                noTV.setVisibility(View.VISIBLE);
+                                searchLottie.setVisibility(View.VISIBLE);
+                                searchedFor.setVisibility(View.GONE);
+                            }else {
+                                noTV.setVisibility(View.GONE);
+                                searchLottie.setVisibility(View.GONE);
+                                searchedFor.setVisibility(View.VISIBLE);
+                            }
                             searchRV.setHasFixedSize(true);
                             searchPageRecyclerAdapter = new SearchPageRecyclerAdapter(
                                     SearchActivity.this, products);

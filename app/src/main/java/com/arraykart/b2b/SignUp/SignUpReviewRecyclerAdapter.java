@@ -42,7 +42,7 @@ public class SignUpReviewRecyclerAdapter extends RecyclerView.Adapter<SignUpRevi
         Glide.with(holder.itemView)
                 .load("https://arraykartandroid.s3.ap-south-1.amazonaws.com/"+suReviewImg.get(position))
 //                .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.suReviewImage);
         holder.suReview.setText(" \"" + suReview.get(position) + "\" ");

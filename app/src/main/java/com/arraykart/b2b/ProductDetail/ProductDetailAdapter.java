@@ -44,7 +44,7 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<ProductDetailAdap
         Glide.with(holder.itemView)
                 .load(new StringBuilder().append("https://arraykartandroid.s3.ap-south-1.amazonaws.com/").append(images[position]).toString())
 //                .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.imageView);
     }
@@ -73,7 +73,7 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<ProductDetailAdap
                 ImageView fullimg = view.findViewById(R.id.fullimg);
                 Glide.with(itemView)
                         .load(imageView.getDrawable())
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(fullimg);
                 WindowManager.LayoutParams lp = new WindowManager.LayoutParams();

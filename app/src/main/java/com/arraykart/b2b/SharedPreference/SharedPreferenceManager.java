@@ -15,6 +15,11 @@ public class SharedPreferenceManager {
         this.editor = sharedPreferences.edit();
     }
 
+    public SharedPreferenceManager(Context context) {
+        this.sharedPreferences = context.getSharedPreferences(sharedPreferenceName, Context.MODE_PRIVATE);
+        this.editor = sharedPreferences.edit();
+    }
+
     //to check if a key is present or not
     public Boolean checkKey(String key){
         return sharedPreferences.contains(key);

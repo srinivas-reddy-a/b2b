@@ -247,12 +247,18 @@
     <string name="whatsapp_price">"नमस्कार अरेकार्ट, मुझे इस प्रोडक्ट का रेट बताईये - "</string>
     <string name="whatsapp_of_volume">" - मात्रा "</string>
     <string name="whatsapp_complete_kyc">"ऑर्डर करने के लिए KYC पूरा करें!"</string>
-    <string name="tutorials">Tutorials</string>
-    <string name="how_to_order">How to order?</string>
-    <string name="how_to_complete_kyc">How to complete KYC?</string>
-    <string name="resend_otp_in">"Resend OTP in : "</string>
+    <string name="tutorials">व्याख्या</string>
+    <string name="how_to_order">आर्डर कैसे करें ?</string>
+    <string name="how_to_complete_kyc">KYC पूरी कैसे करें ?</string>
+    <string name="resend_otp_in">"OTP पुनः भेजे : "</string>
     <string name="if_you_enjoy_using_arraykart_please_take_a_moment_to_rate_it_thanks_for_your_support">If you enjoy using Arraykart, please take a moment to rate it. Thanks for your support!</string>
     <string name="remind_me_later">⌛ Remind me later</string>
     <string name="no_thank">😒 No, thanks</string>
     <string name="rate_arraykart">⭐ Rate Arraykart</string>
+    <string name="search_product_search_category_search_crop_search_technical_name_search_brand">\'प्रोडक्ट खोजे \' \'केटेगरी द्वारा खोजे \' \'क्रॉप द्वारा खोजे \' \'टेक्निकल नाम द्वारा खोजे  \' \'ब्रांड द्वारा खोजे \'</string>
+    <string name="search_results">प्राप्त रिजल्ट्स</string>
+    <string name="no_products_found">कोई प्रोडक्ट नहीं मिला!</string>
+    <string name="_100_authentic">100% असली</string>
+    <string name="free_and_fast_delivery">फ्री एवं फ़ास्ट डिलीवरी</string>
+    <string name="agronomist_support">एग्रोनॉमिस्ट सहायता</string>
 </resources>

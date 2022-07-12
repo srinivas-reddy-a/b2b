@@ -47,7 +47,7 @@
 //        Glide.with(holder.itemView)
 //                .load(cartImgs.get(holder.getAdapterPosition()))
 //                .centerCrop()
-//                .placeholder(R.drawable.placeholder)
+//                //.placeholder(R.drawable.placeholder)
 //                .error(R.drawable.imgnotfound)
 //                .into(holder.pImage);
 //        holder.pName.setText(cartPName.get(holder.getAdapterPosition()));

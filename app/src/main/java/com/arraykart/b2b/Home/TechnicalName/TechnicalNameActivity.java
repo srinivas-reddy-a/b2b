@@ -33,7 +33,7 @@ public class TechnicalNameActivity extends AppCompatActivity {
 
         checkToken();
 
-        checkLang();
+        //checkLang();
 
         try{
             FragmentManager manager = getSupportFragmentManager();

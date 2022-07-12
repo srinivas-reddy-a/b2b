@@ -30,14 +30,14 @@ public class TutorialsFragment extends Fragment {
         ytOrder = view.findViewById(R.id.ytOrder);
         ytOrder.setOnClickListener(v -> {
             if(isAdded()){
-                watchYoutubeVideo(requireContext(), "TDfOYa3MAJo");
+                watchYoutubeVideo(requireContext(), "Ol58e792jNg");
             }
         });
 
         ytKyc = view.findViewById(R.id.ytKyc);
         ytKyc.setOnClickListener(v -> {
             if(isAdded()){
-                watchYoutubeVideo(requireContext(), "TDfOYa3MAJo");
+                watchYoutubeVideo(requireContext(), "VHoM2_ecJ0k");
             }
         });
 

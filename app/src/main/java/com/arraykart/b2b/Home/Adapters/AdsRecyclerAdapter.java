@@ -50,7 +50,7 @@ public class AdsRecyclerAdapter extends RecyclerView.Adapter<AdsRecyclerAdapter.
         Glide.with(holder.itemView)
                 .load(topProductsImages.get(position))
 //                .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.img);
         //use getResources as setBackgroundColor needs hex value not Resource id

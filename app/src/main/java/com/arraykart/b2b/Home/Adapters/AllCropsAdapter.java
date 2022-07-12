@@ -43,7 +43,7 @@ public class AllCropsAdapter extends  RecyclerView.Adapter<AllCropsAdapter.AllCr
     public void onBindViewHolder(@NonNull AllCropsViewHolder holder, int position) {
         Glide.with(holder.itemView)
                 .load(crop.get(position).getImageUrl())
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.imageView);
 //        holder.imageView.setOnClickListener(new View.OnClickListener() {

@@ -41,7 +41,7 @@ public class TopProductsRecyclerAdapter extends RecyclerView.Adapter<TopProducts
         Glide.with(holder.itemView)
                 .load(topProductsImages.get(position))
 //                .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.neumorphImageView);
         holder.neumorphImageView .setOnClickListener(v -> {

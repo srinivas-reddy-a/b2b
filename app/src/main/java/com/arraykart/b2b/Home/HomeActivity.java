@@ -46,6 +46,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.arraykart.b2b.Authenticate.AuthorizeUser;
 import com.arraykart.b2b.Authenticate.ConnectionReceiver;
 import com.arraykart.b2b.Authenticate.Kyc;
+import com.arraykart.b2b.Authenticate.LanguageConfig;
 import com.arraykart.b2b.Authenticate.LocaleManager;
 import com.arraykart.b2b.Home.Fragments.CartFragment;
 import com.arraykart.b2b.Home.Fragments.ScrollFragment;
@@ -77,6 +78,7 @@ import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.OnSuccessListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.IOException;
 import java.util.List;
@@ -137,7 +139,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
 
     //in app update
     private AppUpdateManager mAppUpdateManager;
-    private static final int RC_APP_UPDATE = 13;
+    private static final int RC_APP_UPDATE = 15;
 
 
 
@@ -147,6 +149,20 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         sharedPreferenceManager = new SharedPreferenceManager(this);
+
+//        FirebaseMessaging.getInstance().getToken()
+//                .addOnCompleteListener(task -> {
+//                    if (!task.isSuccessful()) {
+////                        Log.w("fb", "Fetching FCM registration token failed", task.getException());
+//                        return;
+//                    }
+//
+//                    // Get new FCM registration token
+//                    String token = task.getResult();
+//
+//                    // Log and toast
+//                    Log.d("fb", token);
+//                });
 
 //        if(sharedPreferenceManager.getString("token") == null){
 //            Intent i =
@@ -199,14 +215,14 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         imageView = findViewById(R.id.homeCompanyName);
         Glide.with(this)
                 .load(R.drawable.company_name_green)
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(imageView);
         icon = findViewById(R.id.homeCompanyicon);
         Glide.with(this)
                 .load(R.drawable.company_icon)
                 .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(icon);
         pincode = findViewById(R.id.pincode);
@@ -243,7 +259,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         Glide.with(this)
                 .load(R.drawable.ic_outline_home_24_green)
                 .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(home);
         home.setOnTouchListener((v, event) -> {
@@ -260,25 +276,25 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                 Glide.with(this)
                         .load(R.drawable.ic_outline_account_circle_24)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(account);
                 Glide.with(this)
                         .load(R.drawable.ic_outline_account_balance_wallet_24)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(wallet);
                 Glide.with(this)
                         .load(R.drawable.ic_outline_home_24_green)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(home);
                 Glide.with(this)
                         .load(R.drawable.ic_outline_shopping_cart_24)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(cart);
                 scrollFragment = new ScrollFragment();
@@ -298,7 +314,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         Glide.with(this)
                 .load(R.drawable.ic_outline_account_balance_wallet_24)
                 .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(wallet);
         wallet.setOnTouchListener((v, event) -> {
@@ -315,25 +331,25 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                 Glide.with(this)
                         .load(R.drawable.ic_outline_account_circle_24)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(account);
                 Glide.with(this)
                         .load(R.drawable.ic_outline_account_balance_wallet_24_green)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(wallet);
                 Glide.with(this)
                         .load(R.drawable.ic_outline_home_24)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(home);
                 Glide.with(this)
                         .load(R.drawable.ic_outline_shopping_cart_24)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(cart);
                 walletFragment = new WalletFragment();
@@ -353,7 +369,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         Glide.with(this)
                 .load(R.drawable.ic_outline_shopping_cart_24)
                 .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(cart);
         cart.setOnTouchListener((v, event) -> {
@@ -365,25 +381,25 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                 Glide.with(this)
                         .load(R.drawable.ic_outline_account_circle_24)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(account);
                 Glide.with(this)
                         .load(R.drawable.ic_outline_account_balance_wallet_24)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(wallet);
                 Glide.with(this)
                         .load(R.drawable.ic_outline_home_24)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(home);
                 Glide.with(this)
                         .load(R.drawable.ic_outline_shopping_cart_24_green)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(cart);
                 cartFragment = new CartFragment();
@@ -403,7 +419,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         Glide.with(this)
                 .load(R.drawable.ic_outline_account_circle_24)
                 .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(account);
         account.setOnTouchListener((v, event) -> {
@@ -415,25 +431,25 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                 Glide.with(this)
                         .load(R.drawable.ic_outline_account_circle_24_green)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(account);
                 Glide.with(this)
                         .load(R.drawable.ic_outline_account_balance_wallet_24)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(wallet);
                 Glide.with(this)
                         .load(R.drawable.ic_outline_home_24)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(home);
                 Glide.with(this)
                         .load(R.drawable.ic_outline_shopping_cart_24)
                         .centerCrop()
-                        .placeholder(R.drawable.placeholder)
+                        //.placeholder(R.drawable.placeholder)
                         .error(R.drawable.imgnotfound)
                         .into(cart);
                 accountFragment = new AccountFragment();
@@ -515,9 +531,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
     }
 
     private void checkLang() {
-        localeManager = new LocaleManager(HomeActivity.this);
         if(sharedPreferenceManager.checkKey(LANGUAGE)) {
-            localeManager.updateResource(sharedPreferenceManager.getString(LANGUAGE));
             translate = findViewById(R.id.translate);
             if(sharedPreferenceManager.getString(LANGUAGE).trim().toLowerCase().contains("hi")){
                 translate.setChecked(true);
@@ -527,22 +541,16 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
         }
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        sharedPreferenceManager = new SharedPreferenceManager(newBase);
+        Context context = LanguageConfig.changeLanguage(
+                newBase, sharedPreferenceManager.getString(LANGUAGE));
+        super.attachBaseContext(context);
 
+    }
 
     private void setTranslate() {
-//        translate.setOnClickListener(v -> {
-//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//            builder.setMessage("Restart app?");
-//            builder.setCancelable(true);
-//            builder.setPositiveButton("No", (dialog, which) -> {
-//                dialog.cancel();
-//            });
-////            builder.setNegativeButton("Yes", (dialog, which) -> {
-////
-////            })
-//            AlertDialog alertDialog = builder.create();
-//            alertDialog.show();
-//        });
         translate.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 editText = findViewById(R.id.search);
                 localeManager = new LocaleManager(HomeActivity.this);
@@ -566,7 +574,8 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                         sharedPreferenceManager.setString(LANGUAGE, "en");
                         isRecreated = false;
                     }
-                    localeManager.updateResource(sharedPreferenceManager.getString(LANGUAGE));
+
+//                    localeManager.updateResource(sharedPreferenceManager.getString(LANGUAGE));
                     if (!isRecreated && isChecked) {
                         isRecreated = true;
 //                   recreate();
@@ -587,6 +596,8 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
 
             });
     }
+
+
 
     private void checkKyc() {
         Kyc kyc = new Kyc(this);
@@ -638,13 +649,18 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                                         Geocoder geocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
                                         try {
                                             addresses = geocoder.getFromLocation(latitude, longitude, 1);
-                                            String address = addresses.get(0).getAddressLine(0);
-                                            String city = addresses.get(0).getLocality();
-                                            String state = addresses.get(0).getAdminArea();
-                                            String country = addresses.get(0).getCountryName();
-                                            String postalCode = addresses.get(0).getPostalCode();
-                                            String knownName = addresses.get(0).getFeatureName();
-                                            pincode.setText(String.valueOf(postalCode));
+                                            if(addresses.size()>0) {
+                                                String address = addresses.get(0).getAddressLine(0);
+                                                String city = addresses.get(0).getLocality();
+                                                String state = addresses.get(0).getAdminArea();
+                                                String country = addresses.get(0).getCountryName();
+                                                String postalCode = addresses.get(0).getPostalCode();
+                                                String knownName = addresses.get(0).getFeatureName();
+                                                pincode.setText(String.valueOf(postalCode));
+                                            }else {
+                                                Toast.makeText(HomeActivity.this, "Check your GPS!", Toast.LENGTH_SHORT).show();
+                                            }
+
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }

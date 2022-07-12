@@ -90,7 +90,7 @@ public class OtpFragment extends Fragment {
     //welcome screen
     private int i=0;
     private int j=0;
-    private int loadTime;
+    private int loadTime=0;
 
 
     @Override
@@ -126,7 +126,7 @@ public class OtpFragment extends Fragment {
         startSmartUserConsent();
 
         //send otp
-        sendOTP(view);
+        sendOTP();
 
         //set otp
         setOTP();
@@ -214,7 +214,7 @@ public class OtpFragment extends Fragment {
         }
     }
 
-    private void sendOTP(View view) {
+    private void sendOTP() {
 
         assert getArguments() != null;
         PhoneNumberSignUP phoneNumberSignUP = new PhoneNumberSignUP(getArguments().getString("phoneNumber"));
@@ -595,79 +595,78 @@ public class OtpFragment extends Fragment {
                             sharedPreferenceManager.setBoolean("existingUser", true);
 //                            Log.e("check", ""+sharedPreferenceManager.getBoolean("firstInstall"));
                             if(isAdded() && sharedPreferenceManager.getBoolean("firstInstall")){
-                                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-                                builder.setCancelable(false);
-                                View view1 = getLayoutInflater().inflate(R.layout.welcome_screens, null);
-                                ImageView wsIV2 = view1.findViewById(R.id.wsIV2);
-                                ImageView wsIV1 = view1.findViewById(R.id.wsIV1);
-                                ImageView close = view1.findViewById(R.id.closeBsd);
-                                ProgressBar progressBar1;
-                                CountDownTimer countDownTimer1;
-                                progressBar1=(ProgressBar)view1.findViewById(R.id.progressBar3);
-                                progressBar1.setProgress(i);
-                                countDownTimer1=new CountDownTimer(4000,10) {
-                                    @Override
-                                    public void onTick(long millisUntilFinished) {
-                                        i++;
-                                        progressBar1.setProgress((int)i*100/(4000/10));
-                                    }
-                                    @Override
-                                    public void onFinish() {
-                                        //Do what you want
-                                        i++;
-                                        progressBar1.setProgress(100);
-                                    }
-                                };
-                                countDownTimer1.start();
-
-                                Handler handler1 = new Handler();
-                                handler1.postDelayed(() -> {
-                                    wsIV1.setVisibility(View.GONE);
-                                    wsIV2.setVisibility(View.VISIBLE);
-                                    ProgressBar progressBar2;
-                                    CountDownTimer countDownTimer2;
-                                    progressBar2=(ProgressBar)view1.findViewById(R.id.progressBar);
-                                    progressBar2.setProgress(j);
-                                    countDownTimer2=new CountDownTimer(4000,10) {
-                                        @Override
-                                        public void onTick(long millisUntilFinished) {
-                                            j++;
-                                            progressBar2.setProgress((int)j*100/(4000/10));
-                                        }
-                                        @Override
-                                        public void onFinish() {
-                                            //Do what you want
-                                            j++;
-                                            progressBar2.setProgress(100);
-                                        }
-                                    };
-                                    countDownTimer2.start();
-                                }, 4000);
-
-                                builder.setView(view1);
-                                AlertDialog alertDialog = builder.create();
-                                close.setOnClickListener(v -> alertDialog.dismiss());
-                    //                              to make alert dialog full screen
-                                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-                                lp.copyFrom(alertDialog.getWindow().getAttributes());
-                                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-                                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-                    //                              alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                                alertDialog.show();
-                                alertDialog.getWindow().setAttributes(lp);
-                                Handler handler = new Handler();
-                                handler.postDelayed(() -> {
-                                    if(isAdded()) {
-                                        otpCL.setVisibility(View.GONE);
-                                        alertDialog.dismiss();
-                                    }
-                                }, 9000);
+//                                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+//                                builder.setCancelable(false);
+//                                View view1 = getLayoutInflater().inflate(R.layout.welcome_screens, null);
+//                                ImageView wsIV2 = view1.findViewById(R.id.wsIV2);
+//                                ImageView wsIV1 = view1.findViewById(R.id.wsIV1);
+//                                ImageView close = view1.findViewById(R.id.closeBsd);
+//                                ProgressBar progressBar1;
+//                                CountDownTimer countDownTimer1;
+//                                progressBar1=(ProgressBar)view1.findViewById(R.id.progressBar3);
+//                                progressBar1.setProgress(i);
+//                                countDownTimer1=new CountDownTimer(4000,10) {
+//                                    @Override
+//                                    public void onTick(long millisUntilFinished) {
+//                                        i++;
+//                                        progressBar1.setProgress((int)i*100/(4000/10));
+//                                    }
+//                                    @Override
+//                                    public void onFinish() {
+//                                        //Do what you want
+//                                        i++;
+//                                        progressBar1.setProgress(100);
+//                                    }
+//                                };
+//                                countDownTimer1.start();
+//                                Handler handler1 = new Handler();
+//                                handler1.postDelayed(() -> {
+//                                    wsIV1.setVisibility(View.GONE);
+//                                    wsIV2.setVisibility(View.VISIBLE);
+//                                    ProgressBar progressBar2;
+//                                    CountDownTimer countDownTimer2;
+//                                    progressBar2=(ProgressBar)view1.findViewById(R.id.progressBar);
+//                                    progressBar2.setProgress(j);
+//                                    countDownTimer2=new CountDownTimer(4000,10) {
+//                                        @Override
+//                                        public void onTick(long millisUntilFinished) {
+//                                            j++;
+//                                            progressBar2.setProgress((int)j*100/(4000/10));
+//                                        }
+//                                        @Override
+//                                        public void onFinish() {
+//                                            //Do what you want
+//                                            j++;
+//                                            progressBar2.setProgress(100);
+//                                        }
+//                                    };
+//                                    countDownTimer2.start();
+//                                }, 4000);
+//
+//                                builder.setView(view1);
+//                                AlertDialog alertDialog = builder.create();
+//                                close.setOnClickListener(v -> alertDialog.dismiss());
+//                    //                              to make alert dialog full screen
+//                                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+//                                lp.copyFrom(alertDialog.getWindow().getAttributes());
+//                                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+//                                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+//                    //                              alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                                alertDialog.show();
+//                                alertDialog.getWindow().setAttributes(lp);
+//                                Handler handler = new Handler();
+//                                handler.postDelayed(() -> {
+//                                    if(isAdded()) {
+//                                        otpCL.setVisibility(View.GONE);
+////                                        alertDialog.dismiss();
+//                                    }
+//                                }, 0);
                             }
-                            if(sharedPreferenceManager.getBoolean("firstInstall")){
-                                loadTime = 9000;
-                            }else {
-                                loadTime = 0;
-                            }
+//                            if(sharedPreferenceManager.getBoolean("firstInstall")){
+//                                loadTime = 9000;
+//                            }else {
+//                                loadTime = 0;
+//                            }
                             Handler handler = new Handler();
                             handler.postDelayed(() -> {
                                 sharedPreferenceManager.setBoolean("firstInstall", false);

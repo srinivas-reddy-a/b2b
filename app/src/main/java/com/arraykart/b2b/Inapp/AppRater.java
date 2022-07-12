@@ -26,8 +26,8 @@ public class AppRater {
     private final static String APP_TITLE = "Arraykart";// App Name
     private final static String APP_PNAME = "com.arraykart.b2b";// Package Name
 
-    private final static int DAYS_UNTIL_PROMPT = 0;//Min number of days
-    private final static int LAUNCHES_UNTIL_PROMPT = 1;//Min number of launches
+    private final static int DAYS_UNTIL_PROMPT = 3;//Min number of days
+    private final static int LAUNCHES_UNTIL_PROMPT = 3;//Min number of launches
 
     private static ReviewManager reviewManager;
     private static SharedPreferenceManager sharedPreferenceManager;
@@ -108,7 +108,6 @@ public class AppRater {
             if (task.isSuccessful()) {
                 // Getting the ReviewInfo object
                 ReviewInfo reviewInfo = task.getResult();
-
                 Task <Void> flow = reviewManager.launchReviewFlow((Activity) context, reviewInfo);
                 flow.addOnCompleteListener(task1 -> {
                     // The flow has finished. The API does not indicate whether the user

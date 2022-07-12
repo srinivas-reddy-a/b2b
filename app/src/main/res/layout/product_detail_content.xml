@@ -351,10 +351,10 @@
 
             <TextView
                 android:id="@+id/textView83"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView"
+                android:text="@string/_100_authentic"
                 android:textAlignment="center"
                 android:textColor="@color/sp_text"
                 android:textSize="@dimen/text"
@@ -368,14 +368,14 @@
 
             <TextView
                 android:id="@+id/textView81"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView"
+                android:text="@string/free_and_fast_delivery"
                 android:textAlignment="center"
                 android:textColor="@color/sp_text"
                 android:textSize="@dimen/text"
-                app:drawableTopCompat="@drawable/ic_outline_check_box_54_sp_text_color" />
+                app:drawableTopCompat="@drawable/ic_outline_local_shipping_54_sp_text_color" />
 
             <View
                 android:layout_width="@dimen/sub_section_line"
@@ -384,14 +384,14 @@
 
             <TextView
                 android:id="@+id/textView82"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView"
+                android:text="@string/agronomist_support"
                 android:textAlignment="center"
                 android:textColor="@color/sp_text"
                 android:textSize="@dimen/text"
-                app:drawableTopCompat="@drawable/ic_outline_check_box_54_sp_text_color" />
+                app:drawableTopCompat="@drawable/ic_outline_support_agent_54_sp_text_color" />
         </LinearLayout>
 
     </LinearLayout>

@@ -35,7 +35,7 @@ public class AccountOptionsActivity extends AppCompatActivity {
 
         checkToken();
 
-        checkLang();
+        //checkLang();
 
         //set page name
         pageName = findViewById(R.id.pageName);

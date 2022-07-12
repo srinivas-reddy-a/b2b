@@ -174,7 +174,7 @@ public class ScrollFragment extends Fragment {
         Glide.with(view)
                 .load(R.drawable.ic_baseline_arrow_forward_ios_24_gray)
 //                .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(productRV1More);
         productRV1More.setOnClickListener(v -> {
@@ -413,7 +413,7 @@ public class ScrollFragment extends Fragment {
         Glide.with(view)
                 .load(R.drawable.ic_baseline_arrow_forward_ios_24_gray)
 //                .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(topRVMore);
         topRV = view.findViewById(R.id.topRV);

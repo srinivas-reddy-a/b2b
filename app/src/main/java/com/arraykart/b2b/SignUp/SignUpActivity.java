@@ -35,7 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         sharedPreferenceManager = new SharedPreferenceManager(this);
 
-        checkLang();
+        //checkLang();
 
         if(!sharedPreferenceManager.checkKey("existingUser")){
             sharedPreferenceManager.setBoolean("existingUser", false);
@@ -54,7 +54,12 @@ public class SignUpActivity extends AppCompatActivity {
                     FragmentManager fragmentTransactionSignUp = getSupportFragmentManager();
                     if(!fragmentTransactionSignUp.isDestroyed()) {
                         fragmentTransactionSignUp.beginTransaction()
-                                .replace(R.id.signUPFragContainer, fragment).commit();
+                                //Use commitAllowingStateLoss() instead of commit().
+                                //when you use commit() it will can throw an exception
+                                // if state loss occurs but commitAllowingStateLoss()
+                                // saves transaction without state loss so that will
+                                // doesn't throw an exception if state loss occurs.
+                                .replace(R.id.signUPFragContainer, fragment).commitAllowingStateLoss();
                     }
                 }catch (Exception e){
                     e.printStackTrace();
@@ -73,13 +78,27 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 }else {
                     signUpFragment = new SignUpFragment();
-                    FragmentTransaction fragmentTransactionSignUp = getSupportFragmentManager().beginTransaction();
-                    fragmentTransactionSignUp.replace(R.id.signUPFragContainer, signUpFragment).commit();
+                    FragmentTransaction fragmentTransactionSignUp =
+                            getSupportFragmentManager().beginTransaction();
+                    //Use commitAllowingStateLoss() instead of commit().
+                    //when you use commit() it will can throw an exception
+                    // if state loss occurs but commitAllowingStateLoss()
+                    // saves transaction without state loss so that will
+                    // doesn't throw an exception if state loss occurs.
+                    fragmentTransactionSignUp.replace(R.id.signUPFragContainer, signUpFragment)
+                            .commitAllowingStateLoss();
                 }
             } else {
                 signUpFragment = new SignUpFragment();
-                FragmentTransaction fragmentTransactionSignUp = getSupportFragmentManager().beginTransaction();
-                fragmentTransactionSignUp.replace(R.id.signUPFragContainer, signUpFragment).commit();
+                FragmentTransaction fragmentTransactionSignUp =
+                        getSupportFragmentManager().beginTransaction();
+                //Use commitAllowingStateLoss() instead of commit().
+                //when you use commit() it will can throw an exception
+                // if state loss occurs but commitAllowingStateLoss()
+                // saves transaction without state loss so that will
+                // doesn't throw an exception if state loss occurs.
+                fragmentTransactionSignUp.replace(R.id.signUPFragContainer, signUpFragment)
+                        .commitAllowingStateLoss();
             }
         }, 3000);
     }
@@ -89,4 +108,5 @@ public class SignUpActivity extends AppCompatActivity {
             localeManager.updateResource(sharedPreferenceManager.getString(LANGUAGE));
         }
     }
+    
 }

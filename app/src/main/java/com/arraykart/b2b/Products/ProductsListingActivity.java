@@ -52,7 +52,7 @@ public class  ProductsListingActivity extends AppCompatActivity {
         checkToken();
         //get products
 
-        checkLang();
+        //checkLang();
 
         loadingDialog = new LoadingDialog(this);
         loadingDialog.startLoadingDialog();

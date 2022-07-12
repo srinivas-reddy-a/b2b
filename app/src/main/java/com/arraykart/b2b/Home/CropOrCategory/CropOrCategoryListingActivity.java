@@ -57,7 +57,7 @@ public class CropOrCategoryListingActivity extends AppCompatActivity {
 
         checkToken();
 
-        checkLang();
+        //checkLang();
 
         type = getIntent().getStringExtra("type");
         listName = findViewById(R.id.listName);

@@ -45,7 +45,7 @@ public class BannerRecyclerAdapter extends RecyclerView.Adapter<BannerRecyclerAd
         Glide.with(holder.itemView)
                 .load("https://arraykartandroid.s3.ap-south-1.amazonaws.com/"+images[position])
 //                .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.imageView);
     }

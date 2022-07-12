@@ -48,7 +48,7 @@ public class AllCategoriesAdapter extends  RecyclerView.Adapter<AllCategoriesAda
     public void onBindViewHolder(@NonNull AllCategoriesViewHolder holder, int position) {
         Glide.with(holder.itemView)
                 .load(cat.get(position).getImage())
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.imageView);
         holder.textView.setText(""+cat.get(position).getName());

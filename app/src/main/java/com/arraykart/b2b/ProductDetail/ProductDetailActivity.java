@@ -85,6 +85,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private TextView pdDesc;
 
     private List<Product> products;
+    private List<Product> similarProducts;
     private List<Product> sendProducts;
     private ArrayList<String> images;
 //    contact
@@ -112,7 +113,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         checkToken();
 
-        checkLang();
+        //checkLang();
 
 //        get intent extra from calling fragment/activity
 //        products = (List<Product>) getIntent().getSerializableExtra("products");
@@ -193,13 +194,13 @@ public class ProductDetailActivity extends AppCompatActivity {
                     Toast.makeText(ProductDetailActivity.this, "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                products = response.body().getProducts();
-                if(products.size()>0) {
-                    for(int i=0; i<products.size(); i++){
-                        if(products.get(i).getId()!=id) {
-                            if(products.get(i).getTechnicalName()!=null
-                                    && !products.get(i).getTechnicalName().trim().toLowerCase().contains("na")) {
-                                sendProducts.add(products.get(i));
+                similarProducts = response.body().getProducts();
+                if(similarProducts.size()>0) {
+                    for(int i=0; i<similarProducts.size(); i++){
+                        if(similarProducts.get(i).getId()!=id) {
+                            if(similarProducts.get(i).getTechnicalName()!=null
+                                    && !similarProducts.get(i).getTechnicalName().trim().toLowerCase().contains("na")) {
+                                sendProducts.add(similarProducts.get(i));
                             }
                         }
                     }
@@ -244,11 +245,11 @@ public class ProductDetailActivity extends AppCompatActivity {
                         Toast.makeText(ProductDetailActivity.this, "500" + "Internal Server Error", Toast.LENGTH_SHORT).show();
                         return;
                 }
-                products = response.body().getProducts();
-                if(products.size()>0) {
-                        for(int i=0; i<products.size(); i++){
-                            if(products.get(i).getId()!=id) {
-                                sendProducts.add(products.get(i));
+                similarProducts = response.body().getProducts();
+                if(similarProducts.size()>0) {
+                        for(int i=0; i<similarProducts.size(); i++){
+                            if(similarProducts.get(i).getId()!=id) {
+                                sendProducts.add(similarProducts.get(i));
                             }
                         }
                         if(sendProducts.size()>0){
@@ -561,7 +562,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 //                    Glide.with(ProductDetailActivity.this)
 //                            .load(R.drawable.ic_baseline_keyboard_arrow_down_24)
 //                            .centerCrop()
-//                            .placeholder(R.drawable.placeholder)
+//                            //.placeholder(R.drawable.placeholder)
 //                            .error(R.drawable.imgnotfound)
 //                            .into(offerToggle);
 //                }else {
@@ -569,7 +570,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 //                    Glide.with(ProductDetailActivity.this)
 //                            .load(R.drawable.ic_baseline_keyboard_arrow_up_24)
 //                            .centerCrop()
-//                            .placeholder(R.drawable.placeholder)
+//                            //.placeholder(R.drawable.placeholder)
 //                            .error(R.drawable.imgnotfound)
 //                            .into(offerToggle);
 //                }

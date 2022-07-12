@@ -24,7 +24,7 @@
     <LinearLayout
         android:id="@+id/neumorphCardView4"
         android:layout_width="140dp"
-        android:layout_height="210dp"
+        android:layout_height="240dp"
         android:layout_marginTop="70dp"
         android:background="@drawable/round_edges_gray_border_no_bg"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -99,7 +99,8 @@
                 android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@id/contactLL"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
             <LinearLayout
                 android:id="@+id/contactLL"
@@ -113,7 +114,8 @@
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/knowPrice">
 
                 <ImageView
                     android:id="@+id/whatsapp"

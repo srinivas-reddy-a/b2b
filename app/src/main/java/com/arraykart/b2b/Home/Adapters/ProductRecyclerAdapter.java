@@ -42,7 +42,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         Glide.with(holder.itemView)
                 .load(new StringBuilder().append("https://arraykartandroid.s3.ap-south-1.amazonaws.com/").append(imgs[0]).toString())
 //                .centerCrop()
-                .placeholder(R.drawable.placeholder)
+                //.placeholder(R.drawable.placeholder)
                 .error(R.drawable.imgnotfound)
                 .into(holder.imageView);
 

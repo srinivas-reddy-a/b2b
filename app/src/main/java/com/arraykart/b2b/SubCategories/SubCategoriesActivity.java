@@ -45,7 +45,7 @@ public class SubCategoriesActivity extends AppCompatActivity {
 
         checkToken();
 
-        checkLang();
+        //checkLang();
 
         Call<CropWiseCategory> call = RetrofitClient.getClient()
                 .getApi().getCropWiseCategory(

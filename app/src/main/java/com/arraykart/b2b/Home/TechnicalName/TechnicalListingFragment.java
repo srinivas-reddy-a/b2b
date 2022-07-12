@@ -1,5 +1,6 @@
 package com.arraykart.b2b.Home.TechnicalName;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.arraykart.b2b.R;
 import com.arraykart.b2b.Retrofit.ModelClass.AllTechNames;
 import com.arraykart.b2b.Retrofit.ModelClass.Techname;
 import com.arraykart.b2b.Retrofit.RetrofitClient;
+import com.arraykart.b2b.Search.SearchActivity;
 import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
 
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ public class TechnicalListingFragment extends Fragment {
     private ImageView backTN;
     private LoadingDialog loadingDialog;
     private SharedPreferenceManager sharedPreferenceManager;
+    private ImageView searchTN;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,7 +67,20 @@ public class TechnicalListingFragment extends Fragment {
 //        get technical names to rv
         getTechNamesToRV(view);
 
+        //search activity
+        searchTN = view.findViewById(R.id.searchTN);
+        setSearch();
+
         return view;
+    }
+
+    private void setSearch() {
+        searchTN.setOnClickListener(v -> {
+            if(isAdded()){
+                Intent i = new Intent(requireActivity(), SearchActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void checkToken() {

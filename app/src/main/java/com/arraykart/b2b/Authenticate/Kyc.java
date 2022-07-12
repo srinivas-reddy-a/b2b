@@ -1,6 +1,7 @@
 package com.arraykart.b2b.Authenticate;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,13 +24,13 @@ public class Kyc {
 
     public void kycStatus(){
         sharedPreferenceManager = new SharedPreferenceManager(activity);
-            Call<KycStatus> call = RetrofitClient.getClient()
+        Call<KycStatus> call = RetrofitClient.getClient()
                     .getApi().getKycStatus(sharedPreferenceManager.getString("token"));
-            call.enqueue(new Callback<KycStatus>() {
+        call.enqueue(new Callback<KycStatus>() {
                 @Override
                 public void onResponse(@NonNull Call<KycStatus> call, @NonNull Response<KycStatus> response) {
                     if(!response.isSuccessful()){
-                        Toast.makeText(activity, "" + response.code(), Toast.LENGTH_SHORT).show();
+                        sharedPreferenceManager.setString("kycstatus", "NV");
                         return;
                     }
                     assert response.body() != null;

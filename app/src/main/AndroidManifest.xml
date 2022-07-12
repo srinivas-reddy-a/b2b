@@ -14,6 +14,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_arraykart"
         android:label="@string/app_name"
+        android:configChanges="locale"
         android:roundIcon="@mipmap/ic_arraykart_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.B2B"
@@ -30,25 +31,25 @@
         </provider>
         <activity
             android:name="com.arraykart.b2b.Home.CropOrCategory.CropOrCategoryListingActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.arraykart.b2b.Home.TechnicalName.TechnicalNameActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.arraykart.b2b.Home.Fragments.Account.AccountOptionsActivity"
             android:requestLegacyExternalStorage="true"
             android:usesCleartextTraffic="true"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.arraykart.b2b.SignUp.SignUpActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
@@ -60,22 +61,22 @@
         </activity>
         <activity
             android:name="com.arraykart.b2b.ProductDetail.ProductDetailActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.arraykart.b2b.SubCategories.SubCategoriesActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.arraykart.b2b.Products.ProductsListingActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.arraykart.b2b.Search.SearchActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible" />
