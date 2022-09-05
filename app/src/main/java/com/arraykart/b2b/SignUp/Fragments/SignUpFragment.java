@@ -82,10 +82,10 @@ public class SignUpFragment extends Fragment {
         //        review
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         otpFragment = new OtpFragment();
-        if(isAdded()){
-            loadingDialog = new LoadingDialog(requireActivity());
-            loadingDialog.startLoadingDialog();
-        }
+//        if(isAdded()){
+//            loadingDialog = new LoadingDialog(requireActivity());
+//            loadingDialog.startLoadingDialog();
+//        }
 
         setReview(view);
 
@@ -207,7 +207,7 @@ public class SignUpFragment extends Fragment {
                 call.enqueue(new Callback<AllReviews>() {
                     @Override
                     public void onResponse(Call<AllReviews> call, Response<AllReviews> response) {
-                        loadingDialog.dismissLoadingDialog();
+//                        loadingDialog.dismissLoadingDialog();
                         if (!response.isSuccessful()) {
                             if(isAdded()) {
                                 Toast.makeText(requireActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
@@ -258,7 +258,7 @@ public class SignUpFragment extends Fragment {
                     @Override
                     public void onFailure(Call<AllReviews> call, Throwable t) {
                         if(isAdded()) {
-                            loadingDialog.dismissLoadingDialog();
+//                            loadingDialog.dismissLoadingDialog();
                             Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
                         }
                     }

@@ -19,7 +19,7 @@ import java.util.Objects;
 public class ProductDetailMoreDetailsRecyclerAdapter extends RecyclerView.Adapter<ProductDetailMoreDetailsRecyclerAdapter.ProductDetailsMoreDetailsViewHolder> {
     private ArrayList<String> pdHeading;
     private ArrayList<String> pdDetailDesc;
-    private Context context;
+    private final Context context;
 
     public ProductDetailMoreDetailsRecyclerAdapter(ArrayList<String> pdHeading, ArrayList<String> pdDetailDesc, Context context) {
         this.pdHeading = pdHeading;
@@ -48,16 +48,15 @@ public class ProductDetailMoreDetailsRecyclerAdapter extends RecyclerView.Adapte
     }
 
     public static class ProductDetailsMoreDetailsViewHolder extends RecyclerView.ViewHolder{
-        private TextView pdDetailHeading;
-        private TextView pdDetailDesc;
-        private LinearLayout pdDetailToggleLL;
-        private ImageView pdDetailToggle;
+        private final TextView pdDetailHeading;
+        private final TextView pdDetailDesc;
+        private final ImageView pdDetailToggle;
         public ProductDetailsMoreDetailsViewHolder(@NonNull View itemView) {
             super(itemView);
             pdDetailHeading = itemView.findViewById(R.id.pdDetailHeading);
             pdDetailDesc = itemView.findViewById(R.id.pdDetailDesc);
             pdDetailToggle = itemView.findViewById(R.id.pdDetailToggle);
-            pdDetailToggleLL = itemView.findViewById(R.id.pdDetailToggleLL);
+            LinearLayout pdDetailToggleLL = itemView.findViewById(R.id.pdDetailToggleLL);
             pdDetailToggleLL.setOnClickListener(v -> {
                 if (pdDetailDesc.getVisibility() == View.GONE) {
                     pdDetailToggle.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24_green);

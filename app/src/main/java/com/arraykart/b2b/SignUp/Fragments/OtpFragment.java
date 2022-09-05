@@ -260,7 +260,7 @@ public class OtpFragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull Call<SignUp> call, @NonNull Throwable t) {
                     if(isAdded()) {
-                        loadingDialog.dismissLoadingDialog();
+//                        loadingDialog.dismissLoadingDialog();
                         Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -318,7 +318,7 @@ public class OtpFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Call<SignUp> call, @NonNull Throwable t) {
                         if(isAdded()) {
-                            loadingDialog.dismissLoadingDialog();
+//                            loadingDialog.dismissLoadingDialog();
                             Toast.makeText(requireActivity(), "Please check your internet connection or try again after sometime", Toast.LENGTH_SHORT).show();
                         }
                     }

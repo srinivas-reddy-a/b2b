@@ -9,160 +9,99 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/text_border_without_shadow"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="20dp">
+        android:padding="@dimen/view_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:id="@+id/packOf"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/view_padding">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/view_right_margin"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <LinearLayout
-                android:id="@+id/packOf"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingEnd="@dimen/view_right_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/view_bottom_margin"
-                    android:text="@string/pack_of"
-                    android:textAlignment="center"
-                    android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
-
-                <TextView
-                    android:id="@+id/pdPackOf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textColor="@color/heading"
-                    android:textSize="@dimen/sub_heading" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/pricePerUnit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingEnd="@dimen/view_right_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/packOf"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/view_bottom_margin"
-                    android:text="@string/ak_price_unit"
-                    android:textAlignment="center"
-                    android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
-
-                <TextView
-                    android:id="@+id/pdPricePerUnit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textColor="@color/heading"
-                    android:textSize="@dimen/sub_heading" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingEnd="@dimen/view_right_margin"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/pricePerUnit"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/view_bottom_margin"
-                    android:text="@string/margin"
-                    android:textAlignment="center"
-                    android:textColor="@color/text"
-                    android:textSize="@dimen/text" />
-
-                <TextView
-                    android:id="@+id/pdMargin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textColor="@color/green"
-                    android:textSize="@dimen/sub_heading" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/addToCart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_baseline_add_24_white"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="@string/add_to_cart"
-                android:textSize="12sp"
-                android:visibility="visible"
-                app:iconPadding="2dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/margin"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <LinearLayout
-                android:id="@+id/quantityLL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:text="@string/pack_of"
                 android:textAlignment="center"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/margin"
-                app:layout_constraintTop_toTopOf="parent">
+                android:textColor="@color/text"
+                android:textSize="@dimen/text" />
 
-                <ImageView
-                    android:id="@+id/pdQRemove"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_baseline_remove_24_green" />
+            <TextView
+                android:id="@+id/pdPackOf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/sub_heading" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/pdQ"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/view_left_margin"
-                    android:layout_marginEnd="@dimen/view_right_margin"
-                    android:textColor="@color/heading"
-                    android:textSize="@dimen/sub_heading" />
+        <LinearLayout
+            android:id="@+id/pricePerUnit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/view_right_margin"
+            app:layout_constraintStart_toEndOf="@id/packOf">
 
-                <ImageView
-                    android:id="@+id/pdQAdd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_baseline_add_24_green" />
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:text="@string/ak_price_unit"
+                android:textAlignment="center"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text" />
 
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/pdPricePerUnit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/sub_heading" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/view_right_margin"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@id/pricePerUnit">
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/view_bottom_margin"
+                android:text="@string/margin"
+                android:textAlignment="center"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text" />
+
+            <TextView
+                android:id="@+id/pdMargin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/green"
+                android:textSize="@dimen/sub_heading" />
+        </LinearLayout>
 
 
     </LinearLayout>

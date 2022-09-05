@@ -6,6 +6,9 @@ import com.arraykart.b2b.Retrofit.ModelClass.AllReviews;
 import com.arraykart.b2b.Retrofit.ModelClass.AllTechNames;
 import com.arraykart.b2b.Retrofit.ModelClass.AuthorizeToken;
 import com.arraykart.b2b.Retrofit.ModelClass.BugReport;
+import com.arraykart.b2b.Retrofit.ModelClass.Cart;
+import com.arraykart.b2b.Retrofit.ModelClass.CartProductDelete;
+import com.arraykart.b2b.Retrofit.ModelClass.CartProducts;
 import com.arraykart.b2b.Retrofit.ModelClass.CropWiseCategory;
 import com.arraykart.b2b.Retrofit.ModelClass.Kyc;
 import com.arraykart.b2b.Retrofit.ModelClass.KycStatus;
@@ -14,6 +17,7 @@ import com.arraykart.b2b.Retrofit.ModelClass.MetaData;
 import com.arraykart.b2b.Retrofit.ModelClass.OTPSignUP;
 import com.arraykart.b2b.Retrofit.ModelClass.PhoneNumberSignUP;
 import com.arraykart.b2b.Retrofit.ModelClass.Product;
+import com.arraykart.b2b.Retrofit.ModelClass.ProductsWithQuantity;
 import com.arraykart.b2b.Retrofit.ModelClass.SuccessMessage;
 import com.arraykart.b2b.Retrofit.ModelClass.Techname;
 import com.arraykart.b2b.Retrofit.ModelClass.Token;
@@ -29,7 +33,9 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
@@ -186,6 +192,33 @@ public interface ApiInterface {
 
     @GET("/api/kyc/")
     Call<KycStatus> getKycStatus(@Header("Authorization") String token);
+
+    //cart
+    @POST("api/cart/")
+    Call<SuccessMessage> setCart(
+            @Header("Authorization") String token,
+            @Body Cart cart
+            );
+
+    @GET("/api/cart/")
+    Call<ProductsWithQuantity> getCart(@Header("Authorization") String token);
+
+    @HTTP(method = "DELETE", path = "/api/cart/", hasBody = true)
+    Call<SuccessMessage> deleteFromCart(@Header("Authorization") String token,
+                                        @Body CartProductDelete cartProductDelete);
+
+    //using cartproduct delete modal class as it has same signnature that
+    //is required to check cart status
+    @POST("/api/cart/status/")
+    Call<SuccessMessage> checkCart(@Header("Authorization") String token,
+                                   @Body CartProductDelete cartProductDelete);
+
+    //to update product quantity and price and discount in cart
+
+    @PUT("/api/cart/")
+    Call<SuccessMessage> editCart(@Header("Authorization") String token,
+                                  @Body Cart cart);
+
 }
 
 

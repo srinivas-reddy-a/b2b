@@ -18,7 +18,7 @@
     <soup.neumorphism.NeumorphCardView
         android:id="@+id/neumorphCardView9"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,76 +35,137 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
+                android:text="name"
                 android:textColor="@color/product_name"
-                android:textSize="@dimen/product_name"
+                android:textSize="@dimen/sub_heading"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageView7"
+            <TextView
+                android:id="@+id/textView44"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="In Stock"
+                android:textColor="@color/sp_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cartPName" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="FREE Delivery"
+                android:textColor="@color/text"
+                android:textSize="@dimen/text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+            <ImageView
+                android:id="@+id/cartDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="@dimen/view_top_margin"
-                android:layout_marginEnd="@dimen/view_right_margin"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cartVol"
                 app:srcCompat="@drawable/ic_outline_delete_24" />
 
             <TextView
                 android:id="@+id/cartVol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/text"
+                android:layout_marginStart="50dp"
+                android:text="vol"
+                android:textColor="@color/heading"
                 android:textSize="@dimen/text"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cartPName" />
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
             <TextView
                 android:id="@+id/cartPPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/green"
+                android:layout_marginEnd="@dimen/view_right_margin"
+                android:text="price"
+                android:textColor="@color/heading"
                 android:textSize="@dimen/text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cartVol" />
-
-            <soup.neumorphism.NeumorphImageButton
-                android:id="@+id/cartAddButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_baseline_add_24_green"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:neumorph_shapeType="flat"
-                tools:ignore="SpeakableTextPresentCheck" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/cartPQuantity"
+                android:id="@+id/cartDiscount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:textColor="@color/product_name"
+                android:layout_marginStart="@dimen/view_left_margin"
+                android:text="disc"
+                android:textColor="@color/hyperlink"
                 android:textSize="@dimen/text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/cartAddButton" />
+                app:layout_constraintStart_toEndOf="@+id/cartVol"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
-            <soup.neumorphism.NeumorphImageButton
-                android:id="@+id/cartRemoveButton"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_baseline_remove_24_green"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/cartPQuantity"
-                tools:ignore="SpeakableTextPresentCheck" />
+                android:layout_marginTop="@dimen/view_top_margin"
+                android:layout_marginEnd="@dimen/view_right_margin"
+                android:background="@drawable/round_edges_gray_border_no_bg"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cartVol">
+
+                <soup.neumorphism.NeumorphImageButton
+                    android:id="@+id/cartRemoveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@color/gray_D"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_remove_24_black"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="@dimen/sub_section_line"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_D" />
+
+                <EditText
+                    android:id="@+id/cartPQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textColor="@color/sp_text"
+                    android:textSize="@dimen/text" />
+
+                <View
+                    android:id="@+id/view7"
+                    android:layout_width="@dimen/sub_section_line"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_D" />
+
+                <soup.neumorphism.NeumorphImageButton
+                    android:id="@+id/cartAddButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@color/gray_D"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_add_24_black"
+                    app:neumorph_shapeType="flat"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

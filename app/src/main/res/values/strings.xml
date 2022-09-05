@@ -212,9 +212,9 @@
     <string name="seeds_packet">Seeds/Packet:</string>
     <string name="to_order_or_to_know_price_contact_us">To order or to know price, contact us</string>
     <string name="for_price_contact_us">For price, contact us</string>
-    <string name="pack_of">Pack Of</string>
-    <string name="ak_price_unit">Ak price/unit</string>
-    <string name="margin">Margin</string>
+    <string name="pack_of">No of Cases</string>
+    <string name="ak_price_unit">Price/unit</string>
+    <string name="margin">Discount</string>
     <string name="add_to_cart">ADD TO CART</string>
     <string name="check">check</string>
     <string name="pan">PAN</string>
@@ -253,4 +253,5 @@
     <string name="_100_authentic">100% Authentic</string>
     <string name="free_and_fast_delivery">Free and Fast Delivery</string>
     <string name="agronomist_support">Agronomist Support</string>
+    <string name="go_to_cart">Go to Cart</string>
 </resources>

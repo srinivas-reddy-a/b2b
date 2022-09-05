@@ -22,9 +22,15 @@ public class Product implements Serializable {
     @SerializedName("category")
     @Expose
     private String category;
+    @SerializedName("no_of_cases")
+    @Expose
+    private Object noOfCases;
     @SerializedName("price")
     @Expose
     private String price;
+    @SerializedName("discount")
+    @Expose
+    private String discount;
     @SerializedName("volume")
     @Expose
     private String volume;
@@ -160,12 +166,28 @@ public class Product implements Serializable {
         this.category = category;
     }
 
+    public Object getNoOfCases() {
+        return noOfCases;
+    }
+
+    public void setNoOfCases(Object noOfCases) {
+        this.noOfCases = noOfCases;
+    }
+
     public String getPrice() {
         return price;
     }
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
 
     public String getVolume() {

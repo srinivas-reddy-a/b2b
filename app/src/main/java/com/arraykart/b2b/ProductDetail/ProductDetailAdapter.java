@@ -81,6 +81,7 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<ProductDetailAdap
                 lp.width = WindowManager.LayoutParams.MATCH_PARENT;
                 lp.height = WindowManager.LayoutParams.MATCH_PARENT;
 //        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                alertDialog.getWindow().setAttributes(lp);
                 alertDialog.show();
                 alertDialog.getWindow().setAttributes(lp);
             });

@@ -207,11 +207,11 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
 
         //toggle animation on icon click
         toggleAnimation();
-
-
-        scrollFragment = new ScrollFragment();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.homeContainer, scrollFragment).commit();
+        String fragment = getIntent().getStringExtra("fragment");
+        cart = findViewById(R.id.cart);
+        home = findViewById(R.id.home);
+        wallet = findViewById(R.id.wallet);
+        account = findViewById(R.id.account);
         imageView = findViewById(R.id.homeCompanyName);
         Glide.with(this)
                 .load(R.drawable.company_name_green)
@@ -232,6 +232,39 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
             Intent i = new Intent(HomeActivity.this, SearchActivity.class);
             startActivity(i)    ;
         });
+
+        scrollFragment = new ScrollFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if(fragment== null){
+            fragmentTransaction.replace(R.id.homeContainer, scrollFragment).commit();
+            Glide.with(this)
+                    .load(R.drawable.ic_outline_home_24_green)
+                    .centerCrop()
+                    //.placeholder(R.drawable.placeholder)
+                    .error(R.drawable.imgnotfound)
+                    .into(home);
+            Glide.with(this)
+                    .load(R.drawable.ic_outline_account_circle_24)
+                    .centerCrop()
+                    //.placeholder(R.drawable.placeholder)
+                    .error(R.drawable.imgnotfound)
+                    .into(account);
+            Glide.with(this)
+                    .load(R.drawable.ic_outline_account_balance_wallet_24)
+                    .centerCrop()
+                    //.placeholder(R.drawable.placeholder)
+                    .error(R.drawable.imgnotfound)
+                    .into(wallet);
+            Glide.with(this)
+                    .load(R.drawable.ic_outline_shopping_cart_24)
+                    .centerCrop()
+                    //.placeholder(R.drawable.placeholder)
+                    .error(R.drawable.imgnotfound)
+                    .into(cart);
+        }else {
+            Log.e("fragment", fragment);
+            setCartFragment();
+        }
 
 //        animations for hints in search
 //        final int interval_time=2000;
@@ -254,14 +287,8 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
 //        };
 //        handler.postDelayed(runnable, interval_time);
 
-        home = findViewById(R.id.home);
         scrollFragment = getSupportFragmentManager().findFragmentByTag("homeFragment");
-        Glide.with(this)
-                .load(R.drawable.ic_outline_home_24_green)
-                .centerCrop()
-                //.placeholder(R.drawable.placeholder)
-                .error(R.drawable.imgnotfound)
-                .into(home);
+
         home.setOnTouchListener((v, event) -> {
             if(scrollFragment!=null && scrollFragment.isVisible()){
 //                Toast.makeText(this, "visible", Toast.LENGTH_SHORT).show();
@@ -272,201 +299,200 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                 home.setShapeType(1);
             }
             else if(event.getAction() == MotionEvent.ACTION_UP){
-                home.setShapeType(0);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_account_circle_24)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(account);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_account_balance_wallet_24)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(wallet);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_home_24_green)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(home);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_shopping_cart_24)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(cart);
-                scrollFragment = new ScrollFragment();
-                FragmentTransaction fragmentTransaction14 = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction14.replace(R.id.homeContainer, scrollFragment).commit();
-                neumorphCardView.setVisibility(View.VISIBLE);
-                imageView.setVisibility(View.VISIBLE);
-                icon.setVisibility(View.VISIBLE);
-                pincode.setVisibility(View.VISIBLE);
-                translate.setVisibility(View.VISIBLE);
-                hindiA.setVisibility(View.VISIBLE);
+                setHomeFragment();
             }
             //return true as motion up will occur only after motion down
             return true;
         });
-        wallet = findViewById(R.id.wallet);
-        Glide.with(this)
-                .load(R.drawable.ic_outline_account_balance_wallet_24)
-                .centerCrop()
-                //.placeholder(R.drawable.placeholder)
-                .error(R.drawable.imgnotfound)
-                .into(wallet);
+
         wallet.setOnTouchListener((v, event) -> {
             if(event.getAction() == MotionEvent.ACTION_DOWN){
                 wallet.setShapeType(1);
             }
             else if(event.getAction() == MotionEvent.ACTION_UP){
-                wallet.setShapeType(0);
-                if(walletFragment!=null && walletFragment.isVisible()){
-//                    Toast.makeText(this, "visible", Toast.LENGTH_SHORT).show();
-                }else{
-//                    Toast.makeText(this, "notvisible", Toast.LENGTH_SHORT).show();
-                }
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_account_circle_24)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(account);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_account_balance_wallet_24_green)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(wallet);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_home_24)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(home);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_shopping_cart_24)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(cart);
-                walletFragment = new WalletFragment();
-                neumorphCardView.setVisibility(View.GONE);
-                imageView.setVisibility(View.GONE);
-                icon.setVisibility(View.GONE);
-                pincode.setVisibility(View.GONE);
-                translate.setVisibility(View.GONE);
-                hindiA.setVisibility(View.GONE);
-                FragmentTransaction fragmentTransaction13 = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction13.replace(R.id.homeContainer, walletFragment).commit();
+                setWalletFragment();
             }
             //return true as motion up will occur only after motion down
             return true;
         });
-        cart = findViewById(R.id.cart);
-        Glide.with(this)
-                .load(R.drawable.ic_outline_shopping_cart_24)
-                .centerCrop()
-                //.placeholder(R.drawable.placeholder)
-                .error(R.drawable.imgnotfound)
-                .into(cart);
+
         cart.setOnTouchListener((v, event) -> {
             if(event.getAction() == MotionEvent.ACTION_DOWN){
                 cart.setShapeType(1);
             }
             else if(event.getAction() == MotionEvent.ACTION_UP){
-                cart.setShapeType(0);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_account_circle_24)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(account);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_account_balance_wallet_24)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(wallet);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_home_24)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(home);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_shopping_cart_24_green)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(cart);
-                cartFragment = new CartFragment();
-                neumorphCardView.setVisibility(View.GONE);
-                imageView.setVisibility(View.GONE);
-                icon.setVisibility(View.GONE);
-                pincode.setVisibility(View.GONE);
-                translate.setVisibility(View.GONE);
-                hindiA.setVisibility(View.GONE);
-                FragmentTransaction fragmentTransaction12 = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction12.replace(R.id.homeContainer,cartFragment).commit();
+                setCartFragment();
             }
             //return true as motion up will occur only after motion down
             return true;
         });
-        account = findViewById(R.id.account);
-        Glide.with(this)
-                .load(R.drawable.ic_outline_account_circle_24)
-                .centerCrop()
-                //.placeholder(R.drawable.placeholder)
-                .error(R.drawable.imgnotfound)
-                .into(account);
+
+
         account.setOnTouchListener((v, event) -> {
             if(event.getAction() == MotionEvent.ACTION_DOWN){
                 account.setShapeType(1);
             }
             else if(event.getAction() == MotionEvent.ACTION_UP){
-                account.setShapeType(0);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_account_circle_24_green)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(account);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_account_balance_wallet_24)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(wallet);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_home_24)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(home);
-                Glide.with(this)
-                        .load(R.drawable.ic_outline_shopping_cart_24)
-                        .centerCrop()
-                        //.placeholder(R.drawable.placeholder)
-                        .error(R.drawable.imgnotfound)
-                        .into(cart);
-                accountFragment = new AccountFragment();
-                neumorphCardView.setVisibility(View.GONE);
-                imageView.setVisibility(View.GONE);
-                icon.setVisibility(View.GONE);
-                pincode.setVisibility(View.GONE);
-                translate.setVisibility(View.GONE);
-                hindiA.setVisibility(View.GONE);
-                FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction1.replace(R.id.homeContainer, accountFragment).commit();
+                secAccountFragment();
             }
             //return true as motion up will occur only after motion down
             return true;
         });
 
         //all categories from api
+    }
+
+    private void setHomeFragment() {
+        home.setShapeType(0);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_account_circle_24)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(account);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_account_balance_wallet_24)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(wallet);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_home_24_green)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(home);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_shopping_cart_24)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(cart);
+        scrollFragment = new ScrollFragment();
+        FragmentTransaction fragmentTransaction14 = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction14.replace(R.id.homeContainer, scrollFragment).commit();
+        neumorphCardView.setVisibility(View.VISIBLE);
+        imageView.setVisibility(View.VISIBLE);
+        icon.setVisibility(View.VISIBLE);
+        pincode.setVisibility(View.VISIBLE);
+        translate.setVisibility(View.VISIBLE);
+        hindiA.setVisibility(View.VISIBLE);
+    }
+
+    private void setWalletFragment() {
+        wallet.setShapeType(0);
+        if(walletFragment!=null && walletFragment.isVisible()){
+//                    Toast.makeText(this, "visible", Toast.LENGTH_SHORT).show();
+        }else{
+//                    Toast.makeText(this, "notvisible", Toast.LENGTH_SHORT).show();
+        }
+        Glide.with(this)
+                .load(R.drawable.ic_outline_account_circle_24)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(account);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_account_balance_wallet_24_green)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(wallet);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_home_24)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(home);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_shopping_cart_24)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(cart);
+        walletFragment = new WalletFragment();
+        neumorphCardView.setVisibility(View.GONE);
+        imageView.setVisibility(View.GONE);
+        icon.setVisibility(View.GONE);
+        pincode.setVisibility(View.GONE);
+        translate.setVisibility(View.GONE);
+        hindiA.setVisibility(View.GONE);
+        FragmentTransaction fragmentTransaction13 = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction13.replace(R.id.homeContainer, walletFragment).commit();
+    }
+
+    private void setCartFragment() {
+        cart.setShapeType(0);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_account_circle_24)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(account);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_account_balance_wallet_24)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(wallet);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_home_24)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(home);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_shopping_cart_24_green)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(cart);
+        cartFragment = new CartFragment();
+        neumorphCardView.setVisibility(View.GONE);
+        imageView.setVisibility(View.GONE);
+        icon.setVisibility(View.GONE);
+        pincode.setVisibility(View.GONE);
+        translate.setVisibility(View.GONE);
+        hindiA.setVisibility(View.GONE);
+        FragmentTransaction fragmentTransaction12 = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction12.replace(R.id.homeContainer,cartFragment).commit();
+    }
+
+    private void secAccountFragment() {
+        account.setShapeType(0);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_account_circle_24_green)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(account);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_account_balance_wallet_24)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(wallet);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_home_24)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(home);
+        Glide.with(this)
+                .load(R.drawable.ic_outline_shopping_cart_24)
+                .centerCrop()
+                //.placeholder(R.drawable.placeholder)
+                .error(R.drawable.imgnotfound)
+                .into(cart);
+        accountFragment = new AccountFragment();
+        neumorphCardView.setVisibility(View.GONE);
+        imageView.setVisibility(View.GONE);
+        icon.setVisibility(View.GONE);
+        pincode.setVisibility(View.GONE);
+        translate.setVisibility(View.GONE);
+        hindiA.setVisibility(View.GONE);
+        FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction1.replace(R.id.homeContainer, accountFragment).commit();
     }
 
     InstallStateUpdatedListener installStateUpdatedListener = state -> {
