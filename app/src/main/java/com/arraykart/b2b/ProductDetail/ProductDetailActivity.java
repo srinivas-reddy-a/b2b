@@ -226,11 +226,11 @@ public class ProductDetailActivity extends AppCompatActivity {
 //            pdQ.setText("1");
             Cart cart = new Cart(
                     products.get(0).getId().toString(),
-                    products.get(0).getPrice().split(",")[0],
+//                    products.get(0).getPrice().split(",")[0],
                     pdVolSpinner.getSelectedItem().toString(),
-                    "1",
-                    products.get(0).getDiscount().split(",")[0],
-                    null
+                    "1"
+//                    products.get(0).getDiscount().split(",")[0],
+//                    null
                     );
             sharedPreferenceManager = new SharedPreferenceManager(ProductDetailActivity.this);
             Call<SuccessMessage> call = RetrofitClient.getClient().getApi()

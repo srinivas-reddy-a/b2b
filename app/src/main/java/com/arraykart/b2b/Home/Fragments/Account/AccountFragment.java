@@ -50,6 +50,7 @@ public class AccountFragment extends Fragment {
     private LinearLayout abouLL;
     private LoadingDialog loadingDialog;
     private LinearLayout tutorialLL;
+    private LinearLayout myOrdersLL;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -113,8 +114,21 @@ public class AccountFragment extends Fragment {
         abouLL = view.findViewById(R.id.abouLL);
         abouLL.setOnClickListener(v -> setAbout());
 
+        //set my orders
+        myOrdersLL = view.findViewById(R.id.myOrdersLL);
+        myOrdersLL.setOnClickListener(v -> setMyOrders());
+
 
         return view;
+    }
+
+    private void setMyOrders() {
+        if(isAdded()){
+            Intent i = new Intent(requireActivity(), AccountOptionsActivity.class);
+            i.putExtra("pageName", "My Orders");
+            i.putExtra("fragmentName", "myOrders");
+            startActivity(i);
+        }
     }
 
     private void tutorial() {

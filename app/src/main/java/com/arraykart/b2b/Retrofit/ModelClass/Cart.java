@@ -30,13 +30,13 @@ public class Cart {
     @Expose
     private String discount;
 
-    public Cart(String productId, String price, String volume, String quantity, String discount, String id) {
+    public Cart(String productId, String volume, String quantity) {
         this.productId = productId;
-        this.price = price;
+//        this.price = price;
         this.volume = volume;
         this.quantity = quantity;
-        this.discount = discount;
-        this.id = id;
+//        this.discount = discount;
+//        this.id = id;
     }
     public String getId() {
         return id;

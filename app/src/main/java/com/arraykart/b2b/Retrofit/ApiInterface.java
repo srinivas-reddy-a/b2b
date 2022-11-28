@@ -4,20 +4,26 @@ import com.arraykart.b2b.Retrofit.ModelClass.Address;
 import com.arraykart.b2b.Retrofit.ModelClass.AllCrops;
 import com.arraykart.b2b.Retrofit.ModelClass.AllReviews;
 import com.arraykart.b2b.Retrofit.ModelClass.AllTechNames;
+import com.arraykart.b2b.Retrofit.ModelClass.AllUserOrders;
 import com.arraykart.b2b.Retrofit.ModelClass.AuthorizeToken;
 import com.arraykart.b2b.Retrofit.ModelClass.BugReport;
 import com.arraykart.b2b.Retrofit.ModelClass.Cart;
+import com.arraykart.b2b.Retrofit.ModelClass.CartEstimate;
 import com.arraykart.b2b.Retrofit.ModelClass.CartProductDelete;
-import com.arraykart.b2b.Retrofit.ModelClass.CartProducts;
 import com.arraykart.b2b.Retrofit.ModelClass.CropWiseCategory;
-import com.arraykart.b2b.Retrofit.ModelClass.Kyc;
 import com.arraykart.b2b.Retrofit.ModelClass.KycStatus;
 import com.arraykart.b2b.Retrofit.ModelClass.Logout;
 import com.arraykart.b2b.Retrofit.ModelClass.MetaData;
 import com.arraykart.b2b.Retrofit.ModelClass.OTPSignUP;
+import com.arraykart.b2b.Retrofit.ModelClass.Order;
+import com.arraykart.b2b.Retrofit.ModelClass.OrderDetail;
 import com.arraykart.b2b.Retrofit.ModelClass.PhoneNumberSignUP;
-import com.arraykart.b2b.Retrofit.ModelClass.Product;
 import com.arraykart.b2b.Retrofit.ModelClass.ProductsWithQuantity;
+import com.arraykart.b2b.Retrofit.ModelClass.RazorPayOrder;
+import com.arraykart.b2b.Retrofit.ModelClass.RazorPayOrderDetail;
+import com.arraykart.b2b.Retrofit.ModelClass.Rupifi.EligibilityApiBody;
+import com.arraykart.b2b.Retrofit.ModelClass.Rupifi.RupifiEligibilityResponse;
+import com.arraykart.b2b.Retrofit.ModelClass.Rupifi.RupifiGMVBody;
 import com.arraykart.b2b.Retrofit.ModelClass.SuccessMessage;
 import com.arraykart.b2b.Retrofit.ModelClass.Techname;
 import com.arraykart.b2b.Retrofit.ModelClass.Token;
@@ -33,11 +39,9 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -203,9 +207,14 @@ public interface ApiInterface {
     @GET("/api/cart/")
     Call<ProductsWithQuantity> getCart(@Header("Authorization") String token);
 
+    //to deleete single product in cart
     @HTTP(method = "DELETE", path = "/api/cart/", hasBody = true)
     Call<SuccessMessage> deleteFromCart(@Header("Authorization") String token,
                                         @Body CartProductDelete cartProductDelete);
+
+    //to clear cart
+    @HTTP(method = "DELETE", path = "/api/cart/all/", hasBody = true)
+    Call<SuccessMessage> clearCart(@Header("Authorization") String token);
 
     //using cartproduct delete modal class as it has same signnature that
     //is required to check cart status
@@ -214,10 +223,50 @@ public interface ApiInterface {
                                    @Body CartProductDelete cartProductDelete);
 
     //to update product quantity and price and discount in cart
-
     @PUT("/api/cart/")
     Call<SuccessMessage> editCart(@Header("Authorization") String token,
                                   @Body Cart cart);
+
+    //to update estimate status in cart
+    @PUT("/api/cart/estimate")
+    Call<SuccessMessage> updateCartEstimate(@Header("Authorization") String token,
+                                            @Body CartEstimate cartEstimate);
+
+    //orders
+    //to generate order in razorpay inorder to make payment
+    @POST("/api/order/razorpay/order/")
+    Call<RazorPayOrderDetail> setRpOrder(@Header("Authorization") String token,
+                                         @Body RazorPayOrder razorPayOrder);
+
+    //to create an order
+    @POST("/api/order/")
+    Call<SuccessMessage> setOrder(@Header("Authorization") String token,
+                                  @Body Order order);
+
+
+    //to create all items in an order into order detail table
+    @POST("/api/order/detail/")
+    Call<SuccessMessage> setOrderDetail(@Header("Authorization") String token,
+                                        @Body OrderDetail orderDetail);
+
+    //to get all orders of an user
+    @GET("/api/order/")
+    Call<AllUserOrders> getAllOrders(@Header("Authorization") String token);
+
+    //rupifi
+    // to get access token
+    @GET("/api/rupifi/")
+    Call<Token> getRupifiAccessToken(@Header("Authorization") String token);
+
+    //to post gmv data of customer
+    @POST("/api/rupifi/gmv/")
+    Call<SuccessMessage> setRupifiGMVData(@Header("Authorization") String token,
+                                          @Body RupifiGMVBody rupifiGMVBody);
+
+    //to check eligibility of a customer
+    @POST("/api/rupifi/eligibility/")
+    Call<RupifiEligibilityResponse> getEligibilityData(@Header("Authorization") String token,
+                                                       @Body EligibilityApiBody eligibilityApiBody);
 
 }
 

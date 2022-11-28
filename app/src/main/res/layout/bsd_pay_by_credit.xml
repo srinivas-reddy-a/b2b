@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <soup.neumorphism.NeumorphCardView
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:neumorph_shapeType="basin">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/closeBsd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/view_left_margin"
+                    android:layout_marginEnd="@dimen/view_right_margin"
+                    android:contentDescription="@string/back"
+                    app:srcCompat="@drawable/ic_baseline_close_24"
+                    tools:ignore="ImageContrastCheck" />
+
+                <TextView
+                    android:id="@+id/oName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/sub_heading" />
+            </LinearLayout>
+
+        </soup.neumorphism.NeumorphCardView>
+
+        <TextView
+            android:id="@+id/rupifiApplyTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_left_margin"
+            android:layout_marginEnd="@dimen/view_right_margin"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:text="Apply for Arraykart Credit Services."
+            android:textColor="@color/heading"
+            android:textSize="@dimen/sub_heading" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/applyCredit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_left_margin"
+            android:layout_marginEnd="@dimen/view_right_margin"
+            android:layout_marginBottom="@dimen/view_bottom_margin"
+            android:background="@color/button_background"
+            android:text="Apply"
+            android:textColor="@color/button_text"
+            android:textSize="@dimen/sub_heading" />
+
+        <WebView
+            android:id="@+id/rupifiKycWV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+</ScrollView>

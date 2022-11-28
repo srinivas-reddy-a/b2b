@@ -3,7 +3,9 @@ package com.arraykart.b2b.Retrofit.ModelClass;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CartProducts {
+import java.io.Serializable;
+
+public class CartProducts implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -22,10 +24,10 @@ public class CartProducts {
     private String noOfCases;
     @SerializedName("price")
     @Expose
-    private Integer price;
+    private Object price;
     @SerializedName("discount")
     @Expose
-    private Integer discount;
+    private Object discount;
     @SerializedName("volume")
     @Expose
     private String volume;
@@ -140,6 +142,113 @@ public class CartProducts {
     @SerializedName("quantity")
     @Expose
     private Integer quantity;
+    @SerializedName("estimate")
+    @Expose
+    private String estimate;
+    @SerializedName("conversion_into_order")
+    @Expose
+    private Integer conversionIntoOrder;
+
+    /**
+     *
+     * @param dosage
+     * @param maturityDuration
+     * @param methodOfApplication
+     * @param modifiedAt
+     * @param durationOfEffect
+     * @param discount
+     * @param description
+     * @param numberOfSeedsPacket
+     * @param storage
+     * @param targetFruitCrops
+     * @param timeOfApplication
+     * @param createdAt
+     * @param usp
+     * @param price
+     * @param targetDisease
+     * @param sowingTime
+     * @param estimate
+     * @param id
+     * @param sku
+     * @param brand
+     * @param image
+     * @param quantity
+     * @param targetPlantationCrops
+     * @param freqBought
+     * @param waitingPeriod
+     * @param topProduct
+     * @param cartId
+     * @param targetVegetableCrops
+     * @param noOfCases
+     * @param waterRequirementLtr
+     * @param targetFieldCrops
+     * @param conversionIntoOrder
+     * @param technicalName
+     * @param volume
+     * @param phytotoxicity
+     * @param deletedAt
+     * @param colour
+     * @param stateSolidLiquid
+     * @param seedRateKgAcre
+     * @param name
+     * @param frequencyOfApplication
+     * @param inventoryId
+     * @param modeOfAction
+     * @param countryOfOrigin
+     * @param category
+     * @param compatabilityWithOtherChemicals
+     * @param dimensions
+     */
+    public CartProducts(Integer id, String name, String technicalName, String category, String noOfCases, Object price, Object discount, String volume, String description, String targetDisease, String targetFieldCrops, String targetVegetableCrops, String targetFruitCrops, String targetPlantationCrops, String modeOfAction, String durationOfEffect, String compatabilityWithOtherChemicals, String frequencyOfApplication, String dosage, String waterRequirementLtr, String timeOfApplication, String methodOfApplication, String waitingPeriod, String phytotoxicity, String storage, String countryOfOrigin, String dimensions, String stateSolidLiquid, Integer inventoryId, String brand, String sku, String createdAt, String modifiedAt, String deletedAt, String image, String sowingTime, String seedRateKgAcre, String maturityDuration, String colour, String usp, String numberOfSeedsPacket, Integer topProduct, Integer freqBought, Integer cartId, Integer quantity, String estimate, Integer conversionIntoOrder) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.technicalName = technicalName;
+        this.category = category;
+        this.noOfCases = noOfCases;
+        this.price = price;
+        this.discount = discount;
+        this.volume = volume;
+        this.description = description;
+        this.targetDisease = targetDisease;
+        this.targetFieldCrops = targetFieldCrops;
+        this.targetVegetableCrops = targetVegetableCrops;
+        this.targetFruitCrops = targetFruitCrops;
+        this.targetPlantationCrops = targetPlantationCrops;
+        this.modeOfAction = modeOfAction;
+        this.durationOfEffect = durationOfEffect;
+        this.compatabilityWithOtherChemicals = compatabilityWithOtherChemicals;
+        this.frequencyOfApplication = frequencyOfApplication;
+        this.dosage = dosage;
+        this.waterRequirementLtr = waterRequirementLtr;
+        this.timeOfApplication = timeOfApplication;
+        this.methodOfApplication = methodOfApplication;
+        this.waitingPeriod = waitingPeriod;
+        this.phytotoxicity = phytotoxicity;
+        this.storage = storage;
+        this.countryOfOrigin = countryOfOrigin;
+        this.dimensions = dimensions;
+        this.stateSolidLiquid = stateSolidLiquid;
+        this.inventoryId = inventoryId;
+        this.brand = brand;
+        this.sku = sku;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
+        this.deletedAt = deletedAt;
+        this.image = image;
+        this.sowingTime = sowingTime;
+        this.seedRateKgAcre = seedRateKgAcre;
+        this.maturityDuration = maturityDuration;
+        this.colour = colour;
+        this.usp = usp;
+        this.numberOfSeedsPacket = numberOfSeedsPacket;
+        this.topProduct = topProduct;
+        this.freqBought = freqBought;
+        this.cartId = cartId;
+        this.quantity = quantity;
+        this.estimate = estimate;
+        this.conversionIntoOrder = conversionIntoOrder;
+    }
 
     public Integer getId() {
         return id;
@@ -181,19 +290,19 @@ public class CartProducts {
         this.noOfCases = noOfCases;
     }
 
-    public Integer getPrice() {
+    public Object getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Object price) {
         this.price = price;
     }
 
-    public Integer getDiscount() {
+    public Object getDiscount() {
         return discount;
     }
 
-    public void setDiscount(Integer discount) {
+    public void setDiscount(Object discount) {
         this.discount = discount;
     }
 
@@ -485,11 +594,11 @@ public class CartProducts {
         this.freqBought = freqBought;
     }
 
-    public Integer getCartid() {
+    public Integer getCartId() {
         return cartId;
     }
 
-    public void setCartid(Integer cartid) {
+    public void setCartId(Integer cartId) {
         this.cartId = cartId;
     }
 
@@ -499,6 +608,22 @@ public class CartProducts {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public String getEstimate() {
+        return estimate;
+    }
+
+    public void setEstimate(String estimate) {
+        this.estimate = estimate;
+    }
+
+    public Integer getConversionIntoOrder() {
+        return conversionIntoOrder;
+    }
+
+    public void setConversionIntoOrder(Integer conversionIntoOrder) {
+        this.conversionIntoOrder = conversionIntoOrder;
     }
 
 }

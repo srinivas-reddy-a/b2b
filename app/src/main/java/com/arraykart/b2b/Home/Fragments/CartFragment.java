@@ -6,22 +6,30 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 //
 //import com.arraykart.b2b.Cart.CartAdapter;
 import com.arraykart.b2b.Authenticate.AuthorizeUser;
 import com.arraykart.b2b.Cart.CartAdapter;
+import com.arraykart.b2b.Home.Fragments.Account.AccountOptionsActivity;
+import com.arraykart.b2b.Home.Fragments.Account.KycUploadFragment;
 import com.arraykart.b2b.Order.OrderActivity;
 import com.arraykart.b2b.R;
 import com.arraykart.b2b.Retrofit.ModelClass.Cart;
+import com.arraykart.b2b.Retrofit.ModelClass.CartEstimate;
 import com.arraykart.b2b.Retrofit.ModelClass.CartProductDelete;
 import com.arraykart.b2b.Retrofit.ModelClass.CartProducts;
 import com.arraykart.b2b.Retrofit.ModelClass.ProductsWithQuantity;
@@ -30,6 +38,7 @@ import com.arraykart.b2b.Retrofit.RetrofitClient;
 import com.arraykart.b2b.SharedPreference.SharedPreferenceManager;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -50,6 +59,11 @@ public class CartFragment extends Fragment {
     private List<CartProducts> cartProducts;
     private Boolean undoCheck = false;
     private CartProductDelete cartProductDelete;
+    private Button getEstimateButton;
+    private LinearLayout estimateLL;
+    private LinearLayout placeOrderLL;
+    private TextView rejectEstimate;
+    private TextView getBackToYouTV;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,34 +84,204 @@ public class CartFragment extends Fragment {
                         if(isAdded()) {
                             Toast.makeText(
                                     requireActivity(),
-                                    "" + response.code(),
+                                    "Cart Empty!",
                                     Toast.LENGTH_SHORT).show();
                         }
                         return;
                     }
-                    cartProducts = (List<CartProducts>) response.body().getProducts();
-                    cartTotal = view.findViewById(R.id.cartTotal);
-                    int total=0;
-                    Iterator<CartProducts> i1=cartProducts.iterator();
-                    while (i1.hasNext()){
-                        total+=(Integer.parseInt(i1.next().getPrice().toString()));
-//                    *(Integer.parseInt(i1.next().getQuantity().toString()));
-                    }
-                    cartTotal.setText("Subtotal : ₹" + " " + total);
+                    cartProducts = response.body().getProducts();
+//                    cartTotal = view.findViewById(R.id.cartTotal);
+//                    int total=0;
+//                    Iterator<CartProducts> i1=cartProducts.iterator();
+//                    while (i1.hasNext()){
+//                        total+=(Integer.parseInt(i1.next().getPrice().toString()));
+////                    *(Integer.parseInt(i1.next().getQuantity().toString()));
+//                    }
+//                    cartTotal.setText("Subtotal : ₹" + " " + total);
                     cartPlaceOrder = view.findViewById(R.id.cartPlaceOrder);
-                    cartPlaceOrder.setText("Place Order("+ cartProducts.size()+")");
-                    cartPlaceOrder.setOnClickListener(v -> {
-                        if(isAdded()) {
-                            Intent i = new Intent(requireActivity(), OrderActivity.class);
-                            startActivity(i);
-                        }
-                    });
+
                     cartRV = view.findViewById(R.id.cartRV);
                     if(isAdded()) {
                         cartRV.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
                     }
                     cartAdapter = new CartAdapter(getContext(), cartProducts);
                     cartRV.setAdapter(cartAdapter);
+
+                    //based on estimate requested on not toggle visibily in cart
+                    //get estimate controls
+                    estimateLL = view.findViewById(R.id.estimateLL);
+                    placeOrderLL = view.findViewById(R.id.placeOrderLL);
+                    getEstimateButton = view.findViewById(R.id.getEstimateButton);
+                    getBackToYouTV = view.findViewById(R.id.getBackToYouTV);
+                    rejectEstimate = view.findViewById(R.id.rejectEstimate);
+                    if(cartProducts.get(0).getEstimate().equalsIgnoreCase("default")){
+                        estimateLL.setVisibility(View.VISIBLE);
+                        cartRV.setVisibility(View.VISIBLE);
+                        getBackToYouTV.setVisibility(View.GONE);
+                        if(cartProducts.size()>0) {
+                            getEstimateButton.setOnClickListener(view1 -> {
+                                CartEstimate cartEstimate = new CartEstimate("request");
+                                if (isAdded()) {
+                                    sharedPreferenceManager = new SharedPreferenceManager(requireActivity());
+                                    Call<SuccessMessage> call1 = RetrofitClient.getClient().getApi()
+                                            .updateCartEstimate(sharedPreferenceManager.getString("token"), cartEstimate);
+                                    call1.enqueue(new Callback<SuccessMessage>() {
+                                        @Override
+                                        public void onResponse(Call<SuccessMessage> call, Response<SuccessMessage> response) {
+                                            if (!response.isSuccessful()) {
+                                                if (isAdded()) {
+                                                    Toast.makeText(
+                                                            requireActivity(),
+                                                            "" + response.code(),
+                                                            Toast.LENGTH_SHORT).show();
+                                                }
+                                                return;
+                                            }
+                                            estimateLL.setVisibility(View.GONE);
+                                            cartRV.setVisibility(View.GONE);
+                                            getBackToYouTV.setVisibility(View.VISIBLE);
+                                            androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(requireActivity());
+                                            builder.setMessage("You will get a Estimate Shortly!");
+                                            builder.setCancelable(true);
+                                            builder.setPositiveButton("Ok", (dialog, id) -> {
+                                                dialog.cancel();
+                                            });
+                                            androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+                                            alertDialog.show();
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<SuccessMessage> call, Throwable t) {
+                                            if (isAdded()) {
+                                                Toast.makeText(
+                                                        requireActivity(),
+                                                        "Please check your internet connection or try again after sometime",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        }else{
+                            if(isAdded()) {
+                                Toast.makeText(requireActivity(), "Cart Empty!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }else if(cartProducts.get(0).getEstimate().equalsIgnoreCase("request")){
+                        estimateLL.setVisibility(View.GONE);
+                        cartRV.setVisibility(View.GONE);
+                        getBackToYouTV.setVisibility(View.VISIBLE);
+                    }else{
+                        estimateLL.setVisibility(View.GONE);
+                        cartRV.setVisibility(View.VISIBLE);
+                        getBackToYouTV.setVisibility(View.GONE);
+                        placeOrderLL.setVisibility(View.VISIBLE);
+                        rejectEstimate.setOnClickListener(view1 -> {
+                            Call<SuccessMessage> call1 = RetrofitClient.getClient().getApi()
+                                    .clearCart(sharedPreferenceManager.getString("token"));
+                            call1.enqueue(new Callback<SuccessMessage>() {
+                                @Override
+                                public void onResponse(Call<SuccessMessage> call, Response<SuccessMessage> response) {
+                                    if(isAdded()) {
+                                        if (!response.isSuccessful()) {
+                                            Toast.makeText(
+                                                    requireActivity(),
+                                                    "" + response.code(),
+                                                    Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+                                    }
+                                    estimateLL.setVisibility(View.VISIBLE);
+                                    cartRV.setVisibility(View.VISIBLE);
+                                    getBackToYouTV.setVisibility(View.GONE);
+                                    placeOrderLL.setVisibility(View.GONE);
+                                    androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(requireActivity());
+                                    builder.setMessage("We are sorry that you did not like our Estimate!");
+                                    builder.setCancelable(true);
+                                    builder.setPositiveButton("Continue Shopping", (dialog, id) -> {
+                                        dialog.cancel();
+                                    });
+                                    androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+                                    alertDialog.show();
+                                    if(isAdded()) {
+                                        FragmentTransaction transaction = requireActivity().getSupportFragmentManager()
+                                                .beginTransaction();
+                                        Fragment fragment = new CartFragment();
+                                        transaction.replace(R.id.homeContainer, fragment).commit();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<SuccessMessage> call, Throwable t) {
+                                    if(isAdded()) {
+                                        Toast.makeText(
+                                                requireActivity(),
+                                                "Please check your internet connection or try again after sometime",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+
+                        });
+                        cartPlaceOrder.setText("Place Order("+ cartProducts.size()+")");
+                        cartPlaceOrder.setOnClickListener(v -> {
+
+                            estimateLL.setVisibility(View.VISIBLE);
+                            cartRV.setVisibility(View.VISIBLE);
+                            getBackToYouTV.setVisibility(View.GONE);
+                            placeOrderLL.setVisibility(View.GONE);
+                            if(isAdded()) {
+                                Intent i = new Intent(requireActivity(), OrderActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("cartProducts", (Serializable) cartProducts);
+                                i.putExtras(bundle);
+                                startActivity(i);
+                            }
+//                            Call<SuccessMessage> call1 = RetrofitClient.getClient().getApi()
+//                                    .clearCart(sharedPreferenceManager.getString("token"));
+//                            call1.enqueue(new Callback<SuccessMessage>() {
+//                                @Override
+//                                public void onResponse(Call<SuccessMessage> call, Response<SuccessMessage> response) {
+//                                    if(isAdded()) {
+//                                        if (!response.isSuccessful()) {
+//                                            Toast.makeText(
+//                                                    requireActivity(),
+//                                                    "" + response.code(),
+//                                                    Toast.LENGTH_SHORT).show();
+//                                            return;
+//                                        }
+//                                    }
+//                                    estimateLL.setVisibility(View.VISIBLE);
+//                                    cartRV.setVisibility(View.VISIBLE);
+//                                    getBackToYouTV.setVisibility(View.GONE);
+//                                    placeOrderLL.setVisibility(View.GONE);
+//                                    if(isAdded()) {
+//                                        Intent i = new Intent(requireActivity(), OrderActivity.class);
+//                                        Bundle bundle = new Bundle();
+//                                        bundle.putSerializable("cartProducts", (Serializable) cartProducts);
+//                                        i.putExtras(bundle);
+//                                        startActivity(i);
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onFailure(Call<SuccessMessage> call, Throwable t) {
+//                                    if(isAdded()) {
+//                                        Toast.makeText(
+//                                                requireActivity(),
+//                                                "Please check your internet connection or try again after sometime",
+//                                                Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+//                            });
+
+                        });
+                    }
+
+
+
+
                     // on below line we are creating a method to create item touch helper
                     // method for adding swipe to delete functionality.
                     // in this we are specifying drag direction and position to right
@@ -157,11 +341,11 @@ public class CartFragment extends Fragment {
                                                         //add to cart database
                                                         Cart cart = new Cart(
                                                                 deletedProduct.getId().toString(),
-                                                                deletedProduct.getPrice().toString(),
+//                                                                deletedProduct.getPrice().toString(),
                                                                 deletedProduct.getVolume(),
-                                                                deletedProduct.getQuantity().toString(),
-                                                                deletedProduct.getDiscount().toString(),
-                                                                deletedProduct.getCartid().toString()
+                                                                deletedProduct.getQuantity().toString()
+//                                                                deletedProduct.getDiscount().toString(),
+//                                                                deletedProduct.getCartid().toString()
                                                         );
                                                         if (isAdded()) {
                                                             sharedPreferenceManager = new SharedPreferenceManager(requireActivity());

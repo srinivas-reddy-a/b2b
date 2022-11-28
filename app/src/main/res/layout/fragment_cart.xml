@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:tag="cartFragment"
     tools:context="com.arraykart.b2b.Home.Fragments.CartFragment">
 
@@ -57,6 +59,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -81,11 +84,12 @@
     </soup.neumorphism.NeumorphCardView>
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/placeOrderLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="20dp"
         android:padding="@dimen/view_padding"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/neumorphCardView6">
@@ -98,7 +102,19 @@
             android:padding="@dimen/view_padding"
             android:textColor="@color/heading"
             android:textSize="@dimen/sub_heading"
-            android:visibility="visible" />
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/rejectEstimate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/cherryRed"
+            android:padding="@dimen/view_padding"
+            android:text="Reject Estimate"
+            android:textAlignment="center"
+            android:textColor="@color/button_text"
+            android:textSize="@dimen/sub_heading" />
 
         <TextView
             android:id="@+id/cartPlaceOrder"
@@ -107,11 +123,48 @@
             android:layout_weight="1"
             android:background="@color/button_background"
             android:padding="@dimen/view_padding"
+            android:text="Place Order"
             android:textAlignment="center"
             android:textColor="@color/button_text"
             android:textSize="@dimen/sub_heading" />
     </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/estimateLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_padding"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/placeOrderLL">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/getEstimateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/button_background"
+            android:text="Get Estimate"
+            android:textColor="@color/button_text" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/getBackToYouTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/scroll_view_bottom_margin"
+        android:padding="@dimen/view_padding"
+        android:text="We will get back to you! You will get a NNotification or Call from Arraykart"
+        android:textAlignment="center"
+        android:textColor="@color/heading"
+        android:textSize="@dimen/heading"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/neumorphCardView6" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRV"
@@ -123,7 +176,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/estimateLL">
 
     </androidx.recyclerview.widget.RecyclerView>
 

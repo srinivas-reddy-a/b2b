@@ -110,6 +110,10 @@ public class AccountOptionsActivity extends AppCompatActivity {
                 fragment = new AboutUsFragment();
                 break;
 
+            case "myorders":
+                fragment = new MyOrdersFragment();
+                break;
+
             default:
                 break;
 

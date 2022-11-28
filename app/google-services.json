@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "68528877222",
-    "project_id": "arraykart-b2b-4a825",
-    "storage_bucket": "arraykart-b2b-4a825.appspot.com"
+    "project_number": "397029269591",
+    "project_id": "arraykart-b2b-node-server",
+    "storage_bucket": "arraykart-b2b-node-server.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:68528877222:android:7b79313b6763e6bffd0e67",
+        "mobilesdk_app_id": "1:397029269591:android:91d3bacebcfe7abe0ac312",
         "android_client_info": {
           "package_name": "com.arraykart.b2b"
         }
       },
       "oauth_client": [
         {
-          "client_id": "68528877222-sb1m1jb2b6d40n0uchftn68s7rjruv42.apps.googleusercontent.com",
+          "client_id": "397029269591-reeqhapt5sfv7ll9tc2m2qtafkch2aar.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDHaE2x1gkenxb-F2LDx65GLIu4-nmBP_Q"
+          "current_key": "AIzaSyBskiFzmLOqXRdTe_uovOon1Lk1LSxlm7o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "68528877222-sb1m1jb2b6d40n0uchftn68s7rjruv42.apps.googleusercontent.com",
+              "client_id": "397029269591-reeqhapt5sfv7ll9tc2m2qtafkch2aar.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

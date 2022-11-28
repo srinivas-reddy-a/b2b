@@ -124,6 +124,45 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/view_padding">
+
+            <LinearLayout
+                android:id="@+id/myOrdersLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/section_padding"
+                    android:text="My Orders"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/text"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_14_green"
+                    app:drawableStartCompat="@drawable/ic_outline_kyc_24" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sub_section_line"
+            android:layout_marginStart="@dimen/account_frag_view_margin"
+            android:background="@color/sub_section_line"
+            android:visibility="visible" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/view_padding"
             android:visibility="gone">

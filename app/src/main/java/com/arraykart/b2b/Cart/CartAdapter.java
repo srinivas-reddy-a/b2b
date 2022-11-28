@@ -153,11 +153,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             sharedPreferenceManager  = new SharedPreferenceManager(context);
             Cart cart = new Cart(
                     cartProducts.get(getAdapterPosition()).getId().toString(),
-                    cartProducts.get(getAdapterPosition()).getPrice().toString(),
+//                    cartProducts.get(getAdapterPosition()).getPrice().toString(),
                     cartProducts.get(getAdapterPosition()).getVolume(),
-                    quantity,
-                    cartProducts.get(getAdapterPosition()).getDiscount().toString(),
-                    cartProducts.get(getAdapterPosition()).getCartid().toString()
+                    quantity
+//                    cartProducts.get(getAdapterPosition()).getDiscount().toString(),
+//                    cartProducts.get(getAdapterPosition()).getCartid().toString()
                     );
             Call<SuccessMessage> call = RetrofitClient.getClient()
                     .getApi().editCart(sharedPreferenceManager.getString("token"), cart);
@@ -221,11 +221,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     //add to cart database
                     Cart cart = new Cart(
                             deletedProduct.getId().toString(),
-                            deletedProduct.getPrice().toString(),
+//                            deletedProduct.getPrice().toString(),
                             deletedProduct.getVolume(),
-                            deletedProduct.getQuantity().toString(),
-                            deletedProduct.getDiscount().toString(),
-                            deletedProduct.getCartid().toString()
+                            deletedProduct.getQuantity().toString()
+//                            deletedProduct.getDiscount().toString(),
+//                            deletedProduct.getCartid().toString()
                     );
                     sharedPreferenceManager = new SharedPreferenceManager(context);
                     Call<SuccessMessage> call = RetrofitClient.getClient().getApi()

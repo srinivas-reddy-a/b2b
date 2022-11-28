@@ -13,6 +13,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -186,6 +188,25 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
 
         AppRater.app_launched(this);
 
+        //notification firebase
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("notification_channel", "notification_channel", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+        FirebaseMessaging.getInstance().subscribeToTopic("general")
+                .addOnCompleteListener(task -> {
+//                    String msg = "Subscribed Successfully";
+                    NotificationService notificationService = new NotificationService();
+//                    if (!task.isSuccessful()) {
+//                        msg = "Subscription failed";
+//                    }
+//                    Toast.makeText(HomeActivity.this, msg, Toast.LENGTH_SHORT).show();
+                });
+
+//        notificationService.notify();
+
 
 
         //user location
@@ -262,7 +283,7 @@ public class HomeActivity extends AppCompatActivity implements ConnectionReceive
                     .error(R.drawable.imgnotfound)
                     .into(cart);
         }else {
-            Log.e("fragment", fragment);
+//            Log.e("fragment", fragment);
             setCartFragment();
         }
 

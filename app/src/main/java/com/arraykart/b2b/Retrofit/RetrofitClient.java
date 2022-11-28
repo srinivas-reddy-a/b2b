@@ -11,7 +11,7 @@ public class RetrofitClient {
     //aws http://3.111.180.248:3000/
     //localhost http://10.0.2.2:3000/
     private static Retrofit retrofit;
-    private static final String baseUrl = "http://10.0.2.2:3000/";
+    private static final String baseUrl = "http://b248-122-162-147-128.ngrok.io/";
     private static RetrofitClient retrofitClient;
 
     private RetrofitClient() {
